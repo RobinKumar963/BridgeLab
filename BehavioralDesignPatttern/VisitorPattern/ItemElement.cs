@@ -6,6 +6,6 @@ namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.VisitorPattern
 {
     public interface ItemElement
     {
-        public int accept(ShoppingCartVisitor visitor);
+        public int Accept(ShoppingCartVisitor visitor);
     }
 }

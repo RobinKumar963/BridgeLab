@@ -4,8 +4,10 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.VisitorPattern
 {
-    interface ShoppingCartVisitor
+    public interface ShoppingCartVisitor
     {
+        int Visit(Book book);
+        int Visit(Fruit fruit);
 
     }
 }

@@ -26,17 +26,17 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.FactoryPattern.Model
 
         public string GetHDD()
         {
-            return HDD();
+            return HDD;
         }
 
         public string GetRAM()
         {
             return RAM;
         }
-
+       
         public string GetROM()
         {
-            return CPU;
+            return ROM;
         }
     }
 }

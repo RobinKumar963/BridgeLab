@@ -6,6 +6,7 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
 {
     class ReflectionDestroySingletonPattern
     {
+        /*
         public static void main(String[] args)
         {
             EagerInitialization instanceA = EagerInitialization.GetInstance();
@@ -27,6 +28,7 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
             System.out.println(instanceTwo.hashCode());
        }
 
-
+     */
     }
+
 }

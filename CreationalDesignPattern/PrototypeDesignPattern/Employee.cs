@@ -26,7 +26,7 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.PrototypeDesignPatter
             empList.Add("Lisa");
         }
 
-        public List<String> getEmpList()
+        public List<String> GetEmpList()
         {
             return empList;
         }

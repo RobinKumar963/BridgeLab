@@ -13,14 +13,14 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.PrototypeDesignPatter
             emps.LoadData();
 
             ////Use the clone method to get the Employee object
-            Employee empsNew = (Employee)emps.ShallowCopy();
-            Employee empsNew1 = (Employee)emps.ShallowCopy();
-            List<String> list = empsNew.getEmpList();
+            Employee empsNew = emps.ShallowCopy();
+            Employee empsNew1 = emps.ShallowCopy();
+            List<String> list = empsNew.GetEmpList();
             list.Add("John");
-            List<String> list1 = empsNew1.getEmpList();
+            List<String> list1 = empsNew1.GetEmpList();
             list1.Remove("Pankaj");
 
-            Console.WriteLine("emps List: " + emps.getEmpList());
+            Console.WriteLine("emps List: " + emps.GetEmpList());
             Console.WriteLine("empsNew List: " + list);
             Console.WriteLine("empsNew1 List: " + list1);
         }
