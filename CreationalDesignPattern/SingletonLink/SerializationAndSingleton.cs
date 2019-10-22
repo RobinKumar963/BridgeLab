@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
 {
-    class SerializationAndSingleton 
+    class SerializationAndSingleton
     {
         private static  long serialVersionUID = -7604766932017737115L;
 

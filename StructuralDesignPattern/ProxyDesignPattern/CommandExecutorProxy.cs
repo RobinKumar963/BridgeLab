@@ -4,15 +4,42 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.StructuralDesignPattern.ProxyDesignPattern
 {
-    class CommandExecutorProxy
+    public class CommandExecutorProxy : CommandExecutor
     {
-        CommandExecutor commandexecutorimpl = new CommandExecutorImpl();
-
-        public  void RunCommand(string cmd)
+        private Boolean isAdmin;
+        private CommandExecutor executor;
+        public CommandExecutorProxy()
         {
-            commandexecutorimpl.RunCommand(cmd);
+            isAdmin = false;
         }
 
+        public CommandExecutorProxy(String user, String pwd)
+        {
+            if (user.CompareTo("Robbie") == 0 && pwd.CompareTo("HelloCmdExecutor") == 0)
+                isAdmin = true;
+            else
+                isAdmin = false;
+        }
+        
+        public void RunCommand(string cmd)
+        {
+            if (isAdmin)
+            {
+                Console.WriteLine("Command running in Admin Mode");
+               
+            }
+            executor.RunCommand(cmd);
+    
+        }
 
+        public void RemoveCommand(string cmd)
+        {
+            if (isAdmin)
+                executor.RemoveCommand(cmd);
+            else
+                Console.WriteLine("Access Denied:::");
+
+
+        }
     }
 }
