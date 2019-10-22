@@ -6,6 +6,15 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
 {
     class EnumSingleton
     {
+        private static  EagerInitialization instance;
+
+        private EnumSingleton()
+        {
+
+        }
+
+
+
 
     }
 }

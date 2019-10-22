@@ -3,7 +3,7 @@
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
 {
-    class EagerInitialization
+    public class EagerInitialization
     {
         /// <summary>
         /// A instance to be created once and assigned once with Keyword readonly
