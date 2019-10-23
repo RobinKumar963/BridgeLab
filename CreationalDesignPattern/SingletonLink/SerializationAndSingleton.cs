@@ -1,4 +1,9 @@
-﻿
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=SerializationAndSingleton.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// --------------------------------------------------------------------------------------------------------------------
 
 using System.Runtime.Serialization;
 
@@ -16,7 +21,7 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
             public static SerializationAndSingleton instance = new SerializationAndSingleton();
         }
 
-        public static SerializationAndSingleton getInstance()
+        public static SerializationAndSingleton GetInstance()
         {
             return SingletonHelper.instance;
         }
@@ -26,12 +31,15 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
         /// <returns></returns>
         protected SerializationAndSingleton ReadResolve()
         {
+            ////On,Serialization and than Deserialization(reading object from stream)different instance is obtained.
+            ////This,resolves it
 
-            return getInstance();
+            return GetInstance();
         }
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            ////SingletonHelper.instance;
+            
+            
         }
     }
 }

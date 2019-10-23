@@ -1,6 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=CommandExecutorProxy.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
+
 
 namespace Bridgelabz.DesignPattern.StructuralDesignPattern.ProxyDesignPattern
 {

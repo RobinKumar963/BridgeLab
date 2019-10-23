@@ -1,6 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=BillPughSingletonImplementation.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
 {

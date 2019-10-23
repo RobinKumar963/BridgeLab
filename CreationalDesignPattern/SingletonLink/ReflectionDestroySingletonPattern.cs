@@ -1,4 +1,13 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=ReflectionDestroySingletonPattern.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+
+using System;
 using System.Reflection;
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
@@ -8,41 +17,20 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
 
         public static void ReflectAndDestroySingleton()
         {
-            Type EagerInitializationReflection = typeof(EagerInitialization);
+            Type ReflectedEagerInitialization = typeof(EagerInitialization);
 
-            MethodInfo EagerInitialization = EagerInitializationReflection.GetMethod("EagerInitialization",
-            new Type[] { });
+            ConstructorInfo[] constructors = ReflectedEagerInitialization.GetConstructors();
+            
 
-
-
-
-
-        }
-
-        public static void DestroySingletonUsingReflection()
-        {
-            EagerInitialization instanceOne = EagerInitialization.GetInstance();
-            EagerInitialization instanceTwo = null;
-
-            string path = @"C:\Users\Bridgelabz\source\repos\BridgeLabz\bin\Debug\netcoreapp3.0\Bridgelabz.dll";
-
-            ////Get the assembly from specified assembly path          
-            Assembly assembly = Assembly.LoadFile(path);
-
-            ////Getting All types(Classes) in array of TYpe
-            Type[] types = assembly.GetTypes();
-
-            foreach (var type in types)
+            foreach(ConstructorInfo constructor in constructors)
             {
-                if(type.Name == "EagerInitialization")
-                {
-                    ////Change the constructor from priuvate to public
-                    
-                    
-                }
+                ////Make all constructor public(Private constructor become public)
+                
             }
+          
+    }
 
-        }
+   
         public static void GetReflection()
         {
             string path = @"C:\Users\Bridgelabz\source\repos\BridgeLabz\bin\Debug\netcoreapp3.0\Bridgelabz.dll";

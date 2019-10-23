@@ -1,4 +1,12 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=MyTopic.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -10,7 +18,7 @@ namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.ObserverDesignPatter
         private List<Observer> observers;
         private String message;
         private Boolean changed;
-        private readonly Object MUTEX = new Object();
+        private readonly Object padLock = new Object();
 
 
         
@@ -26,16 +34,18 @@ namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.ObserverDesignPatter
         public void Register(Observer obj)
         {
             //if (obj == null) throw new NullPointerException("Null Observer");
-            //synchronized(MUTEX) {
+            lock(padLock) 
+            {
                 if (!observers.Contains(obj)) observers.Add(obj);
-            //}
+            }
         }
 
         public void Unregister(Observer obj)
         {
-            //synchronized(MUTEX){
+            lock(padLock)
+            {
                 observers.Remove(obj);
-            //}
+            }
             
         }
 
@@ -43,12 +53,13 @@ namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.ObserverDesignPatter
         {
             List<Observer> observersLocal = null;
             //synchronization is used to make sure any observer registered after message is received is not notified
-            //synchronized(MUTEX) {
+            lock(padLock) 
+            {
                 if (!changed)
                     return;
                 observersLocal = new List<Observer>(this.observers);
                 this.changed = false;
-            //}
+            }
             foreach(Observer obj in observersLocal)
             {
                 obj.Update();

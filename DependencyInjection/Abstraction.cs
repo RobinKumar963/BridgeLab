@@ -1,21 +1,20 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file=DB.cs" company="Bridgelabz">
+// <copyright file=Abstraction.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="Robin Kumar"/>
 // --------------------------------------------------------------------------------------------------------------------
 
-
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Bridgelabz.DesignPattern.StructuralDesignPattern.FacadeDesignPattern
+namespace Bridgelabz.DesignPattern.DependencyInjection
 {
-    interface DB
+    public interface Abstraction
     {
-        public Connection GetConnection();
-        public void GenerateHTMLReport();
-        public void GeneratePDFReport();
+        public void LoadService();
+        public void ExecService();
+        public void RemoveService();
     }
 }

@@ -1,7 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=Anagram.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// --------------------------------------------------------------------------------------------------------------------
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
 {

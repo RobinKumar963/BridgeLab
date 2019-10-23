@@ -1,4 +1,12 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=ChatClient.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+using System;
 namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.MediatorDesignPatter
 {
     public class ChatClient

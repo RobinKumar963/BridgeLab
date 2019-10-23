@@ -1,4 +1,15 @@
-﻿using Bridgelabz.DesignPattern.CreationalDesignPattern.FactoryPattern.Model;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=ComputerFactory.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+using Bridgelabz.DesignPattern.CreationalDesignPattern.FactoryPattern.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
