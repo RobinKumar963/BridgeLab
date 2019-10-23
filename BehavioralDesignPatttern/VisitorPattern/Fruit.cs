@@ -41,7 +41,7 @@ namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.VisitorPattern
         }
 
         
-    public int Accept(ShoppingCartVisitor visitor)
+        public int Accept(ShoppingCartVisitor visitor)
         {
             return visitor.Visit(this);
         }
