@@ -17,18 +17,36 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
 
         public static void ReflectAndDestroySingleton()
         {
+            EagerInitialization obj1 = EagerInitialization.GetInstance();
+            EagerInitialization obj2 = EagerInitialization.GetInstance();
+            EagerInitialization obj3;
             Type ReflectedEagerInitialization = typeof(EagerInitialization);
-
+            MethodInfo ReflectedGetInstance = ReflectedEagerInitialization.GetMethod("GetInstance()");
+            
             ConstructorInfo[] constructors = ReflectedEagerInitialization.GetConstructors();
             
 
             foreach(ConstructorInfo constructor in constructors)
             {
                 ////Make all constructor public(Private constructor become public)
-                
+                ////Alternatively,Just invoke the private constructor
+                ////This will set the instance of singleton class
+                ////Defined inside singleton class with a new one   
+                if (constructor.IsPrivate)
+                   constructor.Invoke();
+
             }
-          
-    }
+            ////On intializing instance of Singleton Class with new one
+            ////Invoke,
+            obj3 = ReflectedGetInstance.Invoke();
+
+
+            Console.WriteLine("Instance1 without reflection" + obj1.GetHashCode());
+            Console.WriteLine("Instance 2 without reflection" + obj2.GetHashCode());
+            Console.WriteLine("Instance without reflection" + obj3.GetHashCode());
+
+
+        }
 
    
         public static void GetReflection()

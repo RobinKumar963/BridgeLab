@@ -13,11 +13,14 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
         /// <summary>
         /// A instance to be created once and assigned once with Keyword readonly
         /// </summary>
-        private static readonly EagerInitialization instance = new EagerInitialization();
+        private static  EagerInitialization instance = new EagerInitialization();
         /// <summary>
         /// Prevents a default instance of the <see cref="EagerInitialization"/> class from being created.
         /// </summary>
-        private EagerInitialization() { }
+        private EagerInitialization() 
+        {
+            instance = new EagerInitialization();
+        }
         ////GAP(Global Access Point),returns an instance
         public static EagerInitialization GetInstance()
         {
