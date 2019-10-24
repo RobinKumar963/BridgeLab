@@ -12,6 +12,9 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.StructuralDesignPattern.FacadeDesignPattern
 {
+    /// <summary>
+    /// Contract for super interface
+    /// </summary>
     interface DB
     {
         public Connection GetConnection();

@@ -11,6 +11,9 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.ObserverDesignPattern
 {
+    /// <summary>
+    /// Test ObserverPattern
+    /// </summary>
     class ObserverPatternTest
     {
         public static void main(String[] args)

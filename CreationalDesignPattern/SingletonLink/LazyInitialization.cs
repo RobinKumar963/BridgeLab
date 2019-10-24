@@ -6,6 +6,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
 {
+    /// <summary>
+    /// LazyInitialization
+    /// </summary>
     class LazyInitialization
     {
         private static  LazyInitialization instance;

@@ -8,8 +8,14 @@ using System.Runtime.CompilerServices;
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
 {
+    /// <summary>
+    /// ThreadSafeSingleton
+    /// </summary>
     class ThreadSafeSingleton
     {
+        /// <summary>
+        /// Uses GAP to return Singleton instance,(GAP uses Synchronized Annotation For MultiThreaded Enviornment)
+        /// </summary>
         internal class ThreadSafeSingletonUsingSynchronization
         {
             private static ThreadSafeSingletonUsingSynchronization instance;
@@ -31,6 +37,9 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
             }
         }
 
+        /// <summary>
+        /// Uses GAP to return Singleton instance,(GAP uses Lock For MultiThreaded Enviornment)
+        /// </summary>
         internal class ThreadSafeSingletonUsingLock
         {
             private static ThreadSafeSingletonUsingLock instance;
@@ -54,9 +63,9 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
             }
         }
 
-
-
-
+        /// <summary>
+        /// Uses GAP to return Singleton instance,(GAP uses Double Lock For MultiThreaded Enviornment)
+        /// </summary>
         internal class ThreadSafeSingletonUsingDoubleLock
         {
             ThreadSafeSingletonUsingDoubleLock()
@@ -83,15 +92,5 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
                 }
             }
         }
-
-
-
-
-
-
-
-
-
-
     }
 }

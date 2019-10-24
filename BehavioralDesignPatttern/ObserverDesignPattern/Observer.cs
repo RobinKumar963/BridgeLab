@@ -12,6 +12,9 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.ObserverDesignPattern
 {
+    /// <summary>
+    /// Contract for observer
+    /// </summary>
     interface Observer
     {
         ////method to update the observer, used by subject

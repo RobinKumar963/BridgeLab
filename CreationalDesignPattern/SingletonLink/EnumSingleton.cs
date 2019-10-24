@@ -7,6 +7,9 @@
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
 {
+    /// <summary>
+    /// EnumSingleton
+    /// </summary>
     class EnumSingleton
     {
         public enum EnumerationSingleton

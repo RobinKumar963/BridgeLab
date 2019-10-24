@@ -9,6 +9,9 @@
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
 {
+    /// <summary>
+    /// StaticBlockIntialization
+    /// </summary>
     class StaticBlockIntialization
     {
         private static readonly StaticBlockIntialization instance;

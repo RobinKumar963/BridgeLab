@@ -10,6 +10,9 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.StructuralDesignPattern.ProxyDesignPattern
 {
+    /// <summary>
+    /// Contract for CommandExecutor
+    /// </summary>
     interface CommandExecutor
     {
         public void RunCommand(String cmd);

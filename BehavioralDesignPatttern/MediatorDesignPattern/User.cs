@@ -9,8 +9,12 @@
 using System;
 namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.MediatorDesignPatter
 {
+    /// <summary>
+    /// Contract for collegues
+    /// </summary>
     public abstract class User
     {
+        
         protected ChatMediator mediator;
         protected String name;
 

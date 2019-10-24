@@ -9,6 +9,9 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.StructuralDesignPattern.AdapterDesignPattern
 {
+    /// <summary>
+    /// Voltage used by both source and client
+    /// </summary>
     class Voltage
     {
         private int volts;

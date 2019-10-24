@@ -14,6 +14,10 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.StructuralDesignPattern.FacadeDesignPattern
 {
+    /// <summary>
+    /// Contract for sub interface
+    /// </summary>
+    /// <seealso cref="Bridgelabz.DesignPattern.StructuralDesignPattern.FacadeDesignPattern.DB" />
     interface ORACLE : DB
     {
         

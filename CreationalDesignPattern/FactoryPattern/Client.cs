@@ -16,6 +16,9 @@ using System;
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.FactoryPattern
 {
+    /// <summary>
+    /// Client uses Factory class to create instances
+    /// </summary>
     class Client
     {
         public static void Main(String[] args)

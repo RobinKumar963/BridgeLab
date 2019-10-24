@@ -11,6 +11,9 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.DependencyInjection
 {
+    /// <summary>
+    /// Contract for abstraction
+    /// </summary>
     public interface Abstraction
     {
         public void LoadService();

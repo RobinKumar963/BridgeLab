@@ -12,6 +12,10 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.FactoryPattern.Model
 {
+    /// <summary>
+    /// A Concrete computer type
+    /// </summary>
+    /// <seealso cref="Bridgelabz.DesignPattern.CreationalDesignPattern.FactoryPattern.Model.Computer" />
     class Laptop : Computer
     {
         string CPU;

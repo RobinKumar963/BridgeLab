@@ -10,6 +10,10 @@ using System.Runtime.Serialization;
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
 {
+    /// <summary>
+    /// Serialization And Singleton
+    /// </summary>
+    /// <seealso cref="System.Runtime.Serialization.ISerializable" />
     class SerializationAndSingleton : ISerializable
     {
         private static  long serialVersionUID = -7604766932017737115L;

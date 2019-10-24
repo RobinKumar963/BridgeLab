@@ -12,6 +12,9 @@ using System.Collections.Generic;
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.PrototypeDesignPattern
 {
+    /// <summary>
+    /// Get the clone object from employee providing cloning feature
+    /// </summary>
     class PrototypePatternTest
     {
 

@@ -15,6 +15,7 @@ namespace Bridgelabz.DesignPattern.DependencyInjection
     {
        public static void Main(String[] args)
         {
+            HighLevelModule dhighLevelmodule = new HighLevelModule();
             ////Dependency Injection
             HighLevelModule highLevelmodule = new HighLevelModule(new LowLevelModule());
             highLevelmodule.LoadService();

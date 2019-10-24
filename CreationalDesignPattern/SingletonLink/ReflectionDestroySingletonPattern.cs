@@ -12,9 +12,14 @@ using System.Reflection;
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
 {
+    /// <summary>
+    /// Using Reflection to destroy singleton pattern
+    /// </summary>
     class ReflectionDestroySingletonPattern
     {
-
+        /// <summary>
+        /// USe Reflection  and destroy singleton.
+        /// </summary>
         public static void ReflectAndDestroySingleton()
         {
             EagerInitialization obj1 = EagerInitialization.GetInstance();
@@ -30,8 +35,8 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
             {
                 ////Make all constructor public(Private constructor become public)
                 ////Alternatively,Just invoke the private constructor
-                ////This will set the instance of singleton class
-                ////Defined inside singleton class with a new one   
+                ////This will set the instance of singleton class,Defined inside singleton class with a new one
+                
                 if (constructor.IsPrivate)
                    constructor.Invoke();
 
@@ -48,7 +53,9 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
 
         }
 
-   
+        /// <summary>
+        /// Demonstration of reflection to load assembly and access its types,types method and parameter.
+        /// </summary>
         public static void GetReflection()
         {
             string path = @"C:\Users\Bridgelabz\source\repos\BridgeLabz\bin\Debug\netcoreapp3.0\Bridgelabz.dll";

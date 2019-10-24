@@ -13,6 +13,10 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.ObserverDesignPattern
 {
+    /// <summary>
+    /// Concrete object
+    /// </summary>
+    /// <seealso cref="Bridgelabz.DesignPattern.BehavioralDesignPatttern.ObserverDesignPattern.Subject" />
     class MyTopic : Subject
     {
         private List<Observer> observers;
@@ -33,7 +37,7 @@ namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.ObserverDesignPatter
 
         public void Register(Observer obj)
         {
-            //if (obj == null) throw new NullPointerException("Null Observer");
+           
             lock(padLock) 
             {
                 if (!observers.Contains(obj)) observers.Add(obj);
@@ -52,7 +56,7 @@ namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.ObserverDesignPatter
         public void NotifyObservers()
         {
             List<Observer> observersLocal = null;
-            //synchronization is used to make sure any observer registered after message is received is not notified
+            ////synchronization is used to make sure any observer registered after message is received is not notified
             lock(padLock) 
             {
                 if (!changed)
@@ -70,6 +74,7 @@ namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.ObserverDesignPatter
 
         public object GetUpdate(Observer obj)
         {
+            ////This method is used by observer to get notified about change
             return this.message;
         
         }

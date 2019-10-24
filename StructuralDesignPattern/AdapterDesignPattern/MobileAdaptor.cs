@@ -4,14 +4,20 @@
 // </copyright>
 // <creator name="Robin Kumar"/>
 // --------------------------------------------------------------------------------------------------------------------
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace Bridgelabz.DesignPattern.StructuralDesignPattern.AdapterDesignPattern
 {
+    /// <summary>
+    /// Adapter connect two unrelated interface source and client.Use adaptee interface WallSocket
+    /// </summary>
+    /// <seealso cref="Bridgelabz.DesignPattern.StructuralDesignPattern.AdapterDesignPattern.WallSocket" />
     class MobileAdaptor : WallSocket
     {
-         MobileChargerSocket mobileCharger;
+        /// <summary>
+        /// Client interface(target interface)
+        /// </summary>
+        MobileChargerSocket mobileCharger;
 
         public MobileAdaptor(MobileChargerSocket mobileCharger)
         {

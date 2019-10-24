@@ -7,7 +7,11 @@
 
 namespace Bridgelabz.DesignPattern.StructuralDesignPattern.AdapterDesignPattern
 {
-    class WallPlug : MobileChargerSocket
+    /// <summary>
+    /// Concrete implementation of source
+    /// </summary>
+    /// <seealso cref="Bridgelabz.DesignPattern.StructuralDesignPattern.AdapterDesignPattern.WallSocket" />
+    class WallPlug : WallSocket
     {
         public Voltage GetVolt()
         {

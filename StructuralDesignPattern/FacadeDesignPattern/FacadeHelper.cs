@@ -13,6 +13,10 @@ using System.Text;
 namespace Bridgelabz.DesignPattern.StructuralDesignPattern.FacadeDesignPattern
 {
 
+    /// <summary>
+    /// Wrap up all sub interfaces
+    /// </summary>
+    /// <seealso cref="Bridgelabz.DesignPattern.StructuralDesignPattern.FacadeDesignPattern.DB" />
     public class FacadeHelper : DB
     {
         String DBType;
@@ -117,8 +121,8 @@ namespace Bridgelabz.DesignPattern.StructuralDesignPattern.FacadeDesignPattern
 
         }
 
-        enum dbType{ SQL,ORACLE };
-        enum reportType { HTML,PDF };
+        public enum dbType{ SQL,ORACLE };
+        public enum reportType { HTML,PDF };
 
 
     }

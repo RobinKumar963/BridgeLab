@@ -6,6 +6,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace Bridgelabz.DesignPattern.StructuralDesignPattern.AdapterDesignPattern
 {
+    /// <summary>
+    /// Contract for source
+    /// </summary>
     interface WallSocket
     {
         Voltage GetVolt();

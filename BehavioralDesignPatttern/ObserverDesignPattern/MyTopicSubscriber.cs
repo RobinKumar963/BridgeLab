@@ -12,8 +12,13 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.ObserverDesignPattern
 {
+    /// <summary>
+    /// Concrete Observer
+    /// </summary>
+    /// <seealso cref="Bridgelabz.DesignPattern.BehavioralDesignPatttern.ObserverDesignPattern.Observer" />
     class MyTopicSubscriber : Observer
     {
+        
         private String name;
         private Subject topic;
 
@@ -29,6 +34,7 @@ namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.ObserverDesignPatter
 
         public void Update()
         {
+            ////This method called by observer to get notified about changes
             String msg = (String)topic.GetUpdate(this);
             if (msg == null)
             {

@@ -9,6 +9,9 @@
 using System;
 namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.MediatorDesignPatter
 {
+    /// <summary>
+    /// Test mediator pattern
+    /// </summary>
     public class ChatClient
     {
         public static void Main(String[] args)

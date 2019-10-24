@@ -14,6 +14,9 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.FactoryPattern.Constants
 {
+    /// <summary>
+    /// Provide most used values as constant
+    /// </summary>
     class Constant
     {
         public static string PC = "PC";

@@ -11,6 +11,10 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.VisitorPattern
 {
+    /// <summary>
+    /// Book-A concrete item
+    /// </summary>
+    /// <seealso cref="Bridgelabz.DesignPattern.BehavioralDesignPatttern.VisitorPattern.ItemElement" />
     public class Book : ItemElement
     {
         private int price;
@@ -32,9 +36,14 @@ namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.VisitorPattern
             return isbnNumber;
         }
 
-        
+        /// <summary>
+        /// Accepts the specified visitor.
+        /// </summary>
+        /// <param name="visitor">The visitor.</param>
+        /// <returns></returns>
         public int Accept(ShoppingCartVisitor visitor)
         {
+            ////Double dispatch solved
             return visitor.Visit(this);
         }
 

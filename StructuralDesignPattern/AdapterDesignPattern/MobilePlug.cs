@@ -9,6 +9,10 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.StructuralDesignPattern.AdapterDesignPattern
 {
+    /// <summary>
+    /// Concrete implementation of client
+    /// </summary>
+    /// <seealso cref="Bridgelabz.DesignPattern.StructuralDesignPattern.AdapterDesignPattern.MobileChargerSocket" />
     class MobilePlug : MobileChargerSocket
     {
         public Voltage GetVolt()

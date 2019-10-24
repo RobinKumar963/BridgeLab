@@ -12,6 +12,9 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.PrototypeDesignPattern
 {
+    /// <summary>
+    /// Employye class,provides cloning feature
+    /// </summary>
     class Employee
     {
         private List<String> empList;
@@ -27,7 +30,7 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.PrototypeDesignPatter
         }
         public void LoadData()
         {
-            //read all employees from database and put into the list
+            ////read all employees from database and put into the list
             empList.Add("Pankaj");
             empList.Add("Raj");
             empList.Add("David");
@@ -38,7 +41,10 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.PrototypeDesignPatter
         {
             return empList;
         }
-
+        /// <summary>
+        /// Provide Clone of this object.
+        /// </summary>
+        /// <returns></returns>
         public Employee ShallowCopy()
         {
             return (Employee)this.MemberwiseClone();

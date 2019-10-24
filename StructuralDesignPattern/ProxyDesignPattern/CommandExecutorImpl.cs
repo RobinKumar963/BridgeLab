@@ -10,21 +10,22 @@ using System;
 
 namespace Bridgelabz.DesignPattern.StructuralDesignPattern.ProxyDesignPattern
 {
+    /// <summary>
+    /// Concrete implementation of CommandExecutor
+    /// </summary>
+    /// <seealso cref="Bridgelabz.DesignPattern.StructuralDesignPattern.ProxyDesignPattern.CommandExecutor" />
     class CommandExecutorImpl : CommandExecutor
     {
 
         public void RunCommand(string cmd) 
         {
-            //Runtime.getRuntime().exec(cmd);
+            ////Command Executed
             Console.WriteLine(" " + cmd + "' command executed.");
         }
-        /// <summary>
-        /// Removes the command.Crucial should not be used by client as he can remove crucial command
-        /// </summary>
-        /// <param name="cmd">The command.</param>
+    
         public void RemoveCommand(string cmd)
         {
-            //Runtime.getRuntime().exec(cmd);
+            ////Command Removed
             Console.WriteLine(" " + cmd + "' command removed."); 
         }
     }

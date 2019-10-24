@@ -11,6 +11,9 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.FactoryPattern.Model
 {
+    /// <summary>
+    /// Contract for Computer
+    /// </summary>
     public interface Computer
     {
         public string GetRAM();

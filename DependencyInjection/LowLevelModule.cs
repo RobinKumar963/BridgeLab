@@ -11,6 +11,10 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.DependencyInjection
 {
+    /// <summary>
+    /// Concrete implementation of Abstraction
+    /// </summary>
+    /// <seealso cref="Bridgelabz.DesignPattern.DependencyInjection.Abstraction" />
     public class LowLevelModule : Abstraction
     {
         public void ExecService()

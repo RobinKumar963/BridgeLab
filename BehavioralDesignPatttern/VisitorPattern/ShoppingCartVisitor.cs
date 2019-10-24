@@ -13,6 +13,9 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.VisitorPattern
 {
+    /// <summary>
+    /// Contract for shopping visitor
+    /// </summary>
     public interface ShoppingCartVisitor
     {
         int Visit(Book book);

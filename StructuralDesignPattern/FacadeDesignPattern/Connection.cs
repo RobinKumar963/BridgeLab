@@ -13,6 +13,9 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.StructuralDesignPattern.FacadeDesignPattern
 {
+    /// <summary>
+    /// Establish Connection
+    /// </summary>
     public class Connection
     {
 

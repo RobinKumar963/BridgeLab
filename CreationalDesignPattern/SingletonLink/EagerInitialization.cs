@@ -8,6 +8,9 @@
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.SingletonLink
 {
+    /// <summary>
+    /// EagerInitialization
+    /// </summary>
     public class EagerInitialization
     {
         /// <summary>

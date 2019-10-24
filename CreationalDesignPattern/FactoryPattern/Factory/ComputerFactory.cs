@@ -16,11 +16,15 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.CreationalDesignPattern.FactoryPattern.Factory
 {
+    /// <summary>
+    /// Creates instance of computer
+    /// </summary>
     public class ComputerFactory
     {
         public static Computer CreateComputer(string computerType,string RAM,string ROM,string CPU,string HDD)
         {
             Computer computer = null;
+            ////Check for type and create instance of that type
             switch(computerType)
             {
                 case "PC":
@@ -33,7 +37,6 @@ namespace Bridgelabz.DesignPattern.CreationalDesignPattern.FactoryPattern.Factor
                     break;
 
             }
-
             return computer;
         }
     }

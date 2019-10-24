@@ -11,6 +11,9 @@ using System.Text;
 
 namespace Bridgelabz.DesignPattern.BehavioralDesignPatttern.ObserverDesignPattern
 {
+    /// <summary>
+    /// Contract for subject
+    /// </summary>
     interface Subject
     {
         ////methods to register and unregister observers
