@@ -1,0 +1,5 @@
+C:\Users\Bridgelabz\source\repos\FundooRepos\bin\Debug\netcoreapp3.0\FundooRepos.deps.json
+C:\Users\Bridgelabz\source\repos\FundooRepos\bin\Debug\netcoreapp3.0\FundooRepos.dll
+C:\Users\Bridgelabz\source\repos\FundooRepos\obj\Debug\netcoreapp3.0\FundooRepos.csprojAssemblyReference.cache
+C:\Users\Bridgelabz\source\repos\FundooRepos\obj\Debug\netcoreapp3.0\FundooRepos.AssemblyInfoInputs.cache
+C:\Users\Bridgelabz\source\repos\FundooRepos\obj\Debug\netcoreapp3.0\FundooRepos.AssemblyInfo.cs
