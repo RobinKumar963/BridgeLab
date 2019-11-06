@@ -1,4 +1,13 @@
-﻿using EmployeeManagementCRUD.Model;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=IEmployeeManager.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// ----------------------------------------------------------------------------------------------------
+
+
+
+using EmployeeManagementCRUD.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

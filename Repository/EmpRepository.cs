@@ -1,4 +1,12 @@
-﻿using EmployeeManagementCRUD.Model;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=EmpRepository.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// ----------------------------------------------------------------------------------------------------
+
+
+using EmployeeManagementCRUD.Model;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Protocols;
 using System;
