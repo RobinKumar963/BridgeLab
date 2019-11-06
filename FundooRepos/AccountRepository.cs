@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,8 +20,35 @@ namespace FundooRepos
             _context = context;
         }
 
+
+        ////To encrypt password
+        public static string MD5Hash(string text)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+
+            //compute hash from the bytes of text  
+            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
+
+            //get hash result after compute it  
+            byte[] result = md5.Hash;
+
+            StringBuilder strBuilder = new StringBuilder();
+            for (int i = 0; i < result.Length; i++)
+            {
+                //change it into 2 hexadecimal digits  
+                //for each byte  
+                strBuilder.Append(result[i].ToString("x2"));
+            }
+
+            return strBuilder.ToString();
+        }
+
+
+
+
         public Task Create(UserModel user)
         {
+            user.PASSWORD = MD5Hash(user.PASSWORD);
             UserModel userm = new UserModel()
             {
                 USERID = user.USERID,
@@ -35,6 +63,7 @@ namespace FundooRepos
 
         public Task LogIn(LoginModel login)
         {
+            login.PASSWORD = MD5Hash(login.PASSWORD);
             var result = _context.users.Where(i => i.USERID == login.USERID && i.PASSWORD == login.PASSWORD).FirstOrDefault();
             if (result != null)
             {
@@ -47,6 +76,8 @@ namespace FundooRepos
         }
         public Task ResetPassword(ResetPasswordModel reset)
         {
+            reset.NEWPASSWORD = MD5Hash(reset.NEWPASSWORD);
+            reset.CONFIRMPASSWORD = MD5Hash(reset.CONFIRMPASSWORD);
             var result = _context.users.Where(i => i.USERID == reset.USERID && i.PASSWORD == reset.OLDPASSWORD).FirstOrDefault();
             if (result != null)
             {

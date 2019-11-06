@@ -11,3 +11,16 @@ C:\Users\Bridgelabz\source\repos\BusinessManager\bin\Debug\netcoreapp2.1\FundooR
 C:\Users\Bridgelabz\source\repos\BusinessManager\bin\Debug\netcoreapp2.1\Common.pdb
 C:\Users\Bridgelabz\source\repos\BusinessManager\bin\Debug\netcoreapp2.1\FundooRepos.pdb
 C:\Users\Bridgelabz\source\repos\BusinessManager\obj\Debug\netcoreapp2.1\BusinessManager.csproj.CopyComplete
+C:\Users\Krish\source\repos\BusinessManager\bin\Debug\netcoreapp2.1\BusinessManager.deps.json
+C:\Users\Krish\source\repos\BusinessManager\bin\Debug\netcoreapp2.1\BusinessManager.dll
+C:\Users\Krish\source\repos\BusinessManager\bin\Debug\netcoreapp2.1\BusinessManager.pdb
+C:\Users\Krish\source\repos\BusinessManager\bin\Debug\netcoreapp2.1\Common.dll
+C:\Users\Krish\source\repos\BusinessManager\bin\Debug\netcoreapp2.1\FundooRepos.dll
+C:\Users\Krish\source\repos\BusinessManager\bin\Debug\netcoreapp2.1\Common.pdb
+C:\Users\Krish\source\repos\BusinessManager\bin\Debug\netcoreapp2.1\FundooRepos.pdb
+C:\Users\Krish\source\repos\BusinessManager\obj\Debug\netcoreapp2.1\BusinessManager.csprojAssemblyReference.cache
+C:\Users\Krish\source\repos\BusinessManager\obj\Debug\netcoreapp2.1\BusinessManager.AssemblyInfoInputs.cache
+C:\Users\Krish\source\repos\BusinessManager\obj\Debug\netcoreapp2.1\BusinessManager.AssemblyInfo.cs
+C:\Users\Krish\source\repos\BusinessManager\obj\Debug\netcoreapp2.1\BusinessManager.csproj.CopyComplete
+C:\Users\Krish\source\repos\BusinessManager\obj\Debug\netcoreapp2.1\BusinessManager.dll
+C:\Users\Krish\source\repos\BusinessManager\obj\Debug\netcoreapp2.1\BusinessManager.pdb

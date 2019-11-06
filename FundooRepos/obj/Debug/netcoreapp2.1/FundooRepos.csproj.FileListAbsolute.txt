@@ -9,3 +9,14 @@ C:\Users\Bridgelabz\source\repos\FundooRepos\bin\Debug\netcoreapp2.1\Common.pdb
 C:\Users\Bridgelabz\source\repos\FundooRepos\obj\Debug\netcoreapp2.1\FundooRepos.csproj.CopyComplete
 C:\Users\Bridgelabz\source\repos\FundooRepos\obj\Debug\netcoreapp2.1\FundooRepos.dll
 C:\Users\Bridgelabz\source\repos\FundooRepos\obj\Debug\netcoreapp2.1\FundooRepos.pdb
+C:\Users\Krish\source\repos\FundooRepos\bin\Debug\netcoreapp2.1\FundooRepos.deps.json
+C:\Users\Krish\source\repos\FundooRepos\bin\Debug\netcoreapp2.1\FundooRepos.dll
+C:\Users\Krish\source\repos\FundooRepos\bin\Debug\netcoreapp2.1\FundooRepos.pdb
+C:\Users\Krish\source\repos\FundooRepos\bin\Debug\netcoreapp2.1\Common.dll
+C:\Users\Krish\source\repos\FundooRepos\bin\Debug\netcoreapp2.1\Common.pdb
+C:\Users\Krish\source\repos\FundooRepos\obj\Debug\netcoreapp2.1\FundooRepos.csprojAssemblyReference.cache
+C:\Users\Krish\source\repos\FundooRepos\obj\Debug\netcoreapp2.1\FundooRepos.AssemblyInfoInputs.cache
+C:\Users\Krish\source\repos\FundooRepos\obj\Debug\netcoreapp2.1\FundooRepos.AssemblyInfo.cs
+C:\Users\Krish\source\repos\FundooRepos\obj\Debug\netcoreapp2.1\FundooRepos.csproj.CopyComplete
+C:\Users\Krish\source\repos\FundooRepos\obj\Debug\netcoreapp2.1\FundooRepos.dll
+C:\Users\Krish\source\repos\FundooRepos\obj\Debug\netcoreapp2.1\FundooRepos.pdb
