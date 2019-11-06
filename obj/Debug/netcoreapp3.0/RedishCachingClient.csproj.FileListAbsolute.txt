@@ -1,0 +1,4 @@
+C:\Users\Krish\source\repos\RedishCachingClient\bin\Debug\netcoreapp3.0\RedishCachingClient.exe
+C:\Users\Krish\source\repos\RedishCachingClient\obj\Debug\netcoreapp3.0\RedishCachingClient.csprojAssemblyReference.cache
+C:\Users\Krish\source\repos\RedishCachingClient\obj\Debug\netcoreapp3.0\RedishCachingClient.AssemblyInfoInputs.cache
+C:\Users\Krish\source\repos\RedishCachingClient\obj\Debug\netcoreapp3.0\RedishCachingClient.AssemblyInfo.cs
