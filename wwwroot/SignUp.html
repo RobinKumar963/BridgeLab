@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <form method="post">
+        EmpID:
+        <input type="text" name="id" id="eid" />
+        <br /><br />
+
+        EmployeeName:
+        <input type="text" name="username" id="username" />
+        <br /><br />
+
+
+        Password:
+        <input type="password" name="password" id="password" />
+        <br /><br />
+
+        EmployeeCity:
+        <input type="text" name="city" id="city" />
+        <br /><br />
+
+        EmployeeAddress:
+        <input type="text" name="address" id="address" />
+        <br /><br />
+
+        <input type="button" value="SignUp" class="btnSubmit" id="btnSubmit"/>
+    </form>
+
+    <a href="Login.html">Already registered?LogIn</a>
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnSubmit").click(function () {
+                
+                var formData = new FormData();
+                
+                formData.append("EmpID", $("#eid ").val());
+                formData.append("Password", $("#password").val());
+                formData.append("EmpName", $("#username").val());
+                formData.append("EmpCity", $("#city").val());
+                formData.append("EmpAddress", $("#address").val());
+                $.ajax({
+                    url: "/Create",
+                    type: 'POST',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function (response) {
+
+                        alert(response);                                
+                       window.location = 'Login.html';
+                    }
+                    ,
+                    error: function (err) {
+                        alert(err);
+                    }
+                   
+                    
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*",
+  "Data": {
+    "ConnectionString": "Server=(localdb)\\MSSQLLocaldb;Database=Employee;Integrated Security=True;",
+    "Microsoft.AspNetCore.StaticFiles": "1.0.0"
+  }
+}

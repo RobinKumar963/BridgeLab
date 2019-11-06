@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <p align="left">
+        <input type="button"  value="View All Employee Details" class="btnSubmit" id="details" />
+    </p>
+    <p align="right">
+        <a href="SignUp.html">Let's Start with your custom profile</a>
+    </p>
+    
+    
+    
+          
+          <div id="det" align ="Center" style="display:none">
+              <table border="1" align="left" id="Employees" style="border-collapse:collapse">
+                  <thead>
+                      <tr>
+                          <th>EmployeeId</th>
+                          <th>EmployeeName</th>
+
+                          <th>EmployeeCity</th>
+
+                          <th>EmmployeeAddress</th>
+
+                      </tr>
+                  </thead>
+                  <tbody></tbody>
+              </table>
+          </div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#details').click(function () { 
+
+                $.ajax({
+                    url: '/Reads',
+                    dataType: "json",
+                    method: 'GET',
+                    success:
+
+                        
+                        function (data) {
+                            console.log('data:',data);
+                        var employee = $('#Employees tbody');
+                        employee.empty();
+                        $('#det').css('display', 'block');
+                        $(data).each(function (index, emp) {
+                            employee.append('<tr><td>' + emp.empID + '</td><td>'
+                                + emp.empName + '</td><td>'
+
+                                + emp.empCity + '</td><td>'
+
+                                + emp.empAddress + '</td></tr>');
+
+                        });
+                    },
+                    error: function (err) {
+                        alert(err);
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+
+
+
+</body>
+
+
+
+</html>
