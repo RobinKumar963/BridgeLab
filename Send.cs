@@ -1,4 +1,14 @@
-﻿using RabbitMQ.Client;
+﻿
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=Send.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// ----------------------------------------------------------------------------------------------------
+
+
+
+using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
 using System.Text;

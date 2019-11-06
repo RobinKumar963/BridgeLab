@@ -38,19 +38,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Krish\\.nuget\\packages\\": {}
+    "C:\\Users\\Bridgelabz\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Krish\\source\\repos\\MSMQRabbitMQ\\MSMQRabbitMQ.csproj",
+      "projectUniqueName": "C:\\Users\\Bridgelabz\\source\\repos\\MSMQRabbitMQ\\MSMQRabbitMQ.csproj",
       "projectName": "MSMQRabbitMQ",
-      "projectPath": "C:\\Users\\Krish\\source\\repos\\MSMQRabbitMQ\\MSMQRabbitMQ.csproj",
-      "packagesPath": "C:\\Users\\Krish\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Krish\\source\\repos\\MSMQRabbitMQ\\obj\\",
+      "projectPath": "C:\\Users\\Bridgelabz\\source\\repos\\MSMQRabbitMQ\\MSMQRabbitMQ.csproj",
+      "packagesPath": "C:\\Users\\Bridgelabz\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Bridgelabz\\source\\repos\\MSMQRabbitMQ\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Krish\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Bridgelabz\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
