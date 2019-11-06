@@ -1,4 +1,17 @@
-﻿using Common.Models.UserModels;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=AccountRepository.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// ----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+using Common.Models.UserModels;
 using FundooRepos.Context;
 using FundooRepos.Interface;
 using System;

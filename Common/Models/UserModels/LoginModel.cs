@@ -1,4 +1,9 @@
-﻿
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=LoginModel.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// ----------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;

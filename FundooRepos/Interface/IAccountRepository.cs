@@ -1,4 +1,12 @@
-﻿using Common.Models.UserModels;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=IAccountRepository.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// ----------------------------------------------------------------------------------------------------
+
+
+using Common.Models.UserModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
