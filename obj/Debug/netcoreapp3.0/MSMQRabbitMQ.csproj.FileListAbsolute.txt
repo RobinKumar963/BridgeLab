@@ -1,0 +1,4 @@
+C:\Users\Krish\source\repos\MSMQRabbitMQ\bin\Debug\netcoreapp3.0\MSMQRabbitMQ.exe
+C:\Users\Krish\source\repos\MSMQRabbitMQ\obj\Debug\netcoreapp3.0\MSMQRabbitMQ.csprojAssemblyReference.cache
+C:\Users\Krish\source\repos\MSMQRabbitMQ\obj\Debug\netcoreapp3.0\MSMQRabbitMQ.AssemblyInfoInputs.cache
+C:\Users\Krish\source\repos\MSMQRabbitMQ\obj\Debug\netcoreapp3.0\MSMQRabbitMQ.AssemblyInfo.cs
