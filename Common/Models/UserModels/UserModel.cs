@@ -16,6 +16,9 @@ using System.Text;
 
 namespace Common.Models.UserModels
 {
+    /// <summary>
+    /// Model for creating user
+    /// </summary>
     public class UserModel
     {
         private string UserID;

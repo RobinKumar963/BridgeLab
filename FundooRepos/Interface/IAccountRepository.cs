@@ -3,7 +3,7 @@
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="Robin Kumar"/>
-// ----------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 
 
 using Common.Models.UserModels;
@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace FundooRepos.Interface
 {
+    /// <summary>
+    /// Contract for Account Repository
+    /// </summary>
     public interface IAccountRepository
     {
         Task Create(UserModel user);

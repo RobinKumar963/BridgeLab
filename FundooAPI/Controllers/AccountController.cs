@@ -20,6 +20,9 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace FundooAPI.Controllers
 {
+    /// <summary>
+    /// Account Controller
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
@@ -30,7 +33,11 @@ namespace FundooAPI.Controllers
         {
             _manager = manager;
         }
-
+        /// <summary>
+        /// Add user through UserModel
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>Task</returns>
         [HttpPost]
         [Route("Add")]
         public async Task<IActionResult> Register(UserModel user)
@@ -43,14 +50,24 @@ namespace FundooAPI.Controllers
             
         }
 
-
-       [HttpPost]
-       [Route("LogIn")]
+        /// <summary>
+        /// LogIN
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns>Task</returns>
+        [HttpPost]
+        [Route("LogIn")]
         public async Task<IActionResult> LogIn(LoginModel login)
         {
             var result = await _manager.LogIn(login);
             return Ok(new { result });
         }
+
+        /// <summary>
+        /// Reset Password
+        /// </summary>
+        /// <param name="reset"></param>
+        /// <returns>Task</returns>
         [HttpPost]
         [Route("Reset")]
         public async Task<IActionResult> ResetPassword(ResetPasswordModel reset)
@@ -58,6 +75,12 @@ namespace FundooAPI.Controllers
             var result = await _manager.ResetPassword(reset);
             return Ok(new { result });
         }
+
+        /// <summary>
+        /// Forgot password
+        /// </summary>
+        /// <param name="forgot"></param>
+        /// <returns>Forgot</returns>
         [HttpPost]
         [Route("Forgot")]
         public async Task<IActionResult> Forgot(ForgotPassword forgot)
@@ -66,6 +89,12 @@ namespace FundooAPI.Controllers
             var result = await _manager.ForgotP(forgot);
             return Ok(new { result });
         }
+
+        /// <summary>
+        /// Login Model
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns>Task</returns>
         [HttpPost]
         [Route("log")]
         public async Task<IActionResult> Log(LoginModel login)

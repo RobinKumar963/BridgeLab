@@ -11,6 +11,7 @@
 
 
 
+using Common.Helper;
 using Common.Models.UserModels;
 using FundooRepos.Context;
 using FundooRepos.Interface;
@@ -24,6 +25,9 @@ using System.Threading.Tasks;
 
 namespace FundooRepos
 {
+    /// <summary>
+    /// Connect data source for Account 
+    /// </summary>
     public class AccountRepository : IAccountRepository
     {
         private readonly UserContext _context;
@@ -34,34 +38,18 @@ namespace FundooRepos
         }
 
 
-        ////To encrypt password
-        public static string MD5Hash(string text)
-        {
-            MD5 md5 = new MD5CryptoServiceProvider();
-
-            //compute hash from the bytes of text  
-            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
-
-            //get hash result after compute it  
-            byte[] result = md5.Hash;
-
-            StringBuilder strBuilder = new StringBuilder();
-            for (int i = 0; i < result.Length; i++)
-            {
-                //change it into 2 hexadecimal digits  
-                //for each byte  
-                strBuilder.Append(result[i].ToString("x2"));
-            }
-
-            return strBuilder.ToString();
-        }
+   
 
 
 
-
+        /// <summary>
+        /// Create a User Account
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>Task</returns>
         public Task Create(UserModel user)
         {
-            user.PASSWORD = MD5Hash(user.PASSWORD);
+            user.PASSWORD = Encryption.MD5Hash(user.PASSWORD);
             UserModel userm = new UserModel()
             {
                 USERID = user.USERID,
@@ -70,16 +58,23 @@ namespace FundooRepos
                 CARDTYPE=user.CARDTYPE
             };
             _context.users.Add(userm);
+            ////Execute query and save any changes in DBcontext UserContext
             return Task.Run(() => _context.SaveChanges());
         }
 
-
+        /// <summary>
+        /// Perform LogIN
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns>Task</returns>
         public Task LogIn(LoginModel login)
         {
-            login.PASSWORD = MD5Hash(login.PASSWORD);
+            ////Encrypting Password to check with password from data source
+            login.PASSWORD = Encryption.MD5Hash(login.PASSWORD);
             var result = _context.users.Where(i => i.USERID == login.USERID && i.PASSWORD == login.PASSWORD).FirstOrDefault();
             if (result != null)
             {
+                ////Execute query and save any changes in DBcontext UserContext
                 return Task.Run(() => _context.SaveChanges());
             }
             else
@@ -87,14 +82,21 @@ namespace FundooRepos
                 return null;
             }
         }
+        /// <summary>
+        /// Perform Resetting of password
+        /// </summary>
+        /// <param name="reset"></param>
+        /// <returns>Task</returns>
         public Task ResetPassword(ResetPasswordModel reset)
         {
-            reset.NEWPASSWORD = MD5Hash(reset.NEWPASSWORD);
-            reset.CONFIRMPASSWORD = MD5Hash(reset.CONFIRMPASSWORD);
+            ////Encrypting Password
+            reset.NEWPASSWORD = Encryption.MD5Hash(reset.NEWPASSWORD);
+            reset.CONFIRMPASSWORD = Encryption.MD5Hash(reset.CONFIRMPASSWORD);
             var result = _context.users.Where(i => i.USERID == reset.USERID && i.PASSWORD == reset.OLDPASSWORD).FirstOrDefault();
             if (result != null)
             {
                 result.PASSWORD = reset.NEWPASSWORD;
+                ////Execute query and save any changes in DBcontext UserContext
                 return Task.Run(() => _context.SaveChanges());
             }
             else
@@ -104,37 +106,20 @@ namespace FundooRepos
         }
 
 
-        private void SendPasswordResetEmail(string ToEmail, string UserName)
-        {
-            // MailMessage class is present is System.Net.Mail namespace
-            MailMessage mailMessage = new MailMessage("robbhood123@gmail.com", ToEmail);
-            // StringBuilder class is present in System.Text namespace
-            StringBuilder sbEmailBody = new StringBuilder();
-            sbEmailBody.Append("Dear " + UserName + ",<br/><br/>");
-            sbEmailBody.Append("Please click on the following link to reset your password");
-            sbEmailBody.Append("<br/>");
-            sbEmailBody.Append("http://localhost/WebApplication1/Registration/ChangePassword.aspx?uid=");
-            sbEmailBody.Append("<br/><br/>");
-            sbEmailBody.Append("<b>BRIDGELABZ</b>");
-            mailMessage.IsBodyHtml = true;
-            mailMessage.Body = sbEmailBody.ToString();
-            mailMessage.Subject = "Reset Your Password";
-            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
-            smtpClient.Credentials = new System.Net.NetworkCredential()
-            {
-                UserName = "robbhood123@gmail.com",
-                Password = "p12ocb2slim9012"
-            };
-            smtpClient.EnableSsl = true;
-            smtpClient.Send(mailMessage);
-        }
-
+        
+        /// <summary>
+        /// Helps,to reset password,in case password is forgotten
+        /// </summary>
+        /// <param name="forgot"></param>
+        /// <returns>Task</returns>
         public Task Forgot(ForgotPassword forgot)
         {
+
             var result = _context.users.Where(i => i.USERID == forgot.USERID).FirstOrDefault();
             if (result != null)
             {
-                SendPasswordResetEmail(forgot.USERID, result.USERNAME);
+                SendResetPasswordEmail.SendPasswordResetEmail(forgot.USERID, result.USERNAME);
+                ////Execute query and save any changes in DBcontext UserContext
                 return Task.Run(() => _context.SaveChanges());
             }
             else

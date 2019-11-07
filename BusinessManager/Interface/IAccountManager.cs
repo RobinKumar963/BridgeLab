@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace FundooRepos.Interface
 {
+    /// <summary>
+    /// Contract for AccountManager
+    /// </summary>
     public interface IAccountManager 
     {
         Task<string> Registration(UserModel user);

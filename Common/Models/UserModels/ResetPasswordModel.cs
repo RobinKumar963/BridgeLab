@@ -24,8 +24,7 @@ namespace Common.Models.UserModels
         private string oldpassword;
         private string newpassword;
         private string confirmpassword;
-        //Makin get set of each of the following declared top items
-        //Just to get access.
+        
         public string USERID
         {
             get
