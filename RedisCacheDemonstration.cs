@@ -14,10 +14,19 @@ using System.Text;
 
 namespace RedishCachingClient
 {
+    /// <summary>
+    /// Redish Cache Operation
+    /// </summary>
     class RedisCacheDemonstration
     {
+        /// <summary>
+        /// Save content of host into cache with label key
+        /// </summary>
+        /// <param name="host"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns>bool</returns>
         private static bool Save(string host, string key, string value)
-
         {
 
             bool isSuccess = false;
@@ -39,7 +48,12 @@ namespace RedishCachingClient
             return isSuccess;
 
         }
-
+        /// <summary>
+        /// Get value with label key 
+        /// </summary>
+        /// <param name="host"></param>
+        /// <param name="key"></param>
+        /// <returns>string</returns>
         private static string Get(string host, string key)
 
         {
@@ -70,5 +84,6 @@ namespace RedishCachingClient
 
             Console.Read();
         }
+       
     }
 }
