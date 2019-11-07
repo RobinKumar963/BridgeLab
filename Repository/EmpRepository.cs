@@ -3,9 +3,10 @@
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="Robin Kumar"/>
-// ----------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 
 
+using EmployeeCRUD.Helper;
 using EmployeeManagementCRUD.Model;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Protocols;
@@ -22,6 +23,9 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagementCRUD.Repository
 {
+    /// <summary>
+    /// Reterive and set data in data source
+    /// </summary>
     public class EmpRepository : IEmpRepository
     {
 
@@ -35,43 +39,30 @@ namespace EmployeeManagementCRUD.Repository
         }
         public void Conncetion()
         {
-            //string constr = "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = Employee; Integrated Security = True;";
+            ////Getting Connection String From Web.Config
             //String constr = configration.GetSection("ConnectionStrings").GetSection("Employees").Value;
-            string constr = "Server=(Localdb)\\MSSQLLocalDB;Database=Employee;Integrated Security=True;";
+
+            ////Setting Connection String(Hard Coded)
+            String constr = "Server=(Localdb)\\MSSQLLocalDB;Database=Employee;Integrated Security=True;";
             con = new SqlConnection(constr);
             
         }
 
-        ////To encrypt password
-        public static string MD5Hash(string text)
-        {
-            MD5 md5 = new MD5CryptoServiceProvider();
-
-            //compute hash from the bytes of text  
-            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
-
-            //get hash result after compute it  
-            byte[] result = md5.Hash;
-
-            StringBuilder strBuilder = new StringBuilder();
-            for (int i = 0; i < result.Length; i++)
-            {
-                //change it into 2 hexadecimal digits  
-                //for each byte  
-                strBuilder.Append(result[i].ToString("x2"));
-            }
-
-            return strBuilder.ToString();
-        }
+      
 
 
 
 
 
-        ////To Create Employee details
+        /// <summary>
+        /// Create emloyee
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>bool</returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public bool CreateEmployee(Employee obj)
         {
+            ////For creating unique EmpID
             //long unique = 1;
             //foreach (byte b in Guid.NewGuid().ToByteArray())
             //{
@@ -81,8 +72,8 @@ namespace EmployeeManagementCRUD.Repository
 
             //obj.SetEmpID(empid);
 
-
-            string password = MD5Hash(obj.Password);
+            ////Encrypting Password
+            string password = Encryption.MD5Hash(obj.Password);
             Conncetion();
             SqlCommand create = new SqlCommand("CreateEmployee", con);
             create.CommandType = CommandType.StoredProcedure;
@@ -99,8 +90,11 @@ namespace EmployeeManagementCRUD.Repository
 
 
         }
-        ////To Read Employees;
-      
+
+        /// <summary>
+        /// Read Employees
+        /// </summary>
+        /// <returns>List<Employee></returns>
         public List<Employee> ReadEmployees()
         {
 
@@ -113,7 +107,7 @@ namespace EmployeeManagementCRUD.Repository
             con.Open();
             da.Fill(dt);
             con.Close();
-            //Bind EmpModel generic list using LINQ 
+            ////Bind EmpModel generic list using LINQ 
             EmpList = (from DataRow dr in dt.Rows
 
                        select new Employee()
@@ -130,6 +124,7 @@ namespace EmployeeManagementCRUD.Repository
                        
                        )
                        .ToList();
+            
 
 
             return EmpList;
@@ -139,14 +134,19 @@ namespace EmployeeManagementCRUD.Repository
 
 
 
-        ////Read Employee
+        /// <summary>
+        /// Read Employee
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="password"></param>
+        /// <returns>Employee</returns>
         [MethodImpl(MethodImplOptions.Synchronized)]
         public Employee ReadEmployee(String id,String password)
         {
             
             Conncetion();
-
-            password = MD5Hash(password);
+            ////Encrypting Password to check with data source password
+            password = Encryption.MD5Hash(password);
 
 
             SqlCommand detail = new SqlCommand("ReadEmployee", con);
@@ -179,13 +179,22 @@ namespace EmployeeManagementCRUD.Repository
                 empobj.EmpCity = row["EmpCity"].ToString();
                 empobj.EmpAddress = row["EmpAddress"].ToString();
             }
-                
+
+                            
                 return empobj;
             
             
         }
 
-        ////Update Employee
+        /// <summary>
+        /// Update Employee
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="password"></param>
+        /// <param name="name"></param>
+        /// <param name="city"></param>
+        /// <param name="address"></param>
+        /// <returns>bool</returns>
         public bool UpdateEmployee(string id, string password, string name, string city, string address)
         {
 
@@ -206,7 +215,11 @@ namespace EmployeeManagementCRUD.Repository
 
         }
 
-        ////Delete Employee
+        /// <summary>
+        /// Delete Employee
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>bool</returns>
         public bool DeleteEmployee(string id)
         {
             Conncetion();

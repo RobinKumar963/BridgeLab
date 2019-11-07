@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagementCRUD.Model
 {
+    /// <summary>
+    /// Model(Employee)
+    /// </summary>
     public class Employee 
     {
         [Display(Name = "Id")]
@@ -55,64 +58,7 @@ namespace EmployeeManagementCRUD.Model
             return false;
         }
 
-        //public Employee(string EmpID, string Password, string EmpName, string EmpCity, string EmpAddress)
-        //{
-        //    this.EmpID = EmpID;
-        //    this.Password = Password;
-        //    this.EmpName = EmpName;
-        //    this.EmpCity = EmpCity;
-        //    this.EmpAddress = EmpAddress;
-        //}
-        //public Employee()
-        //{
-        //   this.EmpID = "";
-        //   this.Password = "";
-        //   this.EmpName = "";
-        //   this.EmpCity = "";
-        //   this.EmpAddress = "";
-        ////}
-        //public string GetEmpID()
-        //{
-        //    return EmpID;
-        //}
-        //public string GetEmpName()
-        //{
-        //    return EmpName;
-        //}
-        //public string GetEmpCity()
-        //{
-        //    return EmpCity;
-        //}
-        //public string GetEmpAddress()
-        //{
-        //    return EmpAddress;
-        //}
-        //public string GetPassword()
-        //{
-        //    return Password;
-        //}
 
-
-        //public void SetEmpID(string EmpID)
-        //{
-        //   this.EmpID=EmpID;
-        //}
-        //public void SetPassword(string Password)
-        //{
-        //    this.Password = Password;
-        //}
-        //public void SetEmpName(string EmpName)
-        //{
-        //    this.EmpName = EmpName;
-        //}
-        //public void SetEmpCity(string EmpCity)
-        //{
-        //     this.EmpCity=EmpCity;
-        //}
-        //public void SetEmpAddress(string EmpAddress)
-        //{
-        //    this.EmpAddress=EmpAddress;
-        //}
 
        
     }

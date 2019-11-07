@@ -12002,19 +12002,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Bridgelabz\\.nuget\\packages\\": {}
+    "C:\\Users\\Krish\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Bridgelabz\\source\\repos\\EmployeeCRUD\\EmployeeCRUD.csproj",
+      "projectUniqueName": "C:\\Users\\Krish\\source\\repos\\EmployeeCRUD\\EmployeeCRUD.csproj",
       "projectName": "EmployeeCRUD",
-      "projectPath": "C:\\Users\\Bridgelabz\\source\\repos\\EmployeeCRUD\\EmployeeCRUD.csproj",
-      "packagesPath": "C:\\Users\\Bridgelabz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Bridgelabz\\source\\repos\\EmployeeCRUD\\obj\\",
+      "projectPath": "C:\\Users\\Krish\\source\\repos\\EmployeeCRUD\\EmployeeCRUD.csproj",
+      "packagesPath": "C:\\Users\\Krish\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Krish\\source\\repos\\EmployeeCRUD\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Bridgelabz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Krish\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

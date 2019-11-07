@@ -16,6 +16,9 @@ using System.Text;
 
 namespace NUnitTest
 {
+    /// <summary>
+    /// Unit Test for reading employee
+    /// </summary>
     class Read
     {
         IEmpRepository repos = new EmpRepository();
@@ -44,6 +47,7 @@ namespace NUnitTest
         [Test]
         public void ReadTest()
         {
+            ////Comparing actualResponse with expectedResponse
             ////Need to use value objects here instead of CompareTO
             Assert.That(actual, Is.EqualTo(expected));
             //Assert.Pass();

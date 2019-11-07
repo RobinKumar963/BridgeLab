@@ -28,7 +28,9 @@ namespace EmployeeManagementCRUD.Controllers
 {
     //[Route("api/[controller]")]
     //[ApiController]
-    
+    /// <summary>
+    /// Employee controller to perform different actions
+    /// </summary>
     public class EmpController : Controller
     {
         IEmployeeManager EmpManager;

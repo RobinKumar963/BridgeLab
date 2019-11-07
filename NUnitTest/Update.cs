@@ -21,6 +21,9 @@ using System.Text;
 
 namespace NUnitTest
 {
+    /// <summary>
+    /// Unit test for updating employee
+    /// </summary>
     class Update
     {
 
@@ -47,6 +50,7 @@ namespace NUnitTest
         [Test]
         public void UpdateTest()
         {
+            ////Comparing actualResponse with expectedResponse
             Assert.That(actualResponse, Is.EqualTo(expectedResponse));
             //Assert.Pass();
         }

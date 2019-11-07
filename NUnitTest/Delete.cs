@@ -17,6 +17,9 @@ using System.Text;
 
 namespace NUnitTest
 {
+    /// <summary>
+    /// Unit test for Delete
+    /// </summary>
     class Delete
     {
         IEmpRepository repos = new EmpRepository();
@@ -36,6 +39,7 @@ namespace NUnitTest
         [Test]
         public void DeleteTest()
         {
+            ////Comparing actualResponse with expectedResponse
             Assert.That(actualResponse, Is.EqualTo(expectedResponse));
             //Assert.Pass();
         }

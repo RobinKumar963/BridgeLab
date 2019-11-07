@@ -15,6 +15,9 @@ using System.Threading.Tasks;
 
 namespace EmployeeCRUD.Manager
 {
+    /// <summary>
+    /// Contract for EmployeeManager
+    /// </summary>
     public interface IEmployeeManager
     {
         string CreateEmployee(Employee obj);

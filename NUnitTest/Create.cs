@@ -14,6 +14,9 @@ using NUnit.Framework;
 
 namespace NUnitTest
 {
+    /// <summary>
+    /// Unit test For Create
+    /// </summary>
     public class Create
     {
         IEmpRepository repos = new EmpRepository();
@@ -37,6 +40,7 @@ namespace NUnitTest
         [Test]
         public void CreateTest()
         {
+            ////Comparing actualResponse with expectedResponse
             Assert.That(actualResponse, Is.EqualTo(expectedResponse));
             //Assert.Pass();
         }

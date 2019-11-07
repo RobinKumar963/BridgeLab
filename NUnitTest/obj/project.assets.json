@@ -5514,19 +5514,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Bridgelabz\\.nuget\\packages\\": {}
+    "C:\\Users\\Krish\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Bridgelabz\\source\\repos\\NUnitTest\\NUnitTest.csproj",
+      "projectUniqueName": "C:\\Users\\Krish\\source\\repos\\NUnitTest\\NUnitTest.csproj",
       "projectName": "NUnitTest",
-      "projectPath": "C:\\Users\\Bridgelabz\\source\\repos\\NUnitTest\\NUnitTest.csproj",
-      "packagesPath": "C:\\Users\\Bridgelabz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Bridgelabz\\source\\repos\\NUnitTest\\obj\\",
+      "projectPath": "C:\\Users\\Krish\\source\\repos\\NUnitTest\\NUnitTest.csproj",
+      "packagesPath": "C:\\Users\\Krish\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Krish\\source\\repos\\NUnitTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Bridgelabz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Krish\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5539,8 +5539,8 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "C:\\Users\\Bridgelabz\\source\\repos\\EmployeeCRUD\\EmployeeCRUD.csproj": {
-              "projectPath": "C:\\Users\\Bridgelabz\\source\\repos\\EmployeeCRUD\\EmployeeCRUD.csproj"
+            "C:\\Users\\Krish\\source\\repos\\EmployeeCRUD\\EmployeeCRUD.csproj": {
+              "projectPath": "C:\\Users\\Krish\\source\\repos\\EmployeeCRUD\\EmployeeCRUD.csproj"
             }
           }
         }

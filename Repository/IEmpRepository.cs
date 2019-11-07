@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagementCRUD.Repository
 {
+    /// <summary>
+    /// Contract for EmployeeRepository
+    /// </summary>
     public interface IEmpRepository
     {
         
