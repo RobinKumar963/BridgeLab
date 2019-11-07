@@ -15,6 +15,9 @@ using System.Text;
 
 namespace MSMQRabbitMQ
 {
+    /// <summary>
+    /// Send Message to Message Queue,used by producer
+    /// </summary>
     class Send
     {
         public static void Main(string[] args)

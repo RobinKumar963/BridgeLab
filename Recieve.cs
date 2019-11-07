@@ -15,6 +15,9 @@ using System.Text;
 
 namespace MSMQRabbitMQ
 {
+    /// <summary>
+    /// Recieve Message from Message Queue,Used by Consumer
+    /// </summary>
     class Recieve
     {
         public static void Main(string[] args)
