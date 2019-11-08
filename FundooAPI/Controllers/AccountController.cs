@@ -3,7 +3,7 @@
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="Robin Kumar"/>
-// ----------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------------
 
 
 using System;
@@ -14,6 +14,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Common.Models.UserModels;
 using FundooRepos.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -68,7 +69,7 @@ namespace FundooAPI.Controllers
         /// </summary>
         /// <param name="reset"></param>
         /// <returns>Task</returns>
-        [HttpPost]
+        [HttpPost,Authorize]
         [Route("Reset")]
         public async Task<IActionResult> ResetPassword(ResetPasswordModel reset)
         {
@@ -81,7 +82,7 @@ namespace FundooAPI.Controllers
         /// </summary>
         /// <param name="forgot"></param>
         /// <returns>Forgot</returns>
-        [HttpPost]
+        [HttpPost,Authorize]
         [Route("Forgot")]
         public async Task<IActionResult> Forgot(ForgotPassword forgot)
         {
@@ -106,9 +107,9 @@ namespace FundooAPI.Controllers
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                       new Claim("Email", login.USERID)
+                       new Claim("Email", login.USEREMAIL)
                     }),
-                    Expires = DateTime.UtcNow.AddMinutes(5),
+                    Expires = DateTime.UtcNow.AddDays(1),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("1234567890123456")), SecurityAlgorithms.HmacSha256Signature)
 
                 };
@@ -119,11 +120,29 @@ namespace FundooAPI.Controllers
             }
             else
             {
-                return BadRequest(new { message = "TOken Not Genrated" });
+                return BadRequest(new { message = "Token Not Genrated" });
             }
         }
 
 
+
+        [HttpGet,Authorize]
+        [Route("reg")]
+        public async Task<object> GetDetails()
+        {
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            var result = await _manager.FindByEmailAsync(Email);
+            return new
+            {
+                result.USEREMAIL,
+                result.USERNAME,
+                result.CARDTYPE
+                
+                
+            };
+        }
+
+       
 
 
     }

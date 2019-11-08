@@ -19,18 +19,18 @@ namespace Common.Models.UserModels
     /// </summary>
     public class ForgotPassword
     {
-        private string UserID;
+        private string UserEmail;
         
 
-        public string USERID
+        public string USEREMAIL
         {
             get
             {
-                return UserID;
+                return UserEmail;
             }
             set
             {
-                UserID = value;
+                UserEmail = value;
             }
         }
         

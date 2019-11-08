@@ -3,12 +3,7 @@
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="Robin Kumar"/>
-// ----------------------------------------------------------------------------------------------------
-
-
-
-
-
+// ----------------------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,27 +11,24 @@ using System.Text;
 
 namespace Common.Models.UserModels
 {
-    /// <summary>
-    /// Model for creating user
-    /// </summary>
     public class UserModel
     {
-        private string UserID;
+        private string UserEmail;
         private string Password;
         private string UserName;
-        private string cardType;
+        private string CardType;
         
         [Key]
         [Required]
-        public string USERID 
+        public string USEREMAIL 
         {
             get
             {
-                return UserID;
+                return UserEmail;
             }
             set
             {
-                UserID = value;
+                UserEmail = value;
             }
         }
 
@@ -72,11 +64,11 @@ namespace Common.Models.UserModels
         {
             get
             {
-                return cardType;
+                return CardType;
             }
             set
             {
-                cardType = value;
+                CardType = value;
             }
         }
 

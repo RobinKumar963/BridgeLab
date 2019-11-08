@@ -8,6 +8,7 @@
 
 
 using Common.Models.UserModels;
+using FundooRepos;
 using FundooRepos.Interface;
 using System;
 using System.Collections.Generic;
@@ -111,6 +112,13 @@ namespace BusinessManager
 
             await _repository.Forgot(forgot);
             return "You sucessfully recieved Email for changing Password";
+        }
+
+
+        public async Task<UserModel> FindByEmailAsync(string email)
+        {
+            var result = await _repository.FindByEmailAsync(email);
+            return result;
         }
     }
 }

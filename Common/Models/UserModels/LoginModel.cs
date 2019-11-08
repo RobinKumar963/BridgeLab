@@ -17,18 +17,18 @@ namespace Common.Models.UserModels
     /// </summary>
     public class LoginModel
     {
-        private string UserID;
+        private string UserEmail;
         private string Password;
        
-        public string USERID
+        public string USEREMAIL
         {
             get
             {
-                return UserID;
+                return UserEmail;
             }
             set
             {
-                UserID = value;
+                UserEmail = value;
             }
         }
         public string PASSWORD

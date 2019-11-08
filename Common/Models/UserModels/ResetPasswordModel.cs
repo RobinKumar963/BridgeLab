@@ -20,53 +20,54 @@ namespace Common.Models.UserModels
     public class ResetPasswordModel
     {
 
-        private string UserID;
-        private string oldpassword;
-        private string newpassword;
-        private string confirmpassword;
-        
-        public string USERID
+        private string UserEmail;
+        private string OldPassword;
+        private string NewPassword;
+        private string ConfirmPassword;
+        //Makin get set of each of the following declared top items
+        //Just to get access.
+        public string USEREMAIL
         {
             get
             {
-                return UserID;
+                return UserEmail;
             }
             set
             {
-                UserID = value;
+                UserEmail = value;
             }
         }
         public string OLDPASSWORD
         {
             get
             {
-                return this.oldpassword;
+                return this.OldPassword;
             }
             set
             {
-                this.oldpassword = value;
+                this.OldPassword = value;
             }
         }
         public string NEWPASSWORD
         {
             get
             {
-                return this.newpassword;
+                return this.NewPassword;
             }
             set
             {
-                this.newpassword = value;
+                this.NewPassword = value;
             }
         }
         public string CONFIRMPASSWORD
         {
             get
             {
-                return this.confirmpassword;
+                return this.ConfirmPassword;
             }
             set
             {
-                this.confirmpassword = value;
+                this.ConfirmPassword = value;
             }
         }
     }

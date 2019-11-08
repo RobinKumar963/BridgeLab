@@ -14,7 +14,7 @@ namespace Common.Helper
         /// <param name="key"></param>
         /// <param name="value"></param>
         /// <returns>bool</returns>
-        private static bool Save<T>(string host,string key,T value)
+        private static bool Save<T>(string host, string key, T value)
         {
 
             bool isSuccess = false;
@@ -42,7 +42,7 @@ namespace Common.Helper
         /// <param name="host"></param>
         /// <param name="key"></param>
         /// <returns>T</returns>
-        private static T Get<T>(string host,string key)
+        private static T Get<T>(string host, string key)
         {
 
             using (RedisClient redisClient = new RedisClient(host))

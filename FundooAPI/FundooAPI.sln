@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29318.209
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundooAPI", "FundooAPI.csproj", "{D540088A-4752-4B0C-9683-8A44B37BEDBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundooAPI", "FundooAPI.csproj", "{D540088A-4752-4B0C-9683-8A44B37BEDBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessManager", "..\BusinessManager\BusinessManager.csproj", "{FBBB520E-8338-4020-A3AF-E66AA133AA58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessManager", "..\BusinessManager\BusinessManager.csproj", "{FBBB520E-8338-4020-A3AF-E66AA133AA58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundooRepos", "..\FundooRepos\FundooRepos.csproj", "{20808720-33D2-4CD4-B95B-2D39941602A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundooRepos", "..\FundooRepos\FundooRepos.csproj", "{20808720-33D2-4CD4-B95B-2D39941602A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\Common\Common.csproj", "{DA326395-3B69-45A6-A1EF-4B020C618EB3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTesting", "..\UnitTesting\UnitTesting.csproj", "{40D15D7D-F16A-4E85-BE5F-E8B9A89F4EEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "..\Common\Common.csproj", "{DA326395-3B69-45A6-A1EF-4B020C618EB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{DA326395-3B69-45A6-A1EF-4B020C618EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA326395-3B69-45A6-A1EF-4B020C618EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA326395-3B69-45A6-A1EF-4B020C618EB3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{40D15D7D-F16A-4E85-BE5F-E8B9A89F4EEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40D15D7D-F16A-4E85-BE5F-E8B9A89F4EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40D15D7D-F16A-4E85-BE5F-E8B9A89F4EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40D15D7D-F16A-4E85-BE5F-E8B9A89F4EEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

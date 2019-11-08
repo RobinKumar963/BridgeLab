@@ -4,13 +4,6 @@
 // </copyright>
 // <creator name="Robin Kumar"/>
 // ----------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
 using Common.Helper;
 using Common.Models.UserModels;
 using FundooRepos.Context;
@@ -52,12 +45,12 @@ namespace FundooRepos
             user.PASSWORD = Encryption.MD5Hash(user.PASSWORD);
             UserModel userm = new UserModel()
             {
-                USERID = user.USERID,
+                USEREMAIL = user.USEREMAIL,
                 PASSWORD = user.PASSWORD,
                 USERNAME=user.USERNAME,
                 CARDTYPE=user.CARDTYPE
             };
-            _context.users.Add(userm);
+            _context.Users.Add(userm);
             ////Execute query and save any changes in DBcontext UserContext
             return Task.Run(() => _context.SaveChanges());
         }
@@ -71,7 +64,7 @@ namespace FundooRepos
         {
             ////Encrypting Password to check with password from data source
             login.PASSWORD = Encryption.MD5Hash(login.PASSWORD);
-            var result = _context.users.Where(i => i.USERID == login.USERID && i.PASSWORD == login.PASSWORD).FirstOrDefault();
+            var result = _context.Users.Where(i => i.USEREMAIL == login.USEREMAIL && i.PASSWORD == login.PASSWORD).FirstOrDefault();
             if (result != null)
             {
                 ////Execute query and save any changes in DBcontext UserContext
@@ -92,7 +85,7 @@ namespace FundooRepos
             ////Encrypting Password
             reset.NEWPASSWORD = Encryption.MD5Hash(reset.NEWPASSWORD);
             reset.CONFIRMPASSWORD = Encryption.MD5Hash(reset.CONFIRMPASSWORD);
-            var result = _context.users.Where(i => i.USERID == reset.USERID && i.PASSWORD == reset.OLDPASSWORD).FirstOrDefault();
+            var result = _context.Users.Where(i => i.USEREMAIL == reset.USEREMAIL && i.PASSWORD == reset.OLDPASSWORD).FirstOrDefault();
             if (result != null)
             {
                 result.PASSWORD = reset.NEWPASSWORD;
@@ -115,10 +108,10 @@ namespace FundooRepos
         public Task Forgot(ForgotPassword forgot)
         {
 
-            var result = _context.users.Where(i => i.USERID == forgot.USERID).FirstOrDefault();
+            var result = _context.Users.Where(i => i.USEREMAIL == forgot.USEREMAIL).FirstOrDefault();
             if (result != null)
             {
-                SendResetPasswordEmail.SendPasswordResetEmail(forgot.USERID, result.USERNAME);
+                SendResetPasswordEmail.SendPasswordResetEmail(forgot.USEREMAIL, result.USERNAME);
                 ////Execute query and save any changes in DBcontext UserContext
                 return Task.Run(() => _context.SaveChanges());
             }
@@ -128,7 +121,11 @@ namespace FundooRepos
             }
         }
 
-
+        public Task<UserModel> FindByEmailAsync(string email)
+        {
+            var result = _context.Users.Find(email);
+            return Task.Run(() => result);
+        }
 
 
 

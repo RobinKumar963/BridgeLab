@@ -4,21 +4,16 @@
 // </copyright>
 // <creator name="Robin Kumar"/>
 // ----------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using BusinessManager;
 using FundooRepos;
 using FundooRepos.Context;
 using FundooRepos.Interface;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +23,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace FundooAPI
 {
@@ -43,19 +39,35 @@ namespace FundooAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddDefaultIdentity<UserContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddDbContextPool<UserContext>(options => options.UseSqlServer(Configuration.GetConnectionString("UserDBConncetion")));
+            
+            services.AddDbContextPool<UserContext>(options => 
+                 options.UseSqlServer(Configuration.GetConnectionString("UserDBConncetion")));
 
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddTransient<IAccountManager, AccountManager>();
+            ////JWT
+            var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSetting:JWT_Secret"].ToString());
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false; x.SaveToken = false; x.TokenValidationParameters = new TokenValidationParameters { ValidateIssuerSigningKey = true, IssuerSigningKey = new SymmetricSecurityKey(key), ValidateIssuer = false, ValidateAudience = false };
+
+            });
+
 
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
+            {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
