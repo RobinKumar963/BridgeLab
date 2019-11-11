@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundooRepos", "..\FundooRep
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "..\Common\Common.csproj", "{DA326395-3B69-45A6-A1EF-4B020C618EB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundooAPITest", "..\FundooAPITest\FundooAPITest.csproj", "{587972BD-2DCD-4E20-BAD1-FBCC21D7AB8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{DA326395-3B69-45A6-A1EF-4B020C618EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA326395-3B69-45A6-A1EF-4B020C618EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA326395-3B69-45A6-A1EF-4B020C618EB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{587972BD-2DCD-4E20-BAD1-FBCC21D7AB8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{587972BD-2DCD-4E20-BAD1-FBCC21D7AB8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{587972BD-2DCD-4E20-BAD1-FBCC21D7AB8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{587972BD-2DCD-4E20-BAD1-FBCC21D7AB8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

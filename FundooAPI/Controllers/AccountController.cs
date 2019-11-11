@@ -108,7 +108,9 @@ namespace FundooAPI.Controllers
                        new Claim("Email", login.USEREMAIL)
                     }),
                     Expires = DateTime.UtcNow.AddDays(1),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("1234567890123456")), SecurityAlgorithms.HmacSha256Signature)
+                    SigningCredentials = new SigningCredentials
+                    (new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("1234567890123456")), 
+                    SecurityAlgorithms.HmacSha256Signature)
 
                 };
                 var tokenHandler = new JwtSecurityTokenHandler();

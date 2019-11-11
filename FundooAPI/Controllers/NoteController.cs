@@ -60,7 +60,7 @@ namespace FundooAPI.Controllers
         }
 
 
-        [HttpPost]
+        [HttpGet]
         [Route("ReadNotes")]
         [Authorize]
         public async Task<IActionResult> ReadNotes(string id)
@@ -78,7 +78,7 @@ namespace FundooAPI.Controllers
 
 
         }
-        [HttpPost]
+        [HttpPut]
         [Route("UpdateNotes")]
         [Authorize]
         public async Task<IActionResult> UpdateNotes(string id,string des)
@@ -97,7 +97,7 @@ namespace FundooAPI.Controllers
 
         }
 
-        [HttpPost]
+        [HttpDelete]
         [Route("DeleteNotes")]
         [Authorize]
         public async Task<IActionResult> DeleteNotes(string id)

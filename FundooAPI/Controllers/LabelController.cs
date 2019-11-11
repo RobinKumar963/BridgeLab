@@ -60,7 +60,7 @@ namespace FundooAPI.Controllers
             }
 
 
-            [HttpPost]
+            [HttpGet]
             [Route("ReadLabel")]
             [Authorize]
             public async Task<IActionResult> ReadLabel(string id)
@@ -78,7 +78,7 @@ namespace FundooAPI.Controllers
 
 
             }
-            [HttpPost]
+            [HttpPut]
             [Route("UpdateLabel")]
             [Authorize]
             public async Task<IActionResult> UpdateLabel(string id, string label)
@@ -97,7 +97,7 @@ namespace FundooAPI.Controllers
 
             }
 
-            [HttpPost]
+            [HttpDelete]
             [Route("DeleteLabel")]
             [Authorize]
             public async Task<IActionResult> DeleteLabel(string id)
