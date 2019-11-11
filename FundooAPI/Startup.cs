@@ -51,6 +51,8 @@ namespace FundooAPI
             services.AddTransient<IAccountManager, AccountManager>();
             services.AddTransient<INoteRepository, NoteRepository>();
             services.AddTransient<INoteManager, NoteManager>();
+            services.AddTransient<ILabelRepository, LabelRepository>();
+            services.AddTransient<ILabelManager, LabelManager>();
             ////JWT
             var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSetting:JWT_Secret"].ToString());
             services.AddAuthentication(x =>

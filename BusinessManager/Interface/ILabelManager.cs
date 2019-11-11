@@ -17,7 +17,7 @@ namespace BusinessManager.Interface
     /// <summary>
     /// Contract for LabelManager
     /// </summary>
-    interface ILabelManager
+    public interface ILabelManager
     {
         Task<string> Get();
         Task<string> Add(LabelModel noteModel);

@@ -24,7 +24,7 @@ namespace BusinessManager
     /// Manage Label
     /// </summary>
     /// <seealso cref="BusinessManager.Interface.ILabelManager" />
-    class LabelManager : ILabelManager
+    public class LabelManager : ILabelManager
     {
         private readonly ILabelRepository repository;
 

@@ -70,7 +70,7 @@ namespace FundooRepos
 
         public Task Update(string id, string label)
         {
-            context.Labels.Find(id).DESCRIPTION = notes;
+            context.Labels.Find(id).LABEL = label;
             return Task.Run(() => context.SaveChanges());
         }
     }
