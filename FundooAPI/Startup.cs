@@ -25,6 +25,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace FundooAPI
 {
@@ -53,6 +54,21 @@ namespace FundooAPI
             services.AddTransient<INoteManager, NoteManager>();
             services.AddTransient<ILabelRepository, LabelRepository>();
             services.AddTransient<ILabelManager, LabelManager>();
+
+
+
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "Fundoo API",
+                    Description = "ASP.NET Core Web API"
+                });
+            });
+
+
+
+
             ////JWT
             var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSetting:JWT_Secret"].ToString());
             services.AddAuthentication(x =>
@@ -86,6 +102,13 @@ namespace FundooAPI
             {
                 app.UseHsts();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ROBIN");
+            });
+
+
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
