@@ -26,7 +26,7 @@ namespace BusinessManager
     /// <seealso cref="BusinessManager.Interface.ILabelManager" />
     public class LabelManager : ILabelManager
     {
-        private readonly ILabelRepository repository;
+        private readonly  ILabelRepository repository;
 
         public LabelManager(ILabelRepository repository)
         {
@@ -60,7 +60,7 @@ namespace BusinessManager
         public async Task<string> Delete(string id)
         {
             await this.repository.Delete(id);
-            return "Note Delete Succesfully";
+            return "label Delete Succesfully";
         }
 
         public async Task<string> Get()
