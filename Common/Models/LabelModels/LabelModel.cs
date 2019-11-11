@@ -1,25 +1,38 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=LabelModel.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// ---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Common.Models.LabelModels
 {
+    /// <summary>
+    /// Label Entity
+    /// </summary>
     public class LabelModel
     {
-        private string email;
-        private string label;
-        private string id;
+        private string UserEmail;
+        private string Label;
+        private string LabelID;
         [Required]
-        public string Email { get { return this.email; } set { this.email = value; } }
+        public string USEREMAIL { get { return this.UserEmail; } set { this.UserEmail = value; } }
         [Required]
-        public string Label { get { return this.label; } set { this.label = value; } }
+        public string LABEL { get { return this.Label; } set { this.Label = value; } }
         [Required]
         [Key]
-        public string Id
+        public string LABELID
         {
-            get { return this.id; }
-            set { this.id = value; }
+            get { return this.LabelID; }
+            set { this.LabelID = value; }
         }
     }
 }

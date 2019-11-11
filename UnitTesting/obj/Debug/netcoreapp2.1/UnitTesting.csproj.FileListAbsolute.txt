@@ -24,3 +24,8 @@ C:\Users\Krish\source\repos\UnitTesting\obj\Debug\netcoreapp2.1\UnitTesting.Asse
 C:\Users\Krish\source\repos\UnitTesting\obj\Debug\netcoreapp2.1\UnitTesting.AssemblyInfo.cs
 C:\Users\Krish\source\repos\UnitTesting\obj\Debug\netcoreapp2.1\UnitTesting.dll
 C:\Users\Krish\source\repos\UnitTesting\obj\Debug\netcoreapp2.1\UnitTesting.pdb
+C:\Users\Bridgelabz\source\repos\UnitTesting\bin\Debug\netcoreapp2.1\Common.dll
+C:\Users\Bridgelabz\source\repos\UnitTesting\bin\Debug\netcoreapp2.1\FundooRepos.dll
+C:\Users\Bridgelabz\source\repos\UnitTesting\bin\Debug\netcoreapp2.1\FundooRepos.pdb
+C:\Users\Bridgelabz\source\repos\UnitTesting\bin\Debug\netcoreapp2.1\Common.pdb
+C:\Users\Bridgelabz\source\repos\UnitTesting\obj\Debug\netcoreapp2.1\UnitTesting.csproj.CopyComplete

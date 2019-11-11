@@ -1,4 +1,13 @@
-﻿using Common.Models.NoteModels;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=INoteRepository.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// ---------------------------------------------------------------------------------------------------------------------
+
+
+
+using Common.Models.NoteModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,8 +23,9 @@ namespace FundooRepos.Interface
         
         Task Get();
         Task Add(NoteModel noteModel);
-        Task GetByID();
+        Task GetByID(string id);
         Task Delete(string id);
-        Task Update(string id);
+        Task Update(string id,string notes);
+        Task check(string email);
     }
 }

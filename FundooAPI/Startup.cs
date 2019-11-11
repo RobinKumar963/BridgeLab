@@ -3,13 +3,14 @@
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="Robin Kumar"/>
-// ----------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessManager;
+using BusinessManager.Interface;
 using FundooRepos;
 using FundooRepos.Context;
 using FundooRepos.Interface;
@@ -48,6 +49,8 @@ namespace FundooAPI
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddTransient<IAccountManager, AccountManager>();
+            services.AddTransient<INoteRepository, NoteRepository>();
+            services.AddTransient<INoteManager, NoteManager>();
             ////JWT
             var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSetting:JWT_Secret"].ToString());
             services.AddAuthentication(x =>
@@ -76,7 +79,7 @@ namespace FundooAPI
             {
                 app.UseHsts();
             }
-
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

@@ -1,4 +1,13 @@
-﻿using Common.Models.NoteModels;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=NoteRepository.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// ---------------------------------------------------------------------------------------------------------------------
+
+
+
+using Common.Models.NoteModels;
 using FundooRepos.Context;
 using FundooRepos.Interface;
 using System;
@@ -8,9 +17,14 @@ using System.Threading.Tasks;
 
 namespace FundooRepos
 {
+    /// <summary>
+    /// Note Repository,to set and get from data source for note entity
+    /// </summary>
+    /// <seealso cref="FundooRepos.Interface.INoteRepository" />
     public class NoteRepository : INoteRepository
     {
 
+  
         private readonly UserContext context;
 
         public NoteRepository(UserContext context)
@@ -21,11 +35,17 @@ namespace FundooRepos
 
         public Task Add(NoteModel noteModel)
         {
-           
+            ////Perform action on Data source
             context.Notes.Add(noteModel);
             ////Execute query and save any changes in DBcontext UserContext
             return Task.Run(() => context.SaveChanges());
 
+        }
+
+        public Task check(string email)
+        {
+            var result = context.Notes.Find(email);
+            return Task.Run(() => result);
         }
 
         public Task Delete(string id)
@@ -37,20 +57,23 @@ namespace FundooRepos
 
         public Task Get()
         {
-            List<NoteModel> list = new List<NoteModel>();
-            list = context.Notes;
+            var list = context.Notes;
+            return Task.Run(() => list);
+
+        }
+
+        public Task GetByID(string id)
+        {
+            NoteModel note = context.Notes.Find(id);
+            return Task.Run(() => note);
+        }
+
+        public Task Update(string id,string label)
+        {
+            context.Labels.Find(id).LABEL = label;
             return Task.Run(() => context.SaveChanges());
         }
 
-        public Task GetByID()
-        {
-            NoteModel note = context.Notes.Find();
-            return Task.Run(() => context.SaveChanges());
-        }
-
-        public Task Update(string id)
-        {
-            return Task.Run(() => context.SaveChanges());
-        }
+       
     }
 }

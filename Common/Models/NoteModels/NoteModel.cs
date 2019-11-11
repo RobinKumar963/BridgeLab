@@ -1,4 +1,17 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=NoteModel.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// ---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,6 +19,9 @@ using System.Text;
 
 namespace Common.Models.NoteModels
 {
+    /// <summary>
+    /// Note Entity
+    /// </summary>
     public class NoteModel
     {
 

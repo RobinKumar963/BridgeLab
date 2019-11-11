@@ -1,4 +1,14 @@
-﻿using ServiceStack.Redis;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file=RedishCacheHelper.cs" company="Bridgelabz">
+//   Copyright © 2019 Company="BridgeLabz"
+// </copyright>
+// <creator name="Robin Kumar"/>
+// ---------------------------------------------------------------------------------------------------------------------
+
+
+
+
+using ServiceStack.Redis;
 using System;
 using System.Collections.Generic;
 using System.Text;

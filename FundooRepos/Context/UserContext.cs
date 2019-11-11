@@ -16,6 +16,10 @@ using System.Text;
 
 namespace FundooRepos.Context
 {
+    /// <summary>
+    /// Used for a Connected Session with Data Source
+    /// </summary>
+    /// <seealso cref="Microsoft.EntityFrameworkCore.DbContext" />
     public class UserContext : DbContext
     {
         public UserContext(DbContextOptions<UserContext> options) : base(options)
@@ -24,6 +28,6 @@ namespace FundooRepos.Context
         }
         public DbSet<UserModel> Users { get; set; }
         public DbSet<NoteModel> Notes { get; set; }
-      
+        public DbSet<LabelModel> Labels { get; set; }
     }
 }
