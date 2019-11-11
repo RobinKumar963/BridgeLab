@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Krish\\source\\repos\\EmployeeCRUD\\EmployeeCRUD.csproj": {}
+    "C:\\Users\\Bridgelabz\\source\\repos\\EmployeeCRUD\\EmployeeCRUD.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Krish\\source\\repos\\EmployeeCRUD\\EmployeeCRUD.csproj": {
+    "C:\\Users\\Bridgelabz\\source\\repos\\EmployeeCRUD\\EmployeeCRUD.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Krish\\source\\repos\\EmployeeCRUD\\EmployeeCRUD.csproj",
+        "projectUniqueName": "C:\\Users\\Bridgelabz\\source\\repos\\EmployeeCRUD\\EmployeeCRUD.csproj",
         "projectName": "EmployeeCRUD",
-        "projectPath": "C:\\Users\\Krish\\source\\repos\\EmployeeCRUD\\EmployeeCRUD.csproj",
-        "packagesPath": "C:\\Users\\Krish\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Krish\\source\\repos\\EmployeeCRUD\\obj\\",
+        "projectPath": "C:\\Users\\Bridgelabz\\source\\repos\\EmployeeCRUD\\EmployeeCRUD.csproj",
+        "packagesPath": "C:\\Users\\Bridgelabz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bridgelabz\\source\\repos\\EmployeeCRUD\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Krish\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Bridgelabz\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -62,6 +62,10 @@
             "Microsoft.jQuery.Unobtrusive.Validation": {
               "target": "Package",
               "version": "[3.2.11, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[4.0.1, )"
             },
             "System.ComponentModel.Annotations": {
               "target": "Package",

@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace EmployeeCRUD
 {
@@ -40,6 +41,19 @@ namespace EmployeeCRUD
             //services.AddSingleton<IConfiguration,config>();
             services.AddTransient<IEmpRepository, EmpRepository>();
             services.AddTransient<IEmployeeManager, EmployeeManager>();
+
+
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "Employee CRUD",
+                    Description = "ASP.NET Core Web API"
+                });
+            });
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +74,11 @@ namespace EmployeeCRUD
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ROBIN");
             });
 
             //app.Run(async (context) =>
