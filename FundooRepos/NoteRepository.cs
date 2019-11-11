@@ -14,7 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Linq;
 namespace FundooRepos
 {
     /// <summary>
@@ -58,6 +58,7 @@ namespace FundooRepos
         public Task Get()
         {
             var list = context.Notes;
+            
             return Task.Run(() => list);
 
         }

@@ -62,7 +62,12 @@ namespace FundooAPI
                 x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(x =>
             {
-                x.RequireHttpsMetadata = false; x.SaveToken = false; x.TokenValidationParameters = new TokenValidationParameters { ValidateIssuerSigningKey = true, IssuerSigningKey = new SymmetricSecurityKey(key), ValidateIssuer = false, ValidateAudience = false };
+                x.RequireHttpsMetadata = false; 
+                x.SaveToken = false;
+                x.TokenValidationParameters = new TokenValidationParameters
+                { ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false, ValidateAudience = false, ClockSkew = TimeSpan.Zero };
 
             });
 

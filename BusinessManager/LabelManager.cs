@@ -45,6 +45,8 @@ namespace BusinessManager
                 throw new ArgumentException("Invalid Parameter");
 
             await this.repository.Add(labelModel);
+            
+            
             return "label Added Succesfully";
         }
 
