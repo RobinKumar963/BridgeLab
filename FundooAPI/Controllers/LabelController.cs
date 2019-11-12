@@ -1,159 +1,120 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file=LabelController.cs" company="Bridgelabz">
-//   Copyright © 2019 Company="BridgeLabz"
-// </copyright>
-// <creator name="Robin Kumar"/>
-// ---------------------------------------------------------------------------------------------------------------
-
-
-
-
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using BusinessManager.Interface;
 using Common.Models.LabelModels;
 using FundooRepos.Interface;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FundooAPI.Controllers
 {
-    /// <summary>
-    /// Label Controller
-    /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
+    [Route("api/[controller]"),Authorize]
+    [ApiController]
     public class LabelController : ControllerBase
     {
+        private readonly ILabelManager manager;
+        private readonly IAccountManager accountManager;
 
-        [Route("api/[controller]")]
-        [ApiController]
-
-        public class NoteController : ControllerBase
+        public LabelController(ILabelManager manager, IAccountManager accountManager)
         {
-            private readonly ILabelManager manager;
-            private readonly IAccountManager accountManager;
-
-            public NoteController(ILabelManager manager, IAccountManager accountManager)
-            {
-                this.manager = manager;
-                this.accountManager = accountManager;
-            }
-
-
-
-            [HttpPost]
-            [Route("AddLabel")]
-            [Authorize]
-            public async Task<IActionResult> AddNotes(LabelModel labelModel)
-            {
-                try
-                {
-                    string Email = User.Claims.First(c => c.Type == "Email").Value;
-                    if (labelModel.USEREMAIL == Email)
-                    {
-                        var result = await manager.Add(labelModel);
-                        return Ok(new { result });
-                    }
-                    else
-                        return null;
-                }
-                catch (Exception e)
-                {
-                    return BadRequest(e.Message);
-                }
-
-               
-
-
-
-            }
-
-
-            [HttpGet]
-            [Route("ReadLabel")]
-            [Authorize]
-            public async Task<IActionResult> ReadLabel(string id)
-            {
-               
-
-                try
-                {
-                    string Email = User.Claims.First(c => c.Type == "Email").Value;
-                    if (await accountManager.Check(Email))
-                    {
-                        var result = await manager.GetByID(id);
-                        return Ok(new { result });
-                    }
-                    else
-                        return null;
-                }
-                catch (Exception e)
-                {
-                    return BadRequest(e.Message);
-                }
-               
-
-
-
-            }
-            [HttpPut]
-            [Route("UpdateLabel")]
-            [Authorize]
-            public async Task<IActionResult> UpdateLabel(string id, string label)
-            {
-                try
-                {
-                    string Email = User.Claims.First(c => c.Type == "Email").Value;
-                    if (await accountManager.Check(Email))
-                    {
-                        var result = await manager.Update(id, label);
-                        return Ok(new { result });
-                    }
-                    else
-                        return null;
-                }
-                catch (Exception e)
-                {
-                    return BadRequest(e.Message);
-                }
-
-
-               
-
-
-
-            }
-
-            [HttpDelete]
-            [Route("DeleteLabel")]
-            [Authorize]
-            public async Task<IActionResult> DeleteLabel(string id)
-            {
-                try
-                {
-                    string Email = User.Claims.First(c => c.Type == "Email").Value;
-                    if (await accountManager.Check(Email))
-                    {
-                        var result = await manager.Delete(id);
-                        return Ok(new { result });
-                    }
-                    else
-                        return null;
-                }
-                catch (Exception e)
-                {
-                    return BadRequest(e.Message);
-                }
-              
-
-
-
-            }
-
-
+            this.manager = manager;
+            this.accountManager = accountManager;
         }
 
+
+
+        [HttpPost]
+        [Route("AddLabel")]
+        [Authorize]
+        public async Task<IActionResult> AddLabel(LabelModel labelModel)
+        {
+            try
+            {
+                string Email = User.Claims.First(c => c.Type == "Email").Value;
+                if (labelModel.USEREMAIL == Email)
+                {
+                    var result = await manager.Add(labelModel);
+                    return Ok(new { result });
+                }
+                else
+                    return null;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
+        [HttpGet]
+        [Route("ReadLabel")]
+        [Authorize]
+        public async Task<IActionResult> ReadLabel(string id)
+        {
+
+
+            try
+            {
+                string Email = User.Claims.First(c => c.Type == "Email").Value;
+                if (await accountManager.Check(Email))
+                {
+                    var result = await manager.GetByID(id);
+                    return Ok(new { result });
+                }
+                else
+                    return null;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("UpdateLabel")]
+        [Authorize]
+        public async Task<IActionResult> UpdateLabel(string id, string label)
+        {
+            try
+            {
+                string Email = User.Claims.First(c => c.Type == "Email").Value;
+                if (await accountManager.Check(Email))
+                {
+                    var result = await manager.Update(id, label);
+                    return Ok(new { result });
+                }
+                else
+                    return null;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("DeleteLabel")]
+        [Authorize]
+        public async Task<IActionResult> DeleteLabel(string id)
+        {
+            try
+            {
+                string Email = User.Claims.First(c => c.Type == "Email").Value;
+                if (await accountManager.Check(Email))
+                {
+                    var result = await manager.Delete(id);
+                    return Ok(new { result });
+                }
+                else
+                    return null;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

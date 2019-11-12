@@ -27,9 +27,8 @@ namespace FundooAPI.Controllers
     /// Note Controller
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
-    [Route("api/[controller]")]
+    [Route("api/[controller]"),Authorize]
     [ApiController]
-    
     public class NoteController : ControllerBase
     {
         private readonly INoteManager manager;

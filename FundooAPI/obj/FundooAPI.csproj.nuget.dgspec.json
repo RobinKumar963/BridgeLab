@@ -188,6 +188,10 @@
               "target": "Package",
               "version": "[2.1.1, )"
             },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -201,6 +205,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[4.0.1, )"
+            },
+            "Swashbuckle.AspNetCore.Filters": {
+              "target": "Package",
+              "version": "[4.5.5, )"
             }
           },
           "imports": [
