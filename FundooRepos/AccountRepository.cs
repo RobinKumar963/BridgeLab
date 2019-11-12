@@ -127,16 +127,12 @@ namespace FundooRepos
             return Task.Run(() => result);
         }
 
-
-
-
-
-
-
-
-
-
-
-
+        public Task<bool> Check(string email)
+        {
+           if(_context.Users.Find(email)!=null)
+                return Task.Run(() => true);
+           else
+                return Task.Run(() => false);
+        }
     }
 }

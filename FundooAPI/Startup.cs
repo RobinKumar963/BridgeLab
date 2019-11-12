@@ -44,7 +44,7 @@ namespace FundooAPI
             //services.AddDefaultIdentity<UserContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
-            services.AddDbContextPool<UserContext>(options => 
+            services.AddDbContext<UserContext>(options => 
                  options.UseSqlServer(Configuration.GetConnectionString("UserDBConncetion")));
 
             services.AddSingleton<IConfiguration>(Configuration);

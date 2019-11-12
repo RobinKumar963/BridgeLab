@@ -5,11 +5,6 @@
 // <creator name="Robin Kumar"/>
 // ---------------------------------------------------------------------------------------------------------------------
 
-
-
-
-
-
 using Common.Models.LabelModels;
 using Common.Models.NoteModels;
 using FundooRepos.Context;
@@ -42,11 +37,7 @@ namespace FundooRepos
             return Task.Run(() => context.SaveChanges());
         }
 
-        public Task check(string email)
-        {
-            var result = context.Notes.Find(email);
-            return Task.Run(() => result);
-        }
+       
 
         public Task Delete(string id)
         {
@@ -62,7 +53,7 @@ namespace FundooRepos
             return Task.Run(() => list);
         }
 
-        public Task GetByID(string id)
+        public Task<LabelModel> GetByID(string id)
         {
             LabelModel label = context.Labels.Find(id);
             return Task.Run(() => label);

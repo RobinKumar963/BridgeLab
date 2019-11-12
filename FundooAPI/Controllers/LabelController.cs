@@ -10,6 +10,7 @@
 
 using BusinessManager.Interface;
 using Common.Models.LabelModels;
+using FundooRepos.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -32,10 +33,12 @@ namespace FundooAPI.Controllers
         public class NoteController : ControllerBase
         {
             private readonly ILabelManager manager;
+            private readonly IAccountManager accountManager;
 
-            public NoteController(ILabelManager manager)
+            public NoteController(ILabelManager manager, IAccountManager accountManager)
             {
                 this.manager = manager;
+                this.accountManager = accountManager;
             }
 
 
@@ -45,15 +48,23 @@ namespace FundooAPI.Controllers
             [Authorize]
             public async Task<IActionResult> AddNotes(LabelModel labelModel)
             {
-
-                string Email = User.Claims.First(c => c.Type == "Email").Value;
-                if (labelModel.USEREMAIL == Email)
+                try
                 {
-                    var result = await manager.Add(labelModel);
-                    return Ok(new { result });
+                    string Email = User.Claims.First(c => c.Type == "Email").Value;
+                    if (labelModel.USEREMAIL == Email)
+                    {
+                        var result = await manager.Add(labelModel);
+                        return Ok(new { result });
+                    }
+                    else
+                        return null;
                 }
-                else
-                    return null;
+                catch (Exception e)
+                {
+                    return BadRequest(e.Message);
+                }
+
+               
 
 
 
@@ -65,15 +76,24 @@ namespace FundooAPI.Controllers
             [Authorize]
             public async Task<IActionResult> ReadLabel(string id)
             {
+               
 
-                string Email = User.Claims.First(c => c.Type == "Email").Value;
-                if (await manager.check(Email))
+                try
                 {
-                    var result = await manager.GetByID(id);
-                    return Ok(new { result });
+                    string Email = User.Claims.First(c => c.Type == "Email").Value;
+                    if (await accountManager.Check(Email))
+                    {
+                        var result = await manager.GetByID(id);
+                        return Ok(new { result });
+                    }
+                    else
+                        return null;
                 }
-                else
-                    return null;
+                catch (Exception e)
+                {
+                    return BadRequest(e.Message);
+                }
+               
 
 
 
@@ -83,15 +103,24 @@ namespace FundooAPI.Controllers
             [Authorize]
             public async Task<IActionResult> UpdateLabel(string id, string label)
             {
-
-                string Email = User.Claims.First(c => c.Type == "Email").Value;
-                if (await manager.check(Email))
+                try
                 {
-                    var result = await manager.Update(id, label);
-                    return Ok(new { result });
+                    string Email = User.Claims.First(c => c.Type == "Email").Value;
+                    if (await accountManager.Check(Email))
+                    {
+                        var result = await manager.Update(id, label);
+                        return Ok(new { result });
+                    }
+                    else
+                        return null;
                 }
-                else
-                    return null;
+                catch (Exception e)
+                {
+                    return BadRequest(e.Message);
+                }
+
+
+               
 
 
 
@@ -102,15 +131,22 @@ namespace FundooAPI.Controllers
             [Authorize]
             public async Task<IActionResult> DeleteLabel(string id)
             {
-
-                string Email = User.Claims.First(c => c.Type == "Email").Value;
-                if (await manager.check(Email))
+                try
                 {
-                    var result = await manager.Delete(id);
-                    return Ok(new { result });
+                    string Email = User.Claims.First(c => c.Type == "Email").Value;
+                    if (await accountManager.Check(Email))
+                    {
+                        var result = await manager.Delete(id);
+                        return Ok(new { result });
+                    }
+                    else
+                        return null;
                 }
-                else
-                    return null;
+                catch (Exception e)
+                {
+                    return BadRequest(e.Message);
+                }
+              
 
 
 

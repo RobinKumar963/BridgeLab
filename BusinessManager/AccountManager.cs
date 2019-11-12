@@ -48,7 +48,9 @@ namespace BusinessManager
                 throw new ArgumentException("Invalid Parameter");
 
             await _repository.Create(user);
-            return "Account Created Succesfully";
+
+            return await Task.Run(() => "Account Created Succesfully");
+            
         }
 
         /// <summary>
@@ -69,7 +71,7 @@ namespace BusinessManager
                 throw new ArgumentException("Invalid Parameter");
 
             await _repository.LogIn(login);
-            return "Login Successfull";
+            return await Task.Run(() => "Login Succesfully");
         }
         /// <summary>
         /// Reset Password
@@ -89,7 +91,7 @@ namespace BusinessManager
                 throw new ArgumentException("Invalid Parameter");
 
             await _repository.ResetPassword(reset);
-            return "Successfully Reset the Password";
+            return await Task.Run(() => "Password Resetted Succesfully");
         }
         /// <summary>
         /// Forgot Password
@@ -111,14 +113,20 @@ namespace BusinessManager
 
 
             await _repository.Forgot(forgot);
-            return "You sucessfully recieved Email for changing Password";
+            return await Task.Run(() => "Password Resetted Succesfully");
         }
 
 
         public async Task<UserModel> FindByEmailAsync(string email)
         {
             var result = await _repository.FindByEmailAsync(email);
-            return result;
+            return await Task.Run(() => result);
+        }
+
+        public async Task<bool> Check(string email)
+        {
+            var result = await _repository.Check(email);
+            return await Task.Run(() => result);
         }
     }
 }

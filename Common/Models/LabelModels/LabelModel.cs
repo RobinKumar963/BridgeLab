@@ -11,6 +11,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Common.Models.LabelModels
@@ -22,17 +23,20 @@ namespace Common.Models.LabelModels
     {
         private string UserEmail;
         private string Label;
-        private string LabelID;
-        [Required]
-        public string USEREMAIL { get { return this.UserEmail; } set { this.UserEmail = value; } }
-        [Required]
-        public string LABEL { get { return this.Label; } set { this.Label = value; } }
+        private int LabelID;
         [Required]
         [Key]
-        public string LABELID
+        public int LABELID
         {
             get { return this.LabelID; }
             set { this.LabelID = value; }
         }
+        
+        [Required]
+        [ForeignKey("UserModel")]
+        public string USEREMAIL { get { return this.UserEmail; } set { this.UserEmail = value; } }
+        [Required]
+        public string LABEL { get { return this.Label; } set { this.Label = value; } }
+        
     }
 }

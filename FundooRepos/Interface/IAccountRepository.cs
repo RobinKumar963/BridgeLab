@@ -25,5 +25,6 @@ namespace FundooRepos.Interface
         Task Forgot(ForgotPassword forgot);
 
         Task<UserModel> FindByEmailAsync(string email);
+        Task<bool> Check(string email);
     }
 }

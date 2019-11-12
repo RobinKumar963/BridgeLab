@@ -19,6 +19,23 @@ namespace FundooRepos.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Common.Models.LabelModels.LabelModel", b =>
+                {
+                    b.Property<int>("LABELID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("LABEL")
+                        .IsRequired();
+
+                    b.Property<string>("USEREMAIL")
+                        .IsRequired();
+
+                    b.HasKey("LABELID");
+
+                    b.ToTable("Labels");
+                });
+
             modelBuilder.Entity("Common.Models.NoteModels.NoteModel", b =>
                 {
                     b.Property<int>("NOTEID")
@@ -39,13 +56,16 @@ namespace FundooRepos.Migrations
 
                     b.Property<bool>("ISTRASH");
 
+                    b.Property<int>("LABELID");
+
                     b.Property<DateTime?>("MODIFIEDDATA");
 
                     b.Property<string>("REMINDER");
 
                     b.Property<string>("TITLE");
 
-                    b.Property<string>("USEREMAIL");
+                    b.Property<string>("USEREMAIL")
+                        .IsRequired();
 
                     b.HasKey("NOTEID");
 

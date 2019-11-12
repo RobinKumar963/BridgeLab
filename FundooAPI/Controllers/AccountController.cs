@@ -41,10 +41,20 @@ namespace FundooAPI.Controllers
         [Route("Add")]
         public async Task<IActionResult> Register(UserModel user)
         {
-            
-            
+
+         
+
+            try
+            {
                 var result = await _manager.Registration(user);
                 return Ok(new { result });
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+            
+               
             
             
         }
@@ -58,8 +68,20 @@ namespace FundooAPI.Controllers
         [Route("LogIn")]
         public async Task<IActionResult> LogIn(LoginModel login)
         {
-            var result = await _manager.LogIn(login);
-            return Ok(new { result });
+
+
+            try
+            {
+                var result = await _manager.LogIn(login);
+                return Ok(new { result });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+
+           
         }
 
         /// <summary>
@@ -71,8 +93,19 @@ namespace FundooAPI.Controllers
         [Route("Reset")]
         public async Task<IActionResult> ResetPassword(ResetPasswordModel reset)
         {
-            var result = await _manager.ResetPassword(reset);
-            return Ok(new { result });
+            try
+            {
+                var result = await _manager.ResetPassword(reset);
+                return Ok(new { result });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+
+
+           
         }
 
         /// <summary>
@@ -84,9 +117,19 @@ namespace FundooAPI.Controllers
         [Route("Forgot")]
         public async Task<IActionResult> Forgot(ForgotPassword forgot)
         {
+
+            try
+            {
+                var result = await _manager.ForgotP(forgot);
+                return Ok(new { result });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+
             
-            var result = await _manager.ForgotP(forgot);
-            return Ok(new { result });
         }
 
         /// <summary>
@@ -98,30 +141,39 @@ namespace FundooAPI.Controllers
         [Route("log")]
         public async Task<IActionResult> Log(LoginModel login)
         {
-            var result = await _manager.LogIn(login);
-            if (result != null)
+            try
             {
-                var tokenDescriptor = new SecurityTokenDescriptor
+                var result = await _manager.LogIn(login);
+                if (result != null)
                 {
-                    Subject = new ClaimsIdentity(new Claim[]
+                    var tokenDescriptor = new SecurityTokenDescriptor
                     {
+                        Subject = new ClaimsIdentity(new Claim[]
+                        {
                        new Claim("Email", login.USEREMAIL)
-                    }),
-                    Expires = DateTime.UtcNow.AddDays(1),
-                    SigningCredentials = new SigningCredentials
-                    (new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("1234567890123456")), 
-                    SecurityAlgorithms.HmacSha256Signature)
+                        }),
+                        Expires = DateTime.UtcNow.AddDays(1),
+                        SigningCredentials = new SigningCredentials
+                        (new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("1234567890123456")),
+                        SecurityAlgorithms.HmacSha256Signature)
 
-                };
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var securityToken = tokenHandler.CreateToken(tokenDescriptor);
-                var token = tokenHandler.WriteToken(securityToken);
-                return Ok(new { token });
+                    };
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+                    var token = tokenHandler.WriteToken(securityToken);
+                    return Ok(new { token });
+                }
+                else
+                {
+                    return BadRequest(new { message = "Token Not Genrated" });
+                }
             }
-            else
+            catch (Exception e)
             {
-                return BadRequest(new { message = "Token Not Genrated" });
+                return BadRequest(e.Message);
             }
+            
+           
         }
 
 
@@ -130,16 +182,25 @@ namespace FundooAPI.Controllers
         [Route("reg")]
         public async Task<object> GetDetails()
         {
-            string Email = User.Claims.First(c => c.Type == "Email").Value;
-            var result = await _manager.FindByEmailAsync(Email);
-            return new
+
+            try
             {
-                result.USEREMAIL,
-                result.USERNAME,
-                result.CARDTYPE
-                
-                
-            };
+                string Email = User.Claims.First(c => c.Type == "Email").Value;
+                var result = await _manager.FindByEmailAsync(Email);
+                return new
+                {
+                    result.USEREMAIL,
+                    result.USERNAME,
+                    result.CARDTYPE
+
+
+                };
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+           
         }
 
        

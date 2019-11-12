@@ -4,9 +4,6 @@
 // </copyright>
 // <creator name="Robin Kumar"/>
 // ---------------------------------------------------------------------------------------------------------------------
-
-
-
 using Common.Models.NoteModels;
 using FundooRepos.Context;
 using FundooRepos.Interface;
@@ -42,11 +39,6 @@ namespace FundooRepos
 
         }
 
-        public Task check(string email)
-        {
-            var result = context.Notes.Find(email);
-            return Task.Run(() => result);
-        }
 
         public Task Delete(string id)
         {
@@ -63,7 +55,7 @@ namespace FundooRepos
 
         }
 
-        public Task GetByID(string id)
+        public Task<NoteModel> GetByID(string id)
         {
             NoteModel note = context.Notes.Find(id);
             return Task.Run(() => note);

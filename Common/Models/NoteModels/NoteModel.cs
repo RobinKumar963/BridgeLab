@@ -4,13 +4,6 @@
 // </copyright>
 // <creator name="Robin Kumar"/>
 // ---------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -27,6 +20,8 @@ namespace Common.Models.NoteModels
 
         
         private int NoteID;
+
+        private int LabelID;
        
         private string UserEmail;
        
@@ -53,8 +48,11 @@ namespace Common.Models.NoteModels
         [Key]
         [Required]
         public int NOTEID { get { return NoteID; } set { NoteID = value; } }
-        
-        
+
+        [ForeignKey("LabelModel")]
+        public int LABELID { get { return LabelID; } set { LabelID = value; } }
+
+        [Required]
         [ForeignKey("UserModel")]
         public string USEREMAIL { get { return UserEmail; } set { UserEmail = value; } }
 
