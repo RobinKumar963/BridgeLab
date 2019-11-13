@@ -442,6 +442,21 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
+      "NUnit/3.12.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/nunit.framework.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/nunit.framework.dll": {}
+        },
+        "build": {
+          "build/NUnit.props": {}
+        }
+      },
       "Remotion.Linq/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -2804,6 +2819,36 @@
         "lib/netstandard1.0/_._",
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
+      ]
+    },
+    "NUnit/3.12.0": {
+      "sha512": "3oJTrcUcT9wmweBUwgUf0f1XIYy6RZq2ziV+RM95HMKAJGsHPN2i3MKK1dAPvDPMRLz799Llj4eyu/STB9Q7OA==",
+      "type": "package",
+      "path": "nunit/3.12.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CHANGES.md",
+        "LICENSE.txt",
+        "NOTICES.txt",
+        "build/NUnit.props",
+        "lib/net35/nunit.framework.dll",
+        "lib/net35/nunit.framework.pdb",
+        "lib/net35/nunit.framework.xml",
+        "lib/net40/nunit.framework.dll",
+        "lib/net40/nunit.framework.pdb",
+        "lib/net40/nunit.framework.xml",
+        "lib/net45/nunit.framework.dll",
+        "lib/net45/nunit.framework.pdb",
+        "lib/net45/nunit.framework.xml",
+        "lib/netstandard1.4/nunit.framework.dll",
+        "lib/netstandard1.4/nunit.framework.pdb",
+        "lib/netstandard1.4/nunit.framework.xml",
+        "lib/netstandard2.0/nunit.framework.dll",
+        "lib/netstandard2.0/nunit.framework.pdb",
+        "lib/netstandard2.0/nunit.framework.xml",
+        "nunit.3.12.0.nupkg.sha512",
+        "nunit.nuspec"
       ]
     },
     "Remotion.Linq/2.2.0": {
@@ -6870,23 +6915,24 @@
       "Microsoft.EntityFrameworkCore >= 2.1.1",
       "Microsoft.EntityFrameworkCore.Relational >= 2.1.1",
       "Microsoft.EntityFrameworkCore.SqlServer >= 2.1.1",
-      "Microsoft.NETCore.App >= 2.1.0"
+      "Microsoft.NETCore.App >= 2.1.0",
+      "NUnit >= 3.12.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Bridgelabz\\.nuget\\packages\\": {}
+    "C:\\Users\\Krish\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Bridgelabz\\source\\repos\\FundooRepos\\FundooRepos.csproj",
+      "projectUniqueName": "C:\\Users\\Krish\\source\\repos\\FundooRepos\\FundooRepos.csproj",
       "projectName": "FundooRepos",
-      "projectPath": "C:\\Users\\Bridgelabz\\source\\repos\\FundooRepos\\FundooRepos.csproj",
-      "packagesPath": "C:\\Users\\Bridgelabz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Bridgelabz\\source\\repos\\FundooRepos\\obj\\",
+      "projectPath": "C:\\Users\\Krish\\source\\repos\\FundooRepos\\FundooRepos.csproj",
+      "packagesPath": "C:\\Users\\Krish\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Krish\\source\\repos\\FundooRepos\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Bridgelabz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Krish\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6899,8 +6945,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\Bridgelabz\\source\\repos\\Common\\Common.csproj": {
-              "projectPath": "C:\\Users\\Bridgelabz\\source\\repos\\Common\\Common.csproj"
+            "C:\\Users\\Krish\\source\\repos\\Common\\Common.csproj": {
+              "projectPath": "C:\\Users\\Krish\\source\\repos\\Common\\Common.csproj"
             }
           }
         }
@@ -6931,6 +6977,10 @@
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
+          },
+          "NUnit": {
+            "target": "Package",
+            "version": "[3.12.0, )"
           }
         },
         "imports": [

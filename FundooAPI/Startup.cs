@@ -70,7 +70,7 @@ namespace FundooAPI
             services.AddSwaggerGen(options =>
             {
                 options.OperationFilter<SecurityRequirementsOperationFilter>();
-                options.AddSecurityDefinition("oauth2", new ApiKeyScheme
+                options.AddSecurityDefinition("Bearer", new ApiKeyScheme
                 {
                     Description = "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
                     In = "header",

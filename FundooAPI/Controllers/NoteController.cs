@@ -72,7 +72,7 @@ namespace FundooAPI.Controllers
         [HttpGet]
         [Route("ReadNotes")]
         [Authorize]
-        public async Task<IActionResult> ReadNotes(string id)
+        public async Task<IActionResult> ReadNotes()
         {
             
 
@@ -81,7 +81,7 @@ namespace FundooAPI.Controllers
                 string Email = User.Claims.First(c => c.Type == "Email").Value;
                 if (await accountManager.Check(Email))
                 {
-                    var result = await manager.GetByID(id);
+                    var result = await manager.GetByID(Email);
                     return Ok(new { result });
                 }
                 else

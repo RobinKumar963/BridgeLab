@@ -49,21 +49,40 @@ namespace FundooRepos
 
         public Task Get()
         {
-            var list = context.Notes;
-            
-            return Task.Run(() => list);
-
+            return Task.Run(() => context.Notes);
         }
 
-        public Task<NoteModel> GetByID(string id)
+        public Task<List<NoteModel>> GetByID(string id)
         {
-            NoteModel note = context.Notes.Find(id);
-            return Task.Run(() => note);
+            List<NoteModel> notesList = new List<NoteModel>();
+
+            notesList = (from note in context.Notes
+                         where note.USEREMAIL == id && note.ISARCHIVE == false
+                         && note.ISTRASH == false
+                         select new NoteModel()
+                         {
+                             NOTEID=note.NOTEID,
+                             LABELID=note.LABELID,
+                             USEREMAIL=note.USEREMAIL,
+                             TITLE=note.TITLE,
+                             DESCRIPTION=note.DESCRIPTION,
+                             CREATEDDATE=note.CREATEDDATE,
+                             MODIFIEDDATA=note.MODIFIEDDATA,
+                             IMAGES=note.IMAGES,
+                             REMINDER=note.REMINDER,
+                             ISARCHIVE=note.ISARCHIVE,
+                             ISTRASH=note.ISTRASH,
+                             ISPIN=note.ISPIN,
+                             COLOR=note.COLOR
+                         }
+                         ).ToList();
+
+            return Task.Run(() => notesList);
         }
 
-        public Task Update(string id,string label)
+        public Task Update(string id,string des)
         {
-            context.Labels.Find(id).LABEL = label;
+            context.Notes.Find(id).DESCRIPTION = des;
             return Task.Run(() => context.SaveChanges());
         }
 

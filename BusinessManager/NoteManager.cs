@@ -69,7 +69,7 @@ namespace BusinessManager
 
         }
 
-        public async Task<NoteModel> GetByID(string id)
+        public async Task<List<NoteModel>> GetByID(string id)
         {
             var res = this.repository.GetByID(id);
             return await Task.Run(() => res);

@@ -67,7 +67,7 @@ namespace BusinessManager
                 return await Task.Run(() => "Failure");
         }
 
-        public async Task<LabelModel> GetByID(string id)
+        public async Task<List<LabelModel>> GetByID(string id)
         {
             var res = this.repository.GetByID(id);
             return await Task.Run(() => res);

@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace FundooRepos
 {
@@ -48,15 +49,26 @@ namespace FundooRepos
 
         public Task Get()
         {
-
-            var list = context.Labels;
-            return Task.Run(() => list);
+            return Task.Run(() => context.Labels);
         }
 
-        public Task<LabelModel> GetByID(string id)
+        public Task<List<LabelModel>> GetByID(string id)
         {
-            LabelModel label = context.Labels.Find(id);
-            return Task.Run(() => label);
+            List<LabelModel> labelList = new List<LabelModel>();
+
+            labelList = (from label in context.Labels
+                         where label.USEREMAIL == id
+                         select new LabelModel()
+                         {
+                             LABELID=label.LABELID,
+                             LABEL=label.LABEL,
+                             USEREMAIL=label.USEREMAIL
+                         }
+                         ).ToList();
+
+            return Task.Run(() => labelList);
+
+
         }
 
         public Task Update(string id, string label)

@@ -8,6 +8,7 @@
 
 
 using Common.Models.NoteModels;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,7 +24,7 @@ namespace FundooRepos.Interface
         
         Task Get();
         Task Add(NoteModel noteModel);
-        Task<NoteModel> GetByID(string id);
+        Task<List<NoteModel>> GetByID(string id);
         Task Delete(string id);
         Task Update(string id,string notes);
        

@@ -30,11 +30,6 @@ namespace FundooRepos
             _context = context;
         }
 
-
-   
-
-
-
         /// <summary>
         /// Create a User Account
         /// </summary>
@@ -83,11 +78,16 @@ namespace FundooRepos
         public Task ResetPassword(ResetPasswordModel reset)
         {
             ////Encrypting Password
+            reset.OLDPASSWORD = Encryption.MD5Hash(reset.OLDPASSWORD);
             reset.NEWPASSWORD = Encryption.MD5Hash(reset.NEWPASSWORD);
             reset.CONFIRMPASSWORD = Encryption.MD5Hash(reset.CONFIRMPASSWORD);
+            if (reset.CONFIRMPASSWORD != reset.NEWPASSWORD)
+                return Task.Run(() => "Wrong password");
             var result = _context.Users.Where(i => i.USEREMAIL == reset.USEREMAIL && i.PASSWORD == reset.OLDPASSWORD).FirstOrDefault();
+            
             if (result != null)
             {
+               
                 result.PASSWORD = reset.NEWPASSWORD;
                 ////Execute query and save any changes in DBcontext UserContext
                 return Task.Run(() => _context.SaveChanges());

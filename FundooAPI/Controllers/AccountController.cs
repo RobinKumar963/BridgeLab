@@ -64,32 +64,32 @@ namespace FundooAPI.Controllers
         /// </summary>
         /// <param name="login"></param>
         /// <returns>Task</returns>
-        [HttpPost]
-        [Route("LogIn")]
-        public async Task<IActionResult> LogIn(LoginModel login)
-        {
+        //[HttpPost]
+        //[Route("LogIn")]
+        //public async Task<IActionResult> LogIn(LoginModel login)
+        //{
 
 
-            try
-            {
-                var result = await _manager.LogIn(login);
-                return Ok(new { result });
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+        //    try
+        //    {
+        //        var result = await _manager.LogIn(login);
+        //        return Ok(new { result });
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return BadRequest(e.Message);
+        //    }
 
 
            
-        }
+        //}
 
         /// <summary>
         /// Reset Password
         /// </summary>
         /// <param name="reset"></param>
         /// <returns>Task</returns>
-        [HttpPost,Authorize]
+        [HttpPost]
         [Route("Reset")]
         public async Task<IActionResult> ResetPassword(ResetPasswordModel reset)
         {
@@ -113,7 +113,7 @@ namespace FundooAPI.Controllers
         /// </summary>
         /// <param name="forgot"></param>
         /// <returns>Forgot</returns>
-        [HttpPost,Authorize]
+        [HttpPost]
         [Route("Forgot")]
         public async Task<IActionResult> Forgot(ForgotPassword forgot)
         {
@@ -138,8 +138,8 @@ namespace FundooAPI.Controllers
         /// <param name="login"></param>
         /// <returns>Task</returns>
         [HttpPost]
-        [Route("log")]
-        public async Task<IActionResult> Log(LoginModel login)
+        [Route("LogIN")]
+        public async Task<IActionResult> LogIN(LoginModel login)
         {
             try
             {
