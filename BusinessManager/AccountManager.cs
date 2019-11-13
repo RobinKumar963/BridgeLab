@@ -10,6 +10,7 @@
 using Common.Models.UserModels;
 using FundooRepos;
 using FundooRepos.Interface;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -71,7 +72,19 @@ namespace BusinessManager
                 throw new ArgumentException("Invalid Parameter");
 
             await _repository.LogIn(login);
+
+            //var cacheKey=login.USEREMAIL;
+            //ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
+            //IDatabase database = connectionMultiplexer.GetDatabase();
+
+            //database.StringSet(cacheKey,);
+            //database.StringGet(cacheKey);
+
+
             return await Task.Run(() => "Login Succesfully");
+
+
+           
         }
         /// <summary>
         /// Reset Password
