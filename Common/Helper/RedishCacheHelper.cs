@@ -24,7 +24,7 @@ namespace Common.Helper
         /// <param name="key"></param>
         /// <param name="value"></param>
         /// <returns>bool</returns>
-        private static bool Save<T>(string host, string key, T value)
+        private static bool Save<T>(string host, string key,T value)
         {
 
             bool isSuccess = false;

@@ -43,10 +43,10 @@ namespace BusinessManager
             var validresult = new List<ValidationResult>();
             ////Running Validator
             bool isValid = Validator.TryValidateObject(user, context, validresult, true);
-
+            ////On,Validation Failure Throw Exception
             if (!isValid)
                 throw new ArgumentException("Invalid Parameter");
-
+            
             await _repository.Create(user);
 
             return await Task.Run(() => "Account Created Succesfully");
@@ -66,7 +66,7 @@ namespace BusinessManager
             var validresult = new List<ValidationResult>();
             ////Running Validator
             bool isValid = Validator.TryValidateObject(login, context, validresult, true);
-
+            ////On,Validation Failure Throw Exception
             if (!isValid)
                 throw new ArgumentException("Invalid Parameter");
 
@@ -86,7 +86,7 @@ namespace BusinessManager
             var validresult = new List<ValidationResult>();
             ////Running Validator
             bool isValid = Validator.TryValidateObject(reset, context, validresult, true);
-
+            ////On,Validation Failure Throw Exception
             if (!isValid)
                 throw new ArgumentException("Invalid Parameter");
 
@@ -106,7 +106,7 @@ namespace BusinessManager
             var validresult = new List<ValidationResult>();
             ////Running Validator
             bool isValid = Validator.TryValidateObject(forgot, context, validresult, true);
-
+            ////On,Validation Failure Throw Exception
             if (!isValid)
                 throw new ArgumentException("Invalid Parameter");
 
@@ -116,13 +116,21 @@ namespace BusinessManager
             return await Task.Run(() => "Password Resetted Succesfully");
         }
 
-
+        /// <summary>
+        /// Finds the user with email identifier.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns>Task<UserModel></returns>
         public async Task<UserModel> FindByEmailAsync(string email)
         {
             var result = await _repository.FindByEmailAsync(email);
             return await Task.Run(() => result);
         }
-
+        /// <summary>
+        /// Checks the specified email for existence in User Table in Data Source.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns>Task<bool></returns>
         public async Task<bool> Check(string email)
         {
             var result = await _repository.Check(email);

@@ -22,6 +22,7 @@ namespace FundooRepos.Context
     /// <seealso cref="Microsoft.EntityFrameworkCore.DbContext" />
     public class UserContext : DbContext
     {
+        
         public UserContext(DbContextOptions<UserContext> options) : base(options)
         {
 
