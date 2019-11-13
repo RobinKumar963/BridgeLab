@@ -19,15 +19,15 @@ using System.Threading.Tasks;
 namespace FundooRepos
 {
     /// <summary>
-    /// Connect data source for Account 
+    /// Connect Data Source for Account 
     /// </summary>
     public class AccountRepository : IAccountRepository
     {
-        private readonly UserContext _context;
+        private readonly UserContext context;
 
         public AccountRepository(UserContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         /// <summary>
@@ -37,17 +37,12 @@ namespace FundooRepos
         /// <returns>Task</returns>
         public Task Create(UserModel user)
         {
+            ////Encrypting Password
             user.PASSWORD = Encryption.MD5Hash(user.PASSWORD);
-            UserModel userm = new UserModel()
-            {
-                USEREMAIL = user.USEREMAIL,
-                PASSWORD = user.PASSWORD,
-                USERNAME=user.USERNAME,
-                CARDTYPE=user.CARDTYPE
-            };
-            _context.Users.Add(userm);
-            ////Execute query and save any changes in DBcontext UserContext
-            return Task.Run(() => _context.SaveChanges());
+            ////Adding user to data source using session(instance of DbContext)-context 
+            context.Users.Add(user);
+            ////Save Context Changes task queued to run on thread pool 
+            return Task.Run(() => context.SaveChanges());
         }
 
         /// <summary>
@@ -59,11 +54,13 @@ namespace FundooRepos
         {
             ////Encrypting Password to check with password from data source
             login.PASSWORD = Encryption.MD5Hash(login.PASSWORD);
-            var result = _context.Users.Where(i => i.USEREMAIL == login.USEREMAIL && i.PASSWORD == login.PASSWORD).FirstOrDefault();
+
+            ////Getting value from Data Source
+            var result = context.Users.Where(i => i.USEREMAIL == login.USEREMAIL && i.PASSWORD == login.PASSWORD).FirstOrDefault();
             if (result != null)
             {
-                ////Execute query and save any changes in DBcontext UserContext
-                return Task.Run(() => _context.SaveChanges());
+                ////Save Context Changes task queued to run on thread pool  
+                return Task.Run(() => context.SaveChanges());
             }
             else
             {
@@ -81,16 +78,18 @@ namespace FundooRepos
             reset.OLDPASSWORD = Encryption.MD5Hash(reset.OLDPASSWORD);
             reset.NEWPASSWORD = Encryption.MD5Hash(reset.NEWPASSWORD);
             reset.CONFIRMPASSWORD = Encryption.MD5Hash(reset.CONFIRMPASSWORD);
+            ////Checking If newpassword and confirmpassword matches
             if (reset.CONFIRMPASSWORD != reset.NEWPASSWORD)
                 return Task.Run(() => "Wrong password");
-            var result = _context.Users.Where(i => i.USEREMAIL == reset.USEREMAIL && i.PASSWORD == reset.OLDPASSWORD).FirstOrDefault();
+            ////Getting User with specified email and password from Data Source 
+            var result = context.Users.Where(i => i.USEREMAIL == reset.USEREMAIL && i.PASSWORD == reset.OLDPASSWORD).FirstOrDefault();
             
             if (result != null)
             {
-               
+                ////resetting password for user reterived from data source
                 result.PASSWORD = reset.NEWPASSWORD;
-                ////Execute query and save any changes in DBcontext UserContext
-                return Task.Run(() => _context.SaveChanges());
+                ////Save Context Changes task queued to run on thread pool
+                return Task.Run(() => context.SaveChanges());
             }
             else
             {
@@ -107,29 +106,42 @@ namespace FundooRepos
         /// <returns>Task</returns>
         public Task Forgot(ForgotPassword forgot)
         {
-
-            var result = _context.Users.Where(i => i.USEREMAIL == forgot.USEREMAIL).FirstOrDefault();
+            ////Getting User with specified email from  Data Source
+            var result = context.Users.Where(i => i.USEREMAIL == forgot.USEREMAIL).FirstOrDefault();
             if (result != null)
             {
+                ////Sending Resetting Password Link To User reterieved from Data Source
                 SendResetPasswordEmail.SendPasswordResetEmail(forgot.USEREMAIL, result.USERNAME);
-                ////Execute query and save any changes in DBcontext UserContext
-                return Task.Run(() => _context.SaveChanges());
+                ////Save Context Changes task queued to run on thread pool
+                return Task.Run(() => context.SaveChanges());
             }
             else
             {
                 return null;
             }
         }
-
+        /// <summary>
+        /// Check for specified Email in Data Source.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns>Task<UserModel></returns>
         public Task<UserModel> FindByEmailAsync(string email)
         {
-            var result = _context.Users.Find(email);
+            ////Getting User with Specifed email From Data Source
+            var result = context.Users.Find(email);
+            ////return of user task queued to run on thread pool
             return Task.Run(() => result);
         }
-
+        /// <summary>
+        /// Checks the specified email.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns>Task<bool></returns>
         public Task<bool> Check(string email)
         {
-           if(_context.Users.Find(email)!=null)
+            ////Checking for User with Specifed email From Data Source
+            ////On,true this value is queued to run on thread pool
+            if (context.Users.Find(email)!=null)
                 return Task.Run(() => true);
            else
                 return Task.Run(() => false);

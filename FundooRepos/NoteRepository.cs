@@ -29,33 +29,50 @@ namespace FundooRepos
             this.context = context;
         }
 
-
+        /// <summary>
+        /// Adds the specified note model.
+        /// </summary>
+        /// <param name="noteModel">The note model.</param>
+        /// <returns>Task</returns>
         public Task Add(NoteModel noteModel)
         {
-            ////Perform action on Data source
+            ////Adding note to data source using session(instance of DbContext)-context 
             context.Notes.Add(noteModel);
-            ////Execute query and save any changes in DBcontext UserContext
+            ////Save Context Changes task queued to run on thread pool
             return Task.Run(() => context.SaveChanges());
 
         }
 
-
+        /// <summary>
+        /// Deletes the note with specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>Task</returns>
         public Task Delete(string id)
         {
+            ////Removing note from data source with primary key value id using session(instance of DbContext)-context
             context.Notes.Remove(context.Notes.Find(id));
-            ////Execute query and save any changes in DBcontext UserContext
+            ////Save Context Changes task queued to run on thread pool
             return Task.Run(() => context.SaveChanges());
         }
-
+        /// <summary>
+        /// Gets all notes from Notes table in Data Source.
+        /// </summary>
+        /// <returns>Task</returns>
         public Task Get()
         {
+            ////return task of all notes queued to run on thread pool
             return Task.Run(() => context.Notes);
         }
-
+        /// <summary>
+        /// Gets the Notes by identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>Task<List<NoteModel>></returns>
         public Task<List<NoteModel>> GetByID(string id)
         {
             List<NoteModel> notesList = new List<NoteModel>();
-
+            ////Getting note with USEREMAIL==id from data source using session(instance of DbContext)-context 
             notesList = (from note in context.Notes
                          where note.USEREMAIL == id && note.ISARCHIVE == false
                          && note.ISTRASH == false
@@ -76,13 +93,20 @@ namespace FundooRepos
                              COLOR=note.COLOR
                          }
                          ).ToList();
-
+            ////return task of all notes of a user queued to run on thread pool
             return Task.Run(() => notesList);
         }
-
+        /// <summary>
+        /// Updates the note with specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="des">The DES.</param>
+        /// <returns>Task</returns>
         public Task Update(string id,string des)
         {
+            ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
             context.Notes.Find(id).DESCRIPTION = des;
+            ////Save Context Changes task queued to run on thread pool
             return Task.Run(() => context.SaveChanges());
         }
 
