@@ -116,25 +116,54 @@ namespace FundooRepos
             ////Save Context Changes task queued to run on thread pool
             return Task.Run(() => context.SaveChanges());
         }
-
-        public Task Image(IFormFile file, int ID, string Email)
+        /// <summary>
+        /// Upload Image in cloudnary.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="id">The identifier.</param>
+        /// <param name="Email">The email.</param>
+        /// <returns>Task</returns>
+        /// <exception cref="Exception"></exception>
+        public Task ImageUpload(IFormFile file, int id, string Email)
         {
+            ////open stream for reading and store in var path for reading file sent with HTTP request 
             var path = file.OpenReadStream();
+
+            ////Get filename  from the above stream
             var File = file.FileName;
+
+            ////Setting up cloudnary account   
             Account account = new Account("fundooapi", "458768646784278", "C73KMrNzcz9lz27FW7qrHRM3qFc");
             CloudinaryDotNet.Cloudinary cloudinary = new CloudinaryDotNet.Cloudinary(account);
+
+            ////Getting image parameter by
+            ////Instaniating ImageUploadParams
+            ////ImageUploadParams has property File
+            ////that Contains description of file i.e
+            ////FileName and Stream(to perform read and write operation)
             var image = new ImageUploadParams()
             {
                 File = new FileDescription(File, path)
             };
+
+
+            ////Uploading image and storing the ImageUploadResult(object) in uploadResult
             var uploadresult = cloudinary.Upload(image);
+
+            ////If UploadResult property Error is not null
+            ////Throws an exception
             if (uploadresult.Error != null)
                 throw new Exception(uploadresult.Error.Message);
-            var result = context.Notes.Where(i => i.NOTEID == ID ).FirstOrDefault();
+
+            ////Getting note with USEREMAIL==Email and NOTEID==id from data source using session(instance of DbContext)-context
+            var result = context.Notes.Where(i => i.NOTEID == id && i.USEREMAIL==Email).FirstOrDefault();
+
+            ////On finding result
             if (result != null)
             {
                 if (result.USEREMAIL.Equals(Email))
                 {
+                    ////Setting Note field IMAGES with uploadresult url
                     result.IMAGES = uploadresult.Uri.ToString();
                     return Task.Run(() => context.SaveChanges());
                 }

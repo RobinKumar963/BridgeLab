@@ -32,6 +32,13 @@ namespace BusinessManager
         {
             this.repository = repository;
         }
+
+        /// <summary>
+        /// Adds the specified label model.
+        /// </summary>
+        /// <param name="labelModel">The label model.</param>
+        /// <returns>Task</returns>
+        /// <exception cref="ArgumentException">Invalid Parameter</exception>
         public async Task<string> Add(LabelModel labelModel)
         {
             ////Creating a context object
@@ -50,14 +57,22 @@ namespace BusinessManager
             return await Task.Run(() => "Label Added Succesfully");
         }
 
-        
 
+        /// <summary>
+        /// Deletes the label with specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>Task<string></returns>
         public async Task<string> Delete(int id)
         {
             await this.repository.Delete(id);
             return await Task.Run(() => "Label Deleted Succesfully");
         }
 
+        /// <summary>
+        /// Get all labels.
+        /// </summary>
+        /// <returns>Task<string></returns>
         public async Task<string> Get()
         {
             var res = this.repository.Get();
@@ -67,12 +82,23 @@ namespace BusinessManager
                 return await Task.Run(() => "Failure");
         }
 
+        /// <summary>
+        /// Gets labels by identifier label.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<List<LabelModel>> GetByID(string id)
         {
             var res = this.repository.GetByID(id);
             return await Task.Run(() => res);
         }
 
+        /// <summary>
+        /// Updates the label with specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="label">The label.</param>
+        /// <returns></returns>
         public async Task<string> Update(int id, string label)
         {
             await this.repository.Update(id, label);

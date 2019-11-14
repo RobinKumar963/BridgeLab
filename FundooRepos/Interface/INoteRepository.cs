@@ -28,7 +28,7 @@ namespace FundooRepos.Interface
         Task<List<NoteModel>> GetByID(string id);
         Task Delete(int id);
         Task Update(int id,string notes);
-        Task Image(IFormFile file, int ID, string Email);
+        Task ImageUpload(IFormFile file, int id, string Email);
 
 
     }

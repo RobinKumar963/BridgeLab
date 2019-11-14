@@ -32,6 +32,12 @@ namespace BusinessManager
             this.repository = repository;
         }
 
+        /// <summary>
+        /// Adds the specified note model.
+        /// </summary>
+        /// <param name="noteModel">The note model.</param>
+        /// <returns>Task<string></returns>
+        /// <exception cref="ArgumentException">Invalid Parameter</exception>
         public async Task<string> Add(NoteModel noteModel)
         {
             ////Creating a context object
@@ -48,8 +54,13 @@ namespace BusinessManager
             return await Task.Run(() => "Note Added Succesfully"); 
         }
 
-      
 
+        /// <summary>
+        /// Deletes the note model with specified identifier.
+        /// </summary>
+        /// <param name="noteModel">The note model.</param>
+        /// <returns>Task<string></returns>
+        /// <exception cref="ArgumentException">Invalid Parameter</exception>
         public async Task<string> Delete(int id)
         {
             await this.repository.Delete(id);
@@ -57,19 +68,24 @@ namespace BusinessManager
 
         }
 
+        /// <summary>
+        /// Gets all Notes.
+        /// </summary>
+        /// <returns></returns>
         public async Task<string> Get()
         {
-
             var res= this.repository.Get();
             if(res!=null)
                 return await Task.Run(() => "Successfull");
             else
                 return await Task.Run(() => "Failure");
-
-
-
         }
 
+        /// <summary>
+        /// Gets all notes with Email id.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>Task<List<NoteModel>></returns>
         public async Task<List<NoteModel>> GetByID(string id)
         {
             var res = this.repository.GetByID(id);
@@ -77,15 +93,29 @@ namespace BusinessManager
             
         }
 
+        /// <summary>
+        /// Updates the Notes with specified identifier id.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="description">The description.</param>
+        /// <returns></returns>
         public async Task<string> Update(int id,string description)
         {
             await this.repository.Update(id,description);
             return "Note Updated Succesfully";
 
         }
-        public string ImageUpload(IFormFile file, int ID, string Email)
+
+        /// <summary>
+        /// Upload the image.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="id">The identifier.</param>
+        /// <param name="Email">The email.</param>
+        /// <returns>string</returns>
+        public  string ImageUpload(IFormFile file, int id, string Email)
         {
-            var result = this.repository.Image(file, ID, Email);
+            var result = this.repository.ImageUpload(file, id, Email);
             //return await Task.Run(() => result);
             return "Image uploaded successfully ";
         }

@@ -61,14 +61,8 @@ namespace FundooAPI.Controllers
             {
                 return BadRequest(e.Message);
             }
-
-           
-
-
-
         }
-
-
+        
         [HttpGet]
         [Route("ReadNotes")]
         [Authorize]
@@ -146,13 +140,13 @@ namespace FundooAPI.Controllers
             }
         }
         [HttpPost]
-        [Route("upload")]
-        public IActionResult UploadingImage(IFormFile file, int ID)
+        [Route("Upload")]
+        public IActionResult ImageUpload(IFormFile file, int id)
         {
             try
             {
                 string Email = User.Claims.First(c => c.Type == "Email").Value;
-                var result = this.manager.ImageUpload(file, ID, Email);
+                var result = this.manager.ImageUpload(file, id, Email);
                 return Ok(new { result });
             }
             catch (Exception e)
