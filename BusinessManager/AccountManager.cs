@@ -73,12 +73,12 @@ namespace BusinessManager
 
             await _repository.LogIn(login);
 
-            var cacheKey = login.USEREMAIL;
-            ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
-            IDatabase database = connectionMultiplexer.GetDatabase();
+            //var cacheKey = login.USEREMAIL;
+            //ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
+            //IDatabase database = connectionMultiplexer.GetDatabase();
 
-            database.StringSet(cacheKey,login.USEREMAIL);
-            database.StringGet(cacheKey);
+            //database.StringSet(cacheKey,login.USEREMAIL);
+            //database.StringGet(cacheKey);
 
 
             return await Task.Run(() => "Login Succesfully");

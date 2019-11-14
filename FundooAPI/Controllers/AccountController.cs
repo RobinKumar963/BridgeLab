@@ -203,7 +203,37 @@ namespace FundooAPI.Controllers
            
         }
 
-       
+        //[HttpPost]
+        //[Route("UploadImage")]
+        //[Authorize]
+        //public async Task<IActionResult> UploadImage()
+        //{
+        //    try
+        //    {
+        //        string Email = User.Claims.First(c => c.Type == "Email").Value;
+        //        if (await _manager.Check(Email))
+        //        {
+        //            var ctx = HttpContext;
+        //            var result = "Uploaded";
+        //            return Ok(new { result });
+        //        }
+        //        else
+        //        {
+        //            var result = "Not Uploaded";
+        //            return Ok(new { result });
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return BadRequest(e.Message);
+        //    }
+
+
+
+
+
+        //}
+
 
 
     }

@@ -144,15 +144,21 @@ namespace FundooAPI.Controllers
             {
                 return BadRequest(e.Message);
             }
-
-            
-
-
-
         }
-
-
-
-
+        [HttpPost]
+        [Route("upload")]
+        public IActionResult UploadingImage(IFormFile file, int ID)
+        {
+            try
+            {
+                string Email = User.Claims.First(c => c.Type == "Email").Value;
+                var result = this.manager.ImageUpload(file, ID, Email);
+                return Ok(new { result });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(e.Message);
+            }
+        }
     }
 }

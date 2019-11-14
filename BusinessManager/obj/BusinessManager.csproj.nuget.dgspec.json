@@ -175,6 +175,14 @@
               "target": "Package",
               "version": "[4.9.4, )"
             },
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.8.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[2.1.1, )"

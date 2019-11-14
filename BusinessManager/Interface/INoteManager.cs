@@ -7,6 +7,7 @@
 
 
 using Common.Models.NoteModels;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,6 +25,8 @@ namespace BusinessManager.Interface
         Task<List<NoteModel>> GetByID(string id);
         Task<string> Delete(int id);
         Task<string> Update(int id,string description);
-      
+        string ImageUpload(IFormFile file, int ID, string Email);
+
+
     }
 }

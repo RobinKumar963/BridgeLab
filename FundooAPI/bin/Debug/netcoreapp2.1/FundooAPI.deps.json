@@ -53,6 +53,20 @@
           "lib/netstandard2.0/Autofac.dll": {}
         }
       },
+      "CloudinaryDotNet/1.8.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "11.0.2"
+        },
+        "runtime": {
+          "lib/netstandard1.3/CloudinaryDotNet.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.3/CloudinaryDotNet.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Razor.Design/2.1.2": {},
       "Microsoft.CodeAnalysis.CSharp.Workspaces/2.8.0": {
         "dependencies": {
@@ -891,7 +905,9 @@
       "FundooRepos/1.0.0": {
         "dependencies": {
           "Autofac": "4.9.4",
+          "CloudinaryDotNet": "1.8.0",
           "Common": "1.0.0",
+          "Microsoft.AspNetCore.Http.Features": "2.1.1",
           "Microsoft.EntityFrameworkCore": "2.1.1",
           "Microsoft.EntityFrameworkCore.Relational": "2.1.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.1",
@@ -3965,6 +3981,13 @@
       "sha512": "sha512-dYiDG4yoV7GDCoOc66d1sqMmg2gwDyomHKgATuMfhFzYxVpWEltToHVHXI3I9vOEvIXE55S4OZPY0ldiZmZtpA==",
       "path": "autofac/4.9.4",
       "hashPath": "autofac.4.9.4.nupkg.sha512"
+    },
+    "CloudinaryDotNet/1.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jrxUPvVmdGL+8wDGQn4rBrRh7jKPDTqUW1kBj+fwmGdiMW5aBArQ3P2ErnYA84AQgvJnb2JwP3WTlwD2Yc/kdA==",
+      "path": "cloudinarydotnet/1.8.0",
+      "hashPath": "cloudinarydotnet.1.8.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Razor.Design/2.1.2": {
       "type": "package",

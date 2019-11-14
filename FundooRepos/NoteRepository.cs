@@ -13,6 +13,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Autofac;
+using Microsoft.AspNetCore.Http;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 
 namespace FundooRepos
 {
@@ -114,10 +117,40 @@ namespace FundooRepos
             return Task.Run(() => context.SaveChanges());
         }
 
+        public Task Image(IFormFile file, int ID, string Email)
+        {
+            var path = file.OpenReadStream();
+            var File = file.FileName;
+            Account account = new Account("fundooapi", "458768646784278", "C73KMrNzcz9lz27FW7qrHRM3qFc");
+            CloudinaryDotNet.Cloudinary cloudinary = new CloudinaryDotNet.Cloudinary(account);
+            var image = new ImageUploadParams()
+            {
+                File = new FileDescription(File, path)
+            };
+            var uploadresult = cloudinary.Upload(image);
+            if (uploadresult.Error != null)
+                throw new Exception(uploadresult.Error.Message);
+            var result = context.Notes.Where(i => i.NOTEID == ID ).FirstOrDefault();
+            if (result != null)
+            {
+                if (result.USEREMAIL.Equals(Email))
+                {
+                    result.IMAGES = uploadresult.Uri.ToString();
+                    return Task.Run(() => context.SaveChanges());
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
 
 
 
-      
 
 
 

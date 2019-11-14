@@ -9,6 +9,7 @@
 using BusinessManager.Interface;
 using Common.Models.NoteModels;
 using FundooRepos.Interface;
+using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -81,6 +82,12 @@ namespace BusinessManager
             await this.repository.Update(id,description);
             return "Note Updated Succesfully";
 
+        }
+        public string ImageUpload(IFormFile file, int ID, string Email)
+        {
+            var result = this.repository.Image(file, ID, Email);
+            //return await Task.Run(() => result);
+            return "Image uploaded successfully ";
         }
     }
 }

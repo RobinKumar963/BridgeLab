@@ -8,6 +8,7 @@
 
 
 using Common.Models.NoteModels;
+using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,8 @@ namespace FundooRepos.Interface
         Task<List<NoteModel>> GetByID(string id);
         Task Delete(int id);
         Task Update(int id,string notes);
-       
+        Task Image(IFormFile file, int ID, string Email);
+
+
     }
 }
