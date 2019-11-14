@@ -3,7 +3,7 @@
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="Robin Kumar"/>
-// ----------------------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -133,7 +133,7 @@ namespace FundooAPI.Controllers
         }
 
         /// <summary>
-        /// Login Model
+        /// LogIN Model
         /// </summary>
         /// <param name="login"></param>
         /// <returns>Task</returns>

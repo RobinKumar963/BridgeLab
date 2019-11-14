@@ -49,7 +49,7 @@ namespace FundooRepos
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>Task</returns>
-        public Task Delete(string id)
+        public Task Delete(int id)
         {
             ////Removing label from data source with primary key value id using session(instance of DbContext)-context
             context.Labels.Remove(context.Labels.Find(id));
@@ -94,7 +94,7 @@ namespace FundooRepos
         /// <param name="id">The identifier.</param>
         /// <param name="label">The label.</param>
         /// <returns>Task</returns>
-        public Task Update(string id, string label)
+        public Task Update(int id, string label)
         {
             ////Update Label with Primary Key value id in data source using session(instance of DbContext)-context
             context.Labels.Find(id).LABEL = label;

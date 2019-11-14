@@ -52,7 +52,7 @@ namespace BusinessManager
 
         
 
-        public async Task<string> Delete(string id)
+        public async Task<string> Delete(int id)
         {
             await this.repository.Delete(id);
             return await Task.Run(() => "Label Deleted Succesfully");
@@ -73,7 +73,7 @@ namespace BusinessManager
             return await Task.Run(() => res);
         }
 
-        public async Task<string> Update(string id, string label)
+        public async Task<string> Update(int id, string label)
         {
             await this.repository.Update(id, label);
             return "label Updated Succesfully";

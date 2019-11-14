@@ -100,7 +100,7 @@ namespace FundooAPI.Controllers
         [HttpPut]
         [Route("UpdateNotes")]
         [Authorize]
-        public async Task<IActionResult> UpdateNotes(string id,string des)
+        public async Task<IActionResult> UpdateNotes(int id,string des)
         {
 
             try
@@ -127,7 +127,7 @@ namespace FundooAPI.Controllers
         [HttpDelete]
         [Route("DeleteNotes")]
         [Authorize]
-        public async Task<IActionResult> DeleteNotes(string id)
+        public async Task<IActionResult> DeleteNotes(int id)
         {
             try
             {

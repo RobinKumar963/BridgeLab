@@ -12,8 +12,13 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using Autofac;
+
 namespace FundooRepos
 {
+
+   
+
     /// <summary>
     /// Note Repository,to set and get from data source for note entity
     /// </summary>
@@ -21,8 +26,7 @@ namespace FundooRepos
     public class NoteRepository : INoteRepository
     {
 
-  
-        private readonly UserContext context;
+        private readonly  UserContext context;
 
         public NoteRepository(UserContext context)
         {
@@ -48,7 +52,7 @@ namespace FundooRepos
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>Task</returns>
-        public Task Delete(string id)
+        public Task Delete(int id)
         {
             ////Removing note from data source with primary key value id using session(instance of DbContext)-context
             context.Notes.Remove(context.Notes.Find(id));
@@ -102,7 +106,7 @@ namespace FundooRepos
         /// <param name="id">The identifier.</param>
         /// <param name="des">The DES.</param>
         /// <returns>Task</returns>
-        public Task Update(string id,string des)
+        public Task Update(int id,string des)
         {
             ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
             context.Notes.Find(id).DESCRIPTION = des;
@@ -110,6 +114,12 @@ namespace FundooRepos
             return Task.Run(() => context.SaveChanges());
         }
 
-       
+
+
+
+      
+
+
+
     }
 }

@@ -76,7 +76,7 @@ namespace FundooAPI.Controllers
         [HttpPut]
         [Route("UpdateLabel")]
         [Authorize]
-        public async Task<IActionResult> UpdateLabel(string id, string label)
+        public async Task<IActionResult> UpdateLabel(int id, string label)
         {
             try
             {
@@ -98,7 +98,7 @@ namespace FundooAPI.Controllers
         [HttpDelete]
         [Route("DeleteLabel")]
         [Authorize]
-        public async Task<IActionResult> DeleteLabel(string id)
+        public async Task<IActionResult> DeleteLabel(int id)
         {
             try
             {

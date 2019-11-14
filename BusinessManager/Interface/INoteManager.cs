@@ -22,8 +22,8 @@ namespace BusinessManager.Interface
         Task<string> Get();
         Task<string> Add(NoteModel noteModel);
         Task<List<NoteModel>> GetByID(string id);
-        Task<string> Delete(string id);
-        Task<string> Update(string id,string description);
+        Task<string> Delete(int id);
+        Task<string> Update(int id,string description);
       
     }
 }

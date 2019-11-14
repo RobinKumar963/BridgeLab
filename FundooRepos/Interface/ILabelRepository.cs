@@ -23,8 +23,8 @@ namespace FundooRepos.Interface
         Task Get();
         Task Add(LabelModel labelModel);
         Task<List<LabelModel>> GetByID(string id);
-        Task Delete(string id);
-        Task Update(string id, string label);
+        Task Delete(int id);
+        Task Update(int id, string label);
         
     }
 }

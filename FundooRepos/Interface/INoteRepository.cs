@@ -25,8 +25,8 @@ namespace FundooRepos.Interface
         Task Get();
         Task Add(NoteModel noteModel);
         Task<List<NoteModel>> GetByID(string id);
-        Task Delete(string id);
-        Task Update(string id,string notes);
+        Task Delete(int id);
+        Task Update(int id,string notes);
        
     }
 }
