@@ -27,7 +27,9 @@ namespace FundooRepos.Interface
         Task Get();
         Task Add(NoteModel noteModel);
         Task Add(CollabratorModel collabratorModel);
+        
 
+        Task<List<CollabratedNotes>> GetCollbrationNotes(string email);
         Task<List<NoteModel>> GetByID(string id);
         Task<List<NoteModel>> GetArchiveNotes(string email);
         Task<List<NoteModel>> GetTrashNotes(string email);

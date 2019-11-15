@@ -51,6 +51,10 @@ namespace FundooRepos
 
         }
 
+
+
+
+
         /// <summary>
         /// Adds the specified collabrator model.
         /// </summary>
@@ -65,6 +69,11 @@ namespace FundooRepos
             return Task.Run(() => context.SaveChanges());
         }
 
+
+
+
+
+
         /// <summary>
         /// Deletes the note with specified identifier.
         /// </summary>
@@ -77,6 +86,7 @@ namespace FundooRepos
             ////Save Context Changes task queued to run on thread pool
             return Task.Run(() => context.SaveChanges());
         }
+
         /// <summary>
         /// Gets all notes from Notes table in Data Source.
         /// </summary>
@@ -86,6 +96,7 @@ namespace FundooRepos
             ////return task of all notes queued to run on thread pool
             return Task.Run(() => context.Notes);
         }
+
         /// <summary>
         /// Gets the Notes by identifier.
         /// </summary>
@@ -187,6 +198,79 @@ namespace FundooRepos
         }
 
         /// <summary>
+        /// Gets the collbration notes.
+        /// </summary>
+        /// <returns>Task<List<CollabratorModel>></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public Task<List<CollabratedNotes>> GetCollbrationNotes(string email)
+        {
+            List<CollabratorModel> collabratorModelList = new List<CollabratorModel>();
+            List<CollabratedNotes> collabratedNotesList = new List<CollabratedNotes>();
+          
+
+
+           
+            
+            collabratorModelList = (from collabratedNote in context.Collabration
+                                    where collabratedNote.RECIEVEDEMAIL == email
+                                    select new CollabratorModel()
+                                    {
+                                        COLLABRATIONID=collabratedNote.COLLABRATIONID,
+                                        NOTEID=collabratedNote.NOTEID,
+                                        SENDEREMAIL=collabratedNote.SENDEREMAIL,
+                                        RECIEVEDEMAIL=collabratedNote.RECIEVEDEMAIL
+                                    }
+                                    ).ToList();
+
+            List<String> reciever = new List<String>();
+
+            
+            foreach (CollabratorModel collabratorModel in collabratorModelList)
+            {
+                var results = context.Notes.Where(i => i.NOTEID == collabratorModel.NOTEID).FirstOrDefault();
+
+
+                reciever = (from collabrator in context.Collabration
+                            where collabrator.NOTEID == collabratorModel.NOTEID
+                            select new String(collabrator.RECIEVEDEMAIL)
+                           
+                            ).ToList();
+
+
+
+
+                collabratedNotesList.Add(new CollabratedNotes()
+                {
+                        DESCRIPTION = results.DESCRIPTION,
+                        NOTEID = results.NOTEID,
+                        IMAGE = results.IMAGES,
+                        SENDEREMAIL = results.USEREMAIL,
+                        RECIEVEREMAIL = reciever
+                });
+                
+                
+
+            }
+
+            ////return task of all notes of a user queued to run on thread pool
+            return Task.Run(() => collabratedNotesList);
+            
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+        /// <summary>
         /// Updates the note with specified identifier.
         /// </summary>
         /// <param name="id">The identifier.</param>
@@ -199,6 +283,7 @@ namespace FundooRepos
             ////Save Context Changes task queued to run on thread pool
             return Task.Run(() => context.SaveChanges());
         }
+
         /// <summary>
         /// Upload Image in cloudnary.
         /// </summary>
@@ -261,6 +346,6 @@ namespace FundooRepos
             }
         }
 
-        
+      
     }
 }
