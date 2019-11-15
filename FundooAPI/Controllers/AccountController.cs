@@ -20,7 +20,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace FundooAPI.Controllers
 {
     /// <summary>
-    /// Account Controller
+    /// Action method for Account Controller
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]

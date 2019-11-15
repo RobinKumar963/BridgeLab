@@ -16,6 +16,7 @@ using Autofac;
 using Microsoft.AspNetCore.Http;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
+using Common.Models.CollabratorModels;
 
 namespace FundooRepos
 {
@@ -48,6 +49,20 @@ namespace FundooRepos
             ////Save Context Changes task queued to run on thread pool
             return Task.Run(() => context.SaveChanges());
 
+        }
+
+        /// <summary>
+        /// Adds the specified collabrator model.
+        /// </summary>
+        /// <param name="collabratorModel">The collabrator model.</param>
+        /// <returns>Task</returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public Task Add(CollabratorModel collabratorModel)
+        {
+            ////Adding collabrator of Note to data source using session(instance of DbContext)-context 
+            context.Collabration.Add(collabratorModel);
+            ////Save Context Changes task queued to run on thread pool
+            return Task.Run(() => context.SaveChanges());
         }
 
         /// <summary>
@@ -103,6 +118,74 @@ namespace FundooRepos
             ////return task of all notes of a user queued to run on thread pool
             return Task.Run(() => notesList);
         }
+
+        /// <summary>
+        /// Gets the archived notes.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns>Task<List<NoteModel>></returns>
+        public Task<List<NoteModel>> GetArchiveNotes(string email)
+        {
+            List<NoteModel> notesList = new List<NoteModel>();
+            ////Getting note with USEREMAIL==id and ISARCHIVE==true from data source using session(instance of DbContext)-context 
+            notesList = (from note in context.Notes
+                         where note.USEREMAIL == email && note.ISARCHIVE == true
+                         && note.ISTRASH == false
+                         select new NoteModel()
+                         {
+                             NOTEID = note.NOTEID,
+                             LABELID = note.LABELID,
+                             USEREMAIL = note.USEREMAIL,
+                             TITLE = note.TITLE,
+                             DESCRIPTION = note.DESCRIPTION,
+                             CREATEDDATE = note.CREATEDDATE,
+                             MODIFIEDDATA = note.MODIFIEDDATA,
+                             IMAGES = note.IMAGES,
+                             REMINDER = note.REMINDER,
+                             ISARCHIVE = note.ISARCHIVE,
+                             ISTRASH = note.ISTRASH,
+                             ISPIN = note.ISPIN,
+                             COLOR = note.COLOR
+                         }
+                         ).ToList();
+            ////return task of all notes of a user queued to run on thread pool
+            return Task.Run(() => notesList);
+        }
+
+        /// <summary>
+        /// Gets the trash notes.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns>Task<List<NoteModel>></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public Task<List<NoteModel>> GetTrashNotes(string email)
+        {
+            List<NoteModel> notesList = new List<NoteModel>();
+            ////Getting note with USEREMAIL==id and ISARCHIVE==true from data source using session(instance of DbContext)-context 
+            notesList = (from note in context.Notes
+                         where note.USEREMAIL == email && note.ISARCHIVE == false
+                         && note.ISTRASH == true
+                         select new NoteModel()
+                         {
+                             NOTEID = note.NOTEID,
+                             LABELID = note.LABELID,
+                             USEREMAIL = note.USEREMAIL,
+                             TITLE = note.TITLE,
+                             DESCRIPTION = note.DESCRIPTION,
+                             CREATEDDATE = note.CREATEDDATE,
+                             MODIFIEDDATA = note.MODIFIEDDATA,
+                             IMAGES = note.IMAGES,
+                             REMINDER = note.REMINDER,
+                             ISARCHIVE = note.ISARCHIVE,
+                             ISTRASH = note.ISTRASH,
+                             ISPIN = note.ISPIN,
+                             COLOR = note.COLOR
+                         }
+                         ).ToList();
+            ////return task of all notes of a user queued to run on thread pool
+            return Task.Run(() => notesList);
+        }
+
         /// <summary>
         /// Updates the note with specified identifier.
         /// </summary>
@@ -178,10 +261,6 @@ namespace FundooRepos
             }
         }
 
-
-
-
-
-
+        
     }
 }

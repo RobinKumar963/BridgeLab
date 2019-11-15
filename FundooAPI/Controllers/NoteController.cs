@@ -5,11 +5,6 @@
 // <creator name="Robin Kumar"/>
 // ---------------------------------------------------------------------------------------------------------------------
 
-
-
-
-
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FundooAPI.Controllers
 {
     /// <summary>
-    /// Note Controller
+    /// Action Method for Note
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Route("api/[controller]"),Authorize]

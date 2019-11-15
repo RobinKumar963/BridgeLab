@@ -11,6 +11,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FundooAPI.Controllers
 {
+    /// <summary>
+    /// Action Method for label
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Route("api/[controller]"),Authorize]
     [ApiController]
     public class LabelController : ControllerBase
