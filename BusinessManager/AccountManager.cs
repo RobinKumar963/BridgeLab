@@ -7,6 +7,8 @@
 
 
 
+using Common.Helper;
+using Common.Models.NoteModels;
 using Common.Models.UserModels;
 using FundooRepos;
 using FundooRepos.Interface;
@@ -25,10 +27,12 @@ namespace BusinessManager
     public class AccountManager : IAccountManager
     {
         private readonly IAccountRepository _repository;
+        private readonly INoteRepository noteRepository;
 
-        public AccountManager(IAccountRepository repository)
+        public AccountManager(IAccountRepository repository,INoteRepository noteRepository)
         {
             _repository = repository;
+            this.noteRepository = noteRepository;
         }
 
         /// <summary>
@@ -73,13 +77,18 @@ namespace BusinessManager
 
             await _repository.LogIn(login);
 
-            var cacheKey = login.USEREMAIL;
-            ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
-            IDatabase database = connectionMultiplexer.GetDatabase();
+            var noteModelKey = login.USEREMAIL;
+            var noteModelValue = noteRepository.GetByID(login.USEREMAIL);
+            RedishCacheHelper.Save("localhost",noteModelKey,noteModelValue);
 
-            database.StringSet(cacheKey, login.USEREMAIL);
-            database.StringGet(cacheKey);
+            Task<List<NoteModel>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModel>>>("localhost",noteModelKey);
 
+            //ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
+            //IDatabase database = connectionMultiplexer.GetDatabase();
+
+            //database.StringSet(noteModelKey, noteModelValue);
+            //database.StringGet(noteModelKey);
+           
 
             return await Task.Run(() => "Login Succesfully");
 

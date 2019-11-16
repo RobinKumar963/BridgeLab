@@ -8,6 +8,7 @@
 
 
 using Common.Models.CollabratorModels;
+using Common.Models.LabelledNoteModels;
 using Common.Models.NoteModels;
 using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
@@ -33,7 +34,8 @@ namespace FundooRepos.Interface
         Task<List<NoteModel>> GetByID(string id);
         Task<List<NoteModel>> GetArchiveNotes(string email);
         Task<List<NoteModel>> GetTrashNotes(string email);
-       
+        //Task<List<LabelledNotesView>> GetLabelledNotes(string email);
+
         Task Delete(int id);
         Task Update(int id,string notes);
         Task ImageUpload(IFormFile file, int id);

@@ -18,6 +18,7 @@ using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Common.Models.CollabratorModels;
 using Common.Helper;
+using Common.Models.LabelledNoteModels;
 
 namespace FundooRepos
 {
@@ -195,6 +196,26 @@ namespace FundooRepos
             return Task.Run(() => notesList);
         }
 
+
+        /// <summary>
+        /// Gets the labelled notes.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns>Task<List<LabelledNotesView>></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        //public Task<List<LabelledNotesView>> GetLabelledNotes(string email)
+        //{
+        //    List<LabelledNote> labelledNotes = new List<LabelledNote>();
+        //    List<LabelledNotesView> labelledNotesViews = new List<LabelledNotesView>();
+        //    Task<List<NoteModel>> noteModels = GetByID(email);
+            
+
+
+
+
+
+        //}
+
         /// <summary>
         /// Gets the collbration notes.
         /// </summary>
@@ -323,10 +344,6 @@ namespace FundooRepos
                 return null;
             }
         }
-
-
-        
-
 
     }
 }
