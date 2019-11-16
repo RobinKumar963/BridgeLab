@@ -5,6 +5,7 @@
 // <creator name="Robin Kumar"/>
 // ----------------------------------------------------------------------------------------------------------------------
 using Common.Models.CollabratorModels;
+using Common.Models.LabelledNoteModels;
 using Common.Models.LabelModels;
 using Common.Models.NoteModels;
 using Common.Models.UserModels;
@@ -32,6 +33,7 @@ namespace FundooRepos.Context
         public DbSet<NoteModel> Notes { get; set; }
         public DbSet<LabelModel> Labels { get; set; }
         public DbSet<CollabratorModel> Collabration { get; set; }
+        public DbSet<LabelledNote> Labelnotes { get; set; }
 
     }
 }

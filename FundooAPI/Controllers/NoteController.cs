@@ -141,7 +141,7 @@ namespace FundooAPI.Controllers
             try
             {
                 string Email = User.Claims.First(c => c.Type == "Email").Value;
-                var result = this.manager.ImageUpload(file, id, Email);
+                var result = this.manager.ImageUpload(file, id);
                 return Ok(new { result });
             }
             catch (Exception e)

@@ -8,6 +8,7 @@ using Common.Helper;
 using Common.Models.UserModels;
 using FundooRepos.Context;
 using FundooRepos.Interface;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -142,12 +143,58 @@ namespace FundooRepos
         /// <returns>Task<bool></returns>
         public Task<bool> Check(string email)
         {
-            ////Checking for User with Specifed email From Data Source
-            ////On,true this value is queued to run on thread pool
+            ////Checking for User with Specifed Email From Data Source
+            ////On,True this value is queued to run on thread pool
             if (context.Users.Find(email)!=null)
                 return Task.Run(() => true);
            else
                 return Task.Run(() => false);
+        }
+
+        /// <summary>
+        /// Upload Profile Image in Cloudnary.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="email">The email.</param>
+        /// <returns>Task</returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public Task ImageUpload(IFormFile file, string email)
+        {
+            ////Uploading image and storing the ImageUploadResult(object) in uploadResult
+            var uploadresult = ImageUploader.UploadImage(file);
+
+            ////If UploadResult property Error is not null
+            ////Throws an exception
+            if (uploadresult.Error != null)
+                throw new Exception(uploadresult.Error.Message);
+
+            ////Getting user with USEREMAIL == Email and from data source using session(instance of DbContext)-context
+            var result = context.Users.Where(i => i.USEREMAIL == email).FirstOrDefault();
+
+            ////On finding result
+            if (result != null)
+            {
+                ////Setting Note field IMAGES with uploadresult url
+                result.PROFILEIMAGE = uploadresult.Uri.ToString();
+                return Task.Run(() => context.SaveChanges());
+                
+               
+                
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Log out user.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
+        public Task LogOut(string email)
+        {
+            return Task.Run(()=>"Log out");
         }
     }
 }

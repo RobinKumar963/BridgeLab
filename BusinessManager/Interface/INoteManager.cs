@@ -25,7 +25,7 @@ namespace BusinessManager.Interface
         Task<List<NoteModel>> GetByID(string id);
         Task<string> Delete(int id);
         Task<string> Update(int id,string description);
-        string ImageUpload(IFormFile file, int id, string Email);
+        string ImageUpload(IFormFile file, int id);
 
 
     }

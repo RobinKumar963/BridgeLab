@@ -21,7 +21,7 @@ namespace Common.Models.NoteModels
         
         private int NoteID;
 
-        private int LabelID;
+        
        
         private string UserEmail;
        
@@ -49,8 +49,7 @@ namespace Common.Models.NoteModels
         [Required]
         public int NOTEID { get { return NoteID; } set { NoteID = value; } }
 
-        [ForeignKey("LabelModel")]
-        public int LABELID { get { return LabelID; } set { LabelID = value; } }
+       
 
         [Required]
         [ForeignKey("UserModel")]

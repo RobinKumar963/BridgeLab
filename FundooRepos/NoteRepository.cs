@@ -113,7 +113,6 @@ namespace FundooRepos
                          select new NoteModel()
                          {
                              NOTEID=note.NOTEID,
-                             LABELID=note.LABELID,
                              USEREMAIL=note.USEREMAIL,
                              TITLE=note.TITLE,
                              DESCRIPTION=note.DESCRIPTION,
@@ -146,7 +145,6 @@ namespace FundooRepos
                          select new NoteModel()
                          {
                              NOTEID = note.NOTEID,
-                             LABELID = note.LABELID,
                              USEREMAIL = note.USEREMAIL,
                              TITLE = note.TITLE,
                              DESCRIPTION = note.DESCRIPTION,
@@ -180,7 +178,6 @@ namespace FundooRepos
                          select new NoteModel()
                          {
                              NOTEID = note.NOTEID,
-                             LABELID = note.LABELID,
                              USEREMAIL = note.USEREMAIL,
                              TITLE = note.TITLE,
                              DESCRIPTION = note.DESCRIPTION,
@@ -327,6 +324,9 @@ namespace FundooRepos
             }
         }
 
-      
+
+        
+
+
     }
 }

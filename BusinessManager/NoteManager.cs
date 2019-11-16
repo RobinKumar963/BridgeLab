@@ -113,9 +113,9 @@ namespace BusinessManager
         /// <param name="id">The identifier.</param>
         /// <param name="Email">The email.</param>
         /// <returns>string</returns>
-        public  string ImageUpload(IFormFile file, int id, string Email)
+        public  string ImageUpload(IFormFile file, int id)
         {
-            var result = this.repository.ImageUpload(file, id, Email);
+            var result = this.repository.ImageUpload(file, id);
             //return await Task.Run(() => result);
             return "Image uploaded successfully ";
         }
