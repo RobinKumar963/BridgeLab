@@ -36,7 +36,7 @@ namespace FundooRepos.Interface
        
         Task Delete(int id);
         Task Update(int id,string notes);
-        Task ImageUpload(IFormFile file, int id, string Email);
+        Task ImageUpload(IFormFile file, int id);
 
 
     }

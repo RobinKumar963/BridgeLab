@@ -67,6 +67,7 @@ namespace FundooRepos
                 return null;
             }
         }
+
         /// <summary>
         /// Perform Resetting of password
         /// </summary>
@@ -120,6 +121,7 @@ namespace FundooRepos
                 return null;
             }
         }
+
         /// <summary>
         /// Check for specified Email in Data Source.
         /// </summary>
@@ -132,6 +134,7 @@ namespace FundooRepos
             ////return of user task queued to run on thread pool
             return Task.Run(() => result);
         }
+
         /// <summary>
         /// Checks the specified email.
         /// </summary>
