@@ -30,11 +30,11 @@ namespace FundooRepos.Interface
         Task Add(CollabratorModel collabratorModel);
         
 
-        Task<List<CollabratedNotes>> GetCollbrationNotes(string email);
-        Task<List<NoteModel>> GetByID(string id);
-        Task<List<NoteModel>> GetArchiveNotes(string email);
-        Task<List<NoteModel>> GetTrashNotes(string email);
-        //Task<List<LabelledNotesView>> GetLabelledNotes(string email);
+       
+        Task<List<NoteModelView>> GetByID(string id);
+        Task<List<NoteModelView>> GetArchiveNotes(string email);
+        Task<List<NoteModelView>> GetTrashNotes(string email);
+       
 
         Task Delete(int id);
         Task Update(int id,string notes);

@@ -52,11 +52,7 @@ namespace FundooRepos
             return Task.Run(() => context.SaveChanges());
 
         }
-
-
-
-
-
+        
         /// <summary>
         /// Adds the specified collabrator model.
         /// </summary>
@@ -70,12 +66,7 @@ namespace FundooRepos
             ////Save Context Changes task queued to run on thread pool
             return Task.Run(() => context.SaveChanges());
         }
-
-
-
-
-
-
+        
         /// <summary>
         /// Deletes the note with specified identifier.
         /// </summary>
@@ -88,7 +79,7 @@ namespace FundooRepos
             ////Save Context Changes task queued to run on thread pool
             return Task.Run(() => context.SaveChanges());
         }
-
+        
         /// <summary>
         /// Gets all notes from Notes table in Data Source.
         /// </summary>
@@ -98,20 +89,20 @@ namespace FundooRepos
             ////return task of all notes queued to run on thread pool
             return Task.Run(() => context.Notes);
         }
-
+        
         /// <summary>
         /// Gets the Notes by identifier.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>Task<List<NoteModel>></returns>
-        public Task<List<NoteModel>> GetByID(string id)
+        public Task<List<NoteModelView>> GetByID(string id)
         {
-            List<NoteModel> notesList = new List<NoteModel>();
+            List<NoteModelView> notesList = new List<NoteModelView>();
             ////Getting note with USEREMAIL==id from data source using session(instance of DbContext)-context 
             notesList = (from note in context.Notes
                          where note.USEREMAIL == id && note.ISARCHIVE == false
                          && note.ISTRASH == false
-                         select new NoteModel()
+                         select new NoteModelView()
                          {
                              NOTEID=note.NOTEID,
                              USEREMAIL=note.USEREMAIL,
@@ -124,26 +115,59 @@ namespace FundooRepos
                              ISARCHIVE=note.ISARCHIVE,
                              ISTRASH=note.ISTRASH,
                              ISPIN=note.ISPIN,
-                             COLOR=note.COLOR
+                             COLOR=note.COLOR,
+                             LABELS=null,
+                             COLLABRATORS=null
                          }
                          ).ToList();
+            List<string> labels = new List<string>();
+            ////For each notes check for label
+            foreach(NoteModelView note in notesList)
+            {
+
+
+                labels = (from label in context.Labelnotes
+                          where label.NOTEID == note.NOTEID
+                          select new String(context.Labels.Find(label.LABELID).LABEL)
+
+                          ).ToList();
+                note.LABELS = labels;
+
+            }
+
+            ////For each notes check collabrators 
+            List<string> collabarators = new List<string>();
+            foreach (NoteModelView note in notesList)
+            {
+
+
+                collabarators = (from collabarator in context.Collabration
+                                 where collabarator.NOTEID==note.NOTEID
+                                 select new String(context.Users.Find(collabarator.RECIEVEDEMAIL).USEREMAIL))
+                                 .ToList();
+                note.COLLABRATORS = collabarators;
+            }
+
+
+
+
             ////return task of all notes of a user queued to run on thread pool
             return Task.Run(() => notesList);
         }
-
+        
         /// <summary>
         /// Gets the archived notes.
         /// </summary>
         /// <param name="email">The email.</param>
         /// <returns>Task<List<NoteModel>></returns>
-        public Task<List<NoteModel>> GetArchiveNotes(string email)
+        public Task<List<NoteModelView>> GetArchiveNotes(string email)
         {
-            List<NoteModel> notesList = new List<NoteModel>();
-            ////Getting note with USEREMAIL==id and ISARCHIVE==true from data source using session(instance of DbContext)-context 
+            List<NoteModelView> notesList = new List<NoteModelView>();
+            ////Getting note with USEREMAIL==id from data source using session(instance of DbContext)-context 
             notesList = (from note in context.Notes
                          where note.USEREMAIL == email && note.ISARCHIVE == true
                          && note.ISTRASH == false
-                         select new NoteModel()
+                         select new NoteModelView()
                          {
                              NOTEID = note.NOTEID,
                              USEREMAIL = note.USEREMAIL,
@@ -156,27 +180,60 @@ namespace FundooRepos
                              ISARCHIVE = note.ISARCHIVE,
                              ISTRASH = note.ISTRASH,
                              ISPIN = note.ISPIN,
-                             COLOR = note.COLOR
+                             COLOR = note.COLOR,
+                             LABELS = null,
+                             COLLABRATORS = null
                          }
                          ).ToList();
+            List<string> labels = new List<string>();
+            ////For each notes check for label
+            foreach (NoteModelView note in notesList)
+            {
+
+
+                labels = (from label in context.Labelnotes
+                          where label.NOTEID == note.NOTEID
+                          select new String(context.Labels.Find(label.LABELID).LABEL)
+
+                          ).ToList();
+                note.LABELS = labels;
+
+            }
+
+            ////For each notes check collabrators 
+            List<string> collabarators = new List<string>();
+            foreach (NoteModelView note in notesList)
+            {
+
+
+                collabarators = (from collabarator in context.Collabration
+                                 where collabarator.NOTEID == note.NOTEID
+                                 select new String(context.Users.Find(collabarator.RECIEVEDEMAIL).USEREMAIL))
+                                 .ToList();
+                note.COLLABRATORS = collabarators;
+            }
+
+
+
+
             ////return task of all notes of a user queued to run on thread pool
             return Task.Run(() => notesList);
         }
-
+        
         /// <summary>
         /// Gets the trash notes.
         /// </summary>
         /// <param name="email">The email.</param>
         /// <returns>Task<List<NoteModel>></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<List<NoteModel>> GetTrashNotes(string email)
+        public Task<List<NoteModelView>> GetTrashNotes(string email)
         {
-            List<NoteModel> notesList = new List<NoteModel>();
-            ////Getting note with USEREMAIL==id and ISARCHIVE==true from data source using session(instance of DbContext)-context 
+            List<NoteModelView> notesList = new List<NoteModelView>();
+            ////Getting note with USEREMAIL==id from data source using session(instance of DbContext)-context 
             notesList = (from note in context.Notes
-                         where note.USEREMAIL == email && note.ISARCHIVE == false
-                         && note.ISTRASH == true
-                         select new NoteModel()
+                         where note.USEREMAIL == email && note.ISARCHIVE == true
+                         && note.ISTRASH == false
+                         select new NoteModelView()
                          {
                              NOTEID = note.NOTEID,
                              USEREMAIL = note.USEREMAIL,
@@ -189,106 +246,46 @@ namespace FundooRepos
                              ISARCHIVE = note.ISARCHIVE,
                              ISTRASH = note.ISTRASH,
                              ISPIN = note.ISPIN,
-                             COLOR = note.COLOR
+                             COLOR = note.COLOR,
+                             LABELS = null,
+                             COLLABRATORS = null
                          }
                          ).ToList();
-            ////return task of all notes of a user queued to run on thread pool
-            return Task.Run(() => notesList);
-        }
-
-
-        /// <summary>
-        /// Gets the labelled notes.
-        /// </summary>
-        /// <param name="email">The email.</param>
-        /// <returns>Task<List<LabelledNotesView>></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        //public Task<List<LabelledNotesView>> GetLabelledNotes(string email)
-        //{
-        //    List<LabelledNote> labelledNotes = new List<LabelledNote>();
-        //    List<LabelledNotesView> labelledNotesViews = new List<LabelledNotesView>();
-        //    Task<List<NoteModel>> noteModels = GetByID(email);
-            
-
-
-
-
-
-        //}
-
-        /// <summary>
-        /// Gets the collbration notes.
-        /// </summary>
-        /// <returns>Task<List<CollabratorModel>></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public Task<List<CollabratedNotes>> GetCollbrationNotes(string email)
-        {
-            List<CollabratorModel> collabratorModelList = new List<CollabratorModel>();
-            List<CollabratedNotes> collabratedNotesList = new List<CollabratedNotes>();
-          
-
-
-           
-            
-            collabratorModelList = (from collabratedNote in context.Collabration
-                                    where collabratedNote.RECIEVEDEMAIL == email
-                                    select new CollabratorModel()
-                                    {
-                                        COLLABRATIONID=collabratedNote.COLLABRATIONID,
-                                        NOTEID=collabratedNote.NOTEID,
-                                        SENDEREMAIL=collabratedNote.SENDEREMAIL,
-                                        RECIEVEDEMAIL=collabratedNote.RECIEVEDEMAIL
-                                    }
-                                    ).ToList();
-
-            List<String> reciever = new List<String>();
-
-            
-            foreach (CollabratorModel collabratorModel in collabratorModelList)
+            List<string> labels = new List<string>();
+            ////For each notes check for label
+            foreach (NoteModelView note in notesList)
             {
-                var results = context.Notes.Where(i => i.NOTEID == collabratorModel.NOTEID).FirstOrDefault();
 
 
-                reciever = (from collabrator in context.Collabration
-                            where collabrator.NOTEID == collabratorModel.NOTEID
-                            select new String(collabrator.RECIEVEDEMAIL)
-                           
-                            ).ToList();
+                labels = (from label in context.Labelnotes
+                          where label.NOTEID == note.NOTEID
+                          select new String(context.Labels.Find(label.LABELID).LABEL)
 
-
-
-
-                collabratedNotesList.Add(new CollabratedNotes()
-                {
-                        DESCRIPTION = results.DESCRIPTION,
-                        NOTEID = results.NOTEID,
-                        IMAGE = results.IMAGES,
-                        SENDEREMAIL = results.USEREMAIL,
-                        RECIEVEREMAIL = reciever
-                });
-                
-                
+                          ).ToList();
+                note.LABELS = labels;
 
             }
 
+            ////For each notes check collabrators 
+            List<string> collabarators = new List<string>();
+            foreach (NoteModelView note in notesList)
+            {
+
+
+                collabarators = (from collabarator in context.Collabration
+                                 where collabarator.NOTEID == note.NOTEID
+                                 select new String(context.Users.Find(collabarator.RECIEVEDEMAIL).USEREMAIL))
+                                 .ToList();
+                note.COLLABRATORS = collabarators;
+            }
+
+
+
+
             ////return task of all notes of a user queued to run on thread pool
-            return Task.Run(() => collabratedNotesList);
-            
-
-
-
-
-
-
-
-
-
-
-
-
+            return Task.Run(() => notesList);
         }
-
-
+        
         /// <summary>
         /// Updates the note with specified identifier.
         /// </summary>
@@ -302,7 +299,7 @@ namespace FundooRepos
             ////Save Context Changes task queued to run on thread pool
             return Task.Run(() => context.SaveChanges());
         }
-
+        
         /// <summary>
         /// Upload Image in cloudnary.
         /// </summary>
@@ -345,5 +342,6 @@ namespace FundooRepos
             }
         }
 
+        
     }
 }

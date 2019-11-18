@@ -7,6 +7,7 @@
 
 
 using BusinessManager.Interface;
+using Common.Helper;
 using Common.Models.NoteModels;
 using FundooRepos.Interface;
 using Microsoft.AspNetCore.Http;
@@ -86,10 +87,12 @@ namespace BusinessManager
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>Task<List<NoteModel>></returns>
-        public async Task<List<NoteModel>> GetByID(string id)
+        public async Task<List<NoteModelView>> GetByID(string id)
         {
-            var res = this.repository.GetByID(id);
-            return await Task.Run(() => res);
+            var noteModelKey = id;
+            Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteModelKey);
+            //var res = this.repository.GetByID(id);
+            return await Task.Run(() => notefromcache);
             
         }
 
@@ -118,6 +121,22 @@ namespace BusinessManager
             var result = this.repository.ImageUpload(file, id);
             //return await Task.Run(() => result);
             return "Image uploaded successfully ";
+        }
+
+        public async Task<List<NoteModelView>> GetArchiveNotes(string email)
+        {
+            var noteModelKey = email;
+            Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteModelKey);
+            //var res = this.repository.GetByID(id);
+            return await Task.Run(() => notefromcache);
+        }
+
+        public async Task<List<NoteModelView>> GetTrashNotes(string email)
+        {
+            var noteModelKey = email;
+            Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteModelKey);
+            //var res = this.repository.GetByID(id);
+            return await Task.Run(() => notefromcache);
         }
     }
 }

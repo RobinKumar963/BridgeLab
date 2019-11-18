@@ -8,25 +8,25 @@ namespace Common.Models.LabelledNoteModels
 {
     public class LabelledNote
     {
-        private string LabelledNoteID;
-        private string NoteID;
-        private string LabelID;
+        private int LabelledNoteID;
+        private int NoteID;
+        private int LabelID;
 
         [Key]
         [Required]
-        public string LABELLEDNOTEID { get { return this.LabelledNoteID; } set { this.LabelledNoteID = value; } }
+        public int LABELLEDNOTEID { get { return this.LabelledNoteID; } set { this.LabelledNoteID = value; } }
 
 
 
 
         [Required]
         [ForeignKey("NoteModel")]
-        public string NOTEID { get { return this.NoteID; } set { this.NoteID = value; } }
+        public int NOTEID { get { return this.NoteID; } set { this.NoteID = value; } }
 
 
         [Required]
         [ForeignKey("LabelModel")]
-        public string LABELID { get { return this.LabelID; } set { this.LabelID = value; } }
+        public int LABELID { get { return this.LabelID; } set { this.LabelID = value; } }
 
     }
 }

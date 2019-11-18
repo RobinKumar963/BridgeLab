@@ -79,9 +79,11 @@ namespace BusinessManager
 
             var noteModelKey = login.USEREMAIL;
             var noteModelValue = noteRepository.GetByID(login.USEREMAIL);
+            var archiveNoteModel = noteRepository.GetArchiveNotes(login.USEREMAIL);
+            var trashNote = noteRepository.GetTrashNotes(login.USEREMAIL);
             RedishCacheHelper.Save("localhost",noteModelKey,noteModelValue);
 
-            Task<List<NoteModel>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModel>>>("localhost",noteModelKey);
+            //Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModel>>>("localhost",noteModelKey);
 
             //ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
             //IDatabase database = connectionMultiplexer.GetDatabase();
