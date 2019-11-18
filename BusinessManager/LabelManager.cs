@@ -87,9 +87,9 @@ namespace BusinessManager
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        public async Task<List<LabelModel>> GetByID(string id)
+        public async Task<List<LabelModel>> GetByID(string email)
         {
-            var res = this.repository.GetByID(id);
+            var res = this.repository.GetByID(email);
             return await Task.Run(() => res);
         }
 

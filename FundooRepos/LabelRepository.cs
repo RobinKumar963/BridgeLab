@@ -45,19 +45,6 @@ namespace FundooRepos
 
 
         /// <summary>
-        /// Deletes the Label with specified identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns>Task</returns>
-        public Task Delete(int id)
-        {
-            ////Removing label from data source with primary key value id using session(instance of DbContext)-context
-            context.Labels.Remove(context.Labels.Find(id));
-            ////Save Context Changes task queued to run on thread pool
-            return Task.Run(() => context.SaveChanges());
-        }
-
-        /// <summary>
         /// Gets  all label from Label table in Data source.
         /// </summary>
         /// <returns></returns>
@@ -72,17 +59,17 @@ namespace FundooRepos
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>Task<List<LabelModel>></returns>
-        public Task<List<LabelModel>> GetByID(string id)
+        public Task<List<LabelModel>> GetByID(string email)
         {
             List<LabelModel> labelList = new List<LabelModel>();
             ////Getting label with USEREMAIL==id from data source using session(instance of DbContext)-context
             labelList = (from label in context.Labels
-                         where label.USEREMAIL == id
+                         where label.USEREMAIL == email
                          select new LabelModel()
                          {
-                             LABELID=label.LABELID,
-                             LABEL=label.LABEL,
-                             USEREMAIL=label.USEREMAIL
+                             LABELID = label.LABELID,
+                             LABEL = label.LABEL,
+                             USEREMAIL = label.USEREMAIL
                          }
                          ).ToList();
             ////return task of all labels of a user queued to run on thread pool
@@ -90,6 +77,21 @@ namespace FundooRepos
 
 
         }
+
+        /// <summary>
+        /// Deletes the Label with specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>Task</returns>
+        public Task Delete(int id)
+        {
+            ////Removing label from data source with primary key value id using session(instance of DbContext)-context
+            context.Labels.Remove(context.Labels.Find(id));
+            ////Save Context Changes task queued to run on thread pool
+            return Task.Run(() => context.SaveChanges());
+        }
+
+       
         
         /// <summary>
         /// Updates the Label with specified identifier.

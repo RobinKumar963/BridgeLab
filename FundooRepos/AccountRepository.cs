@@ -68,7 +68,7 @@ namespace FundooRepos
                 return null;
             }
         }
-
+        
         /// <summary>
         /// Perform Resetting of password
         /// </summary>
@@ -85,7 +85,7 @@ namespace FundooRepos
                 return Task.Run(() => "Wrong password");
             ////Getting User with specified email and password from Data Source 
             var result = context.Users.Where(i => i.USEREMAIL == reset.USEREMAIL && i.PASSWORD == reset.OLDPASSWORD).FirstOrDefault();
-            
+
             if (result != null)
             {
                 ////resetting password for user reterived from data source
@@ -99,8 +99,6 @@ namespace FundooRepos
             }
         }
 
-
-        
         /// <summary>
         /// Helps,to reset password,in case password is forgotten
         /// </summary>
@@ -123,6 +121,53 @@ namespace FundooRepos
             }
         }
 
+        /// <summary>
+        /// Upload Profile Image in Cloudnary.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="email">The email.</param>
+        /// <returns>Task</returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public Task ImageUpload(IFormFile file,string email)
+        {
+            ////Uploading image and storing the ImageUploadResult(object) in uploadResult
+            var uploadresult = ImageUploader.UploadImage(file);
+
+            ////If UploadResult property Error is not null
+            ////Throws an exception
+            if (uploadresult.Error != null)
+                throw new Exception(uploadresult.Error.Message);
+
+            ////Getting user with USEREMAIL == Email and from data source using session(instance of DbContext)-context
+            var result = context.Users.Where(i => i.USEREMAIL == email).FirstOrDefault();
+
+            ////On finding result
+            if (result != null)
+            {
+                ////Setting Note field IMAGES with uploadresult url
+                result.PROFILEIMAGE = uploadresult.Uri.ToString();
+                return Task.Run(() => context.SaveChanges());
+
+
+
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        /// <summary>
+        /// Log out user.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
+        public Task LogOut(string email)
+        {
+            return Task.Run(() => "Log out");
+        }
+        
+        
         /// <summary>
         /// Check for specified Email in Data Source.
         /// </summary>
@@ -151,50 +196,7 @@ namespace FundooRepos
                 return Task.Run(() => false);
         }
 
-        /// <summary>
-        /// Upload Profile Image in Cloudnary.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="email">The email.</param>
-        /// <returns>Task</returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public Task ImageUpload(IFormFile file, string email)
-        {
-            ////Uploading image and storing the ImageUploadResult(object) in uploadResult
-            var uploadresult = ImageUploader.UploadImage(file);
+        
 
-            ////If UploadResult property Error is not null
-            ////Throws an exception
-            if (uploadresult.Error != null)
-                throw new Exception(uploadresult.Error.Message);
-
-            ////Getting user with USEREMAIL == Email and from data source using session(instance of DbContext)-context
-            var result = context.Users.Where(i => i.USEREMAIL == email).FirstOrDefault();
-
-            ////On finding result
-            if (result != null)
-            {
-                ////Setting Note field IMAGES with uploadresult url
-                result.PROFILEIMAGE = uploadresult.Uri.ToString();
-                return Task.Run(() => context.SaveChanges());
-                
-               
-                
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Log out user.
-        /// </summary>
-        /// <param name="email">The email.</param>
-        /// <returns></returns>
-        public Task LogOut(string email)
-        {
-            return Task.Run(()=>"Log out");
-        }
     }
 }

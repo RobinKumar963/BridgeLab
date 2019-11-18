@@ -12,6 +12,7 @@ using Common.Models.NoteModels;
 using Common.Models.UserModels;
 using FundooRepos;
 using FundooRepos.Interface;
+using Microsoft.AspNetCore.Http;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
@@ -97,6 +98,8 @@ namespace BusinessManager
 
            
         }
+
+
         /// <summary>
         /// Reset Password
         /// </summary>
@@ -117,6 +120,7 @@ namespace BusinessManager
             await _repository.ResetPassword(reset);
             return await Task.Run(() => "Password Resetted Succesfully");
         }
+
         /// <summary>
         /// Forgot Password
         /// </summary>
@@ -140,6 +144,18 @@ namespace BusinessManager
             return await Task.Run(() => "Password Resetted Succesfully");
         }
 
+
+        /// <summary>
+        /// Upload profile image.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="email">The email.</param>
+        public async Task<string> ImageUpload(IFormFile file, string email)
+        {
+            await  _repository.ImageUpload(file, email);
+            return await Task.Run(() => "Image Uploaded Succesfully");
+        }
+
         /// <summary>
         /// Finds the user with email identifier.
         /// </summary>
@@ -150,6 +166,7 @@ namespace BusinessManager
             var result = await _repository.FindByEmailAsync(email);
             return await Task.Run(() => result);
         }
+
         /// <summary>
         /// Checks the specified email for existence in User Table in Data Source.
         /// </summary>
@@ -160,5 +177,7 @@ namespace BusinessManager
             var result = await _repository.Check(email);
             return await Task.Run(() => result);
         }
+
+       
     }
 }

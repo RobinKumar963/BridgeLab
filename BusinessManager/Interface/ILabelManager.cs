@@ -21,7 +21,7 @@ namespace BusinessManager.Interface
     {
         Task<string> Get();
         Task<string> Add(LabelModel noteModel);
-        Task<List<LabelModel>> GetByID(string id);
+        Task<List<LabelModel>> GetByID(string email);
         Task<string> Delete(int id);
         Task<string> Update(int id, string label);
         

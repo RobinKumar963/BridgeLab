@@ -25,8 +25,6 @@ namespace FundooRepos.Interface
         Task ResetPassword(ResetPasswordModel reset);
         Task Forgot(ForgotPassword forgot);
         Task ImageUpload(IFormFile file,string email);
-
-
         Task LogOut(string email);
 
 

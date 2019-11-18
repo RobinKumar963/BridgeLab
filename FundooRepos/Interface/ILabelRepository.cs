@@ -22,9 +22,9 @@ namespace FundooRepos.Interface
     {
         Task Get();
         Task Add(LabelModel labelModel);
-        Task<List<LabelModel>> GetByID(string id);
+        Task<List<LabelModel>> GetByID(string email);
         Task Delete(int id);
-        Task Update(int id, string label);
+        Task Update(int id,string label);
         
     }
 }

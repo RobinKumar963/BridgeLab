@@ -95,12 +95,12 @@ namespace FundooRepos
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>Task<List<NoteModel>></returns>
-        public Task<List<NoteModelView>> GetByID(string id)
+        public Task<List<NoteModelView>> GetByID(string email)
         {
             List<NoteModelView> notesList = new List<NoteModelView>();
             ////Getting note with USEREMAIL==id from data source using session(instance of DbContext)-context 
             notesList = (from note in context.Notes
-                         where note.USEREMAIL == id && note.ISARCHIVE == false
+                         where note.USEREMAIL == email && note.ISARCHIVE == false
                          && note.ISTRASH == false
                          select new NoteModelView()
                          {
@@ -305,7 +305,6 @@ namespace FundooRepos
         /// </summary>
         /// <param name="file">The file.</param>
         /// <param name="id">The identifier.</param>
-        /// <param name="Email">The email.</param>
         /// <returns>Task</returns>
         /// <exception cref="Exception"></exception>
         public Task ImageUpload(IFormFile file,int id)

@@ -6,6 +6,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using Common.Models.UserModels;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,6 +23,9 @@ namespace FundooRepos.Interface
         Task<string> LogIn(LoginModel login);
         Task<string> ResetPassword(ResetPasswordModel reset);
         Task<string> ForgotP(ForgotPassword forgot);
+        Task<string> ImageUpload(IFormFile file, string email);
+
+
         Task<UserModel> FindByEmailAsync(string email);
         Task<bool> Check(string email);
 

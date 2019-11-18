@@ -8,6 +8,7 @@
 
 using BusinessManager.Interface;
 using Common.Helper;
+using Common.Models.CollabratorModels;
 using Common.Models.NoteModels;
 using FundooRepos.Interface;
 using Microsoft.AspNetCore.Http;
@@ -55,6 +56,27 @@ namespace BusinessManager
             return await Task.Run(() => "Note Added Succesfully"); 
         }
 
+        /// <summary>
+        /// Adds the specified collabrator model to the note.
+        /// </summary>
+        /// <param name="collabratorModel">The collabrator model.</param>
+        /// <returns>Task<string></returns>
+        /// <exception cref="ArgumentException">Invalid Parameter</exception>
+        public async Task<string> Add(CollabratorModel collabratorModel)
+        {
+            ////Creating a context object
+            var context = new ValidationContext(collabratorModel, null, null);
+            ////To store error messages
+            var validresult = new List<ValidationResult>();
+            ////Running Validator
+            bool isValid = Validator.TryValidateObject(collabratorModel, context, validresult, true);
+
+            if (!isValid)
+                throw new ArgumentException("Invalid Parameter");
+
+            await this.repository.Add(collabratorModel);
+            return await Task.Run(() => "Collabrator added to notes Succesfully");
+        }
 
         /// <summary>
         /// Deletes the note model with specified identifier.
@@ -83,13 +105,41 @@ namespace BusinessManager
         }
 
         /// <summary>
+        /// Gets the archive notes.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns>Task<List<NoteModelView></returns>
+        public async Task<List<NoteModelView>> GetArchiveNotes(string email)
+        {
+            var noteModelKey = email;
+            Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteModelKey);
+            //var res = this.repository.GetByID(id);
+            return await Task.Run(() => notefromcache);
+        }
+
+        /// <summary>
+        /// Gets the trash notes.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns>Task<List<NoteModelView>></returns>
+        public async Task<List<NoteModelView>> GetTrashNotes(string email)
+        {
+            var noteModelKey = email;
+            Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteModelKey);
+            //var res = this.repository.GetByID(id);
+            return await Task.Run(() => notefromcache);
+        }
+
+
+
+        /// <summary>
         /// Gets all notes with Email id.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>Task<List<NoteModel>></returns>
-        public async Task<List<NoteModelView>> GetByID(string id)
+        public async Task<List<NoteModelView>> GetByID(string email)
         {
-            var noteModelKey = id;
+            var noteModelKey = email;
             Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteModelKey);
             //var res = this.repository.GetByID(id);
             return await Task.Run(() => notefromcache);
@@ -123,20 +173,8 @@ namespace BusinessManager
             return "Image uploaded successfully ";
         }
 
-        public async Task<List<NoteModelView>> GetArchiveNotes(string email)
-        {
-            var noteModelKey = email;
-            Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteModelKey);
-            //var res = this.repository.GetByID(id);
-            return await Task.Run(() => notefromcache);
-        }
 
-        public async Task<List<NoteModelView>> GetTrashNotes(string email)
-        {
-            var noteModelKey = email;
-            Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteModelKey);
-            //var res = this.repository.GetByID(id);
-            return await Task.Run(() => notefromcache);
-        }
+
+        
     }
 }

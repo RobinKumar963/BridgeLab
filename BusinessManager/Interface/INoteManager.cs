@@ -6,6 +6,7 @@
 // ---------------------------------------------------------------------------------------------------------------------
 
 
+using Common.Models.CollabratorModels;
 using Common.Models.NoteModels;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -22,7 +23,8 @@ namespace BusinessManager.Interface
     {
         Task<string> Get();
         Task<string> Add(NoteModel noteModel);
-        Task<List<NoteModelView>> GetByID(string id);
+        Task<string> Add(CollabratorModel collabratorModel);
+        Task<List<NoteModelView>> GetByID(string email);
         Task<List<NoteModelView>> GetArchiveNotes(string email);
         Task<List<NoteModelView>> GetTrashNotes(string email);
         Task<string> Delete(int id);

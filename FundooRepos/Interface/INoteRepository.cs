@@ -31,7 +31,7 @@ namespace FundooRepos.Interface
         
 
        
-        Task<List<NoteModelView>> GetByID(string id);
+        Task<List<NoteModelView>> GetByID(string email);
         Task<List<NoteModelView>> GetArchiveNotes(string email);
         Task<List<NoteModelView>> GetTrashNotes(string email);
        
