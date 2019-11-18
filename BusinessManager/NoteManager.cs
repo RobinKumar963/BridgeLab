@@ -168,7 +168,7 @@ namespace BusinessManager
         /// <returns>string</returns>
         public  string ImageUpload(IFormFile file, int id)
         {
-            var result = this.repository.ImageUpload(file, id);
+            this.repository.ImageUpload(file, id);
             //return await Task.Run(() => result);
             return "Image uploaded successfully ";
         }
