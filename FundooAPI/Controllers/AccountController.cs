@@ -27,7 +27,7 @@ namespace FundooAPI.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IAccountManager _manager;
-
+        
         public AccountController(IAccountManager manager)
         {
             _manager = manager;
@@ -158,10 +158,22 @@ namespace FundooAPI.Controllers
                         SecurityAlgorithms.HmacSha256Signature)
 
                     };
+
+
+                   
+
+
+
+
+
                     var tokenHandler = new JwtSecurityTokenHandler();
                     var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                     var token = tokenHandler.WriteToken(securityToken);
                     return Ok(new { token });
+
+
+
+
                 }
                 else
                 {
@@ -182,6 +194,7 @@ namespace FundooAPI.Controllers
         [Route("reg")]
         public async Task<object> GetDetails()
         {
+
 
             try
             {

@@ -112,9 +112,9 @@ namespace BusinessManager
         public async Task<List<NoteModelView>> GetArchiveNotes(string email)
         {
             var noteModelKey = email;
-            Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteModelKey);
-            //var res = this.repository.GetByID(id);
-            return await Task.Run(() => notefromcache);
+            //Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteModelKey);
+            var res = this.repository.GetByID(email);
+            return await Task.Run(() => res);
         }
 
         /// <summary>
@@ -125,9 +125,9 @@ namespace BusinessManager
         public async Task<List<NoteModelView>> GetTrashNotes(string email)
         {
             var noteModelKey = email;
-            Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteModelKey);
-            //var res = this.repository.GetByID(id);
-            return await Task.Run(() => notefromcache);
+            //Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteModelKey);
+            var res = this.repository.GetByID(email);
+            return await Task.Run(() => res);
         }
 
 
@@ -140,9 +140,9 @@ namespace BusinessManager
         public async Task<List<NoteModelView>> GetByID(string email)
         {
             var noteModelKey = email;
-            Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteModelKey);
-            //var res = this.repository.GetByID(id);
-            return await Task.Run(() => notefromcache);
+            //Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteModelKey);
+            var res = this.repository.GetByID(email);
+            return await Task.Run(() => res);
             
         }
 

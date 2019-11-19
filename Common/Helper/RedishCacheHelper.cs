@@ -49,14 +49,15 @@ namespace Common.Helper
         /// <param name="host"></param>
         /// <param name="key"></param>
         /// <returns>T</returns>
-        public static T  Get<T>(string host, string key)
+        public static T  Get<T>(string host, string key) where T : class
         {
 
             using (RedisClient redisClient = new RedisClient(host))
             {
-
+                if(redisClient.ContainsKey(key))
                 return redisClient.Get<T>(key);
 
+                return null;
             }
 
         }

@@ -7410,19 +7410,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Bridgelabz\\.nuget\\packages\\": {}
+    "C:\\Users\\Krish\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Bridgelabz\\source\\repos\\BusinessManager\\BusinessManager.csproj",
+      "projectUniqueName": "C:\\Users\\Krish\\source\\repos\\BusinessManager\\BusinessManager.csproj",
       "projectName": "BusinessManager",
-      "projectPath": "C:\\Users\\Bridgelabz\\source\\repos\\BusinessManager\\BusinessManager.csproj",
-      "packagesPath": "C:\\Users\\Bridgelabz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Bridgelabz\\source\\repos\\BusinessManager\\obj\\",
+      "projectPath": "C:\\Users\\Krish\\source\\repos\\BusinessManager\\BusinessManager.csproj",
+      "packagesPath": "C:\\Users\\Krish\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Krish\\source\\repos\\BusinessManager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Bridgelabz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Krish\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7435,11 +7435,11 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\Bridgelabz\\source\\repos\\Common\\Common.csproj": {
-              "projectPath": "C:\\Users\\Bridgelabz\\source\\repos\\Common\\Common.csproj"
+            "C:\\Users\\Krish\\source\\repos\\Common\\Common.csproj": {
+              "projectPath": "C:\\Users\\Krish\\source\\repos\\Common\\Common.csproj"
             },
-            "C:\\Users\\Bridgelabz\\source\\repos\\FundooRepos\\FundooRepos.csproj": {
-              "projectPath": "C:\\Users\\Bridgelabz\\source\\repos\\FundooRepos\\FundooRepos.csproj"
+            "C:\\Users\\Krish\\source\\repos\\FundooRepos\\FundooRepos.csproj": {
+              "projectPath": "C:\\Users\\Krish\\source\\repos\\FundooRepos\\FundooRepos.csproj"
             }
           }
         }
