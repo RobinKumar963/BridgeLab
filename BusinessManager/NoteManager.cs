@@ -105,16 +105,49 @@ namespace BusinessManager
         }
 
         /// <summary>
+        /// Gets all notes with Email id.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>Task<List<NoteModel>></returns>
+        public async Task<List<NoteModelView>> GetByID(string email)
+        {
+            var noteKey = "note";
+
+            Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteKey);
+
+            if(notefromcache==null)
+            {
+                var res = this.repository.GetByID(email);
+                RedishCacheHelper.Save<Task<List<NoteModelView>>>("localhost", noteKey,res);
+                return await Task.Run(() => res);
+            }
+
+            return await Task.Run(() => notefromcache);
+
+
+
+
+        }
+
+        /// <summary>
         /// Gets the archive notes.
         /// </summary>
         /// <param name="email">The email.</param>
         /// <returns>Task<List<NoteModelView></returns>
         public async Task<List<NoteModelView>> GetArchiveNotes(string email)
         {
-            var noteModelKey = email;
-            //Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteModelKey);
-            var res = this.repository.GetByID(email);
-            return await Task.Run(() => res);
+            var archivenoteKey = "archivenotekey";
+
+            Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", archivenoteKey);
+
+            if (notefromcache == null)
+            {
+                var res = this.repository.GetArchiveNotes(email);
+                RedishCacheHelper.Save<Task<List<NoteModelView>>>("localhost", archivenoteKey, res);
+                return await Task.Run(() => res);
+            }
+
+            return await Task.Run(() => notefromcache);
         }
 
         /// <summary>
@@ -124,27 +157,24 @@ namespace BusinessManager
         /// <returns>Task<List<NoteModelView>></returns>
         public async Task<List<NoteModelView>> GetTrashNotes(string email)
         {
-            var noteModelKey = email;
-            //Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteModelKey);
-            var res = this.repository.GetByID(email);
-            return await Task.Run(() => res);
+
+            var trashnoteKey = "trashnotekey";
+
+            Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", trashnoteKey);
+
+            if (notefromcache == null)
+            {
+                var res = this.repository.GetTrashNotes(email);
+                RedishCacheHelper.Save<Task<List<NoteModelView>>>("localhost", trashnoteKey, res);
+                return await Task.Run(() => res);
+            }
+
+            return await Task.Run(() => notefromcache);
         }
 
 
 
-        /// <summary>
-        /// Gets all notes with Email id.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns>Task<List<NoteModel>></returns>
-        public async Task<List<NoteModelView>> GetByID(string email)
-        {
-            var noteModelKey = email;
-            //Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteModelKey);
-            var res = this.repository.GetByID(email);
-            return await Task.Run(() => res);
-            
-        }
+     
 
         /// <summary>
         /// Updates the Notes with specified identifier id.

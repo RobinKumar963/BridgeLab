@@ -59,6 +59,36 @@ namespace FundooAPI.Controllers
             
         }
 
+
+        [HttpPost]
+        [Route("UploadImage")]
+        [Authorize]
+        public async Task<IActionResult> UploadImage(IFormFile file, string email)
+        {
+
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+
+
+            try
+            {
+                if (await _manager.Check(Email))
+                {
+                    var result = await _manager.ImageUpload(file, email);
+                    return Ok(new { result });
+                }
+                return null;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+
+
+
+        }
+
+
         /// <summary>
         /// LogIN
         /// </summary>
@@ -81,7 +111,7 @@ namespace FundooAPI.Controllers
         //    }
 
 
-           
+
         //}
 
         /// <summary>
@@ -150,7 +180,7 @@ namespace FundooAPI.Controllers
                     {
                         Subject = new ClaimsIdentity(new Claim[]
                         {
-                       new Claim("Email", login.USEREMAIL)
+                            new Claim("Email", login.USEREMAIL)
                         }),
                         Expires = DateTime.UtcNow.AddDays(1),
                         SigningCredentials = new SigningCredentials
