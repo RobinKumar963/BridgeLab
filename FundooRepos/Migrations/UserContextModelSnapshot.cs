@@ -40,16 +40,15 @@ namespace FundooRepos.Migrations
 
             modelBuilder.Entity("Common.Models.LabelledNoteModels.LabelledNote", b =>
                 {
-                    b.Property<string>("LABELLEDNOTEID")
-                        .ValueGeneratedOnAdd();
+                    b.Property<int>("LABELNOTEID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("LABELID")
-                        .IsRequired();
+                    b.Property<int>("LABELID");
 
-                    b.Property<string>("NOTEID")
-                        .IsRequired();
+                    b.Property<int>("NOTEID");
 
-                    b.HasKey("LABELLEDNOTEID");
+                    b.HasKey("LABELNOTEID");
 
                     b.ToTable("Labelnotes");
                 });

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using BusinessManager.Interface;
 using Common.Helper;
 using Common.Models.CollabratorModels;
+using Common.Models.LabelledNoteModels;
 using Common.Models.NoteModels;
 using FundooRepos.Interface;
 using Microsoft.AspNetCore.Authorization;
@@ -24,7 +25,7 @@ namespace FundooAPI.Controllers
     /// Action Method for Note
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
-    [Route("api/[controller]"),Authorize]
+    [Route("api/[controller]")]
     [ApiController]
     public class NoteController : ControllerBase
     {
@@ -84,6 +85,35 @@ namespace FundooAPI.Controllers
             }
         }
 
+
+
+
+
+        [HttpPost]
+        [Route("AddLabelledNotes")]
+        [Authorize]
+        public async Task<IActionResult> AddLabelledNotes(LabelledNote labelledNote)
+        {
+            try
+            {
+                string Email = User.Claims.First(c => c.Type == "Email").Value;
+                if (await accountManager.Check(Email))
+                {
+                    var result = await manager.Add(labelledNote);
+                    return Ok(new { result });
+                }
+                else
+                    return null;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
+
+
         [HttpGet]
         [Route("ReadNotes")]
         [Authorize]
@@ -96,14 +126,8 @@ namespace FundooAPI.Controllers
                 string Email = User.Claims.First(c => c.Type == "Email").Value;
                 if (await accountManager.Check(Email))
                 {
-                        var res = await manager.GetByID(Email);
-
-                     
-
-                        return Ok(new { res });
-                  
-                    
-                    
+                    var res = await manager.GetByID(Email);
+                    return Ok(new { res });
                 }
                 else
                     return null;
@@ -139,16 +163,6 @@ namespace FundooAPI.Controllers
                        
 
                         return Ok(new { res });
-                
-
-
-
-
-
-
-
-
-                    
                 }
                 else
                     return null;
@@ -265,6 +279,8 @@ namespace FundooAPI.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+
         [HttpPost]
         [Route("Upload")]
         public IActionResult ImageUpload(IFormFile file, int id)

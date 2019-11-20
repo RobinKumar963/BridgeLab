@@ -52,7 +52,19 @@ namespace FundooRepos
             return Task.Run(() => context.SaveChanges());
 
         }
-        
+        /// <summary>
+        /// Adds label to notes.
+        /// </summary>
+        /// <param name="labelNote">The label note.</param>
+        /// <returns></returns>
+        public Task Add(LabelledNote labelNote)
+        {
+            ////Adding note to data source using session(instance of DbContext)-context 
+            context.Labelnotes.Add(labelNote);
+            ////Save Context Changes task queued to run on thread pool
+            return Task.Run(() => context.SaveChanges());
+        }
+
         /// <summary>
         /// Adds the specified collabrator model.
         /// </summary>
@@ -120,33 +132,72 @@ namespace FundooRepos
                              COLLABRATORS=null
                          }
                          ).ToList();
+            
             List<string> labels = new List<string>();
             ////For each notes check for label
             foreach(NoteModelView note in notesList)
             {
 
+              
+                    labels = (from label in context.Labelnotes
+                              where label.NOTEID == note.NOTEID
+                              select context.Labels.Find(label.LABELID).LABEL
+                            
 
-                labels = (from label in context.Labelnotes
-                          where label.NOTEID == note.NOTEID
-                          select new String(context.Labels.Find(label.LABELID).LABEL)
-
-                          ).ToList();
+                              ).ToList();
+                
+               
+              
                 note.LABELS = labels;
 
             }
 
-            ////For each notes check collabrators 
-            List<string> collabarators = new List<string>();
-            foreach (NoteModelView note in notesList)
-            {
+
+            //////Get the collabarated noteid list from collabration checking recieved email == email
+
+            
+
+            //List<String> usersCollabratedNotes = new List<String>();
+             
+            //usersCollabratedNotes = (from collabrator in context.Collabration
+            //                         where collabrator.RECIEVEDEMAIL==email
+            //                         select new String(collabrator.NOTEID.ToString())
+
+            //                         ).ToList();
+           
+            //////Now,Get the all recievedemail for above noteid list 
+            //List<string> collabarators = new List<string>();
+
+            //foreach (NoteModelView note in notesList)
+            //{
+
+            //}
+
+            //    collabarators = (from collabarator in context.Collabration
+            //                 where collabarator.RECIEVEDEMAIL == email
+            //                 select new String(collabarator.NOTEID.ToString())
+            //                ).ToList();
 
 
-                collabarators = (from collabarator in context.Collabration
-                                 where collabarator.NOTEID==note.NOTEID
-                                 select new String(context.Users.Find(collabarator.RECIEVEDEMAIL).USEREMAIL))
-                                 .ToList();
-                note.COLLABRATORS = collabarators;
-            }
+
+
+
+            ////For each notes check collabrators or all reciever
+            //List<string> recievers = new List<string>();
+
+
+
+
+            //foreach (NoteModelView note in notesList)
+            //{
+
+
+            //    collabarators = (from collabarator in context.Collabration
+            //                     where collabarator.NOTEID==note.NOTEID
+            //                     select new String(context.Users.Find(collabarator.RECIEVEDEMAIL).USEREMAIL))
+            //                     .ToList();
+            //    note.COLLABRATORS = collabarators;
+            //}
 
 
 
@@ -341,6 +392,6 @@ namespace FundooRepos
             }
         }
 
-        
+       
     }
 }

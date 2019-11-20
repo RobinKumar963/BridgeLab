@@ -9,6 +9,7 @@
 using BusinessManager.Interface;
 using Common.Helper;
 using Common.Models.CollabratorModels;
+using Common.Models.LabelledNoteModels;
 using Common.Models.NoteModels;
 using FundooRepos.Interface;
 using Microsoft.AspNetCore.Http;
@@ -34,6 +35,8 @@ namespace BusinessManager
             this.repository = repository;
         }
 
+       
+
         /// <summary>
         /// Adds the specified note model.
         /// </summary>
@@ -54,6 +57,23 @@ namespace BusinessManager
 
             await this.repository.Add(noteModel);
             return await Task.Run(() => "Note Added Succesfully"); 
+        }
+
+
+        public async Task<string> Add(LabelledNote labelNote)
+        {
+            ////Creating a context object
+            var context = new ValidationContext(labelNote, null, null);
+            ////To store error messages
+            var validresult = new List<ValidationResult>();
+            ////Running Validator
+            bool isValid = Validator.TryValidateObject(labelNote, context, validresult, true);
+
+            if (!isValid)
+                throw new ArgumentException("Invalid Parameter");
+
+            await this.repository.Add(labelNote);
+            return await Task.Run(() => "Label added to note Succesfully");
         }
 
         /// <summary>
@@ -203,8 +223,6 @@ namespace BusinessManager
             return "Image uploaded successfully ";
         }
 
-
-
-        
+       
     }
 }

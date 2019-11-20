@@ -28,7 +28,7 @@ namespace FundooRepos.Interface
         Task Get();
         Task Add(NoteModel noteModel);
         Task Add(CollabratorModel collabratorModel);
-        
+        Task Add(LabelledNote labelNote);
 
        
         Task<List<NoteModelView>> GetByID(string email);

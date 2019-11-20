@@ -7,6 +7,7 @@
 
 
 using Common.Models.CollabratorModels;
+using Common.Models.LabelledNoteModels;
 using Common.Models.NoteModels;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -24,6 +25,8 @@ namespace BusinessManager.Interface
         Task<string> Get();
         Task<string> Add(NoteModel noteModel);
         Task<string> Add(CollabratorModel collabratorModel);
+        Task<string> Add(LabelledNote labelNote);
+
         Task<List<NoteModelView>> GetByID(string email);
         Task<List<NoteModelView>> GetArchiveNotes(string email);
         Task<List<NoteModelView>> GetTrashNotes(string email);

@@ -8,13 +8,13 @@ namespace Common.Models.LabelledNoteModels
 {
     public class LabelledNote
     {
-        private int LabelledNoteID;
+        private int LabelNoteID;
         private int NoteID;
         private int LabelID;
 
         [Key]
         [Required]
-        public int LABELLEDNOTEID { get { return this.LabelledNoteID; } set { this.LabelledNoteID = value; } }
+        public int LABELNOTEID { get { return this.LabelNoteID; } set { this.LabelNoteID = value; } }
 
 
 
