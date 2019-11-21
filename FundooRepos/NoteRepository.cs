@@ -137,14 +137,11 @@ namespace FundooRepos
             ////For each notes check for label
             foreach(NoteModelView note in notesList)
             {
-
-              
-                    labels = (from label in context.Labelnotes
-                              where label.NOTEID == note.NOTEID
-                              select context.Labels.Find(label.LABELID).LABEL
-                            
-
-                              ).ToList();
+                
+                labels = (from label in context.Labelnotes
+                          where label.NOTEID == note.NOTEID
+                          select new String(" ")
+                         ).ToList();
                 
                
               
@@ -203,7 +200,7 @@ namespace FundooRepos
 
 
             ////return task of all notes of a user queued to run on thread pool
-            return Task.Run(() => notesList);
+            return Task.Run(() => notesList); 
         }
         
         /// <summary>

@@ -27,10 +27,12 @@ namespace FundooAPI.Controllers
     /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class NoteController : ControllerBase
     {
         private readonly INoteManager manager;
         private readonly IAccountManager accountManager;
+
         public NoteController(INoteManager manager, IAccountManager accountManager)
         {
             this.manager = manager;
@@ -116,7 +118,6 @@ namespace FundooAPI.Controllers
 
         [HttpGet]
         [Route("ReadNotes")]
-        [Authorize]
         public async Task<IActionResult> ReadNotes()
         {
             

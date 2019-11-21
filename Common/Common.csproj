@@ -13,6 +13,7 @@
     <PackageReference Include="CloudinaryDotNet" Version="1.8.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="2.1.1" />
     <PackageReference Include="ServiceStack.Redis" Version="5.7.0" />
+    <PackageReference Include="System.Runtime.Caching" Version="4.6.0" />
   </ItemGroup>
 
 </Project>

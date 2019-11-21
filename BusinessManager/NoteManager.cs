@@ -131,21 +131,21 @@ namespace BusinessManager
         /// <returns>Task<List<NoteModel>></returns>
         public async Task<List<NoteModelView>> GetByID(string email)
         {
-            var noteKey = "note";
+            var noteKey = "notes";
 
-            Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", noteKey);
+            var notefromcache = RedishCacheHelper.Get<List<NoteModelView>>("localhost", noteKey);
 
             if(notefromcache==null)
             {
                 var res = this.repository.GetByID(email);
-                RedishCacheHelper.Save<Task<List<NoteModelView>>>("localhost", noteKey,res);
+                RedishCacheHelper.Save<List<NoteModelView>>("localhost", noteKey,res.Result);
                 return await Task.Run(() => res);
             }
 
-            return await Task.Run(() => notefromcache);
+              return await Task.Run(() => notefromcache);
 
 
-
+          
 
         }
 
