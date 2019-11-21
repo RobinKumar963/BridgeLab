@@ -131,7 +131,7 @@ namespace BusinessManager
         /// <returns>Task<List<NoteModel>></returns>
         public async Task<List<NoteModelView>> GetByID(string email)
         {
-            var noteKey = "notes";
+            var noteKey = "notes4urocky";
 
             var notefromcache = RedishCacheHelper.Get<List<NoteModelView>>("localhost", noteKey);
 
