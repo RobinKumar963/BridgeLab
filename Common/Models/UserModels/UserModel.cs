@@ -18,6 +18,8 @@ namespace Common.Models.UserModels
         private string UserName;
         private string CardType;
         private string ProfileImage;
+        private string Status;
+
         [Key]
         [Required]
         public string USEREMAIL 
@@ -81,6 +83,19 @@ namespace Common.Models.UserModels
             set
             {
                 ProfileImage = value;
+            }
+        }
+
+
+        public string STATUS
+        {
+            get
+            {
+                return Status;
+            }
+            set
+            {
+                Status = value;
             }
         }
 

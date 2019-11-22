@@ -19,6 +19,24 @@ namespace FundooRepos.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Common.Models.Admin.AdminModel", b =>
+                {
+                    b.Property<string>("ADMINEMAIL")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ADMINNAME")
+                        .IsRequired();
+
+                    b.Property<string>("PASSWORD")
+                        .IsRequired();
+
+                    b.Property<string>("PROFILEIMAGE");
+
+                    b.HasKey("ADMINEMAIL");
+
+                    b.ToTable("Admin");
+                });
+
             modelBuilder.Entity("Common.Models.CollabratorModels.CollabratorModel", b =>
                 {
                     b.Property<int>("COLLABRATIONID")
@@ -104,6 +122,25 @@ namespace FundooRepos.Migrations
                     b.ToTable("Notes");
                 });
 
+            modelBuilder.Entity("Common.Models.ReminderModel.ReminderModel", b =>
+                {
+                    b.Property<int>("REMINDERID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("NOTEID");
+
+                    b.Property<DateTime?>("REMINDERTIME")
+                        .IsRequired();
+
+                    b.Property<string>("USEREMAIL")
+                        .IsRequired();
+
+                    b.HasKey("REMINDERID");
+
+                    b.ToTable("Reminders");
+                });
+
             modelBuilder.Entity("Common.Models.UserModels.UserModel", b =>
                 {
                     b.Property<string>("USEREMAIL")
@@ -116,12 +153,30 @@ namespace FundooRepos.Migrations
 
                     b.Property<string>("PROFILEIMAGE");
 
+                    b.Property<string>("STATUS");
+
                     b.Property<string>("USERNAME")
                         .IsRequired();
 
                     b.HasKey("USEREMAIL");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Common.Models.UserModels.UserStatistics", b =>
+                {
+                    b.Property<int>("SINO")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("LOGINDATETIME");
+
+                    b.Property<string>("USEREMAIL")
+                        .IsRequired();
+
+                    b.HasKey("SINO");
+
+                    b.ToTable("UserStatistics");
                 });
 #pragma warning restore 612, 618
         }

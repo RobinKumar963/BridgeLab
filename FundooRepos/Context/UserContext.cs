@@ -4,10 +4,12 @@
 // </copyright>
 // <creator name="Robin Kumar"/>
 // ----------------------------------------------------------------------------------------------------------------------
+using Common.Models.Admin;
 using Common.Models.CollabratorModels;
 using Common.Models.LabelledNoteModels;
 using Common.Models.LabelModels;
 using Common.Models.NoteModels;
+using Common.Models.ReminderModel;
 using Common.Models.UserModels;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +36,8 @@ namespace FundooRepos.Context
         public DbSet<LabelModel> Labels { get; set; }
         public DbSet<CollabratorModel> Collabration { get; set; }
         public DbSet<LabelledNote> Labelnotes { get; set; }
-
+        public DbSet<ReminderModel> Reminders { get; set; }
+        public DbSet<AdminModel> Admin { get; set; }
+        public DbSet<UserStatistics> UserStatistics { get; set; }
     }
 }
