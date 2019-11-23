@@ -21,7 +21,12 @@ namespace FundooRepos.Interface
     public interface IAccountRepository
     {
         Task Create(UserModel user);
+        Task SocialSignUP(SocialUser user);
+
         Task LogIn(LoginModel login);
+        Task SocialLogIN(LoginModel login);
+
+
         Task ResetPassword(ResetPasswordModel reset);
         Task Forgot(ForgotPassword forgot);
         Task ImageUpload(IFormFile file,string email);

@@ -26,7 +26,7 @@ namespace FundooRepos
     {
         private readonly UserContext context;
 
-        public AccountRepository(UserContext context)
+        public AccountRepository(UserContext context) 
         {
             this.context = context;
         }
@@ -206,7 +206,14 @@ namespace FundooRepos
                 return Task.Run(() => false);
         }
 
-        
+        public Task SocialSignUP(SocialUser user)
+        {
+            return Task.Run(() => context.SaveChanges());
+        }
 
+        public Task SocialLogIN(LoginModel login)
+        {
+            return Task.Run(() => context.SaveChanges());
+        }
     }
 }

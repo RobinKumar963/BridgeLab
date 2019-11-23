@@ -15,6 +15,7 @@ namespace Common.Models.UserModels
     public class UserModel
     {
         private string UserEmail;
+        private string UserID;
         private string Password;
         private string UserName;
         private string CardType;
@@ -35,6 +36,9 @@ namespace Common.Models.UserModels
             }
         }
 
+        
+        [Required]
+        public string USERID { get { return UserID; } set { UserID = value; } }
         
         [Required]
         public string PASSWORD
@@ -87,7 +91,7 @@ namespace Common.Models.UserModels
             }
         }
 
-
+       
         public string STATUS
         {
             get
