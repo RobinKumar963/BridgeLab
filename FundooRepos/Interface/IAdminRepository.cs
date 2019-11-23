@@ -1,4 +1,5 @@
 ﻿using Common.Models.Admin;
+using Common.Models.UserModels;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace FundooRepos.Interface
 
 
 
-        Task UserStatistics();
+        Task<List<UserStatisticsView>> UserStatistics();
         Task UserDetails();
 
 

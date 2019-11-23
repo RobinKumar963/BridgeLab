@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Models.UserModels;
 
 namespace FundooRepos
 {
@@ -121,10 +122,25 @@ namespace FundooRepos
             return Task.Run(() => res);
         }
 
-        public Task UserStatistics()
+        public Task<List<UserStatisticsView>> UserStatistics()
         {
-            var res = 0;
-            return Task.Run(() => res);
+            List<UserStatisticsView> userStatisticsView = new List<UserStatisticsView>();
+
+            userStatisticsView = (from userStats in context.UserStatistics
+                                  select new UserStatisticsView
+                                  {
+                                      SINO=userStats.SINO,
+                                      USEREMAIL=userStats.USEREMAIL,
+                                      LOGINDATETIME=userStats.LOGINDATETIME,
+                                      SERVICE=context.Users.Find(userStats.USEREMAIL).CARDTYPE
+                                       
+
+                                  }
+                                  ).ToList();
+
+
+            return Task.Run(() => userStatisticsView);
+
         }
 
 

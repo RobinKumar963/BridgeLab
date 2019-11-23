@@ -55,7 +55,7 @@ namespace FundooAPI
             services.AddTransient<INoteManager, NoteManager>();
             services.AddTransient<ILabelRepository, LabelRepository>();
             services.AddTransient<ILabelManager, LabelManager>();
-
+            services.AddTransient<IAdminRepository, AdminRepository>();
 
 
             services.AddSwaggerGen(c => {
@@ -72,7 +72,7 @@ namespace FundooAPI
                 options.OperationFilter<SecurityRequirementsOperationFilter>();
                 options.AddSecurityDefinition("Bearer", new ApiKeyScheme
                 {
-                    Description = "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
+                    Description = "Standard Authorization header using the Bearer scheme. Example: \"bearer token\"",
                     In = "header",
                     Name = "Authorization",
                     Type = "apiKey"

@@ -60,6 +60,16 @@ namespace FundooRepos
             var result = context.Users.Where(i => i.USEREMAIL == login.USEREMAIL && i.PASSWORD == login.PASSWORD).FirstOrDefault();
             if (result != null)
             {
+                ////Add UserStatistics in data source 
+                UserStatistics userStatistics = new UserStatistics
+                {
+                    USEREMAIL=login.USEREMAIL,
+                    LOGINDATETIME=DateTime.Now
+
+                };
+                context.UserStatistics.Add(userStatistics);
+
+
                 ////Save Context Changes task queued to run on thread pool  
                 return Task.Run(() => context.SaveChanges());
             }
