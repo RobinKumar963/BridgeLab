@@ -118,8 +118,27 @@ namespace FundooRepos
 
         public Task UserDetails()
         {
-            var res = 0;
-            return Task.Run(() => res);
+            List<AdminUserDetailView> adminUserDetailViews = new List<AdminUserDetailView>();
+
+            adminUserDetailViews = (from userDetail in context.Users
+                                    select new AdminUserDetailView
+                                    {
+                                        USERNAME=userDetail.USERNAME,
+                                        USEREMAIL=userDetail.USEREMAIL,
+                                        SERVICE=userDetail.CARDTYPE,
+                                        NOTES=context.Notes.Count(i => i.USEREMAIL==userDetail.USEREMAIL),
+                                        STATUS=userDetail.STATUS
+                                     
+
+
+                                    }
+                                    ).ToList();
+
+
+            return Task.Run(() => adminUserDetailViews);
+
+
+
         }
 
         public Task<List<UserStatisticsView>> UserStatistics()
@@ -129,11 +148,11 @@ namespace FundooRepos
             userStatisticsView = (from userStats in context.UserStatistics
                                   select new UserStatisticsView
                                   {
-                                      SINO=userStats.SINO,
-                                      USEREMAIL=userStats.USEREMAIL,
-                                      LOGINDATETIME=userStats.LOGINDATETIME,
-                                      SERVICE=context.Users.Find(userStats.USEREMAIL).CARDTYPE
-                                       
+                                      SINO = userStats.SINO,
+                                      USEREMAIL = userStats.USEREMAIL,
+                                      LOGINDATETIME = userStats.LOGINDATETIME,
+                                      SERVICE = context.Users.Find(userStats.USEREMAIL).CARDTYPE.ToString()
+
 
                                   }
                                   ).ToList();
