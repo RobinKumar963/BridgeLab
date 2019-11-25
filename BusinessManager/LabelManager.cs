@@ -57,29 +57,17 @@ namespace BusinessManager
             return await Task.Run(() => "Label Added Succesfully");
         }
 
-
         /// <summary>
-        /// Deletes the label with specified identifier.
+        /// Updates the label with specified identifier.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        /// <returns>Task<string></returns>
-        public async Task<string> Delete(int id)
+        /// <param name="label">The label.</param>
+        /// <returns></returns>
+        public async Task<string> Updates<T>(int id, T newValue, string attribute)
         {
-            await this.repository.Delete(id);
-            return await Task.Run(() => "Label Deleted Succesfully");
-        }
-
-        /// <summary>
-        /// Get all labels.
-        /// </summary>
-        /// <returns>Task<string></returns>
-        public async Task<string> Get()
-        {
-            var res = this.repository.Get();
-            if (res != null)
-                return await Task.Run(() => "Successfull");
-            else
-                return await Task.Run(() => "Failure");
+            await this.repository.Updates(id, newValue, Common.Constants.Constants.LabelNameAttributeName);
+            ////Need to update in cache bucket also to be done
+            return await Task.Run(() => "label Updated Succesfully");
         }
 
         /// <summary>
@@ -94,15 +82,21 @@ namespace BusinessManager
         }
 
         /// <summary>
-        /// Updates the label with specified identifier.
+        /// Deletes the label with specified identifier.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        /// <param name="label">The label.</param>
-        /// <returns></returns>
-        public async Task<string> Update(int id, string label)
+        /// <returns>Task<string></returns>
+        public async Task<string> Delete(int id)
         {
-            await this.repository.Update(id, label);
-            return "label Updated Succesfully";
+            await this.repository.Delete(id);
+            ////Need to update in cache bucket also to be done
+            return await Task.Run(() => "Label Deleted Succesfully");
         }
+
+    
+
+       
+
+      
     }
 }

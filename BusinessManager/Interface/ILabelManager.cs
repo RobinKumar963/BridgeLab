@@ -19,11 +19,14 @@ namespace BusinessManager.Interface
     /// </summary>
     public interface ILabelManager
     {
-        Task<string> Get();
-        Task<string> Add(LabelModel noteModel);
-        Task<List<LabelModel>> GetByID(string email);
-        Task<string> Delete(int id);
-        Task<string> Update(int id, string label);
+        Task<string> Add(LabelModel labelModel);
+
         
+        Task<string> Updates<T>(int id, T newValue, string attribute);
+
+        Task<List<LabelModel>> GetByID(string email);
+
+        Task<string> Delete(int id);
+
     }
 }

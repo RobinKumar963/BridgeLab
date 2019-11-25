@@ -29,6 +29,7 @@ namespace Common.Helper.Bucket
                 return RedishCacheHelper.Save<UserModel>(host, key, user);
             }
 
+             
             
         }
 
@@ -36,7 +37,7 @@ namespace Common.Helper.Bucket
         /// Save and get Note Model In bucket
         /// </summary>
         /// <seealso cref="Common.Helper.Bucket.BucketInterfaces.INoteBucket" />
-        public static class NotesBucket
+        public static class NotesBucket 
         {
             public static List<NoteModelView> Get(string host, string key)
             {
@@ -56,23 +57,22 @@ namespace Common.Helper.Bucket
                 switch (attribute)
                 {
 
-                    case "DESCRIPTION":
+                    case Constants.Constants.NoteDescriptionAttributeName:
                         
                         break;
 
                         
                         
 
-                    case "TITLE":
+                    case Constants.Constants.NoteTitleAttributeName:
                         break;
 
 
-                    case "PIN":
+                    case Constants.Constants.NotesPinAttributeName:
                         break;
 
 
-                    case "ORDER":
-                        break;
+                    
                         
 
                     default:

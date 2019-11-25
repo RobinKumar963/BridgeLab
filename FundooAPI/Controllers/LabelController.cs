@@ -80,14 +80,14 @@ namespace FundooAPI.Controllers
         [HttpPut]
         [Route("UpdateLabel")]
         [Authorize]
-        public async Task<IActionResult> UpdateLabel(int id, string label)
+        public async Task<IActionResult> UpdateLabel<T>(int id,T newValue,string labelAttribute)
         {
             try
             {
                 string Email = User.Claims.First(c => c.Type == "Email").Value;
                 if (await accountManager.Check(Email))
                 {
-                    var result = await manager.Update(id, label);
+                    var result = await manager.Updates(id,newValue,labelAttribute);
                     return Ok(new { result });
                 }
                 else

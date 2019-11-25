@@ -14,42 +14,18 @@ namespace FundooRepos.Interface
     public interface IAdminRepository
     {
         Task CreateAdmin(AdminModel admin);
-        Task LogIn(AdminLogINModel login);
-        Task ResetPassword(AdminResetPasswordModel reset);
-        Task Forgot(AdminForgotPasswordModel forgot);
         Task ImageUpload(IFormFile file, string email);
+
+        Task LogIn(AdminLogINModel login);
         Task LogOut(string email);
-
-
 
         Task<List<UserStatisticsView>> UserStatistics();
         Task<List<AdminUserDetailView>> UserDetails();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        Task ResetPassword(AdminResetPasswordModel reset);
+        Task Forgot(AdminForgotPasswordModel forgot);
+        
         Task<AdminModel> FindByEmailAsync(string email);
         Task<bool> Check(string email);
-
     }
 }

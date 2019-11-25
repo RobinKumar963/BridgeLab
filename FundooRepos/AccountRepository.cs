@@ -47,8 +47,47 @@ namespace FundooRepos
             context.Users.Add(user);
             ////Save Context Changes task queued to run on thread pool 
             return Task.Run(() => context.SaveChanges());
+        }        
+        public Task SocialSignUP(SocialUser user)
+        {
+            return Task.Run(() => context.SaveChanges());
         }
+        /// <summary>
+        /// Upload Profile Image in Cloudnary.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="email">The email.</param>
+        /// <returns>Task</returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public Task ImageUpload(IFormFile file, string email)
+        {
+            ////Uploading image and storing the ImageUploadResult(object) in uploadResult
+            var uploadresult = ImageUploader.UploadImage(file);
 
+            ////If UploadResult property Error is not null
+            ////Throws an exception
+            if (uploadresult.Error != null)
+                throw new Exception(uploadresult.Error.Message);
+
+            ////Getting user with USEREMAIL == Email and from data source using session(instance of DbContext)-context
+            var result = context.Users.Where(i => i.USEREMAIL == email).FirstOrDefault();
+
+            ////On finding result
+            if (result != null)
+            {
+                ////Setting Note field IMAGES with uploadresult url
+                result.PROFILEIMAGE = uploadresult.Uri.ToString();
+                return Task.Run(() => context.SaveChanges());
+
+
+
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
         /// <summary>
         /// Perform LogIN
         /// </summary>
@@ -82,7 +121,11 @@ namespace FundooRepos
                 return null;
             }
         }
-        
+        public Task SocialLogIN(LoginModel login)
+        {
+            return Task.Run(() => context.SaveChanges());
+        }
+
         /// <summary>
         /// Perform Resetting of password
         /// </summary>
@@ -112,7 +155,6 @@ namespace FundooRepos
                 return null;
             }
         }
-
         /// <summary>
         /// Helps,to reset password,in case password is forgotten
         /// </summary>
@@ -134,42 +176,6 @@ namespace FundooRepos
                 return null;
             }
         }
-
-        /// <summary>
-        /// Upload Profile Image in Cloudnary.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="email">The email.</param>
-        /// <returns>Task</returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public Task ImageUpload(IFormFile file,string email)
-        {
-            ////Uploading image and storing the ImageUploadResult(object) in uploadResult
-            var uploadresult = ImageUploader.UploadImage(file);
-
-            ////If UploadResult property Error is not null
-            ////Throws an exception
-            if (uploadresult.Error != null)
-                throw new Exception(uploadresult.Error.Message);
-
-            ////Getting user with USEREMAIL == Email and from data source using session(instance of DbContext)-context
-            var result = context.Users.Where(i => i.USEREMAIL == email).FirstOrDefault();
-
-            ////On finding result
-            if (result != null)
-            {
-                ////Setting Note field IMAGES with uploadresult url
-                result.PROFILEIMAGE = uploadresult.Uri.ToString();
-                return Task.Run(() => context.SaveChanges());
-
-
-
-            }
-            else
-            {
-                return null;
-            }
-        }
         
         /// <summary>
         /// Log out user.
@@ -181,7 +187,6 @@ namespace FundooRepos
             context.Users.Find(email).STATUS = Constants.userStatusInActive;
             return Task.Run(() => context.SaveChanges());
         }
-        
         
         /// <summary>
         /// Check for specified Email in Data Source.
@@ -195,7 +200,6 @@ namespace FundooRepos
             ////return of user task queued to run on thread pool
             return Task.Run(() => result);
         }
-
         /// <summary>
         /// Checks the specified email.
         /// </summary>
@@ -211,14 +215,8 @@ namespace FundooRepos
                 return Task.Run(() => false);
         }
 
-        public Task SocialSignUP(SocialUser user)
-        {
-            return Task.Run(() => context.SaveChanges());
-        }
+        
 
-        public Task SocialLogIN(LoginModel login)
-        {
-            return Task.Run(() => context.SaveChanges());
-        }
+        
     }
 }

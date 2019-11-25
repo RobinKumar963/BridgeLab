@@ -20,11 +20,12 @@ namespace FundooRepos.Interface
     /// </summary>
     public interface ILabelRepository
     {
-        Task Get();
         Task Add(LabelModel labelModel);
+
+        Task Updates<T>(int id, T newValue, string attribute);
+
         Task<List<LabelModel>> GetByID(string email);
-        Task Delete(int id);
-        Task Update(int id,string label);
         
+        Task Delete(int id);
     }
 }

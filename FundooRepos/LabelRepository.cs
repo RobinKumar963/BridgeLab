@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using Common.Constants;
 
 namespace FundooRepos
 {
@@ -24,7 +25,7 @@ namespace FundooRepos
     public class LabelRepository : ILabelRepository
     {
         private readonly UserContext context;
-
+        
         public LabelRepository(UserContext context)
         {
             this.context = context;
@@ -43,15 +44,37 @@ namespace FundooRepos
             return Task.Run(() => context.SaveChanges());
         }
 
-
         /// <summary>
-        /// Gets  all label from Label table in Data source.
+        /// Updated update operation
         /// </summary>
-        /// <returns></returns>
-        public Task Get()
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <param name="newValue"></param>
+        /// <param name="attribute"></param>
+        /// <returns>Task</returns>
+        public Task Updates<T>(int id, T newValue, string attribute)
         {
-            ////return task of all labels queued to run on thread pool
-            return Task.Run(() => context.Labels);
+
+
+
+            switch (attribute)
+            {
+
+                case Constants.LabelNameAttributeName:
+                    ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
+
+                    context.Labels.Find(id).LABEL = (String)Convert.ChangeType(newValue, typeof(T));
+                    return Task.Run(() => context.SaveChanges());
+
+              
+
+                default:
+                    break;
+
+            }
+
+            ////Save Context Changes task queued to run on thread pool
+            return Task.Run(() => context.SaveChanges());
         }
 
         /// <summary>
@@ -77,7 +100,7 @@ namespace FundooRepos
 
 
         }
-
+        
         /// <summary>
         /// Deletes the Label with specified identifier.
         /// </summary>
@@ -90,21 +113,6 @@ namespace FundooRepos
             ////Save Context Changes task queued to run on thread pool
             return Task.Run(() => context.SaveChanges());
         }
-
-       
-        
-        /// <summary>
-        /// Updates the Label with specified identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="label">The label.</param>
-        /// <returns>Task</returns>
-        public Task Update(int id, string label)
-        {
-            ////Update Label with Primary Key value id in data source using session(instance of DbContext)-context
-            context.Labels.Find(id).LABEL = label;
-            ////Save Context Changes task queued to run on thread pool
-            return Task.Run(() => context.SaveChanges());
-        }
+    
     }
 }

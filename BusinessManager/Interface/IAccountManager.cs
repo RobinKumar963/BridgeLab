@@ -21,14 +21,15 @@ namespace FundooRepos.Interface
     {
         Task<string> Registration(UserModel user);
         Task<string> SocialSignUP(SocialUser user);
+        Task<string> ImageUpload(IFormFile file, string email);
 
         Task<string> LogIn(LoginModel login);
         Task<string> SocialLogIN(LoginModel login);
 
         Task<string> ResetPassword(ResetPasswordModel reset);
         Task<string> ForgotP(ForgotPassword forgot);
-        Task<string> ImageUpload(IFormFile file, string email);
 
+        Task<string> LogOut(string email);
 
         Task<UserModel> FindByEmailAsync(string email);
         Task<bool> Check(string email);

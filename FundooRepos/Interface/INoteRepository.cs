@@ -24,23 +24,16 @@ namespace FundooRepos.Interface
     /// </summary>
     public interface INoteRepository
     {
-        
-        Task Get();
         Task Add(NoteModel noteModel);
         Task Add(CollabratorModel collabratorModel);
         Task Add(LabelledNote labelNote);
-
-       
-        Task<List<NoteModelView>> GetByID(string email);
-        Task<List<NoteModelView>> GetArchiveNotes(string email);
-        Task<List<NoteModelView>> GetTrashNotes(string email);
         
-
-        Task Delete(int id);
-        Task Update(int id,string notes);
-        Task Updates<T>(int id, T newValue, string attribute);
         Task ImageUpload(IFormFile file, int id);
-
-
+        Task Updates<T>(int id, T newValue, string attribute);
+        
+        Task<List<NoteModelView>> GetByID(string email);
+        
+        Task Delete(int id);
+        
     }
 }

@@ -22,18 +22,16 @@ namespace BusinessManager.Interface
     /// </summary>
     public interface INoteManager
     {
-        Task<string> Get();
         Task<string> Add(NoteModel noteModel);
         Task<string> Add(CollabratorModel collabratorModel);
         Task<string> Add(LabelledNote labelNote);
-
-        Task<List<NoteModelView>> GetByID(string email);
-        Task<List<NoteModelView>> GetArchiveNotes(string email);
-        Task<List<NoteModelView>> GetTrashNotes(string email);
-        Task<string> Delete(int id);
-        Task<string> Update(int id,string description);
+        
+        Task<string> ImageUpload(IFormFile file, int id);
         Task<string> Updates<T>(int id, T newValue, string attribute);
-        string ImageUpload(IFormFile file, int id);
+        
+        Task<List<NoteModelView>> GetByID(string email);
+        
+        Task<string> Delete(int id);
 
 
     }

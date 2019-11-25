@@ -60,8 +60,6 @@ namespace BusinessManager
             await this.repository.Add(noteModel);
             return await Task.Run(() => "Note Added Succesfully"); 
         }
-
-
         public async Task<string> Add(LabelledNote labelNote)
         {
             ////Creating a context object
@@ -77,7 +75,6 @@ namespace BusinessManager
             await this.repository.Add(labelNote);
             return await Task.Run(() => "Label added to note Succesfully");
         }
-
         /// <summary>
         /// Adds the specified collabrator model to the note.
         /// </summary>
@@ -101,6 +98,56 @@ namespace BusinessManager
         }
 
         /// <summary>
+        /// Upload the image.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="id">The identifier.</param>
+        /// <param name="Email">The email.</param>
+        /// <returns>string</returns>
+        public async Task<string> ImageUpload(IFormFile file, int id)
+        {
+            await this.repository.ImageUpload(file, id);
+            ////Update in cache below lines
+            return "Image uploaded successfully ";
+        }        
+        public async Task<string> Updates<T>(int id, T newValue, string attribute)
+        {
+            
+            await this.repository.Updates<T>(id, newValue, attribute);
+
+            ////Update cache NoteBucket with new notesList in the below line,to be done
+            
+            return await Task.Run(() => "Notes Updated Successfully");
+        }
+
+        /// <summary>
+        /// Gets all notes with Email id.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>Task<List<NoteModel>></returns>
+        public async Task<List<NoteModelView>> GetByID(string email)
+        {
+            ////Using unique UserID+"Notes" for noteKey 
+            var noteKey = accountRepository.FindByEmailAsync(email).Result.USERID + "Notes";
+            ////Saving note in NoteBucket
+            var notefromcache = Bucket.NotesBucket.Get("localhost", noteKey);
+
+            //DeleteThis--var notefromcache = RedishCacheHelper.Get<List<NoteModelView>>("localhost", noteKey);
+
+            if (notefromcache == null)
+            {
+                var res = this.repository.GetByID(email);
+
+                Bucket.NotesBucket.Save("localhost", noteKey, res.Result);
+                //DeleteThis--RedishCacheHelper.Save<List<NoteModelView>>("localhost", noteKey,res.Result);
+                return await Task.Run(() => res);
+            }
+
+            return await Task.Run(() => notefromcache);
+        }
+
+
+        /// <summary>
         /// Deletes the note model with specified identifier.
         /// </summary>
         /// <param name="noteModel">The note model.</param>
@@ -109,134 +156,9 @@ namespace BusinessManager
         public async Task<string> Delete(int id)
         {
             await this.repository.Delete(id);
+            ////Delete cache notebucket in the below line,to be done
             return await Task.Run(() => "Note Deleted Succesfully");
 
         }
-
-        /// <summary>
-        /// Gets all Notes.
-        /// </summary>
-        /// <returns></returns>
-        public async Task<string> Get()
-        {
-            var res= this.repository.Get();
-            if(res!=null)
-                return await Task.Run(() => "Successfull");
-            else
-                return await Task.Run(() => "Failure");
-        }
-
-        /// <summary>
-        /// Gets all notes with Email id.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns>Task<List<NoteModel>></returns>
-        public async Task<List<NoteModelView>> GetByID(string email)   
-        {
-            ////Using unique UserID+"Notes" for noteKey 
-            var noteKey = accountRepository.FindByEmailAsync(email).Result.USERID+"Notes";
-            ////Saving note in NoteBucket
-            var notefromcache = Bucket.NotesBucket.Get("localhost", noteKey);
-
-            //var notefromcache = RedishCacheHelper.Get<List<NoteModelView>>("localhost", noteKey);
-
-            if(notefromcache==null)
-            {
-                var res = this.repository.GetByID(email);
-
-                Bucket.NotesBucket.Save("localhost", noteKey, res.Result);
-                //RedishCacheHelper.Save<List<NoteModelView>>("localhost", noteKey,res.Result);
-                return await Task.Run(() => res);
-            }
-
-              return await Task.Run(() => notefromcache);
-        }
-
-
-        public async Task<string> Updates<T>(int id, T newValue, string attribute)
-        {
-            var noteKey = "ghj";
-            await this.repository.Updates<T>(id, newValue, attribute);
-
-            ////Update cache NoteBucket with new notesList
-            Bucket.NotesBucket.Update("localhost", noteKey, id, attribute);
-            return await Task.Run(() => "Notes Updated Successfully");
-        }
-
-        /// <summary>
-        /// Gets the archive notes.
-        /// </summary>
-        /// <param name="email">The email.</param>
-        /// <returns>Task<List<NoteModelView></returns>
-        public async Task<List<NoteModelView>> GetArchiveNotes(string email)
-        {
-            var archivenoteKey = "archivenotekey";
-
-            Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", archivenoteKey);
-
-            if (notefromcache == null)
-            {
-                var res = this.repository.GetArchiveNotes(email);
-                RedishCacheHelper.Save<Task<List<NoteModelView>>>("localhost", archivenoteKey, res);
-                return await Task.Run(() => res);
-            }
-
-            return await Task.Run(() => notefromcache);
-        }
-
-        /// <summary>
-        /// Gets the trash notes.
-        /// </summary>
-        /// <param name="email">The email.</param>
-        /// <returns>Task<List<NoteModelView>></returns>
-        public async Task<List<NoteModelView>> GetTrashNotes(string email)
-        {
-
-            var trashnoteKey = "trashnotekey";
-
-            Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModelView>>>("localhost", trashnoteKey);
-
-            if (notefromcache == null)
-            {
-                var res = this.repository.GetTrashNotes(email);
-                RedishCacheHelper.Save<Task<List<NoteModelView>>>("localhost", trashnoteKey, res);
-                return await Task.Run(() => res);
-            }
-
-            return await Task.Run(() => notefromcache);
-        }
-                
-     
-
-
-
-        /// <summary>
-        /// Updates the Notes with specified identifier id.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="description">The description.</param>
-        /// <returns></returns>
-        public async Task<string> Update(int id,string description)
-        {
-            await this.repository.Update(id,description);
-            return "Note Updated Succesfully";
-
-        }
-
-        /// <summary>
-        /// Upload the image.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="id">The identifier.</param>
-        /// <param name="Email">The email.</param>
-        /// <returns>string</returns>
-        public  string ImageUpload(IFormFile file, int id)
-        {
-            this.repository.ImageUpload(file, id);
-            //return await Task.Run(() => result);
-            return "Image uploaded successfully ";
-        }
-
-        
     }
 }

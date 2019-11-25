@@ -145,87 +145,11 @@ namespace FundooAPI.Controllers
         }
 
 
-        [HttpGet]
-        [Route("ReadArchiveNotes")]
-        [Authorize]
-        public async Task<IActionResult> ReadArchiveNotes()
-        {
-
-
-            try
-            {
-                string Email = User.Claims.First(c => c.Type == "Email").Value;
-                if (await accountManager.Check(Email))
-                {
-
-                 
-                        var res = await manager.GetArchiveNotes(Email);
-
-                       
-
-                        return Ok(new { res });
-                }
-                else
-                    return null;
-
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-
-
-
-
-        }
 
 
 
 
 
-        [HttpGet]
-        [Route("ReadTrashNotes")]
-        [Authorize]
-        public async Task<IActionResult> ReadTrashNotes()
-        {
-
-
-            try
-            {
-                string Email = User.Claims.First(c => c.Type == "Email").Value;
-                if (await accountManager.Check(Email))
-                {
-
-                   
-                        var res = await manager.GetArchiveNotes(Email);
-
-                        
-
-                        return Ok(new { res });
-                  
-
-
-
-
-
-
-
-
-                    
-                }
-                else
-                    return null;
-
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-
-
-
-
-        }
 
 
 
@@ -235,7 +159,7 @@ namespace FundooAPI.Controllers
         [HttpPut]
         [Route("UpdateNotes")]
         [Authorize]
-        public async Task<IActionResult> UpdateNotes(int id,string des)
+        public async Task<IActionResult> UpdateNotes<T>(int id,T newValue,string noteAttributeName)
         {
 
             try
@@ -243,7 +167,7 @@ namespace FundooAPI.Controllers
                 string Email = User.Claims.First(c => c.Type == "Email").Value;
                 if (await accountManager.Check(Email))
                 {
-                    var result = await manager.Update(id, des);
+                    var result = await manager.Updates(id,newValue,noteAttributeName);
                     return Ok(new { result });
                 }
                 else

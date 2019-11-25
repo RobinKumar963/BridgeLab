@@ -13,8 +13,6 @@ namespace BusinessManager
 {
     public class AdminManager : IAdminManager
     {
-
-
         private readonly IAdminRepository adminRepository;
 
         public AdminManager(IAdminRepository adminRepository)
@@ -38,7 +36,13 @@ namespace BusinessManager
 
             return await Task.Run(() => "Admin Account Created Succesfully");
         }
-        
+        public async Task<string> ImageUpload(IFormFile file, string email)
+        {
+            await adminRepository.ImageUpload(file, email);
+            ////maybe need to up[date redish cache bucket for admin bucket which is not yet created
+            return await Task.Run(() => "Image Uploaded Succesfully");
+        }
+
         public async Task<string> LogIn(AdminLogINModel login)
         {
             ////Creating a context object
@@ -56,22 +60,36 @@ namespace BusinessManager
             return await Task.Run(() => "Login Succesfully");
 
         }
-
-
-        public async Task<bool> Check(string email)
+        public async Task<string> LogOut(string email)
         {
-            var result = await adminRepository.Check(email);
-            return await Task.Run(() => result);
+            await adminRepository.LogOut(email);
+            return await Task.Run(() => "Admin LoggedOut Succesfully");
         }
 
-       
-
-        public async Task<AdminModel> FindByEmailAsync(string email)
+        public Task<List<UserStatisticsView>> UserStatistics()
         {
-            var result = await adminRepository.FindByEmailAsync(email);
-            return await Task.Run(() => result);
+            return Task.Run(() => adminRepository.UserStatistics());
         }
+        public Task<List<AdminUserDetailView>> UserDetails()
+        {
+            return Task.Run(() => adminRepository.UserDetails());
+        }
+        
+        public async Task<string> ResetPassword(AdminResetPasswordModel reset)
+        {
+            ////Creating a context object
+            var context = new ValidationContext(reset, null, null);
+            ////To store error messages
+            var validresult = new List<ValidationResult>();
+            ////Running Validator
+            bool isValid = Validator.TryValidateObject(reset, context, validresult, true);
+            ////On,Validation Failure Throw Exception
+            if (!isValid)
+                throw new ArgumentException("Invalid Parameter");
 
+            await adminRepository.ResetPassword(reset);
+            return await Task.Run(() => "Password Resetted Succesfully");
+        }
         public async Task<string> Forgot(AdminForgotPasswordModel forgot)
         {
             ////Creating a context object
@@ -89,45 +107,17 @@ namespace BusinessManager
             await adminRepository.Forgot(forgot);
             return await Task.Run(() => "Password Resetted Succesfully");
         }
-
-        public async Task<string> ImageUpload(IFormFile file, string email)
+        
+        public async Task<AdminModel> FindByEmailAsync(string email)
         {
-            await adminRepository.ImageUpload(file,email);
-            return await Task.Run(() => "Image Uploaded Succesfully");
+            var result = await adminRepository.FindByEmailAsync(email);
+            return await Task.Run(() => result);
         }
-
-
-
-        public async  Task<string> LogOut(string email)
+        public async Task<bool> Check(string email)
         {
-            await adminRepository.LogOut(email);
-            return await Task.Run(() => "Admin LoggedOut Succesfully");
+            var result = await adminRepository.Check(email);
+            return await Task.Run(() => result);
         }
-
-        public async Task<string> ResetPassword(AdminResetPasswordModel reset)
-        {
-            ////Creating a context object
-            var context = new ValidationContext(reset, null, null);
-            ////To store error messages
-            var validresult = new List<ValidationResult>();
-            ////Running Validator
-            bool isValid = Validator.TryValidateObject(reset, context, validresult, true);
-            ////On,Validation Failure Throw Exception
-            if (!isValid)
-                throw new ArgumentException("Invalid Parameter");
-
-            await adminRepository.ResetPassword(reset);
-            return await Task.Run(() => "Password Resetted Succesfully");
-        }
-
-        public Task<List<AdminUserDetailView>> UserDetails()
-        {
-            return Task.Run(()=> adminRepository.UserDetails()); 
-        }
-
-        public Task<List<UserStatisticsView>> UserStatistics()
-        {
-            return Task.Run(() => adminRepository.UserStatistics());
-        }
+    
     }
 }

@@ -34,58 +34,6 @@ namespace FundooRepos
             ////Save Context Changes task queued to run on thread pool 
             return Task.Run(() => context.SaveChanges());
         }
-
-        public Task LogIn(AdminLogINModel login)
-        {
-            ////Encrypting Password to check with password from data source
-            login.PASSWORD = Encryption.MD5Hash(login.PASSWORD);
-
-            ////Getting value from Data Source
-            var result = context.Admin.Where(i => i.ADMINEMAIL == login.ADMINEMAIL && i.PASSWORD == login.PASSWORD).FirstOrDefault();
-            if (result != null)
-            {
-                
-                ////Save Context Changes task queued to run on thread pool  
-                return Task.Run(() => context.SaveChanges());
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-
-        public Task ResetPassword(AdminResetPasswordModel reset)
-        {
-            ////Encrypting Password
-            reset.OLDPASSWORD = Encryption.MD5Hash(reset.OLDPASSWORD);
-            reset.NEWPASSWORD = Encryption.MD5Hash(reset.NEWPASSWORD);
-            reset.CONFIRMPASSWORD = Encryption.MD5Hash(reset.CONFIRMPASSWORD);
-            ////Checking If newpassword and confirmpassword matches
-            if (reset.CONFIRMPASSWORD != reset.NEWPASSWORD)
-                return Task.Run(() => "Wrong password");
-            ////Getting User with specified email and password from Data Source 
-            var result = context.Admin.Where(i => i.ADMINEMAIL == reset.ADMINEMAIL && i.PASSWORD == reset.OLDPASSWORD).FirstOrDefault();
-
-            if (result != null)
-            {
-                ////resetting password for user reterived from data source
-                result.PASSWORD = reset.NEWPASSWORD;
-                ////Save Context Changes task queued to run on thread pool
-                return Task.Run(() => context.SaveChanges());
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public Task LogOut(string email)
-        {
-            
-            return Task.Run(() => context.SaveChanges());
-        }
-
         public Task ImageUpload(IFormFile file, string email)
         {
             ////Uploading image and storing the ImageUploadResult(object) in uploadResult
@@ -115,9 +63,29 @@ namespace FundooRepos
             }
         }
 
+        public Task LogIn(AdminLogINModel login)
+        {
+            ////Encrypting Password to check with password from data source
+            login.PASSWORD = Encryption.MD5Hash(login.PASSWORD);
 
-       
+            ////Getting value from Data Source
+            var result = context.Admin.Where(i => i.ADMINEMAIL == login.ADMINEMAIL && i.PASSWORD == login.PASSWORD).FirstOrDefault();
+            if (result != null)
+            {
+                
+                ////Save Context Changes task queued to run on thread pool  
+                return Task.Run(() => context.SaveChanges());
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public Task LogOut(string email)
+        {
 
+            return Task.Run(() => context.SaveChanges());
+        }
 
         public Task<List<AdminUserDetailView>> UserDetails()
         {
@@ -126,12 +94,12 @@ namespace FundooRepos
             adminUserDetailViews = (from userDetail in context.Users
                                     select new AdminUserDetailView
                                     {
-                                        USERNAME=userDetail.USERNAME,
-                                        USEREMAIL=userDetail.USEREMAIL,
-                                        SERVICE=userDetail.CARDTYPE,
-                                        NOTES=context.Notes.Count(i => i.USEREMAIL==userDetail.USEREMAIL),
-                                        STATUS=userDetail.STATUS
-                                     
+                                        USERNAME = userDetail.USERNAME,
+                                        USEREMAIL = userDetail.USEREMAIL,
+                                        SERVICE = userDetail.CARDTYPE,
+                                        NOTES = context.Notes.Count(i => i.USEREMAIL == userDetail.USEREMAIL),
+                                        STATUS = userDetail.STATUS
+
 
 
                                     }
@@ -143,7 +111,6 @@ namespace FundooRepos
 
 
         }
-
         public Task<List<UserStatisticsView>> UserStatistics()
         {
             List<UserStatisticsView> userStatisticsView = new List<UserStatisticsView>();
@@ -165,9 +132,30 @@ namespace FundooRepos
 
         }
 
+        public Task ResetPassword(AdminResetPasswordModel reset)
+        {
+            ////Encrypting Password
+            reset.OLDPASSWORD = Encryption.MD5Hash(reset.OLDPASSWORD);
+            reset.NEWPASSWORD = Encryption.MD5Hash(reset.NEWPASSWORD);
+            reset.CONFIRMPASSWORD = Encryption.MD5Hash(reset.CONFIRMPASSWORD);
+            ////Checking If newpassword and confirmpassword matches
+            if (reset.CONFIRMPASSWORD != reset.NEWPASSWORD)
+                return Task.Run(() => "Wrong password");
+            ////Getting User with specified email and password from Data Source 
+            var result = context.Admin.Where(i => i.ADMINEMAIL == reset.ADMINEMAIL && i.PASSWORD == reset.OLDPASSWORD).FirstOrDefault();
 
-
-
+            if (result != null)
+            {
+                ////resetting password for user reterived from data source
+                result.PASSWORD = reset.NEWPASSWORD;
+                ////Save Context Changes task queued to run on thread pool
+                return Task.Run(() => context.SaveChanges());
+            }
+            else
+            {
+                return null;
+            }
+        }
         public Task Forgot(AdminForgotPasswordModel forgot)
         {
             ////Getting User with specified email from  Data Source
@@ -185,10 +173,13 @@ namespace FundooRepos
             }
         }
 
-
-
-     
-        
+        public Task<AdminModel> FindByEmailAsync(string email)
+        {
+            ////Getting User with Specifed email From Data Source
+            var result = context.Admin.Find(email);
+            ////return of user task queued to run on thread pool
+            return Task.Run(() => result);
+        }
         public Task<bool> Check(string email)
         {
             ////Checking for User with Specifed Email From Data Source
@@ -199,13 +190,5 @@ namespace FundooRepos
                 return Task.Run(() => false);
         }
 
-        public Task<AdminModel> FindByEmailAsync(string email)
-        {
-            ////Getting User with Specifed email From Data Source
-            var result = context.Admin.Find(email);
-            ////return of user task queued to run on thread pool
-            return Task.Run(() => result);
-        }
-    
     }
 }

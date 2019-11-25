@@ -58,7 +58,22 @@ namespace BusinessManager
             return await Task.Run(() => "Account Created Succesfully");
             
         }
-
+        public Task<string> SocialSignUP(SocialUser user)
+        {
+            return Task.Run(() => "");
+        }
+        /// <summary>
+        /// Upload profile image.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="email">The email.</param>
+        public async Task<string> ImageUpload(IFormFile file, string email)
+        {
+            await _repository.ImageUpload(file, email);
+            ////Maybe need to updsate redish cache bucket for user
+            return await Task.Run(() => "Image Uploaded Succesfully");
+        }
+        
         /// <summary>
         /// LogIN user
         /// </summary>
@@ -93,11 +108,11 @@ namespace BusinessManager
 
            
         }
-
-
-
-
-
+        public Task<string> SocialLogIN(LoginModel login)
+        {
+            return Task.Run(() => "");
+        }
+        
         /// <summary>
         /// Reset Password
         /// </summary>
@@ -118,7 +133,6 @@ namespace BusinessManager
             await _repository.ResetPassword(reset);
             return await Task.Run(() => "Password Resetted Succesfully");
         }
-
         /// <summary>
         /// Forgot Password
         /// </summary>
@@ -142,17 +156,12 @@ namespace BusinessManager
             return await Task.Run(() => "Password Resetted Succesfully");
         }
 
-
-        /// <summary>
-        /// Upload profile image.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="email">The email.</param>
-        public async Task<string> ImageUpload(IFormFile file, string email)
+        public async Task<string> LogOut(string email)
         {
-            await  _repository.ImageUpload(file, email);
-            return await Task.Run(() => "Image Uploaded Succesfully");
+            await this._repository.LogOut(email);
+            return await Task.Run(() => "Admin LoggedOut Succesfully");
         }
+
 
         /// <summary>
         /// Finds the user with email identifier.
@@ -164,7 +173,6 @@ namespace BusinessManager
             var result = await _repository.FindByEmailAsync(email);
             return await Task.Run(() => result);
         }
-
         /// <summary>
         /// Checks the specified email for existence in User Table in Data Source.
         /// </summary>
@@ -174,16 +182,7 @@ namespace BusinessManager
         {
             var result = await _repository.Check(email);
             return await Task.Run(() => result);
-        }
-
-        public Task<string> SocialSignUP(SocialUser user)
-        {
-            return Task.Run(() =>"");
-        }
-
-        public Task<string> SocialLogIN(LoginModel login)
-        {
-            return Task.Run(() =>""); 
-        }
+        }        
+      
     }
 }
