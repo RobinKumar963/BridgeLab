@@ -2170,6 +2170,7 @@
           "CloudinaryDotNet": "1.8.0",
           "Experimental.System.Messaging": "1.1.0",
           "Microsoft.AspNetCore.Http.Features": "2.1.1",
+          "Microsoft.Extensions.Caching.Memory": "2.1.1",
           "ServiceStack.Redis": "5.7.0",
           "System.Runtime.Caching": "4.6.0"
         },
@@ -7516,19 +7517,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Krish\\.nuget\\packages\\": {}
+    "C:\\Users\\Bridgelabz\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Krish\\source\\repos\\BusinessManager\\BusinessManager.csproj",
+      "projectUniqueName": "C:\\Users\\Bridgelabz\\source\\repos\\BusinessManager\\BusinessManager.csproj",
       "projectName": "BusinessManager",
-      "projectPath": "C:\\Users\\Krish\\source\\repos\\BusinessManager\\BusinessManager.csproj",
-      "packagesPath": "C:\\Users\\Krish\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Krish\\source\\repos\\BusinessManager\\obj\\",
+      "projectPath": "C:\\Users\\Bridgelabz\\source\\repos\\BusinessManager\\BusinessManager.csproj",
+      "packagesPath": "C:\\Users\\Bridgelabz\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Bridgelabz\\source\\repos\\BusinessManager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Krish\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Bridgelabz\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7541,11 +7542,11 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\Krish\\source\\repos\\Common\\Common.csproj": {
-              "projectPath": "C:\\Users\\Krish\\source\\repos\\Common\\Common.csproj"
+            "C:\\Users\\Bridgelabz\\source\\repos\\Common\\Common.csproj": {
+              "projectPath": "C:\\Users\\Bridgelabz\\source\\repos\\Common\\Common.csproj"
             },
-            "C:\\Users\\Krish\\source\\repos\\FundooRepos\\FundooRepos.csproj": {
-              "projectPath": "C:\\Users\\Krish\\source\\repos\\FundooRepos\\FundooRepos.csproj"
+            "C:\\Users\\Bridgelabz\\source\\repos\\FundooRepos\\FundooRepos.csproj": {
+              "projectPath": "C:\\Users\\Bridgelabz\\source\\repos\\FundooRepos\\FundooRepos.csproj"
             }
           }
         }

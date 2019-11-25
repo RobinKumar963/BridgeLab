@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Krish\\source\\repos\\FundooRepos\\FundooRepos.csproj": {}
+    "C:\\Users\\Bridgelabz\\source\\repos\\FundooRepos\\FundooRepos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Krish\\source\\repos\\Common\\Common.csproj": {
+    "C:\\Users\\Bridgelabz\\source\\repos\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Krish\\source\\repos\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\Users\\Bridgelabz\\source\\repos\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "C:\\Users\\Krish\\source\\repos\\Common\\Common.csproj",
-        "packagesPath": "C:\\Users\\Krish\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Krish\\source\\repos\\Common\\obj\\",
+        "projectPath": "C:\\Users\\Bridgelabz\\source\\repos\\Common\\Common.csproj",
+        "packagesPath": "C:\\Users\\Bridgelabz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bridgelabz\\source\\repos\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Krish\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Bridgelabz\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -50,6 +50,10 @@
               "target": "Package",
               "version": "[2.1.1, )"
             },
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -79,17 +83,17 @@
         }
       }
     },
-    "C:\\Users\\Krish\\source\\repos\\FundooRepos\\FundooRepos.csproj": {
+    "C:\\Users\\Bridgelabz\\source\\repos\\FundooRepos\\FundooRepos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Krish\\source\\repos\\FundooRepos\\FundooRepos.csproj",
+        "projectUniqueName": "C:\\Users\\Bridgelabz\\source\\repos\\FundooRepos\\FundooRepos.csproj",
         "projectName": "FundooRepos",
-        "projectPath": "C:\\Users\\Krish\\source\\repos\\FundooRepos\\FundooRepos.csproj",
-        "packagesPath": "C:\\Users\\Krish\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Krish\\source\\repos\\FundooRepos\\obj\\",
+        "projectPath": "C:\\Users\\Bridgelabz\\source\\repos\\FundooRepos\\FundooRepos.csproj",
+        "packagesPath": "C:\\Users\\Bridgelabz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bridgelabz\\source\\repos\\FundooRepos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Krish\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Bridgelabz\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -102,8 +106,8 @@
         "frameworks": {
           "netcoreapp2.1": {
             "projectReferences": {
-              "C:\\Users\\Krish\\source\\repos\\Common\\Common.csproj": {
-                "projectPath": "C:\\Users\\Krish\\source\\repos\\Common\\Common.csproj"
+              "C:\\Users\\Bridgelabz\\source\\repos\\Common\\Common.csproj": {
+                "projectPath": "C:\\Users\\Bridgelabz\\source\\repos\\Common\\Common.csproj"
               }
             }
           }

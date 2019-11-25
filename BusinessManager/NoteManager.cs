@@ -29,6 +29,7 @@ namespace BusinessManager
     public class NoteManager : INoteManager
     {
         private readonly INoteRepository repository;
+        private readonly IAccountRepository accountRepository;
 
         public NoteManager(INoteRepository repository)
         {
@@ -131,7 +132,10 @@ namespace BusinessManager
         /// <returns>Task<List<NoteModel>></returns>
         public async Task<List<NoteModelView>> GetByID(string email)
         {
-            var noteKey = "notes4urocky";
+            ////Using unique UserID+"Notes" for noteKey 
+            var noteKey = accountRepository.FindByEmailAsync(email).Result.USERID+"Notes";
+
+
 
             var notefromcache = RedishCacheHelper.Get<List<NoteModelView>>("localhost", noteKey);
 
@@ -143,10 +147,6 @@ namespace BusinessManager
             }
 
               return await Task.Run(() => notefromcache);
-
-
-          
-
         }
 
         /// <summary>
