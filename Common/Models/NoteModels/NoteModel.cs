@@ -5,6 +5,7 @@
 // <creator name="Robin Kumar"/>
 // ---------------------------------------------------------------------------------------------------------------------
 
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,7 +22,7 @@ namespace Common.Models.NoteModels
 
         
         private int NoteID;
-
+        private int DisplayOrder;
         
        
         private string UserEmail;
@@ -50,7 +51,10 @@ namespace Common.Models.NoteModels
         [Required]
         public int NOTEID { get { return NoteID; } set { NoteID = value; } }
 
-       
+
+        [Required]
+        [ServiceStack.DataAnnotations.Unique]
+        public int DISPLAYORDER { get { return DisplayOrder; } set { DisplayOrder = value; } }
 
         [Required]
         [ForeignKey("UserModel")]
@@ -72,7 +76,7 @@ namespace Common.Models.NoteModels
 
         public bool ISTRASH { get { return this.IsTrash; } set { IsTrash = value; } }
 
-        public bool ISPIN { get { return this.IsPin; } set { IsPin = value; } }
+        public Boolean ISPIN { get { return this.IsPin; } set { IsPin = value; } }
 
         public string COLOR { get { return this.Color; } set { Color = value; } }
 

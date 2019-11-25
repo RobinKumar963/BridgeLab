@@ -4,6 +4,7 @@
 // </copyright>
 // <creator name="Robin Kumar"/>
 // ---------------------------------------------------------------------------------------------------------------------
+using Common.Constants;
 using Common.Helper;
 using Common.Models.UserModels;
 using FundooRepos.Context;
@@ -40,6 +41,8 @@ namespace FundooRepos
         {
             ////Encrypting Password
             user.PASSWORD = Encryption.MD5Hash(user.PASSWORD);
+            ////Generating unique UserID
+            user.USERID = UniqueIDGenerator.GenerateUniqueString();
             ////Adding user to data source using session(instance of DbContext)-context 
             context.Users.Add(user);
             ////Save Context Changes task queued to run on thread pool 
@@ -60,6 +63,7 @@ namespace FundooRepos
             var result = context.Users.Where(i => i.USEREMAIL == login.USEREMAIL && i.PASSWORD == login.PASSWORD).FirstOrDefault();
             if (result != null)
             {
+                context.Users.Find(login.USEREMAIL).STATUS = Constants.userStatusActive;
                 ////Add UserStatistics in data source 
                 UserStatistics userStatistics = new UserStatistics
                 {
@@ -174,7 +178,8 @@ namespace FundooRepos
         /// <returns></returns>
         public Task LogOut(string email)
         {
-            return Task.Run(() => "Log out");
+            context.Users.Find(email).STATUS = Constants.userStatusInActive;
+            return Task.Run(() => context.SaveChanges());
         }
         
         

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Common.Models.UserModels;
+using Common.Constants;
 
 namespace FundooRepos
 {
@@ -43,6 +44,7 @@ namespace FundooRepos
             var result = context.Admin.Where(i => i.ADMINEMAIL == login.ADMINEMAIL && i.PASSWORD == login.PASSWORD).FirstOrDefault();
             if (result != null)
             {
+                
                 ////Save Context Changes task queued to run on thread pool  
                 return Task.Run(() => context.SaveChanges());
             }
@@ -80,7 +82,8 @@ namespace FundooRepos
 
         public Task LogOut(string email)
         {
-            return Task.Run(() => "Log out");
+            
+            return Task.Run(() => context.SaveChanges());
         }
 
         public Task ImageUpload(IFormFile file, string email)

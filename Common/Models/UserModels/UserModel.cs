@@ -36,8 +36,15 @@ namespace Common.Models.UserModels
             }
         }
 
+
+
         
+
+
+
+
         [Required]
+        [ServiceStack.DataAnnotations.Unique]
         public string USERID { get { return UserID; } set { UserID = value; } }
         
         [Required]

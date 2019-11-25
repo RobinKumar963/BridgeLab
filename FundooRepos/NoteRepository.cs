@@ -19,6 +19,7 @@ using CloudinaryDotNet.Actions;
 using Common.Models.CollabratorModels;
 using Common.Helper;
 using Common.Models.LabelledNoteModels;
+using Common.Constants;
 
 namespace FundooRepos
 {
@@ -46,6 +47,7 @@ namespace FundooRepos
         /// <returns>Task</returns>
         public Task Add(NoteModel noteModel)
         {
+            ////Check here if you need display order auto increment
             ////Adding note to data source using session(instance of DbContext)-context 
             context.Notes.Add(noteModel);
             ////Save Context Changes task queued to run on thread pool
@@ -333,6 +335,9 @@ namespace FundooRepos
             ////return task of all notes of a user queued to run on thread pool
             return Task.Run(() => notesList);
         }
+
+
+
         
         /// <summary>
         /// Updates the note with specified identifier.
@@ -347,7 +352,67 @@ namespace FundooRepos
             ////Save Context Changes task queued to run on thread pool
             return Task.Run(() => context.SaveChanges());
         }
-        
+
+
+        /// <summary>
+        /// Updated update operation
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <param name="newValue"></param>
+        /// <param name="attribute"></param>
+        /// <returns>Task</returns>
+        public Task Updates<T>(int id,T newValue,string attribute)
+        {
+
+
+
+            switch(attribute)
+            {
+
+                case Constants.NoteDescriptionAttributeName:
+                    ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
+
+                    context.Notes.Find(id).DESCRIPTION = (String)Convert.ChangeType(newValue, typeof(T));
+                    return Task.Run(() => context.SaveChanges());
+
+                case Constants.NoteTitleAttributeName:
+                    ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
+
+                    context.Notes.Find(id).TITLE = (String)Convert.ChangeType(newValue, typeof(T));
+                    return Task.Run(() => context.SaveChanges());
+
+
+                case Constants.NotesPinAttributeName:
+                    ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
+                    
+                    context.Notes.Find(id).ISPIN = (Boolean)Convert.ChangeType(newValue, typeof(T));
+                    return Task.Run(() => context.SaveChanges());
+                    
+
+                case Constants.NoteOrderAttributeName:
+
+                    ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
+                    
+                    context.Notes.Find(id).DISPLAYORDER = (int)Convert.ChangeType(newValue, typeof(T));
+                    return Task.Run(() => context.SaveChanges());
+                   
+                default:
+                    break;
+
+            }
+            
+            ////Save Context Changes task queued to run on thread pool
+            return Task.Run(() => context.SaveChanges());
+        }
+
+
+
+
+
+
+
+
         /// <summary>
         /// Upload Image in cloudnary.
         /// </summary>
@@ -389,6 +454,11 @@ namespace FundooRepos
             }
         }
 
-       
+
+
+
+
+
+
     }
 }
