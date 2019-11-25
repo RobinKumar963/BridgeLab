@@ -4,6 +4,7 @@ using Common.Models.UserModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Common;
 
 namespace Common.Helper.Bucket
 {
@@ -16,39 +17,76 @@ namespace Common.Helper.Bucket
         /// Save and get UserModel in UserBucket
         /// </summary>
         /// <seealso cref="Common.Helper.Bucket.BucketInterfaces.IUserBucket" />
-        public class UserBucket : IUserBucket
+        public static class UserBucket 
         {
-            public UserModel Get(string host, string key)
+            public static UserModel Get(string host, string key)
             {
                 return RedishCacheHelper.Get<UserModel>(host, key);
             }
 
-            public bool Save(string host, string key, UserModel user)
+            public static bool Save(string host, string key, UserModel user)
             {
                 return RedishCacheHelper.Save<UserModel>(host, key, user);
             }
+
+            
         }
 
         /// <summary>
         /// Save and get Note Model In bucket
         /// </summary>
         /// <seealso cref="Common.Helper.Bucket.BucketInterfaces.INoteBucket" />
-        public class NotesBucket : INoteBucket
+        public static class NotesBucket
         {
-            public List<NoteModelView> Get(string host, string key)
+            public static List<NoteModelView> Get(string host, string key)
             {
                 return RedishCacheHelper.Get<List<NoteModelView>>(host, key);
             }
 
-            public bool Save(string host, string key, List<NoteModelView> noteModelViews)
+            public static bool Save(string host, string key, List<NoteModelView> noteModelViews)
             {
                 return RedishCacheHelper.Save<List<NoteModelView>>(host, key, noteModelViews);
             }
+
+            
+
+
+            public static void Update(string host,string key,int id,string attribute)
+            {
+                switch (attribute)
+                {
+
+                    case "DESCRIPTION":
+                        
+                        break;
+
+                        
+                        
+
+                    case "TITLE":
+                        break;
+
+
+                    case "PIN":
+                        break;
+
+
+                    case "ORDER":
+                        break;
+                        
+
+                    default:
+                        break;
+
+                }
+            }
         }
+
+
         /// <summary>
         /// Save and get Collabarator of notes in Collabarator Bucket
         /// </summary>
-        public class CollabaratorBucket :ICollabartorBucket
+        public static class CollabaratorBucket
         {
 
         }

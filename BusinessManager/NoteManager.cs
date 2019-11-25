@@ -131,7 +131,7 @@ namespace BusinessManager
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>Task<List<NoteModel>></returns>
-        public async Task<List<NoteModelView>> GetByID(string email)
+        public async Task<List<NoteModelView>> GetByID(string email)   
         {
             ////Using unique UserID+"Notes" for noteKey 
             var noteKey = accountRepository.FindByEmailAsync(email).Result.USERID+"Notes";
@@ -150,6 +150,17 @@ namespace BusinessManager
             }
 
               return await Task.Run(() => notefromcache);
+        }
+
+
+        public async Task<string> Updates<T>(int id, T newValue, string attribute)
+        {
+            var noteKey = "ghj";
+            await this.repository.Updates<T>(id, newValue, attribute);
+
+            ////Update cache NoteBucket with new notesList
+            Bucket.NotesBucket.Update("localhost", noteKey, id, attribute);
+            return await Task.Run(() => "Notes Updated Successfully");
         }
 
         /// <summary>
@@ -194,10 +205,10 @@ namespace BusinessManager
 
             return await Task.Run(() => notefromcache);
         }
-
-
-
+                
      
+
+
 
         /// <summary>
         /// Updates the Notes with specified identifier id.
@@ -226,6 +237,6 @@ namespace BusinessManager
             return "Image uploaded successfully ";
         }
 
-       
+        
     }
 }

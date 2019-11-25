@@ -84,7 +84,7 @@ namespace BusinessManager
             //ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect("127.0.0.1:6379");
             //IDatabase database = connectionMultiplexer.GetDatabase();
 
-            //database.StringSet(noteModelKey, noteModelValue);
+            //database.(noteModelKey, noteModelValue);
             //database.StringGet(noteModelKey);
            
 
@@ -93,6 +93,9 @@ namespace BusinessManager
 
            
         }
+
+
+
 
 
         /// <summary>
@@ -173,6 +176,14 @@ namespace BusinessManager
             return await Task.Run(() => result);
         }
 
-       
+        public Task<string> SocialSignUP(SocialUser user)
+        {
+            return Task.Run(() =>"");
+        }
+
+        public Task<string> SocialLogIN(LoginModel login)
+        {
+            return Task.Run(() =>""); 
+        }
     }
 }

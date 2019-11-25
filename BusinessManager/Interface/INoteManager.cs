@@ -32,6 +32,7 @@ namespace BusinessManager.Interface
         Task<List<NoteModelView>> GetTrashNotes(string email);
         Task<string> Delete(int id);
         Task<string> Update(int id,string description);
+        Task<string> Updates<T>(int id, T newValue, string attribute);
         string ImageUpload(IFormFile file, int id);
 
 

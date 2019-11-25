@@ -20,7 +20,11 @@ namespace FundooRepos.Interface
     public interface IAccountManager 
     {
         Task<string> Registration(UserModel user);
+        Task<string> SocialSignUP(SocialUser user);
+
         Task<string> LogIn(LoginModel login);
+        Task<string> SocialLogIN(LoginModel login);
+
         Task<string> ResetPassword(ResetPasswordModel reset);
         Task<string> ForgotP(ForgotPassword forgot);
         Task<string> ImageUpload(IFormFile file, string email);

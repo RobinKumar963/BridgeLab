@@ -54,6 +54,7 @@ namespace FundooRepos
             return Task.Run(() => context.SaveChanges());
 
         }
+
         /// <summary>
         /// Adds label to notes.
         /// </summary>

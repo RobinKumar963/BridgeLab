@@ -1218,6 +1218,7 @@
           "CloudinaryDotNet": "1.8.0",
           "Experimental.System.Messaging": "1.1.0",
           "Microsoft.AspNetCore.Http.Features": "2.1.1",
+          "Microsoft.Extensions.Caching.Memory": "2.1.1",
           "ServiceStack.Redis": "5.7.0",
           "System.Runtime.Caching": "4.6.0"
         },

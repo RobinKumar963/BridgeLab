@@ -23,7 +23,7 @@ namespace FundooRepos.Interface
 
 
         Task<List<UserStatisticsView>> UserStatistics();
-        Task UserDetails();
+        Task<List<AdminUserDetailView>> UserDetails();
 
 
 

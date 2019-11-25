@@ -119,7 +119,7 @@ namespace FundooRepos
        
 
 
-        public Task UserDetails()
+        public Task<List<AdminUserDetailView>> UserDetails()
         {
             List<AdminUserDetailView> adminUserDetailViews = new List<AdminUserDetailView>();
 
