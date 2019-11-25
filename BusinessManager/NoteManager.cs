@@ -8,6 +8,7 @@
 
 using BusinessManager.Interface;
 using Common.Helper;
+using Common.Helper.Bucket;
 using Common.Models.CollabratorModels;
 using Common.Models.LabelledNoteModels;
 using Common.Models.NoteModels;
@@ -134,15 +135,17 @@ namespace BusinessManager
         {
             ////Using unique UserID+"Notes" for noteKey 
             var noteKey = accountRepository.FindByEmailAsync(email).Result.USERID+"Notes";
+            ////Saving note in NoteBucket
+            var notefromcache = Bucket.NotesBucket.Get("localhost", noteKey);
 
-
-
-            var notefromcache = RedishCacheHelper.Get<List<NoteModelView>>("localhost", noteKey);
+            //var notefromcache = RedishCacheHelper.Get<List<NoteModelView>>("localhost", noteKey);
 
             if(notefromcache==null)
             {
                 var res = this.repository.GetByID(email);
-                RedishCacheHelper.Save<List<NoteModelView>>("localhost", noteKey,res.Result);
+
+                Bucket.NotesBucket.Save("localhost", noteKey, res.Result);
+                //RedishCacheHelper.Save<List<NoteModelView>>("localhost", noteKey,res.Result);
                 return await Task.Run(() => res);
             }
 
