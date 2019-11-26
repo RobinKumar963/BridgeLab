@@ -43,7 +43,6 @@ namespace FundooAPI.Controllers
 
         [HttpPost]
         [Route("AddNotes")]
-        [Authorize]
         public async Task<IActionResult> AddNotes(NoteModel noteModel)
         {
             try
@@ -67,7 +66,6 @@ namespace FundooAPI.Controllers
 
         [HttpPost]
         [Route("AddCollabaratorNotes")]
-        [Authorize]
         public async Task<IActionResult> AddCollabaratorNotes(CollabratorModel collabratorNoteModel)
         {
             try
@@ -93,7 +91,6 @@ namespace FundooAPI.Controllers
 
         [HttpPost]
         [Route("AddLabelledNotes")]
-        [Authorize]
         public async Task<IActionResult> AddLabelledNotes(LabelledNote labelledNote)
         {
             try
@@ -112,10 +109,49 @@ namespace FundooAPI.Controllers
                 return BadRequest(e.Message);
             }
         }
+        
+        [HttpPost]
+        [Route("Upload")]
+        public IActionResult ImageUpload(IFormFile file, int id)
+        {
+            try
+            {
+                string Email = User.Claims.First(c => c.Type == "Email").Value;
+                var result = this.manager.ImageUpload(file, id);
+                return Ok(new { result });
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(e.Message);
+            }
+        }
+        
+        [HttpPut]
+        [Route("UpdateNotes")]
+        public async Task<IActionResult> UpdateNotes<T>(int id, T newValue, string noteAttributeName)
+        {
+
+            try
+            {
+                string Email = User.Claims.First(c => c.Type == "Email").Value;
+                if (await accountManager.Check(Email))
+                {
+                    var result = await manager.Updates(id, newValue, noteAttributeName);
+                    return Ok(new { result });
+                }
+                else
+                    return null;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
 
 
 
+        }
+        
         [HttpGet]
         [Route("ReadNotes")]
         public async Task<IActionResult> ReadNotes()
@@ -143,49 +179,9 @@ namespace FundooAPI.Controllers
 
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-        [HttpPut]
-        [Route("UpdateNotes")]
-        [Authorize]
-        public async Task<IActionResult> UpdateNotes<T>(int id,T newValue,string noteAttributeName)
-        {
-
-            try
-            {
-                string Email = User.Claims.First(c => c.Type == "Email").Value;
-                if (await accountManager.Check(Email))
-                {
-                    var result = await manager.Updates(id,newValue,noteAttributeName);
-                    return Ok(new { result });
-                }
-                else
-                    return null;
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-            
-
-
-
-        }
-
+        
         [HttpDelete]
         [Route("DeleteNotes")]
-        [Authorize]
         public async Task<IActionResult> DeleteNotes(int id)
         {
             try
@@ -202,23 +198,6 @@ namespace FundooAPI.Controllers
             catch (Exception e)
             {
                 return BadRequest(e.Message);
-            }
-        }
-
-
-        [HttpPost]
-        [Route("Upload")]
-        public IActionResult ImageUpload(IFormFile file, int id)
-        {
-            try
-            {
-                string Email = User.Claims.First(c => c.Type == "Email").Value;
-                var result = this.manager.ImageUpload(file, id);
-                return Ok(new { result });
-            }
-            catch (Exception e)
-            {
-                return this.BadRequest(e.Message);
             }
         }
     }

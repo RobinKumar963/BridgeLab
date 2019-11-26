@@ -15,8 +15,9 @@ namespace FundooAPI.Controllers
     /// Action Method for label
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
-    [Route("api/[controller]"),Authorize]
+    [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LabelController : ControllerBase
     {
         private readonly ILabelManager manager;
@@ -32,7 +33,6 @@ namespace FundooAPI.Controllers
 
         [HttpPost]
         [Route("AddLabel")]
-        [Authorize]
         public async Task<IActionResult> AddLabel(LabelModel labelModel)
         {
             try
@@ -53,9 +53,30 @@ namespace FundooAPI.Controllers
         }
 
 
+
+        [HttpPut]
+        [Route("UpdateLabel")]
+        public async Task<IActionResult> UpdateLabel<T>(int id, T newValue, string labelAttribute)
+        {
+            try
+            {
+                string Email = User.Claims.First(c => c.Type == "Email").Value;
+                if (await accountManager.Check(Email))
+                {
+                    var result = await manager.Updates(id, newValue, labelAttribute);
+                    return Ok(new { result });
+                }
+                else
+                    return null;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         [HttpGet]
         [Route("ReadLabel")]
-        [Authorize]
         public async Task<IActionResult> ReadLabel()
         {
 
@@ -77,31 +98,9 @@ namespace FundooAPI.Controllers
             }
         }
 
-        [HttpPut]
-        [Route("UpdateLabel")]
-        [Authorize]
-        public async Task<IActionResult> UpdateLabel<T>(int id,T newValue,string labelAttribute)
-        {
-            try
-            {
-                string Email = User.Claims.First(c => c.Type == "Email").Value;
-                if (await accountManager.Check(Email))
-                {
-                    var result = await manager.Updates(id,newValue,labelAttribute);
-                    return Ok(new { result });
-                }
-                else
-                    return null;
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
 
         [HttpDelete]
         [Route("DeleteLabel")]
-        [Authorize]
         public async Task<IActionResult> DeleteLabel(int id)
         {
             try

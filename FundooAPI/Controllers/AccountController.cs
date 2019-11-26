@@ -24,6 +24,7 @@ namespace FundooAPI.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AccountController : ControllerBase
     {
         private readonly IAccountManager _manager;
@@ -38,12 +39,10 @@ namespace FundooAPI.Controllers
         /// <param name="user"></param>
         /// <returns>Task</returns>
         [HttpPost]
-        [Route("Add")]
+        [Route("Register")]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(UserModel user)
         {
-
-         
-
             try
             {
                 var result = await _manager.Registration(user);
@@ -53,25 +52,17 @@ namespace FundooAPI.Controllers
             {
                 return BadRequest(e.Message);
             }
-            
-               
-            
-            
         }
 
 
         [HttpPost]
         [Route("UploadImage")]
-        [Authorize]
         public async Task<IActionResult> UploadImage(IFormFile file, string email)
         {
-
             string Email = User.Claims.First(c => c.Type == "Email").Value;
-
-
             try
             {
-                if (await _manager.Check(Email))
+                if (await _manager.Check(Email)&&Email==email)
                 {
                     var result = await _manager.ImageUpload(file, email);
                     return Ok(new { result });
@@ -82,85 +73,8 @@ namespace FundooAPI.Controllers
             {
                 return BadRequest(e.Message);
             }
-
-
-
-
         }
 
-
-        /// <summary>
-        /// LogIN
-        /// </summary>
-        /// <param name="login"></param>
-        /// <returns>Task</returns>
-        //[HttpPost]
-        //[Route("LogIn")]
-        //public async Task<IActionResult> LogIn(LoginModel login)
-        //{
-
-
-        //    try
-        //    {
-        //        var result = await _manager.LogIn(login);
-        //        return Ok(new { result });
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return BadRequest(e.Message);
-        //    }
-
-
-
-        //}
-
-        /// <summary>
-        /// Reset Password
-        /// </summary>
-        /// <param name="reset"></param>
-        /// <returns>Task</returns>
-        [HttpPost]
-        [Route("Reset")]
-        public async Task<IActionResult> ResetPassword(ResetPasswordModel reset)
-        {
-            try
-            {
-                var result = await _manager.ResetPassword(reset);
-                return Ok(new { result });
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-
-
-
-           
-        }
-
-        /// <summary>
-        /// Forgot password
-        /// </summary>
-        /// <param name="forgot"></param>
-        /// <returns>Forgot</returns>
-        [HttpPost]
-        [Route("Forgot")]
-        public async Task<IActionResult> Forgot(ForgotPassword forgot)
-        {
-
-            try
-            {
-                var result = await _manager.ForgotP(forgot);
-                return Ok(new { result });
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-
-
-            
-        }
 
         /// <summary>
         /// LogIN Model
@@ -169,6 +83,7 @@ namespace FundooAPI.Controllers
         /// <returns>Task</returns>
         [HttpPost]
         [Route("LogIN")]
+        [AllowAnonymous]
         public async Task<IActionResult> LogIN(LoginModel login)
         {
             try
@@ -190,7 +105,7 @@ namespace FundooAPI.Controllers
                     };
 
 
-                   
+
 
 
 
@@ -214,70 +129,90 @@ namespace FundooAPI.Controllers
             {
                 return BadRequest(e.Message);
             }
-            
-           
+
+
         }
 
 
-
-        [HttpGet,Authorize]
-        [Route("reg")]
-        public async Task<object> GetDetails()
+        
+        /// <summary>
+        /// Reset Password
+        /// </summary>
+        /// <param name="reset"></param>
+        /// <returns>Task</returns>
+        [HttpPost]
+        [Route("Reset")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordModel reset)
         {
-
-
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            
             try
             {
-                string Email = User.Claims.First(c => c.Type == "Email").Value;
-                var result = await _manager.FindByEmailAsync(Email);
-                return new
+                if (await _manager.Check(Email) && Email == reset.USEREMAIL)
                 {
-                    result.USEREMAIL,
-                    result.USERNAME,
-                    result.CARDTYPE
+                    var result = await _manager.ResetPassword(reset);
+                    return Ok(new { result });
 
-
-                };
+                }
+                return null;
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
+
+
+
            
         }
 
-        //[HttpPost]
-        //[Route("UploadImage")]
-        //[Authorize]
-        //public async Task<IActionResult> UploadImage()
-        //{
-        //    try
-        //    {
-        //        string Email = User.Claims.First(c => c.Type == "Email").Value;
-        //        if (await _manager.Check(Email))
-        //        {
-        //            var ctx = HttpContext;
-        //            var result = "Uploaded";
-        //            return Ok(new { result });
-        //        }
-        //        else
-        //        {
-        //            var result = "Not Uploaded";
-        //            return Ok(new { result });
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return BadRequest(e.Message);
-        //    }
+        /// <summary>
+        /// Forgot password
+        /// </summary>
+        /// <param name="forgot"></param>
+        /// <returns>Forgot</returns>
+        [HttpPost]
+        [Route("Forgot")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Forgot(ForgotPassword forgot)
+        {
+
+            try
+            {
+                var result = await _manager.ForgotP(forgot);
+                return Ok(new { result });
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+
+            
+        }
+
+        [HttpPost]
+        [Route("LogOut")]
+        public async Task<IActionResult> LogOut(string email)
+        {
+            string Email = User.Claims.First(c => c.Type == "Email").Value;
+            try
+            {
+                if (await _manager.Check(Email) && Email == email)
+                {
+                    var result = await _manager.LogOut(email);
+                    return Ok(new { result });
+                }
+                return null;    
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
 
 
 
-
-
-        //}
-
-
-
+        }
+    
     }
 }
