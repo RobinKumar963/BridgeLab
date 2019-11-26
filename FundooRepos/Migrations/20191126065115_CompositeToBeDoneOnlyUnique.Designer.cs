@@ -4,14 +4,16 @@ using FundooRepos.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FundooRepos.Migrations
 {
     [DbContext(typeof(UserContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20191126065115_CompositeToBeDoneOnlyUnique")]
+    partial class CompositeToBeDoneOnlyUnique
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,7 +102,7 @@ namespace FundooRepos.Migrations
 
                     b.Property<string>("DESCRIPTION");
 
-                    b.Property<int>("DISPLAYORDER").ValueGeneratedOnAdd();
+                    b.Property<int>("DISPLAYORDER");
 
                     b.Property<string>("IMAGES");
 
