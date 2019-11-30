@@ -81,7 +81,13 @@ namespace FundooAPI
                 });
             });
 
-                
+
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
 
 
 
@@ -129,7 +135,7 @@ namespace FundooAPI
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "ROBIN");
             });
 
-
+            app.UseCors("MyPolicy");
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
