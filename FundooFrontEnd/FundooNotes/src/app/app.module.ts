@@ -11,7 +11,9 @@ import { UserLogINComponent } from './Components/user-log-in/user-log-in.compone
 import { UserSignUpComponent } from './Components/user-sign-up/user-sign-up.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { UserDashBoardComponent } from './Components/user-dash-board/user-dash-board.component';
 
+ 
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     UserRegistrationComponent,
     UserLogINComponent,
-    UserSignUpComponent
+    UserSignUpComponent,
+    UserDashBoardComponent
   
   ],
   imports: [
