@@ -35,6 +35,8 @@ namespace FundooAPI.Controllers
         [Route("AddLabel")]
         public async Task<IActionResult> AddLabel(LabelModel labelModel)
         {
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
             try
             {
                 string Email = User.Claims.First(c => c.Type == "Email").Value;
@@ -58,6 +60,8 @@ namespace FundooAPI.Controllers
         [Route("UpdateLabel")]
         public async Task<IActionResult> UpdateLabel<T>(int id, T newValue, string labelAttribute)
         {
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
             try
             {
                 string Email = User.Claims.First(c => c.Type == "Email").Value;
@@ -80,7 +84,8 @@ namespace FundooAPI.Controllers
         public async Task<IActionResult> ReadLabel()
         {
 
-
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
             try
             {
                 string Email = User.Claims.First(c => c.Type == "Email").Value;
@@ -103,6 +108,8 @@ namespace FundooAPI.Controllers
         [Route("DeleteLabel")]
         public async Task<IActionResult> DeleteLabel(int id)
         {
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
             try
             {
                 string Email = User.Claims.First(c => c.Type == "Email").Value;

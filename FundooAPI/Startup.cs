@@ -56,6 +56,8 @@ namespace FundooAPI
             services.AddTransient<ILabelRepository, LabelRepository>();
             services.AddTransient<ILabelManager, LabelManager>();
             services.AddTransient<IAdminRepository, AdminRepository>();
+            services.AddTransient<IAdminManager, AdminManager>();
+            
 
 
             services.AddSwaggerGen(c => {

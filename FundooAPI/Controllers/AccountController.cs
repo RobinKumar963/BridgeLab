@@ -59,6 +59,8 @@ namespace FundooAPI.Controllers
         [Route("UploadImage")]
         public async Task<IActionResult> UploadImage(IFormFile file, string email)
         {
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
             string Email = User.Claims.First(c => c.Type == "Email").Value;
             try
             {
@@ -144,6 +146,8 @@ namespace FundooAPI.Controllers
         [Route("Reset")]
         public async Task<IActionResult> ResetPassword(ResetPasswordModel reset)
         {
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
             string Email = User.Claims.First(c => c.Type == "Email").Value;
             
             try
@@ -195,6 +199,8 @@ namespace FundooAPI.Controllers
         [Route("LogOut")]
         public async Task<IActionResult> LogOut(string email)
         {
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
             string Email = User.Claims.First(c => c.Type == "Email").Value;
             try
             {

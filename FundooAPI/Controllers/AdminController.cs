@@ -30,7 +30,8 @@ namespace FundooAPI.Controllers
         /// <param name="user"></param>
         /// <returns>Task</returns>
         [HttpPost]
-        [Route("Register")]
+        [Route("Add")]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(AdminModel adminModel)
         {
             ////Add method shouldnt be allowed anonymously
@@ -51,6 +52,8 @@ namespace FundooAPI.Controllers
         [Route("UploadImage")]
         public async Task<IActionResult> UploadImage(IFormFile file, string email)
         {
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
             string Email = User.Claims.First(c => c.Type == "Email").Value;
             try
             {
@@ -78,6 +81,7 @@ namespace FundooAPI.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> LogIN(AdminLogINModel adminLogINModel)
         {
+            
             try
             {
                 var result = await adminManager.LogIn(adminLogINModel);
@@ -130,6 +134,8 @@ namespace FundooAPI.Controllers
         [Route("LogOut")]
         public async Task<IActionResult> LogOut(string email)
         {
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
             string Email = User.Claims.First(c => c.Type == "Email").Value;
             try
             {
@@ -153,6 +159,8 @@ namespace FundooAPI.Controllers
         [Route("GetUserStatistics")]
         public async Task<IActionResult> GetUserStatistics()
         {
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
             string Email = User.Claims.First(c => c.Type == "Email").Value;
             try
             {
@@ -174,6 +182,8 @@ namespace FundooAPI.Controllers
         [Route("GetUserDetails")]
         public async Task<IActionResult> GetUserDetails()
         {
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
             string Email = User.Claims.First(c => c.Type == "Email").Value;
             try
             {
@@ -222,6 +232,8 @@ namespace FundooAPI.Controllers
         [Route("Reset")]
         public async Task<IActionResult> ResetPassword(AdminResetPasswordModel reset)
         {
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
             string Email = User.Claims.First(c => c.Type == "Email").Value;
 
             try
@@ -254,6 +266,7 @@ namespace FundooAPI.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Forgot(AdminForgotPasswordModel forgot)
         {
+
 
             try
             {

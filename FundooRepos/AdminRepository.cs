@@ -111,17 +111,21 @@ namespace FundooRepos
 
 
         }
+
+
         public Task<List<UserStatisticsView>> UserStatistics()
         {
             List<UserStatisticsView> userStatisticsView = new List<UserStatisticsView>();
 
             userStatisticsView = (from userStats in context.UserStatistics
-                                  select new UserStatisticsView
+                                  select new UserStatisticsView()
                                   {
                                       SINO = userStats.SINO,
                                       USEREMAIL = userStats.USEREMAIL,
                                       LOGINDATETIME = userStats.LOGINDATETIME,
-                                      SERVICE = context.Users.Find(userStats.USEREMAIL).CARDTYPE.ToString()
+                                      SERVICE = string.Join("-", (from user in context.Users
+                                                                  where userStats.USEREMAIL == user.USEREMAIL
+                                                                  select  user.CARDTYPE))
 
 
                                   }

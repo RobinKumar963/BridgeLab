@@ -197,77 +197,42 @@ namespace FundooRepos
                              ISTRASH = note.ISTRASH,
                              ISPIN = note.ISPIN,
                              COLOR = note.COLOR,
-                             LABELS = null,
-                             COLLABRATORS = null
+                             LABELS =(from labelnotes in context.Labelnotes
+                                        where labelnotes.NOTEID == note.NOTEID
+                                        select string.Join("-", (from labelname in context.Labels
+                                                                where labelname.LABELID == labelnotes.LABELID 
+                                                                select labelname.LABEL))).ToList(),
+
+                            COLLABRATORS = (from collabrators in context.Collabration
+                                            where collabrators.NOTEID == note.NOTEID
+                                            
+
+
+                                                select collabrators.RECIEVEDEMAIL.ToString()
+                                            ).ToList()
+
+
+
+
+                             //(from notelabel in context.Labelnotes
+                             //          where note.NOTEID==notelabel.NOTEID
+
+
+
+                             //          select notelabel.LABELID.ToString()
+
+
+
+                             //          ).ToList(),
+
+
+
+
+
                          }
                          ).ToList();
 
-            List<string> labels = new List<string>();
-            ////For each notes check for label
-            foreach (NoteModelView note in notesList)
-            {
-
-                labels = (from label in context.Labelnotes
-                          where label.NOTEID == note.NOTEID
-                          select new String(" ")
-                         ).ToList();
-
-
-
-                note.LABELS = labels;
-
-            }
-
-
-            //////Get the collabarated noteid list from collabration checking recieved email == email
-
-
-
-            //List<String> usersCollabratedNotes = new List<String>();
-
-            //usersCollabratedNotes = (from collabrator in context.Collabration
-            //                         where collabrator.RECIEVEDEMAIL==email
-            //                         select new String(collabrator.NOTEID.ToString())
-
-            //                         ).ToList();
-
-            //////Now,Get the all recievedemail for above noteid list 
-            //List<string> collabarators = new List<string>();
-
-            //foreach (NoteModelView note in notesList)
-            //{
-
-            //}
-
-            //    collabarators = (from collabarator in context.Collabration
-            //                 where collabarator.RECIEVEDEMAIL == email
-            //                 select new String(collabarator.NOTEID.ToString())
-            //                ).ToList();
-
-
-
-
-
-            ////For each notes check collabrators or all reciever
-            //List<string> recievers = new List<string>();
-
-
-
-
-            //foreach (NoteModelView note in notesList)
-            //{
-
-
-            //    collabarators = (from collabarator in context.Collabration
-            //                     where collabarator.NOTEID==note.NOTEID
-            //                     select new String(context.Users.Find(collabarator.RECIEVEDEMAIL).USEREMAIL))
-            //                     .ToList();
-            //    note.COLLABRATORS = collabarators;
-            //}
-
-
-
-
+            
             ////return task of all notes of a user queued to run on thread pool
             return Task.Run(() => notesList);
         }

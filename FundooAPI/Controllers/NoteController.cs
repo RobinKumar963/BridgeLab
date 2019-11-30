@@ -45,6 +45,8 @@ namespace FundooAPI.Controllers
         [Route("AddNotes")]
         public async Task<IActionResult> AddNotes(NoteModel noteModel)
         {
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
             try
             {
                 string Email = User.Claims.First(c => c.Type == "Email").Value;
@@ -68,6 +70,8 @@ namespace FundooAPI.Controllers
         [Route("AddCollabaratorNotes")]
         public async Task<IActionResult> AddCollabaratorNotes(CollabratorModel collabratorNoteModel)
         {
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
             try
             {
                 string Email = User.Claims.First(c => c.Type == "Email").Value;
@@ -93,6 +97,8 @@ namespace FundooAPI.Controllers
         [Route("AddLabelledNotes")]
         public async Task<IActionResult> AddLabelledNotes(LabelledNote labelledNote)
         {
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
             try
             {
                 string Email = User.Claims.First(c => c.Type == "Email").Value;
@@ -114,6 +120,8 @@ namespace FundooAPI.Controllers
         [Route("Upload")]
         public IActionResult ImageUpload(IFormFile file, int id)
         {
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
             try
             {
                 string Email = User.Claims.First(c => c.Type == "Email").Value;
@@ -130,6 +138,8 @@ namespace FundooAPI.Controllers
         [Route("UpdateNotes")]
         public async Task<IActionResult> UpdateNotes<T>(int id, T newValue, string noteAttributeName)
         {
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
 
             try
             {
@@ -156,7 +166,8 @@ namespace FundooAPI.Controllers
         [Route("ReadNotes")]
         public async Task<IActionResult> ReadNotes()
         {
-            
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
 
             try
             {
@@ -184,6 +195,8 @@ namespace FundooAPI.Controllers
         [Route("DeleteNotes")]
         public async Task<IActionResult> DeleteNotes(int id)
         {
+            ////Check if the User is Authenticated or Not
+            bool isAuthenticated = User.Identity.IsAuthenticated;
             try
             {
                 string Email = User.Claims.First(c => c.Type == "Email").Value;

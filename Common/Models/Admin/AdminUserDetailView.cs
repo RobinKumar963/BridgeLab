@@ -8,7 +8,7 @@ namespace Common.Models.Admin
     {
         private string UserName;
         private string UserEmail;
-        private string Service;
+        private String Service;
         private int Notes;
         private string Status;
 
@@ -40,7 +40,7 @@ namespace Common.Models.Admin
 
 
         
-        public string SERVICE
+        public String SERVICE
         {
             get
             {
