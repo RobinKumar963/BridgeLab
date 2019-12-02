@@ -12,6 +12,7 @@ using Common.Helper.Bucket;
 using Common.Models.CollabratorModels;
 using Common.Models.LabelledNoteModels;
 using Common.Models.NoteModels;
+using Common.Models.UserModels;
 using FundooRepos.Interface;
 using Microsoft.AspNetCore.Http;
 using NUnit.Framework;
@@ -32,9 +33,10 @@ namespace BusinessManager
         private readonly INoteRepository repository;
         private readonly IAccountRepository accountRepository;
 
-        public NoteManager(INoteRepository repository)
+        public NoteManager(INoteRepository repository,IAccountRepository accountRepository)
         {
             this.repository = repository;
+            this.accountRepository = accountRepository;
         }
 
        
@@ -128,7 +130,8 @@ namespace BusinessManager
         public async Task<List<NoteModelView>> GetByID(string email)
         {
             ////Using unique UserID+"Notes" for noteKey 
-            var noteKey = accountRepository.FindByEmailAsync(email).Result.USERID + "Notes";
+           
+            string noteKey = accountRepository.FindByEmailAsync(email).Result.USERID+"Notes";
             ////Saving note in NoteBucket
             var notefromcache = Bucket.NotesBucket.Get("localhost", noteKey);
 

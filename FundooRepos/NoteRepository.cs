@@ -210,25 +210,7 @@ namespace FundooRepos
 
                                                 select collabrators.RECIEVEDEMAIL.ToString()
                                             ).ToList()
-
-
-
-
-                             //(from notelabel in context.Labelnotes
-                             //          where note.NOTEID==notelabel.NOTEID
-
-
-
-                             //          select notelabel.LABELID.ToString()
-
-
-
-                             //          ).ToList(),
-
-
-
-
-
+                         
                          }
                          ).ToList();
 

@@ -187,7 +187,7 @@ namespace FundooRepos
             context.Users.Find(email).STATUS = Constants.userStatusInActive;
             return Task.Run(() => context.SaveChanges());
         }
-        
+
         /// <summary>
         /// Check for specified Email in Data Source.
         /// </summary>
@@ -195,11 +195,26 @@ namespace FundooRepos
         /// <returns>Task<UserModel></returns>
         public Task<UserModel> FindByEmailAsync(string email)
         {
-            ////Getting User with Specifed email From Data Source
-            var result = context.Users.Find(email);
-            ////return of user task queued to run on thread pool
-            return Task.Run(() => result);
+            UserModel userModel = context.Users.Find(email);
+
+            return Task.Run(()=>userModel);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
         /// <summary>
         /// Checks the specified email.
         /// </summary>
