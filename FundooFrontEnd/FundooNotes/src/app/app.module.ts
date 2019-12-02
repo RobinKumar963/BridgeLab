@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
-
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,8 +14,21 @@ import { UserSignUpComponent } from './Components/user-sign-up/user-sign-up.comp
 import { HttpClientModule } from '@angular/common/http';
 import { UserDashBoardComponent } from './Components/user-dash-board/user-dash-board.component';
 
- 
 
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("342134729958-t8r4v65kv3kcte5infaboi3lrvfrics4.apps.googleusercontent.com")
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider("Facebook-App-Id")
+  }
+]);
+ 
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -27,9 +41,13 @@ import { UserDashBoardComponent } from './Components/user-dash-board/user-dash-b
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,MatCardModule,MatButtonModule,HttpClientModule
+    AppRoutingModule,MatCardModule,MatButtonModule,HttpClientModule,SocialLoginModule
   ],
-  providers: [],
+  providers: [{
+    provide: AuthServiceConfig,
+    useFactory: provideConfig
+
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

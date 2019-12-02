@@ -28,12 +28,7 @@ export class UserSignUpComponent implements OnInit {
       }, false);
       });
       }, false);
-
-
-
-
-
-
+      
       var user=
       {
         "useremail":((document.getElementById("validationCustom01") as HTMLInputElement).value),
@@ -42,18 +37,20 @@ export class UserSignUpComponent implements OnInit {
         "Password":((document.getElementById("validationCustom02") as HTMLInputElement).value),
         "CardType":((document.getElementById("validationCustom03") as HTMLInputElement).value)
       }
-  
       console.log( user );
-  
+      
       this.service.UserSignUP('Register',user).subscribe(data=>
         {
           console.log(data);
+          
         });
       
   }
 
 
-
+  helloWorld() {
+    return 'Hello world!';
+  }
 
 
 

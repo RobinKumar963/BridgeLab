@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAccountService } from 'src/app/Services/UserAccount/user-account.service';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService, SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-user-log-in',
@@ -7,8 +9,12 @@ import { UserAccountService } from 'src/app/Services/UserAccount/user-account.se
   styleUrls: ['./user-log-in.component.scss']
 })
 export class UserLogINComponent implements OnInit {
+ 
 
-  constructor(private service:UserAccountService) { }
+  private user: SocialUser;
+  private loggedIn: boolean;
+
+  constructor(private service:UserAccountService,private router:Router,private authService: AuthService) { }
 
   token:string;
   
@@ -27,7 +33,36 @@ export class UserLogINComponent implements OnInit {
     this.service.UserForgot('Forgot',userforgot).subscribe((data:any)=>
       {
         console.log(data);
+        
+
       });
+  }
+
+  SocialLogIN()
+  {
+    alert("Social Loggin in OK");
+   
+
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+      this.service.signInWithGoogle();
+      
+      this.router.navigate(['dashboard']);
+      
+    });
+
+    //this.authService.authState.subscribe((user:any) => {
+      //this.user = user;
+      //this.loggedIn = (user != null);
+      //console.log(user);
+      //console.log(user.token);
+      //localStorage.setItem('token',user.token);
+
+      //Redirect to dashboard
+      
+    //});
+  
   }
 
   
@@ -51,6 +86,8 @@ export class UserLogINComponent implements OnInit {
         console.log(data);
         console.log(data.token);
         localStorage.setItem('token',data.token);
+        //Redirect to dashboard
+        this.router.navigate(['dashboard']);
       });
   }
 
@@ -58,7 +95,12 @@ export class UserLogINComponent implements OnInit {
   
 
   ngOnInit() {
-    
+
+
+   
+
+
+
   }
 
 }

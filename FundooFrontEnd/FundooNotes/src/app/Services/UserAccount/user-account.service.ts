@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 
 
 
@@ -9,7 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class UserAccountService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private authService: AuthService) { }
   link = 'https://localhost:44358/api/Account/'
   
   UserSignUP(url, usersignup){ 
@@ -23,6 +24,22 @@ export class UserAccountService {
    UserForgot(url, userforgot){ 
     return this.http.post(this.link+url,userforgot);
    }
+
+
+
+   signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+ 
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  } 
+ 
+  signOut(): void {
+    this.authService.signOut();
+  }
+
+
  
 
    

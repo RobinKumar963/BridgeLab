@@ -21,5 +21,9 @@ describe('UserSignUpComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  
   });
 });
+
+
+
