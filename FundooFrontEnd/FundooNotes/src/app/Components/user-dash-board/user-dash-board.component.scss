@@ -1,99 +1,161 @@
+
 .main {
-    height: 100vh;
+  height: 100vh;
+  width: 100%;
+  background-color: white; 
+}
+
+/* Navigation start*/
+nav {
+  border-bottom: 1px solid black;
+}
+
+nav {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  padding: 10px 0;
+}
+
+nav .nav-left, nav .nav-right {
+  display: flex;
+}
+
+nav .nav-left {
+  width: 280px;
+  padding-left: 15px;
+}
+
+nav .nav-left .ham {
+  width: 25px;
+  display: flex;
+  padding: 0 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+nav .nav-right {
+  width: calc(100% - 280px);
+  justify-content: center;
+  align-items: center;
+  padding-right: 15px;
+}
+
+nav .ham div {
+  height: 3px;
+  background-color: black;
+  width: 100%;
+}
+
+nav .ham div:nth-child(2) {
+  margin: 5px 0;
+}
+
+nav .nav-right .search-container {
+  flex-basis: 70%;
+  display: flex;
+  border: 1px solid black;
+}
+
+nav .nav-right .profile {
+  flex-basis: 30%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav .nav-right .profile img {
+  border-radius: 5px;
+}
+
+nav .nav-right .search-container input[type=text] {
+  padding: 6px;
+  font-size: 17px;
+  border: none;
+  width: calc(100% - 60px);
+}
+
+nav .nav-right .search-container button {
+  width: 45px;
+  padding: 6px 10px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  flex-grow: 1;
+}
+
+nav .nav-right .search-container button:hover {
+  background: #ccc;
+}
+
+.main-content {
+  display: flex;
+  height: calc(100vh - 60px);
+}
+
+.content {
+  width: calc(100% - 280px);
+  padding: 20px;
+}
+.profile ul
+{
+  list-style: none;
+}
+.profile ul li ul
+{
+  display: none;
+}
+.profile ul li:hover ul
+{
+  display: block;
+  list-style: none;
+}
+
+
+
+.sidebar {
+  background-color: white;
+  border-right: 1px solid black;
+  overflow: hidden;
+  width: 0;
+  transition: all .3s ease-in;
+}
+
+.sidebar i.fa {
+  margin-right: 5px;
+}
+
+.sidebar.open {
+  width: 280px;
+}
+
+.sidebar ul {
+  height: 100%;
+}
+
+.sidebar ul li {
+  padding: 20px;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+}
+
+/* Media query 600 */
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  .topnav a, .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
     width: 100%;
-    background-color: white; 
+    margin: 0;
+    padding: 14px;
   }
-  
-  nav {
-    border-bottom: 1px solid black;
+  .topnav input[type=text] {
+    border: 1px solid #ccc;  
   }
-  
-  nav {
-    width: 100%;
-    height: 60px;
-    background-color: white;
-    display: flex;
-  }
-  
-  nav .nav-left, nav .nav-right {
-    display: flex;
-  }
-
-
-
-    .dropdown {
-        position: relative;
-        display: inline-block;
-      }
-      
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        padding: 12px 16px;
-        z-index: 1;
-      }
-      
-      .dropdown:hover .dropdown-content {
-        display: block;
-      }
-  
-  nav .nav-left {
-    width: 280px;
-  }
-  
-  nav .nav-left .ham {
-
-    width: 35px;
-    display: flex;
-    padding: 0 20px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-
-  }
-  
-  nav .nav-right {
-    width: calc(100% - 280px);
-    justify-content: center;
-    align-items: center;
-  }
-  
-  nav .ham div {
-    height: 5px;
-    background-color: black;
-    margin: 6px 0;
-    width: 100%;
-  }
-  
-  nav .ham div:first-child {
-    margin-top: 0;
-  }
-  
-  nav .ham div:last-child {
-    margin-bottom: 0;
-  }
-  
-  .main-content {
-    display: flex;
-    height: calc(100vh - 60px);
-  }
-  .content {
-    width: calc(100% - 280px);
-    background-color: black;
-  }
-  .sidebar {
-    flex-basis: 280px;
-    background-color: white;
-  }
-  .sidebar ul {
-    height: 100%;
-  }
-  .sidebar ul li {
-    padding: 20px;
-    border-bottom: 1px solid black;
-    cursor: pointer;
-  }
+}
