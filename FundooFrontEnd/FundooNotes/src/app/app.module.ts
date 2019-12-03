@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
+
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
 
@@ -13,6 +12,7 @@ import { UserSignUpComponent } from './Components/user-sign-up/user-sign-up.comp
 
 import { HttpClientModule } from '@angular/common/http';
 import { UserDashBoardComponent } from './Components/user-dash-board/user-dash-board.component';
+import { UserSignUpRegistrationComponent } from './Components/user-sign-up-registration/user-sign-up-registration.component';
 
 
 let config = new AuthServiceConfig([
@@ -36,12 +36,13 @@ export function provideConfig() {
     UserRegistrationComponent,
     UserLogINComponent,
     UserSignUpComponent,
-    UserDashBoardComponent
+    UserDashBoardComponent,
+    UserSignUpRegistrationComponent
   
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,MatCardModule,MatButtonModule,HttpClientModule,SocialLoginModule
+    AppRoutingModule,HttpClientModule,SocialLoginModule
   ],
   providers: [{
     provide: AuthServiceConfig,

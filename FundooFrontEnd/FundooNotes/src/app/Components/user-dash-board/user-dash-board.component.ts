@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UseNotesService } from 'src/app/Services/UserNotes/use-notes.service';
 
 @Component({
   selector: 'app-user-dash-board',
@@ -8,7 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDashBoardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:UseNotesService) { }
+
+
+  GetNotes()
+  {
+    alert("Ok getting Notes");
+
+    this.service.GetNotes('ReadNotes',localStorage.getItem('token')).subscribe((data:any)=>
+      {
+        console.log(data);
+        
+      });
+
+
+  }
+
+
+
+
+
+
   HideMenu()
   {
 

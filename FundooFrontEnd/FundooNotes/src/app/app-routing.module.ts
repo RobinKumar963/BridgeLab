@@ -4,6 +4,7 @@ import { UserRegistrationComponent } from './Components/user-registration/user-r
 import {UserLogINComponent} from './Components/user-log-in/user-log-in.component';
 import { UserSignUpComponent } from './Components/user-sign-up/user-sign-up.component';
 import { UserDashBoardComponent } from './Components/user-dash-board/user-dash-board.component';
+import { UserSignUpRegistrationComponent} from './Components/user-sign-up-registration/user-sign-up-registration.component';
 const routes: Routes = [
   {
      path:'LogIN',component:UserLogINComponent
@@ -17,6 +18,9 @@ const routes: Routes = [
   {
     path:'dashboard',component:UserDashBoardComponent
 
+  },
+  {
+    path:'Registers',component:UserSignUpRegistrationComponent
   }
   
 ];
