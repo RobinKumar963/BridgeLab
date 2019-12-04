@@ -19,7 +19,7 @@ export class UserLogINComponent implements OnInit {
 
   token:string;
   
-  loginModel = new LoginModel('ha','haha');
+  //loginModel = new LoginModel('ha','haha');
 
   FORGOT()
   {
@@ -72,7 +72,7 @@ export class UserLogINComponent implements OnInit {
   {
     alert("Login OK");
     
-    alert(this.loginModel.UserEmail+this.loginModel.Password);
+    
 
     var user=
     {
@@ -82,7 +82,11 @@ export class UserLogINComponent implements OnInit {
       "Password":((document.getElementById("password") as HTMLInputElement).value)
       
     }
-    
+
+    var loginModel = new LoginModel(((document.getElementById("useremail") as HTMLInputElement).value),
+    ((document.getElementById("password") as HTMLInputElement).value));
+
+    alert(loginModel.UserEmail+loginModel.Password);
 
     console.log( user );
 

@@ -9,7 +9,7 @@ export class UserSignUpRegistrationComponent implements OnInit {
 
   constructor() { }
 
-  
+   vals: string = ''; 
   
 
   trial()
@@ -25,9 +25,7 @@ export class UserSignUpRegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
-    alert("Ok started");
-    console.log("trial called!");
-    var forms=document.getElementsByClassName('trialform');
+   
     
     
     

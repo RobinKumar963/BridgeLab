@@ -5,6 +5,6 @@ export class LoginModel {
         public UserEmail: string,
         public Password: string
       
-      ) {  }
+    ) {  }
 
 }
