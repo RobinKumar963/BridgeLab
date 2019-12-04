@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserAccountService } from 'src/app/Services/UserAccount/user-account.service';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService, SocialUser } from 'angularx-social-login';
+import { LoginModel } from 'src/app/Modals/login-model';
 
 @Component({
   selector: 'app-user-log-in',
@@ -18,6 +19,7 @@ export class UserLogINComponent implements OnInit {
 
   token:string;
   
+  loginModel = new LoginModel('ha','haha');
 
   FORGOT()
   {
@@ -68,7 +70,9 @@ export class UserLogINComponent implements OnInit {
   
   LogIN()
   {
-    alert("OK");
+    alert("Login OK");
+    
+    alert(this.loginModel.UserEmail+this.loginModel.Password);
 
     var user=
     {
@@ -78,6 +82,7 @@ export class UserLogINComponent implements OnInit {
       "Password":((document.getElementById("password") as HTMLInputElement).value)
       
     }
+    
 
     console.log( user );
 
@@ -85,6 +90,7 @@ export class UserLogINComponent implements OnInit {
       {
         console.log(data);
         console.log(data.token);
+        
         localStorage.setItem('token',data.token);
         //Redirect to dashboard
         this.router.navigate(['dashboard']);

@@ -15,6 +15,13 @@ export class UserSignUpRegistrationComponent implements OnInit {
   trial()
   {
     console.log("trial called!");
+    var s=((document.getElementById("ones") as HTMLInputElement).value);
+    if(s=="")
+    alert("Null");
+    else
+    alert(s);
+    
+    document.getElementById("trialformid");
   }
 
   ngOnInit() {

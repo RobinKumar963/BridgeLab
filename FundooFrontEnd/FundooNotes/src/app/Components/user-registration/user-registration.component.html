@@ -5,25 +5,26 @@
  
 
 <form>
-
-
-                <div class="error-group">
-                                All errors here
-                        </div>
-        
+<div class="error">
+<p>e-mail id empty</p>
+<p>password empty</p>
+<p>username empty</p>
+<p>password do not match</p>
+<p>cardtype required</p>
+</div>
 <div class="input-group">
 <label>USER-NAME</label>
-<input type="text" name="username" value=""/>
+<input type="text" name="username" value="" id="username"/>
 </div>
 
 <div class="input-group">
 <label>E-MAIL</label>
-<input type="text" name="email" value="" />
+<input type="text" name="email" value="" id="useremail"/>
 </div>
 
 <div class="input-group">
 <label>PASSWORD</label>
-<input type="password" name="password_1" />
+<input type="password" name="password_1" id="password"/>
 </div>
 
 <div class="input-group">
@@ -38,22 +39,21 @@
 
 <div class="input-group">
 <label>CardType:</label>
-<select name="Service type">
-<option value="Basic">Basic</option>
-<option value="non veg">Advance</option>
+<select name="Service type" id="cardtype">
+<option value="Basic" >Basic</option>
+<option value="Advanced">Advanced</option>
 
 </select>
 </div>
              
 <div class="input-group">
-<button type="submit" name="register" class="btn" (click)="Display">SIGNUP</button>
+<button type="submit" name="register" class="btn" (click)="Add()">SIGNUP</button>
 </div>
 
 <div class="input-group" >
 <button type="submit" name="register" class="btn">SIGNUP WITH GOOGLE</button>
 </div>
-                
-                
+                       
 </form>
 
 
