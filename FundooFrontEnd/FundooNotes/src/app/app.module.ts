@@ -12,12 +12,14 @@ import { UserLogINComponent } from './Components/user-log-in/user-log-in.compone
 import { UserSignUpComponent } from './Components/user-sign-up/user-sign-up.component';
 import { FormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
 import { UserDashBoardComponent } from './Components/user-dash-board/user-dash-board.component';
 import { UserSignUpRegistrationComponent } from './Components/user-sign-up-registration/user-sign-up-registration.component';
 import { UserAccountSignUpComponent } from './Components/user-account-sign-up/user-account-sign-up.component';
 import { UserAccountsSignUpComponent } from './Components/user-accounts-sign-up/user-accounts-sign-up.component';
 import { UserAccountsLogInComponent } from './Components/user-accounts-log-in/user-accounts-log-in.component';
 import { NoteViewComponent } from './Components/note-view/note-view.component';
+import { UserAddNotesComponent } from './Components/user-add-notes/user-add-notes.component';
 
 
 
@@ -48,7 +50,8 @@ export function provideConfig() {
     UserAccountSignUpComponent,
     UserAccountsSignUpComponent,
     UserAccountsLogInComponent,
-    NoteViewComponent
+    NoteViewComponent,
+    UserAddNotesComponent
   
   ],
   imports: [

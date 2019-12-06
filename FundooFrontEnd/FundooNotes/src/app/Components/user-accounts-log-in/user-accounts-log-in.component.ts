@@ -13,6 +13,14 @@ export class UserAccountsLogInComponent implements OnInit {
  
   userLoginModel = new LoginModel('','');
   get diagnostic() { return JSON.stringify(this.userLoginModel); }
+  onSubmit()
+  {
+    console.warn(this.userLoginModel);
+  }
+  LogIN()
+  {
+    console.log(this.userLoginModel);
+  }
   ngOnInit() {
     
   }

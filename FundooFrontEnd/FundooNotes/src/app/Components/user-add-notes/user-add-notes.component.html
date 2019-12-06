@@ -1,0 +1,15 @@
+<form [formGroup]="userNotesForm" (ngSubmit)="onSubmit()">
+    <label>
+      Title:
+      <input type="text" formControlName="title" id="username"  required>
+    </label>
+
+  
+  
+    <label>
+      Description:
+      <input type="text" formControlName="description" required>
+    </label>
+    
+    <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+  </form>

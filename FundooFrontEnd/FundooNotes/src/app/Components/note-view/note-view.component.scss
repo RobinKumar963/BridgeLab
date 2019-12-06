@@ -1,8 +1,11 @@
-.notesBox {
+#notesBox {
     border-radius: 25px;
     background: #f6f2fc;
-    display: flex;
+    
     padding: 20px;
     width: 200px;
     height: 150px;
+  }
+  .flex-container {
+    display: flex;
   }
