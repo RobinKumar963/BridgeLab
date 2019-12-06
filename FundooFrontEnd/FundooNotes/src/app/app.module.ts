@@ -16,6 +16,10 @@ import { UserDashBoardComponent } from './Components/user-dash-board/user-dash-b
 import { UserSignUpRegistrationComponent } from './Components/user-sign-up-registration/user-sign-up-registration.component';
 import { UserAccountSignUpComponent } from './Components/user-account-sign-up/user-account-sign-up.component';
 import { UserAccountsSignUpComponent } from './Components/user-accounts-sign-up/user-accounts-sign-up.component';
+import { UserAccountsLogInComponent } from './Components/user-accounts-log-in/user-accounts-log-in.component';
+import { NoteViewComponent } from './Components/note-view/note-view.component';
+
+
 
 
 let config = new AuthServiceConfig([
@@ -42,7 +46,9 @@ export function provideConfig() {
     UserDashBoardComponent,
     UserSignUpRegistrationComponent,
     UserAccountSignUpComponent,
-    UserAccountsSignUpComponent
+    UserAccountsSignUpComponent,
+    UserAccountsLogInComponent,
+    NoteViewComponent
   
   ],
   imports: [
