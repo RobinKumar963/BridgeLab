@@ -4,6 +4,8 @@ import { UserRegistrationComponent } from './Components/user-registration/user-r
 import {UserLogINComponent} from './Components/user-log-in/user-log-in.component';
 import { UserSignUpComponent } from './Components/user-sign-up/user-sign-up.component';
 import { UserDashBoardComponent } from './Components/user-dash-board/user-dash-board.component';
+import { UserAccountsSignUpComponent } from './Components/user-accounts-sign-up/user-accounts-sign-up.component';
+import { UserAccountSignUpComponent } from './Components/user-account-sign-up/user-account-sign-up.component';
 import { UserSignUpRegistrationComponent} from './Components/user-sign-up-registration/user-sign-up-registration.component';
 const routes: Routes = [
   {
@@ -21,6 +23,12 @@ const routes: Routes = [
   },
   {
     path:'Registers',component:UserSignUpRegistrationComponent
+  },
+  {
+    path:'UserAccountSignUp',component:UserAccountSignUpComponent
+  },
+  {
+    path:'UserAccountsSignUp',component:UserAccountsSignUpComponent
   }
   
 ];

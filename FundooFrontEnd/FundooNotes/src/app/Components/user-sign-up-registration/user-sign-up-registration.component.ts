@@ -9,7 +9,7 @@ export class UserSignUpRegistrationComponent implements OnInit {
 
   constructor() { }
 
-   vals: string = ''; 
+   vals: string = 'hahahahha'; 
   
 
   trial()
