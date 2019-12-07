@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataExchangeService } from 'src/app/Services/DataExchange/data-exchange.service';
 
 @Component({
   selector: 'app-content',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataExchange:DataExchangeService) { }
+
+
+  contentStatus: string = 'ViewNotes';
+
+  get showAddNotes() {
+    return this.contentStatus === 'AddNotes';
+  }
+
+  get showViewNotes() {
+    return this.contentStatus === 'ViewNotes';
+  }
+ 
+  
+
 
   ngOnInit() {
+    this.dataExchange.contentStatus.subscribe(contentStatus => this.contentStatus = contentStatus)
   }
 
 }

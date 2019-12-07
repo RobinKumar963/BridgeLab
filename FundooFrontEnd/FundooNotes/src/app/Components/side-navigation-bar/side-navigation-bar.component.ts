@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { UseNotesService } from 'src/app/Services/UserNotes/use-notes.service';
+import { DataExchangeService } from 'src/app/Services/DataExchange/data-exchange.service';
 
 @Component({
   selector: 'app-side-navigation-bar',
@@ -8,10 +9,24 @@ import { UseNotesService } from 'src/app/Services/UserNotes/use-notes.service';
 })
 export class SideNavigationBarComponent implements OnInit {
 
-  constructor(private service:UseNotesService) { }
+  constructor(private service:UseNotesService,private dataExchange:DataExchangeService) { }
+
+  contentStatus:string='ViewNotes';
+ 
 
   ngOnInit() {
+
+    this.dataExchange.contentStatus.subscribe(contentStatus => this.contentStatus = this.contentStatus)
   }
+
+  changeContentStatus(status:string)
+  {
+    alert(status);
+    this.dataExchange.changeContentStatus(status)
+    
+
+  }
+ 
 
 
   GetNotes()

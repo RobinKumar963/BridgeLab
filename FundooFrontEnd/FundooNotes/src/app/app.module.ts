@@ -25,6 +25,7 @@ import { TopNavigationBarComponent } from './Components/top-navigation-bar/top-n
 import { SideNavigationBarComponent } from './Components/side-navigation-bar/side-navigation-bar.component';
 import { ContentComponent } from './Components/content/content.component';
 import { FundooDashBoardComponent } from './Components/fundoo-dash-board/fundoo-dash-board.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -66,7 +67,7 @@ export function provideConfig() {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,HttpClientModule,SocialLoginModule, FormsModule,ReactiveFormsModule
+    AppRoutingModule,HttpClientModule,SocialLoginModule, FormsModule,ReactiveFormsModule, BrowserAnimationsModule
   ],
   providers: [{
     provide: AuthServiceConfig,

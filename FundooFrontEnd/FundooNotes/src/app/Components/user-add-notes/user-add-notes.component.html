@@ -1,4 +1,4 @@
-<form [formGroup]="userNotesForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="userNotesForm" (ngSubmit)="AddNotes()">
     <label>
       Title:
       <input type="text" formControlName="title" id="username"  required>
@@ -11,5 +11,22 @@
       <input type="text" formControlName="description" required>
     </label>
     
-    <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+    <button type="submit" [disabled]="!userNotesForm.valid">Ok</button>
   </form>
+  
+  <hr>
+  
+  
+  <p>
+    Form Value: {{ userNotesForm.value | json }}
+  </p>
+  
+  
+  <p>
+    Form Status: {{ userNotesForm.status }}
+  </p>
+  
+ 
+  
+
+

@@ -12,12 +12,12 @@ export class UserAddNotesComponent implements OnInit {
 
   
     userNotesForm = this.formBuilder.group({
-    useremail: ['', Validators.required],
-    noteid: ['',],
-    DisplayOrder: ['', Validators.required],
+    useremail: ['vdfvdfvvx',Validators.required],
+    
+    DisplayOrder: ['',],
 
-    title: [''],
-    description: [''],
+    title: ['',Validators.required],
+    description: ['',Validators.required],
     createddate: [''],
     modifieddata: [''],
     images: [''],
@@ -32,6 +32,11 @@ export class UserAddNotesComponent implements OnInit {
   
     
   });
+
+  AddNotes()
+  {
+    alert("Adding Notes");
+  }
 
   ngOnInit() {
   }

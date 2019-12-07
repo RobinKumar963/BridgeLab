@@ -1,9 +1,9 @@
 <div class='main-content'>
     <div class='sidebar open' id='sidebar'>
       <ul>
-        <li><i class="fa fa-plus" aria-hidden="true"></i> Add notes</li>
-        <li><i class="fa fa-plus" aria-hidden="true"></i> Remove Notes</li>
+        <li (click)="changeContentStatus('AddNotes')"><i class="fa fa-plus" aria-hidden="true"></i> Add notes</li>
+        <li (click)="changeContentStatus('ViewNotes')"><i class="fa fa-plus" aria-hidden="true"></i> Remove Notes</li>
         <li class="getnotes" (click)="GetNotes()"><i class="fa fa-plus" aria-hidden="true"></i> View all</li>
       </ul>
     </div>
-    </div>
+  </div>
