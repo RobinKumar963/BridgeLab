@@ -11,7 +11,7 @@ export class SideNavigationBarComponent implements OnInit {
 
   constructor(private service:UseNotesService,private dataExchange:DataExchangeService) { }
 
-  contentStatus:string='ViewNotes';
+  contentStatus:string='';
  
 
   ngOnInit() {
@@ -21,8 +21,9 @@ export class SideNavigationBarComponent implements OnInit {
 
   changeContentStatus(status:string)
   {
-    alert(status);
-    this.dataExchange.changeContentStatus(status)
+    
+    this.dataExchange.changeContentStatus(status);
+    
     
 
   }

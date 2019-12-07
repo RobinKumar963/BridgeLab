@@ -15,4 +15,9 @@ export class UseNotesService {
     return this.http.get(this.link+url, { headers: headers_object });
   
   }
+  AddNotes(url,noteModel,token){
+    var headers_object = new HttpHeaders().set("Authorization", "Bearer " + token);
+    return this.http.post(this.link+url,noteModel,{ headers: headers_object });
+  }
+
 }
