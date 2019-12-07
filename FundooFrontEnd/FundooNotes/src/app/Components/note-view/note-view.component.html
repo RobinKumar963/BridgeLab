@@ -1,9 +1,6 @@
-
-fdvbdfvbdbcvbcv
-
 <div class="flex-container" id="notesBox">
     <div class="pin">
-    
+
     </div>
     <div class="notesTitle"></div>
     <div class="notesDescription"></div>
@@ -12,4 +9,20 @@ fdvbdfvbdbcvbcv
     <div class="controllers"></div>
 </div>
 
+{{userFetchedNotes | json }}
 
+<div *ngFor = "let note of userFetchedNotes">
+    <br />
+    NotesTitle:{{note.title}}
+    <br />
+    notesDescription:{{note.description}}
+    <br />
+    collabarators:{{note.collabrators}}
+    <br />
+    Labels:{{note.labels}}
+    <br />
+    <br />
+    <br />
+    <br />
+    
+</div>
