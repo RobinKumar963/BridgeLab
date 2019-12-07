@@ -61,7 +61,7 @@ export class UserAccountsLogInComponent implements OnInit {
       this.service.signInWithGoogle();
       this.newMessage();
     
-      this.router.navigate(['dashboard']);
+      this.router.navigate(['FundooDashBoard']);
     
       
     });
@@ -80,7 +80,8 @@ export class UserAccountsLogInComponent implements OnInit {
         localStorage.setItem('token',data.token);
         //Redirect to dashboard
         this.newMessage();
-        this.router.navigate(['dashboard']);
+        //this.router.navigate(['dashboard']);
+        this.router.navigate(['FundooDashBoard']);
     
       });
   }

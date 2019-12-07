@@ -7,6 +7,7 @@ import { UserDashBoardComponent } from './Components/user-dash-board/user-dash-b
 import { UserAddNotesComponent } from './Components/user-add-notes/user-add-notes.component';
 import  {NoteViewComponent} from './Components/note-view/note-view.component';
 import {HomePageComponent} from './Components/home-page/home-page.component';
+import{FundooDashBoardComponent} from './Components/fundoo-dash-board/fundoo-dash-board.component';
 import {UserAccountsLogInComponent} from './Components/user-accounts-log-in/user-accounts-log-in.component';
 import { UserAccountsSignUpComponent } from './Components/user-accounts-sign-up/user-accounts-sign-up.component';
 import { UserAccountSignUpComponent } from './Components/user-account-sign-up/user-account-sign-up.component';
@@ -45,6 +46,9 @@ const routes: Routes = [
   },
   {
     path:'Home',component:HomePageComponent
+  },
+  {
+    path:'FundooDashBoard',component:FundooDashBoardComponent
   }
   
 ];

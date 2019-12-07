@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataExchangeService } from 'src/app/Services/DataExchange/data-exchange.service';
 
 @Component({
   selector: 'app-top-navigation-bar',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopNavigationBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataExchange: DataExchangeService) { }
+  message:string;
 
   ngOnInit() {
+    this.dataExchange.currentMessage.subscribe(message => this.message = message)
   }
 
 }
