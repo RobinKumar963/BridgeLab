@@ -6,6 +6,7 @@ import { UserSignUpComponent } from './Components/user-sign-up/user-sign-up.comp
 import { UserDashBoardComponent } from './Components/user-dash-board/user-dash-board.component';
 import { UserAddNotesComponent } from './Components/user-add-notes/user-add-notes.component';
 import  {NoteViewComponent} from './Components/note-view/note-view.component';
+import {HomePageComponent} from './Components/home-page/home-page.component';
 import {UserAccountsLogInComponent} from './Components/user-accounts-log-in/user-accounts-log-in.component';
 import { UserAccountsSignUpComponent } from './Components/user-accounts-sign-up/user-accounts-sign-up.component';
 import { UserAccountSignUpComponent } from './Components/user-account-sign-up/user-account-sign-up.component';
@@ -41,6 +42,9 @@ const routes: Routes = [
   },
   {
     path:'AddUserNotes',component:UserAddNotesComponent
+  },
+  {
+    path:'Home',component:HomePageComponent
   }
   
 ];

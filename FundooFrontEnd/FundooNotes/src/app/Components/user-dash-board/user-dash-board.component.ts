@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UseNotesService } from 'src/app/Services/UserNotes/use-notes.service';
+import { DataExchangeService } from 'src/app/Services/DataExchange/data-exchange.service';
 
 @Component({
   selector: 'app-user-dash-board',
@@ -9,9 +10,9 @@ import { UseNotesService } from 'src/app/Services/UserNotes/use-notes.service';
 })
 export class UserDashBoardComponent implements OnInit {
 
-  constructor(private service:UseNotesService) { }
-
-
+  constructor(private service:UseNotesService,private dataExchange: DataExchangeService) { }
+  message:string;
+  
   GetNotes()
   {
     alert("Ok getting Notes");
@@ -72,6 +73,9 @@ export class UserDashBoardComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.dataExchange.currentMessage.subscribe(message => this.message = message)
+
   }
 
 }

@@ -20,6 +20,11 @@ import { UserAccountsSignUpComponent } from './Components/user-accounts-sign-up/
 import { UserAccountsLogInComponent } from './Components/user-accounts-log-in/user-accounts-log-in.component';
 import { NoteViewComponent } from './Components/note-view/note-view.component';
 import { UserAddNotesComponent } from './Components/user-add-notes/user-add-notes.component';
+import { HomePageComponent } from './Components/home-page/home-page.component';
+import { TopNavigationBarComponent } from './Components/top-navigation-bar/top-navigation-bar.component';
+import { SideNavigationBarComponent } from './Components/side-navigation-bar/side-navigation-bar.component';
+import { ContentComponent } from './Components/content/content.component';
+import { FundooDashBoardComponent } from './Components/fundoo-dash-board/fundoo-dash-board.component';
 
 
 
@@ -51,7 +56,12 @@ export function provideConfig() {
     UserAccountsSignUpComponent,
     UserAccountsLogInComponent,
     NoteViewComponent,
-    UserAddNotesComponent
+    UserAddNotesComponent,
+    HomePageComponent,
+    TopNavigationBarComponent,
+    SideNavigationBarComponent,
+    ContentComponent,
+    FundooDashBoardComponent
   
   ],
   imports: [

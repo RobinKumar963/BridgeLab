@@ -14,6 +14,7 @@ export class UserLogINComponent implements OnInit {
 
   private user: SocialUser;
   private loggedIn: boolean;
+  parentMessage:string;
 
   constructor(private service:UserAccountService,private router:Router,private authService: AuthService) { }
 
@@ -47,6 +48,7 @@ export class UserLogINComponent implements OnInit {
 
     this.authService.authState.subscribe((user) => {
       this.user = user;
+      this.parentMessage=user.firstName;
       this.loggedIn = (user != null);
       this.service.signInWithGoogle();
       

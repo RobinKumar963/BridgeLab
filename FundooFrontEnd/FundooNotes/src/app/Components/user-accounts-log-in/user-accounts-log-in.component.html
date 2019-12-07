@@ -29,8 +29,9 @@
             Password is required
         </div>
     </div>
-    <button type="submit" [disabled]="!profileForm.valid">Submit</button>
-    <div class="input-group">
+
+    <div class="input-group" [hidden]="!userLoginModelForm.valid">
+            
         <button type="submit" name="login" class="btn" (click)="LogIN()">LOGIN</button>
     </div>
 
