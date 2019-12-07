@@ -11,6 +11,17 @@ export class TopNavigationBarComponent implements OnInit {
   constructor(private dataExchange: DataExchangeService) { }
   message:string;
 
+  HideMenu()
+  {
+    //alert("Ok");
+    var x = document.getElementById("sidebar");
+    if (x.style.display == "none") {
+    x.style.display = "block";
+    } else {
+    x.style.display = "none";
+    }
+  }
+
   ngOnInit() {
     this.dataExchange.currentMessage.subscribe(message => this.message = message)
   }
