@@ -28,14 +28,22 @@ namespace Common.Helper
 
             using (RedisClient redisClient = new RedisClient(host))
             {
-
-                if (redisClient.Get<T>(key) == null)
+                try 
                 {
+                    if (redisClient.Get<T>(key) == null)
+                    {
 
-                    isSuccess = redisClient.Set(key, value);
-                   
+                        isSuccess = redisClient.Set(key, value);
 
+
+                    }
                 }
+                catch(Exception ex)
+                {
+                    return false;
+                }
+
+               
 
             }
 
@@ -54,10 +62,19 @@ namespace Common.Helper
 
             using (RedisClient redisClient = new RedisClient(host))
             {
-                if(redisClient.ContainsKey(key))
-                return redisClient.Get<T>(key);
+                try
+                {
+                    if (redisClient.ContainsKey(key))
+                        return redisClient.Get<T>(key);
+                    return null;
+                }
+                catch(Exception ex)
+                {
+                    return null;
+                }
+                
 
-                return null;
+                
             }
 
         }
