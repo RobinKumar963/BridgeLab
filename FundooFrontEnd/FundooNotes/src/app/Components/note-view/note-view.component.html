@@ -1,3 +1,6 @@
+{{noteReloadStatus}}
+
+
 <div class="flex-container" id="notesBox">
     <div class="pin">
 
@@ -14,8 +17,8 @@
 
 
 
-<div class="unpinnedNotes">
-    unpinnedNotes
+<div class="pinnedNotes">
+    pinnedNotes
     <div *ngFor="let note of userFetchedNotes">
 
         <div *ngIf="note.ispin">
@@ -39,8 +42,8 @@
 
 </div>
 
-<div class="pinnedNotes">
-    pinnedNotes
+<div class="unpinnedNotes">
+    unpinnedNotes
     <div *ngFor="let note of userFetchedNotes">
 
         <div *ngIf="!note.ispin">

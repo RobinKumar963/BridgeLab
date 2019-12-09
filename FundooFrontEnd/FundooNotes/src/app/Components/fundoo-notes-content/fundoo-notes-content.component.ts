@@ -1,5 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
 
+
 @Component({
   selector: 'app-fundoo-notes-content',
   templateUrl: './fundoo-notes-content.component.html',
@@ -10,6 +11,11 @@ export class FundooNotesContentComponent implements OnInit {
   constructor() { }
 
  @Input() contentStatus:string='Notes';
+
+ noteReloadStatus:string='false';
+
+  
+ 
 
   ngOnInit() {
   }
@@ -29,20 +35,18 @@ export class FundooNotesContentComponent implements OnInit {
     {
       return false;
     }
-    
-    
-      
-
-    
-    
-
-
-
+  
   }
   get showViewNotes(){
       return true;
   }
 
+  receivenewNoteAddedEvent($event) {
+    
+   alert("Emitted event from addnotes recieved ");
+   this.noteReloadStatus='true';
+   
+  }
 
 
 }

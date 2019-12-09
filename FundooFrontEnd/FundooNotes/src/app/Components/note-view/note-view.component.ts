@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { UseNotesService } from 'src/app/Services/UserNotes/use-notes.service';
 
 @Component({
@@ -10,11 +10,21 @@ export class NoteViewComponent implements OnInit {
 
   constructor(private service:UseNotesService) { }
    userFetchedNotes:any;
+   @Input() noteReloadStatus: string;
   
   ngOnInit() {
 
     this.GetNotes();
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.GetNotes();
+    alert(this.noteReloadStatus);
+    this.noteReloadStatus='false';
+  }
+
+
+  
 
 
   GetNotes()

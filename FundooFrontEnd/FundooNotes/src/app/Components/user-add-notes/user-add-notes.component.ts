@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DataExchangeService } from 'src/app/Services/DataExchange/data-exchange.service';
 import { UseNotesService } from 'src/app/Services/UserNotes/use-notes.service';
@@ -14,6 +14,13 @@ export class UserAddNotesComponent implements OnInit {
 
 
     currentActiveEmail: string; 
+
+    @Output() newNoteAddedEvent = new EventEmitter();
+
+    sendnewNoteAddedEvent() {
+      alert("Emitting event for parent FundooNotesContent");
+      this.newNoteAddedEvent.emit();
+    }
     
     
     userNotesForm = this.formBuilder.group({
@@ -47,6 +54,7 @@ export class UserAddNotesComponent implements OnInit {
     this.service.AddNotes('AddNotes',this.userNotesForm.value,localStorage.getItem('token')).subscribe((data:any)=>
     {
       console.log(data);
+      this.sendnewNoteAddedEvent();
       
     });
     
