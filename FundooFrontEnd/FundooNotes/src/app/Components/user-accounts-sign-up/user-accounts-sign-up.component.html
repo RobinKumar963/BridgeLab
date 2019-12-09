@@ -3,7 +3,7 @@
       UserName:
       <input type="text" formControlName="UserName" id="username"  required>
     </label>
-
+    <div [hidden]="profileForm.value.UserName" class="error">error</div>
   
   
     <label>

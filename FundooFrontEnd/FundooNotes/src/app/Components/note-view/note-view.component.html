@@ -11,18 +11,26 @@
 
 {{userFetchedNotes | json }}
 
-<div *ngFor = "let note of userFetchedNotes">
-    <br />
-    NotesTitle:{{note.title}}
-    <br />
-    notesDescription:{{note.description}}
-    <br />
-    collabarators:{{note.collabrators}}
-    <br />
-    Labels:{{note.labels}}
-    <br />
-    <br />
-    <br />
-    <br />
+<div *ngFor="let note of userFetchedNotes">
     
+        <br />
+        NotesTitle:{{note.title}}
+        <br />
+        notesDescription:{{note.description}}
+        <br />
+        collabarators:{{note.collabrators}}
+        <br />
+        Labels:{{note.labels}}
+        <br/>
+        <div>
+             NoteControllers
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        
+
+
+
 </div>

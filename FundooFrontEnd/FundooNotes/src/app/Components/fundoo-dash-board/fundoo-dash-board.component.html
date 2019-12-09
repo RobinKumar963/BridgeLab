@@ -1,15 +1,20 @@
 <div class='main'>
 
-    <app-top-navigation-bar>
-    </app-top-navigation-bar>
+   
+    <p>{{currentLoggedInUsers}}</p>
+    <p>{{contentStatus}}</p>
+    
+    <app-fundoo-top-navigation-bar [currentActiveEmail]="currentLoggedInUsers"></app-fundoo-top-navigation-bar>
 
     <div class='main-content'>
-    <app-side-navigation-bar>
-    </app-side-navigation-bar>
-    <div class='content'>
-    <app-content></app-content>
-</div>
+        <app-fundoo-side-navigation-bar (messageEvent)="receiveMessage($event)"></app-fundoo-side-navigation-bar>
+        
+        <div class='content'>
+            <!--<app-content></app-content>-->
+        
+
+        <app-fundoo-notes-content [contentStatus]="contentStatus"></app-fundoo-notes-content>
+        </div>
+    </div>
 </div>
 
-
-</div>

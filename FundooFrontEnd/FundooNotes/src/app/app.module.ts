@@ -26,6 +26,10 @@ import { SideNavigationBarComponent } from './Components/side-navigation-bar/sid
 import { ContentComponent } from './Components/content/content.component';
 import { FundooDashBoardComponent } from './Components/fundoo-dash-board/fundoo-dash-board.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FundooSideNavigationBarComponent } from './Components/fundoo-side-navigation-bar/fundoo-side-navigation-bar.component';
+import { FundooTopNavigationBarComponent } from './Components/fundoo-top-navigation-bar/fundoo-top-navigation-bar.component';
+import { FundooNotesContentComponent } from './Components/fundoo-notes-content/fundoo-notes-content.component';
+import { FundooSignUpComponent } from './Components/fundoo-sign-up/fundoo-sign-up.component';
 
 
 
@@ -62,7 +66,11 @@ export function provideConfig() {
     TopNavigationBarComponent,
     SideNavigationBarComponent,
     ContentComponent,
-    FundooDashBoardComponent
+    FundooDashBoardComponent,
+    FundooSideNavigationBarComponent,
+    FundooTopNavigationBarComponent,
+    FundooNotesContentComponent,
+    FundooSignUpComponent
   
   ],
   imports: [

@@ -10,6 +10,7 @@ export class NoteViewComponent implements OnInit {
 
   constructor(private service:UseNotesService) { }
    userFetchedNotes:any;
+  
   ngOnInit() {
 
     this.GetNotes();

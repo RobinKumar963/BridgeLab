@@ -11,7 +11,7 @@ export class ContentComponent implements OnInit {
   constructor(private dataExchange:DataExchangeService) { }
 
 
-  contentStatus: string = '';
+  contentStatus: string;
 
   get showAddNotes() {
     return this.contentStatus === 'AddNotes';

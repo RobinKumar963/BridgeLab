@@ -13,10 +13,11 @@ export class UserAddNotesComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,private dataExchange: DataExchangeService,private service:UseNotesService) { }
 
 
-    currentActiveEmail: string=""; 
-  
+    currentActiveEmail: string; 
+    
+    
     userNotesForm = this.formBuilder.group({
-    useremail: ['user1@gmail.com',Validators.required],
+    useremail: [this.currentActiveEmail],
     
     DisplayOrder: [2,'',],
 
@@ -36,8 +37,12 @@ export class UserAddNotesComponent implements OnInit {
   AddNotes()
   {
     alert("Adding Notes");
-
+    
+    this.userNotesForm.value.useremail=this.getEmailId();
+    this.userNotesForm.value.createddate=new Date();
+    this.userNotesForm.value.modifieddata=new Date();
     alert(JSON.stringify(this.userNotesForm.value));
+    
     console.log( this.userNotesForm.value);
     this.service.AddNotes('AddNotes',this.userNotesForm.value,localStorage.getItem('token')).subscribe((data:any)=>
     {
@@ -46,6 +51,11 @@ export class UserAddNotesComponent implements OnInit {
     });
     
     
+  }
+  getEmailId(){
+    
+    this.dataExchange.currentMessage.subscribe(message => this.currentActiveEmail = message);
+    return this.currentActiveEmail;
   }
 
 

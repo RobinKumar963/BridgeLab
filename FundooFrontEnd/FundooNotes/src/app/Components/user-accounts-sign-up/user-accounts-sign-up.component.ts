@@ -12,10 +12,10 @@ export class UserAccountsSignUpComponent implements OnInit {
 
 
   profileForm = this.formBuilder.group({
-    UserName: ['', Validators.required],
-    UserEmail: ['', Validators.required],
-    Password:['',Validators.required],
-    ConfirmPassword:['',Validators.required],
+    UserName: ['Enter UserName', Validators.required],
+    UserEmail: ['Enter UserEmail', Validators.required],
+    Password:['Enter Password',Validators.required],
+    ConfirmPassword:['Enter Password Again To Enter',Validators.required],
     
     CardType: this.formBuilder.group({
       cardtype: ['']
@@ -50,6 +50,7 @@ export class UserAccountsSignUpComponent implements OnInit {
   }
 
   ngOnInit() {
+  
   }
 
 }

@@ -7,10 +7,11 @@ import { BehaviorSubject } from 'rxjs';
 export class DataExchangeService {
 
 
-  private messageSource = new BehaviorSubject('default message');
+  
+  private messageSource = new BehaviorSubject('Not LoggedIn');
   currentMessage = this.messageSource.asObservable();
 
-  private messageSourceContentStatus = new BehaviorSubject('default message');
+  private messageSourceContentStatus = new BehaviorSubject('Not LoggedIn.....No Contents');
   contentStatus = this.messageSourceContentStatus.asObservable();
 
   constructor() { }
