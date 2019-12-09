@@ -11,26 +11,55 @@
 
 {{userFetchedNotes | json }}
 
-<div *ngFor="let note of userFetchedNotes">
-    
-        <br />
-        NotesTitle:{{note.title}}
-        <br />
-        notesDescription:{{note.description}}
-        <br />
-        collabarators:{{note.collabrators}}
-        <br />
-        Labels:{{note.labels}}
-        <br/>
-        <div>
-             NoteControllers
-        </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        
 
+
+
+<div class="unpinnedNotes">
+    unpinnedNotes
+    <div *ngFor="let note of userFetchedNotes">
+
+        <div *ngIf="note.ispin">
+
+            <br />
+            NotesTitle:{{note.title}}
+            <br />
+            notesDescription:{{note.description}}
+            <br />
+            collabarators:{{note.collabrators}}
+            <br />
+            Labels:{{note.labels}}
+            <br />
+            <div>
+                all NoteControllers here
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<div class="pinnedNotes">
+    pinnedNotes
+    <div *ngFor="let note of userFetchedNotes">
+
+        <div *ngIf="!note.ispin">
+
+            <br />
+            NotesTitle:{{note.title}}
+            <br />
+            notesDescription:{{note.description}}
+            <br />
+            collabarators:{{note.collabrators}}
+            <br />
+            Labels:{{note.labels}}
+            <br />
+            <div>
+                all NoteControllers here
+            </div>
+        </div>
+
+    </div>
 
 
 </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SignUp } from 'src/app/Modals/UserSignUpModel/sign-up';
+import { UserAccountService } from 'src/app/Services/UserAccount/user-account.service';
 
 @Component({
   selector: 'app-fundoo-sign-up',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FundooSignUpComponent implements OnInit {
 
-  constructor() { }
-  userSignupModel = new SignUP();
+  constructor(private service:UserAccountService) { }
+  userSignUPModel = new SignUp('','tobeassignedbybackend','','','','tobeassignedlater','inactive');
+
+
+  get diagnostic() { return JSON.stringify(this.userSignUPModel); }
   ngOnInit() {
+  }
+
+  SignUP()
+  {
+    alert(JSON.stringify(this.userSignUPModel));
+      
+      this.service.UserSignUP('Register',this.userSignUPModel).subscribe(data=>
+        {
+          console.log(data);
+          
+        });
   }
 
 }

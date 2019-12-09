@@ -7,9 +7,10 @@
     <a (click)="toggleEditor('LogIN')"><button *ngIf="showLogIn">Not Yet Registered?SignUP</button></a>
 </nav>
 
+<app-fundoo-sign-up *ngIf="showSignUP"></app-fundoo-sign-up>
+<!--<app-user-accounts-sign-up *ngIf="showSignUP">
+    </app-user-accounts-sign-up>-->
 
-<app-user-accounts-sign-up *ngIf="showSignUP">
-    </app-user-accounts-sign-up>
     <app-user-accounts-log-in *ngIf="showLogIn">
         </app-user-accounts-log-in>
 

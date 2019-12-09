@@ -70,7 +70,8 @@ export function provideConfig() {
     FundooSideNavigationBarComponent,
     FundooTopNavigationBarComponent,
     FundooNotesContentComponent,
-    FundooSignUpComponent
+    FundooSignUpComponent,
+
   
   ],
   imports: [

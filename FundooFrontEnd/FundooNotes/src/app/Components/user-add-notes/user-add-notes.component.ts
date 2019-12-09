@@ -29,7 +29,7 @@ export class UserAddNotesComponent implements OnInit {
     reminder: [''],
     isarchive: ['false'],
     istrash: ['false'],
-    ispin: ['false'],
+    ispin: ['true'],
     color: ['']
   
   });
