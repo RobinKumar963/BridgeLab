@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,9 @@ export class DataExchangeService {
 
   private messageSourceContentStatus = new BehaviorSubject('Not LoggedIn.....No Contents');
   contentStatus = this.messageSourceContentStatus.asObservable();
+
+
+  
 
   constructor() { }
 

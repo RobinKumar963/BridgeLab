@@ -8,10 +8,10 @@ export class SignUp {
     public UserID:string,
     public Password: string,
     public UserName: string,
-    
+    public Status:string,
     public CardType: string,
     public ProfileImage?:string,
-    public Status:string,
+    
     //public Address?:string
   ) {  }
 

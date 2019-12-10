@@ -12,14 +12,17 @@ export class UserAddNotesComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,private dataExchange: DataExchangeService,private service:UseNotesService) { }
 
-
+    
     currentActiveEmail: string; 
-
+    
     @Output() newNoteAddedEvent = new EventEmitter();
 
     sendnewNoteAddedEvent() {
       alert("Emitting event for parent FundooNotesContent");
+      
+      
       this.newNoteAddedEvent.emit();
+      
     }
     
     
@@ -36,11 +39,11 @@ export class UserAddNotesComponent implements OnInit {
     reminder: [''],
     isarchive: ['false'],
     istrash: ['false'],
-    ispin: ['true'],
+    ispin: ['false'],
     color: ['']
   
   });
-
+  
   AddNotes()
   {
     alert("Adding Notes");
@@ -51,10 +54,12 @@ export class UserAddNotesComponent implements OnInit {
     alert(JSON.stringify(this.userNotesForm.value));
     
     console.log( this.userNotesForm.value);
+    
     this.service.AddNotes('AddNotes',this.userNotesForm.value,localStorage.getItem('token')).subscribe((data:any)=>
     {
       console.log(data);
       this.sendnewNoteAddedEvent();
+      
       
     });
     

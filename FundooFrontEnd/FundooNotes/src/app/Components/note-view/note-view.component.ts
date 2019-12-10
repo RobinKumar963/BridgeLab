@@ -10,19 +10,19 @@ export class NoteViewComponent implements OnInit {
 
   constructor(private service:UseNotesService) { }
    userFetchedNotes:any;
-   @Input() noteReloadStatus: string;
+   @Input() noteFetchedAgain: any;
   
   ngOnInit() {
 
     this.GetNotes();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.GetNotes();
-    alert(this.noteReloadStatus);
-    this.noteReloadStatus='false';
+  ngOnChanges(changes: SimpleChanges)
+  {
+    this.userFetchedNotes=this.noteFetchedAgain;
+    console.log(this.userFetchedNotes);
   }
-
+  
 
   
 

@@ -1,4 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
+import { UseNotesService } from 'src/app/Services/UserNotes/use-notes.service';
 
 
 @Component({
@@ -8,11 +9,12 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class FundooNotesContentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:UseNotesService) { }
 
  @Input() contentStatus:string='Notes';
 
- noteReloadStatus:string='false';
+ 
+ noteFetchedAgain:any;
 
   
  
@@ -44,7 +46,13 @@ export class FundooNotesContentComponent implements OnInit {
   receivenewNoteAddedEvent($event) {
     
    alert("Emitted event from addnotes recieved ");
-   this.noteReloadStatus='true';
+   this.service.GetNotes('ReadNotes',localStorage.getItem('token')).subscribe((data:any)=>
+   {
+     console.log(data);
+     this.noteFetchedAgain=data.res;
+    
+   });
+   
    
   }
 
