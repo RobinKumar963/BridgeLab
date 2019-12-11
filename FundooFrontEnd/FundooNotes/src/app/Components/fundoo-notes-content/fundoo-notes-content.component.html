@@ -1,12 +1,10 @@
+<h1>{{contentStatus}}</h1>
+<h1>{{noteFetchedAgain | json}}</h1>
 
- <h1>{{contentStatus}}</h1>
- <h1>{{noteFetchedAgain | json}}</h1>
-   
 
- 
 
- <app-user-add-notes (newNoteAddedEvent)="receivenewNoteAddedEvent($event)" *ngIf="showAddNotes">
-     </app-user-add-notes>
-     <app-note-view [noteFetchedAgain]="noteFetchedAgain"  *ngIf="showViewNotes">
-         </app-note-view>
- 
+
+<app-user-add-notes (newNoteAddedEvent)="receivenewNoteAddedEvent($event)" *ngIf="showAddNotes">
+</app-user-add-notes>
+<app-note-view [noteFetchedAgain]="noteFetchedAgain" [noteViewMode]="contentStatus" *ngIf="showViewNotes">
+</app-note-view>

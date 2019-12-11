@@ -1,11 +1,133 @@
-#notesBox {
-    border-radius: 25px;
-    background: #f6f2fc;
-    
-    padding: 20px;
-    width: 200px;
-    height: 150px;
-  }
-  .flex-container {
+
+
+
+
+
+  .notes {
     display: flex;
+    flex-wrap: wrap;
+    padding: 2px 25px;
   }
+  
+  .note {
+    display: flex;
+    flex-direction: column;
+    word-break: break-word;
+    width: 240px;
+    background-color: rgba(0, 0, 0, .2);
+    border: 1px solid white;
+    margin: 16px;
+    padding: 15px 15px 0 15px;
+    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
+    position: relative;
+  }
+  
+  .head {
+    padding-bottom: 10px;
+  }
+  
+  .note:hover .pin, .note:hover .tick, .note:hover .menu-container {
+    display: block;
+  }
+  
+  .content {
+    min-height: 50px;
+    border: 1px solid white;
+    border-width: 1px 0;
+    padding: 10px;
+    margin: 0;
+  }
+  
+  .tags,
+  .controls,
+  .menu {
+    list-style: none;
+    padding-left: 0;
+    margin: 2px;
+  }
+  
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px 0;
+    border-bottom: 1px solid white;
+  }
+  
+  .tags li {
+    border-radius: 10px;
+    background: grey;
+    padding: 2px 6px;
+    border: 1px solid white;
+    margin-right: 2px;
+  }
+  
+  .controls {
+    display: flex;
+    overflow-x: auto;
+  }
+  
+  .controls li {
+    border-radius: 10px;
+    background: grey;
+    padding: 2px 6px;
+    border: 1px solid white;
+    margin: 2px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  
+  .menu-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 2px 5px;
+    font-weight: bold;
+    cursor: pointer;
+    display: none;
+  }
+  
+  .menu-container .menu {
+    position: absolute;
+    top: calc(100% - 2px);
+    right: 0;
+    background-color: rgba(0, 0, 0, .2);
+    display: none;
+  }
+  
+  .menu-container:hover .menu {
+    display: block;
+  }
+  
+  .menu-container .menu li {
+    padding: 2px 5px;
+    border: 1px solid rgba(0, 0, 0, .3);
+    border-width: 0 1px 1px 1px;
+  }
+  
+  .menu-container .menu li:first-child {
+    border-top: 1px solid rgba(0, 0, 0, .3);
+  }
+  
+  .pin {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 3px 5px;
+    background-color: rgba(0, 0, 0, .2);
+    display: none;
+    cursor: pointer;
+  }
+  
+  .tick {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    border: 1px solid grey;
+    background: white;
+    border-radius: 50%;
+    padding: 3px 5px;
+    background-color: grey;
+    display: none;
+    cursor: pointer;
+  }
+  

@@ -23,7 +23,10 @@ export class UserAccountsLogInComponent implements OnInit {
   
   message:string;
   
-
+  onSubmit()
+  {
+    
+  }
   newMessage() {
     this.dataExchange.changeMessage(this.userLoginModel.UserEmail)
   }

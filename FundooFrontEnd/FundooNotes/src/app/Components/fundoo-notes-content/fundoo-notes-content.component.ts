@@ -1,5 +1,5 @@
-import { Component, OnInit,Input } from '@angular/core';
-import { UseNotesService } from 'src/app/Services/UserNotes/use-notes.service';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+
 
 
 @Component({
@@ -9,51 +9,54 @@ import { UseNotesService } from 'src/app/Services/UserNotes/use-notes.service';
 })
 export class FundooNotesContentComponent implements OnInit {
 
-  constructor(private service:UseNotesService) { }
+  constructor() { }
 
- @Input() contentStatus:string='Notes';
+  @Input() contentStatus: string = 'Notes';
 
- 
- noteFetchedAgain:any;
 
-  
- 
+  noteFetchedAgain: boolean;
+
+
+
 
   ngOnInit() {
   }
+  ngOnChanges(changes: SimpleChanges) {
+    
+      this.noteFetchedAgain=false;
 
-  get showAddNotes(){
+    
+  }
+  get showAddNotes() {
 
-    if(this.contentStatus=='Notes')
-    {
-      return this.contentStatus==='Notes';
+    if (this.contentStatus == 'Notes') {
+
+      return this.contentStatus === 'Notes';
     }
-    else if(this.contentStatus == 'Reminder')
-    {
-      return this.contentStatus==='Reminder'
+    else if (this.contentStatus == 'Reminder') {
+
+      return this.contentStatus === 'Reminder'
 
     }
-    else
-    {
+    else {
       return false;
     }
-  
+
   }
-  get showViewNotes(){
-      return true;
+  get showViewNotes() {
+    return true;
   }
 
   receivenewNoteAddedEvent($event) {
-    
-   alert("Emitted event from addnotes recieved ");
-   this.service.GetNotes('ReadNotes',localStorage.getItem('token')).subscribe((data:any)=>
-   {
-     console.log(data);
-     this.noteFetchedAgain=data.res;
-    
-   });
-   
-   
+
+    alert("Emitted event from addnotes recieved ");
+
+
+    this.noteFetchedAgain = true;
+
+
+
+
   }
 
 

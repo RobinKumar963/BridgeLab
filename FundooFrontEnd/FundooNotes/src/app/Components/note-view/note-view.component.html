@@ -1,68 +1,118 @@
 {{noteFetchAgain | json}}
-
-
-<div class="flex-container" id="notesBox">
-    <div class="pin">
-
-    </div>
-    <div class="notesTitle"></div>
-    <div class="notesDescription"></div>
-    <div class="labels"></div>
-    <div class="collabarators"></div>
-    <div class="controllers"></div>
-</div>
-
 {{userFetchedNotes | json }}
 
+<div class='notes'>
+    <div *ngIf="pinNotes">
+        PINNED NOTES
 
+        <div *ngFor="let note of userFetchedNotes">
+            <!--apply pipe here-->
+            <div *ngIf="note.ispin">
 
+                <div class='note'>
+                    <span class='head'>{{note.title}}</span>
+                    <p class='content'>{{note.description}}
+                    </p>
+                    <span class='pin'>!</span>
+                    <span class='tick'>~</span>
+                    <ul class='tags' *ngFor="let label of note.labels">
+                        <li>{{label}}</li>
+                    </ul>
+                    <ul class='tags' *ngFor="let collabarator of note.collabrators">
+                        <li>{{collabarator}}</li>
+                    </ul>
+                    <ul class='controls'>
+                        <li>|</li>
+                        <li>+</li>
+                        <li>-</li>
+                        <li>=</li>
+                        <li>$</li>
+                    </ul>
+                    <div class='menu-container'>
+                        <span class='menu-icon'>:</span>
+                        <ul class='menu'>
+                            <li>Add</li>
+                            <li>Delete</li>
+                        </ul>
+                    </div>
+                </div>
 
-<div class="pinnedNotes">
-    pinnedNotes
-    <div *ngFor="let note of userFetchedNotes">
-
-        <div *ngIf="note.ispin">
-
-            <br />
-            NotesTitle:{{note.title}}
-            <br />
-            notesDescription:{{note.description}}
-            <br />
-            collabarators:{{note.collabrators}}
-            <br />
-            Labels:{{note.labels}}
-            <br />
-            <div>
-                all NoteControllers here
             </div>
         </div>
-
     </div>
-
-
 </div>
 
-<div class="unpinnedNotes">
-    unpinnedNotes
-    <div *ngFor="let note of userFetchedNotes">
 
-        <div *ngIf="!note.ispin">
+<div class='notes'>
+    <div *ngIf="unPinNotes">
+        UNPINNED NOTES
 
-            <br />
-            NotesTitle:{{note.title}}
-            <br />
-            notesDescription:{{note.description}}
-            <br />
-            collabarators:{{note.collabrators}}
-            <br />
-            Labels:{{note.labels}}
-            <br />
-            <div>
-                all NoteControllers here
+
+        <div *ngFor="let note of userFetchedNotes">
+            <!--apply pipe here-->
+            <div *ngIf="!note.ispin">
+
+                <div class='note'>
+                    <span class='head'>{{note.title}}</span>
+                    <p class='content'>{{note.description}}
+                    </p>
+                    <span class='pin'>!</span>
+                    <span class='tick'>~</span>
+                    <ul class='tags' *ngFor="let label of note.labels">
+                        <li>{{label}}</li>
+                    </ul>
+                    <ul class='tags' *ngFor="let collabarator of note.collabrators">
+                        <li>{{collabarator}}</li>
+                    </ul>
+                    <ul class='controls'>
+                        <li>|</li>
+                        <li>+</li>
+                        <li>-</li>
+                        <li>=</li>
+                        <li>$</li>
+                    </ul>
+                    <div class='menu-container'>
+                        <span class='menu-icon'>:</span>
+                        <ul class='menu'>
+                            <li>Add</li>
+                            <li>Delete</li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </div>
-
     </div>
-
-
 </div>
+
+
+
+
+
+<div class='notes'>
+    <div *ngIf="reminderNotes">
+        REMINDER NOTES
+    </div>
+</div>
+
+
+<div class='notes'>
+    <div *ngIf="labelNotes">
+        LABEL NOTES
+    </div>
+</div>
+
+
+<div *ngIf="archiveNotes">
+    ARCHIVE NOTES
+</div>
+
+
+<div *ngIf="trashNotes">
+    TRASH NOTES
+</div>
+
+
+
+
+
