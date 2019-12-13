@@ -1,10 +1,10 @@
 <h1>Fundooo Notes</h1>
 
 <nav (click)="changeEditor()">
-    <a (click)="toggleEditor('SignUP')"><button *ngIf="showSignUP">Already Registered? LogIN </button></a>
-    <br/>
-    <br/>
-    <a (click)="toggleEditor('LogIN')"><button *ngIf="showLogIn">Not Yet Registered?SignUP</button></a>
+     <div>
+        <a (click)="toggleEditor('SignUP')"><button *ngIf="showSignUP">Already Registered? LogIN </button></a>
+        <a (click)="toggleEditor('LogIN')"><button *ngIf="showLogIn">Not Yet Registered?SignUP</button></a>
+    </div>
 </nav>
 
 <app-fundoo-sign-up *ngIf="showSignUP"></app-fundoo-sign-up>
