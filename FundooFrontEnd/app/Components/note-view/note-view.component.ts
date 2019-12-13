@@ -98,13 +98,16 @@ export class NoteViewComponent implements OnInit {
 
   }
 
-  patchNoteUpdate(Id:any,NewValue:string,NoteAttributeName:string)
+  patchNoteUpdate(note:any,NewValue:string,NoteAttributeName:string)
   {
+    alert("Patching");
+
     var obj={
-      "id":Id,
-      "newValue":NewValue,
-      "noteAttributeName":NoteAttributeName
+      "id":note.noteid,
+      "newvalue":NewValue,
+      "noteattributename":NoteAttributeName
     }
+    alert(JSON.stringify(obj));
     this.service.patchUpdateNotes('UpdateNotes',obj, localStorage.getItem('token')).subscribe((data: any) => {
       console.log(data);
       this.GetNotes();

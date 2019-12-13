@@ -21,7 +21,7 @@ export class UseNotesService {
   }
   patchUpdateNotes(url,noteUpdateModel,token){
     var headers_object = new HttpHeaders().set("Authorization", "Bearer " + token);
-    return this.http.put(this.link+url,noteUpdateModel,{headers:headers_object});
+    return this.http.patch(this.link+url,noteUpdateModel,{headers:headers_object});
   }
 
 

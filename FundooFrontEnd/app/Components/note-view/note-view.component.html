@@ -16,7 +16,7 @@
                     <span class='head'>{{note.title}}</span>
                     <p class='content'>{{note.description}}
                     </p>
-                    <span class='pin'>!</span>
+                    <span class='pin' (click)="patchNoteUpdate(note,false,'PIN')">!</span>
                     <span class='tick'>~</span>
                     <ul class='tags' *ngFor="let label of note.labels">
                         <li>{{label}}</li>
@@ -59,7 +59,7 @@
                     <span class='head'>{{note.title}}</span>
                     <p class='content'>{{note.description}}
                     </p>
-                    <span class='pin'>!</span>
+                    <span class='pin' (click)="patchNoteUpdate(note,true,'PIN')">!</span>
                     <span class='tick'>~</span>
                     <ul class='tags' *ngFor="let label of note.labels">
                         <li>{{label}}</li>
