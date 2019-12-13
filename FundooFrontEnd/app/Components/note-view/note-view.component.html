@@ -2,11 +2,10 @@
 {{noteFetchedAgain | json}}
 -->
 
-
-
 <div class='notes'>
-    <div *ngIf="pinNotes">
+    <div *ngIf="unPinNotes">
         PINNED NOTES
+
 
         <div *ngFor="let note of userFetchedNotes">
             <!--apply pipe here-->
@@ -44,6 +43,7 @@
         </div>
     </div>
 </div>
+
 
 
 <div class='notes'>
@@ -114,8 +114,3 @@
 <div *ngIf="trashNotes">
     TRASH NOTES
 </div>
-
-
-
-
-

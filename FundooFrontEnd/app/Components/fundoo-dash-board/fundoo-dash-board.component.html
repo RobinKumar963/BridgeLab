@@ -5,16 +5,14 @@
     <p>{{contentStatus}}</p>
     -->
 
-
-    <app-fundoo-top-navigation-bar [currentActiveEmail]="currentLoggedInUsers"></app-fundoo-top-navigation-bar>
-
-    <div class='main-content'>
-        <app-fundoo-side-navigation-bar (messageEvent)="receiveMessage($event)"></app-fundoo-side-navigation-bar>
-
-        <div class='content'>
-            
-
-
+    <div class='topRow'>
+        <app-fundoo-top-navigation-bar [currentActiveEmail]="currentLoggedInUsers"></app-fundoo-top-navigation-bar>
+    </div>
+    <div class='bottomRow'>
+        <div class='bottomRowLeft'>
+            <app-fundoo-side-navigation-bar (messageEvent)="receiveMessage($event)"></app-fundoo-side-navigation-bar>
+        </div>
+        <div class='bottomRowRight'>
             <app-fundoo-notes-content [contentStatus]="contentStatus"></app-fundoo-notes-content>
         </div>
     </div>

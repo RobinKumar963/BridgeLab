@@ -86,7 +86,7 @@ export class NoteViewComponent implements OnInit {
 
 
   GetNotes() {
-    //alert("Ok getting Notes");
+    alert("Ok getting Notes");
 
     this.service.GetNotes('ReadNotes', localStorage.getItem('token')).subscribe((data: any) => {
       console.log(data);

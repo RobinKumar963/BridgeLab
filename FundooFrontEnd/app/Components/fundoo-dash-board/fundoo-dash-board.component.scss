@@ -4,12 +4,15 @@
     background-color: white; 
   }
 
-  .main-content {
+  .bottomRow {
     display: flex;
     height: calc(100vh - 60px);
   }
-  
-  .content {
+ 
+  .bottomRowRight {
     width: calc(100% - 280px);
     padding: 20px;
+  }
+  .bottomRowLeft{
+    scroll-behavior: hidden;
   }

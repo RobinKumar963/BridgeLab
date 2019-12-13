@@ -1,9 +1,5 @@
 
-.main {
-    height: 100vh;
-    width: 100%;
-    background-color: white; 
-  }
+
   
   /* Navigation start*/
   nav {
@@ -15,10 +11,12 @@
     background-color: white;
     display: flex;
     padding: 10px 0;
+    justify-content: space-around;
   }
   
   nav .nav-left, nav .nav-right {
     display: flex;
+    justify-content: space-around;
   }
   
   nav .nav-left {
@@ -36,7 +34,11 @@
     cursor: pointer;
     padding: 0;
   }
-  
+  nav .nav-left .ProductName{
+    font-family:Impact;
+    font-weight: lighter;
+    font-size: x-large;
+  }
   nav .nav-right {
     width: calc(100% - 280px);
     justify-content: center;
@@ -142,20 +144,4 @@
     cursor: pointer;
   }
   
-  /* Media query 600 */
-  @media screen and (max-width: 600px) {
-    .topnav .search-container {
-      float: none;
-    }
-    .topnav a, .topnav input[type=text], .topnav .search-container button {
-      float: none;
-      display: block;
-      text-align: left;
-      width: 100%;
-      margin: 0;
-      padding: 14px;
-    }
-    .topnav input[type=text] {
-      border: 1px solid #ccc;  
-    }
-  }
+   

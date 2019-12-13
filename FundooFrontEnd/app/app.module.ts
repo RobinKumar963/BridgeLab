@@ -58,7 +58,7 @@ export function provideConfig() {
     FundooTopNavigationBarComponent,
     FundooNotesContentComponent,
     FundooSignUpComponent,
-
+   
 
 
 
