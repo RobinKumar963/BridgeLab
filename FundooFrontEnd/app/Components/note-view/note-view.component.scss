@@ -3,17 +3,17 @@
 
 
 
-  .notes {
+   .notes {
     display: flex;
     flex-wrap: wrap;
     padding: 2px 25px;
   }
   
-  .note {
+   .note {
     display: flex;
     flex-direction: column;
     word-break: break-word;
-    width: 240px;
+    width: 300px;
     background-color: rgba(0, 0, 0, .2);
     border: 1px solid white;
     margin: 16px;
@@ -74,7 +74,7 @@
     border: 1px solid white;
     margin: 2px;
     cursor: pointer;
-    white-space: nowrap;
+    white-space: nowrap; 
   }
   
   .menu-container {

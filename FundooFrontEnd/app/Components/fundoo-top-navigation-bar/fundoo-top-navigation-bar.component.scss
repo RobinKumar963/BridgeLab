@@ -16,7 +16,7 @@
   
   nav .nav-left, nav .nav-right {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
   
   nav .nav-left {
@@ -117,31 +117,5 @@
   }
   
   
-  
-  .sidebar {
-    background-color: white;
-    border-right: 1px solid black;
-    overflow: hidden;
-    width: 0;
-    transition: all .3s ease-in;
-  }
-  
-  .sidebar i.fa {
-    margin-right: 5px;
-  }
-  
-  .sidebar.open {
-    width: 280px;
-  }
-  
-  .sidebar ul {
-    height: 100%;
-  }
-  
-  .sidebar ul li {
-    padding: 20px;
-    border-bottom: 1px solid black;
-    cursor: pointer;
-  }
-  
+ 
    

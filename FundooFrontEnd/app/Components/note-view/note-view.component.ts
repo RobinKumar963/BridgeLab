@@ -21,13 +21,20 @@ export class NoteViewComponent implements OnInit {
   trashNotes: boolean = false;
 
 
+
+
+
+
+
+
+
   ngOnInit() {
 
     this.GetNotes();
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    
+
     if (this.noteFetchedAgain == true) {
       alert(JSON.stringify(changes));
       this.GetNotes();
@@ -36,53 +43,60 @@ export class NoteViewComponent implements OnInit {
     }
 
     if (this.noteViewMode == 'Notes') {
-      this.pinNotes=true;
-      this.unPinNotes=true;
-      this.reminderNotes=false;
-      this.labelNotes=false;
-      this.archiveNotes=false;
-      this.trashNotes=false;
+      this.pinNotes = true;
+      this.unPinNotes = true;
+      this.reminderNotes = false;
+      this.labelNotes = false;
+      this.archiveNotes = false;
+      this.trashNotes = false;
     }
 
-    if (this.noteViewMode == 'Reminders') {
-      this.pinNotes=false;
-      this.unPinNotes=false;
-      this.reminderNotes=true;
-      this.labelNotes=false;
-      this.archiveNotes=false;
-      this.trashNotes=false;
+    if (this.noteViewMode == 'Reminder') {
+      this.pinNotes = false;
+      this.unPinNotes = false;
+      this.reminderNotes = true;
+      this.labelNotes = false;
+      this.archiveNotes = false;
+      this.trashNotes = false;
 
     }
     if (this.noteViewMode == 'Labels') {
-      this.pinNotes=false;
-      this.unPinNotes=false;
-      this.reminderNotes=false;
-      this.labelNotes=true;
-      this.archiveNotes=false;
-      this.trashNotes=false;
+      this.pinNotes = false;
+      this.unPinNotes = false;
+      this.reminderNotes = false;
+      this.labelNotes = true;
+      this.archiveNotes = false;
+      this.trashNotes = false;
 
     }
     if (this.noteViewMode == 'Archive') {
-      this.pinNotes=false;
-      this.unPinNotes=false;
-      this.reminderNotes=false;
-      this.labelNotes=false;
-      this.archiveNotes=true;
-      this.trashNotes=false;
+      this.pinNotes = false;
+      this.unPinNotes = false;
+      this.reminderNotes = false;
+      this.labelNotes = false;
+      this.archiveNotes = true;
+      this.trashNotes = false;
     }
     if (this.noteViewMode == 'Trash') {
-      this.pinNotes=false;
-      this.unPinNotes=false;
-      this.reminderNotes=false;
-      this.labelNotes=false;
-      this.archiveNotes=false;
-      this.trashNotes=true;
+      this.pinNotes = false;
+      this.unPinNotes = false;
+      this.reminderNotes = false;
+      this.labelNotes = false;
+      this.archiveNotes = false;
+      this.trashNotes = true;
 
     }
   }
 
 
+  updateNoteModel(note: any, NewValue: string, NoteAttributeName: string) {
+    for (let i = 0; i < this.userFetchedNotes.length; i++) {
 
+      if (this.userFetchedNotes[i].noteid == note.noteid) {
+        this.userFetchedNotes[i].ispin = JSON.parse(NewValue);
+      }
+    }
+  }
 
 
   GetNotes() {
@@ -91,26 +105,26 @@ export class NoteViewComponent implements OnInit {
     this.service.GetNotes('ReadNotes', localStorage.getItem('token')).subscribe((data: any) => {
       console.log(data);
       this.userFetchedNotes = data.res;
-
+      
     });
 
 
 
   }
 
-  patchNoteUpdate(note:any,NewValue:string,NoteAttributeName:string)
-  {
+  patchNoteUpdate(note: any, NewValue: string, NoteAttributeName: string) {
     alert("Patching");
 
-    var obj={
-      "id":note.noteid,
-      "newvalue":NewValue,
-      "noteattributename":NoteAttributeName
+    var obj = {
+      "id": note.noteid,
+      "newvalue": NewValue,
+      "noteattributename": NoteAttributeName
     }
     alert(JSON.stringify(obj));
-    this.service.patchUpdateNotes('UpdateNotes',obj, localStorage.getItem('token')).subscribe((data: any) => {
+    this.service.patchUpdateNotes('UpdateNotes', obj, localStorage.getItem('token')).subscribe((data: any) => {
       console.log(data);
-      this.GetNotes();
+      //this.GetNotes();
+      this.updateNoteModel(note, NewValue, NoteAttributeName);
 
     });
 

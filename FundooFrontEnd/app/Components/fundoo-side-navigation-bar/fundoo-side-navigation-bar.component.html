@@ -1,12 +1,16 @@
 <div class='side-content'>
   <div class='sidebar open' id='sidebar'>
-    <ul>
-      <li (click)="onNotesClick()"><i class="fa fa-plus" aria-hidden="true"></i>Notes</li>
+    <ul class='NoteReminder'>
+      <li (click)="onNotesClick()"><mat-icon aria-hidden="false" aria-label="Example home icon">label</mat-icon>Notes</li>
       <li (click)="onReminderClick()"><i class="fa fa-plus" aria-hidden="true"></i>Reminders</li>
-      <li (click)="onLabelClick()"><i class="fa fa-plus" aria-hidden="true"></i>Labels</li>
-
-
-      <li (click)="onOtherClick()"><i class="fa fa-plus" aria-hidden="true"></i> View all</li>
+    </ul>
+    <ul class='Label'>
+      <Li (click)="onLabelClick()"><i class="fa fa-plus" aria-hidden="true"></i>LabelList1</Li>
+    </ul>
+    <ul class='ArchiveTrash'>
+      <li (click)="onArchiveClick()"><i class="fa fa-plus" aria-hidden="true"></i>Archive</li>
+      <li (click)="onTrashClick()"><i class="fa fa-plus" aria-hidden="true"></i>Trash</li>
     </ul>
   </div>
 </div>
+

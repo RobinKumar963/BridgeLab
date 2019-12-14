@@ -16,6 +16,7 @@
     background-color: white;
     border-right: 1px solid black;
     overflow: hidden;
+   
     width: 0;
     transition: all .3s ease-in;
   }
@@ -29,13 +30,31 @@
   }
   
   .sidebar ul {
-    height: 100%;
-  }
-  
-  .sidebar ul li {
-    padding: 20px;
+    
     border-bottom: 1px solid black;
-    cursor: pointer;
+    list-style: none;
+    
   }
-  
  
+  
+  .sidebar ul li  {
+    padding: 20px;
+    border-bottom: none;
+    cursor: pointer;
+
+  }
+  .sidebar ul li:hover {
+    padding: 20px;
+    border-bottom: none;
+    cursor: pointer;
+    background-color:burlywood;
+    border-radius: 0px 20px 20px 0px;
+
+  }
+ .sidebar ul li:active {
+    background-color:rgb(129, 78, 1);
+ }
+ //change this
+  .sidebar .ArchiveTrash{
+    border-bottom: none;
+  }
