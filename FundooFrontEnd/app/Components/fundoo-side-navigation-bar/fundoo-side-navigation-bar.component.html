@@ -2,14 +2,22 @@
   <div class='sidebar open' id='sidebar'>
     <ul class='NoteReminder'>
       <li (click)="onNotesClick()"><mat-icon aria-hidden="false" aria-label="Example home icon">label</mat-icon>Notes</li>
-      <li (click)="onReminderClick()"><i class="fa fa-plus" aria-hidden="true"></i>Reminders</li>
+      <li (click)="onReminderClick()"><mat-icon aria-hidden="false" aria-label="Example home icon">label</mat-icon>Reminders</li>
     </ul>
     <ul class='Label'>
-      <Li (click)="onLabelClick()"><i class="fa fa-plus" aria-hidden="true"></i>LabelList1</Li>
+        <Li *ngFor="let label of labels" (click)="onLabelClick()"><mat-icon aria-hidden="false" aria-label="Example home icon">label</mat-icon>{{label.labelid}}</Li>
+      
+      <Li (click)="onLabelClick()"><mat-icon aria-hidden="false" aria-label="Example home icon">label</mat-icon>LabelList1</Li>
     </ul>
     <ul class='ArchiveTrash'>
-      <li (click)="onArchiveClick()"><i class="fa fa-plus" aria-hidden="true"></i>Archive</li>
-      <li (click)="onTrashClick()"><i class="fa fa-plus" aria-hidden="true"></i>Trash</li>
+      <li (click)="onArchiveClick()">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">label</mat-icon>
+          Archive
+      </li>
+      <li (click)="onTrashClick()">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">label</mat-icon>
+          Trash
+      </li>
     </ul>
   </div>
 </div>

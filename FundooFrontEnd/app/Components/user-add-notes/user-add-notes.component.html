@@ -1,22 +1,21 @@
 <form [formGroup]="userNotesForm" (ngSubmit)="AddNotes()">
-    <label>
-      Title:
-      <input type="text" formControlName="title" id="username"  required>
-    </label>
+  <label>
+    Title:
+    <input type="text" formControlName="title" id="username" required>
+  </label>
 
-  
-  
-    <label>
-      Description:
-      <input type="text" formControlName="description" required>
-    </label>
-    
-    <button type="submit" [disabled]="!userNotesForm.valid">Ok</button>
-  </form>
-  
-  <hr>
-  
-  <!--
+
+
+  <label>
+    Description:
+    <input type="text" formControlName="description" required>
+  </label>
+
+  <button type="submit" [disabled]="!userNotesForm.valid">Add</button>
+</form>
+<hr>
+
+<!--
     <p>
     Form Value: {{ userNotesForm.value | json }}
   </p>
@@ -28,9 +27,3 @@
     Form Status: {{ userNotesForm.status }}
   </p>
   -->
-  
-  
- 
-  
-
-

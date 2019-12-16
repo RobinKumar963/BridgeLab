@@ -5,19 +5,20 @@
       <div></div>
       <div></div>
     </div>
-    <div class="logo"><img src="../../../assets/keep_48dp.png"></div>
-    <div class="ProductName">FundooKeep</div>
+    <div class="logo"><img src="../../../assets/logo.svg"></div>
+    <div class="product-name">Notes</div>
   </div>
   <div class="nav-right">
     <div class="search-container">
       <input type="text" placeholder="Search.." name="search">
-      <button type="submit"><i class="fa fa-search"></i></button>
+      <button type="submit"><mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon></button>
     </div>
-    
-      <div><mat-icon aria-hidden="false" aria-label="Example home icon">refresh</mat-icon></div>
-      <div><mat-icon aria-hidden="false" aria-label="Example home icon">grid_view</mat-icon></div>
-      <div><mat-icon aria-hidden="false" aria-label="Example home icon">settings</mat-icon></div>
-    
+    <div class='helper'>
+      <mat-icon aria-hidden="false" aria-label="Example home icon">refresh</mat-icon>
+      <mat-icon aria-hidden="false" aria-label="Example home icon" *ngIf="isGrid" (click)="toggleGridList()">list_view</mat-icon>
+      <mat-icon aria-hidden="false" aria-label="Example home icon" *ngIf="isList" (click)="toggleGridList()">grid_view</mat-icon>
+      <mat-icon aria-hidden="false" aria-label="Example home icon">settings</mat-icon>
+    </div>
     <div class="profile">
       <ul>
         <Li>{{currentActiveEmail}}<Ul>

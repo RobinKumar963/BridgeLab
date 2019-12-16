@@ -11,15 +11,41 @@ export class FundooTopNavigationBarComponent implements OnInit {
   @Input() currentActiveEmail: string;
   ngOnInit() {
   }
+  isGrid:boolean=true;
+  isList:boolean=false;
 
+  
+  toggleGridList(){
+    var notesDisplayStyles = document.getElementsByClassName("notes");
+    
+    for (let i = 0; i < notesDisplayStyles.length; i++) {
+      if (notesDisplayStyles[i].classList.contains("listview")) {
+        notesDisplayStyles[i].classList.remove("listview");
+      } else {
+        notesDisplayStyles[i].classList.add("listview");
+      }
+    } 
+
+    if(this.isGrid)
+    {
+      this.isGrid=false;
+      this.isList=true;
+    }
+    else
+    {
+      this.isGrid=true;
+      this.isList=false;
+
+    }
+  }
   HideMenu()
   {
     //alert("Ok");
     var x = document.getElementById("sidebar");
-    if (x.style.display == "none") {
-    x.style.display = "block";
+    if (x.classList.contains("open")) {
+    x.classList.remove("open");
     } else {
-    x.style.display = "none";
+      x.classList.add("open");
     }
   }
 

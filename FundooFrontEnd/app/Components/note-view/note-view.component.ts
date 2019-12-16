@@ -7,7 +7,8 @@ import { UseNotesService } from 'src/app/Services/UserNotes/use-notes.service';
   styleUrls: ['./note-view.component.scss']
 })
 export class NoteViewComponent implements OnInit {
-
+  BgColor:any='#202124';
+  get bgColor(){ return '#202124'}
   constructor(private service: UseNotesService) { }
   userFetchedNotes: any;
   @Input() noteViewMode: string;
@@ -31,6 +32,7 @@ export class NoteViewComponent implements OnInit {
   ngOnInit() {
 
     this.GetNotes();
+    
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -100,7 +102,7 @@ export class NoteViewComponent implements OnInit {
 
 
   GetNotes() {
-    alert("Ok getting Notes");
+    //alert("Ok getting Notes");
 
     this.service.GetNotes('ReadNotes', localStorage.getItem('token')).subscribe((data: any) => {
       console.log(data);
@@ -130,4 +132,10 @@ export class NoteViewComponent implements OnInit {
 
   }
 
+
+
+
+
+
+  
 }

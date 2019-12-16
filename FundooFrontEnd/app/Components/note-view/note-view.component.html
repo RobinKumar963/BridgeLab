@@ -1,19 +1,20 @@
 <!--
 {{noteFetchedAgain | json}}
 -->
-<div class='notes' *ngIf="pinNotes">
-    PIN NOTES
+<h1>PIN NOTES</h1>
+<div class='notes' *ngIf="pinNotes" >
+   
     <ng-container *ngFor="let note of userFetchedNotes">
-        <div class='note' *ngIf="note.ispin">
+        <div class='note' *ngIf="note.ispin" [style.backgroundColor]="bgColor">
             <span class='head'>{{note.title}}</span>
             <p class='content'>{{note.description}}
             </p>
             <span class='pin' (click)="patchNoteUpdate(note,false,'PIN')">!</span>
             <span class='tick'>~</span>
-            <ul class='tags' >
+            <ul class='tags' *ngIf="note.labels.length">
                 <li *ngFor="let label of note.labels">{{label}}</li>
             </ul>
-            <ul class='tags' >
+            <ul class='tags' *ngIf="note.collabrators.length">
                 <li *ngFor="let collabarator of note.collabrators">{{collabarator}}</li>
             </ul>
             <ul class='controls'>
@@ -38,9 +39,9 @@
 </div>
 
 
-
+<h1>UNPIN NOTES</h1>
 <div class='notes' *ngIf="unPinNotes" >
-    UNPIN NOTES
+
     <ng-container *ngFor="let note of userFetchedNotes">
         <div class='note' *ngIf="!note.ispin">
             <span class='head'>{{note.title}}</span>
@@ -48,10 +49,10 @@
             </p>
             <span class='pin' (click)="patchNoteUpdate(note,true,'PIN')">!</span>
             <span class='tick'>~</span>
-            <ul class='tags' >
+            <ul class='tags' *ngIf="note.labels.length">
                 <li *ngFor="let label of note.labels">{{label}}</li>
             </ul>
-            <ul class='tags' >
+            <ul class='tags' *ngIf="note.collabrators.length">
                 <li *ngFor="let collabarator of note.collabrators">{{collabarator}}</li>
             </ul>
             <ul class='controls'>

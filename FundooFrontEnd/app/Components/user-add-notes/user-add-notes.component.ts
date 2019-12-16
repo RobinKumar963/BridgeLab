@@ -25,7 +25,7 @@ export class UserAddNotesComponent implements OnInit {
       
     }
     
-    
+    bgColor:any;
     userNotesForm = this.formBuilder.group({
     useremail: [this.currentActiveEmail],
     
@@ -40,7 +40,7 @@ export class UserAddNotesComponent implements OnInit {
     isarchive: ['false'],
     istrash: ['false'],
     ispin: ['false'],
-    color: ['']
+    color: ['#000000']
   
   });
   

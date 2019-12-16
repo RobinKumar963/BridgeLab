@@ -1,30 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UseNotesService {
-
+export class LabelServiceService {
+  link = 'https://localhost:44358/api/Label/'
   constructor(private http:HttpClient) { }
-  link = 'https://localhost:44358/api/Note/'
-  GetNotes(url, token){ 
+  GetLabels(url, token){ 
 
     var headers_object = new HttpHeaders().set("Authorization", "Bearer " + token);
     return this.http.get(this.link+url, { headers: headers_object });
   
   }
-  AddNotes(url,noteModel,token){
+  AddLabels(url,labelModel,token){
     var headers_object = new HttpHeaders().set("Authorization", "Bearer " + token);
-    return this.http.post(this.link+url,noteModel,{ headers: headers_object });
+    return this.http.post(this.link+url,labelModel,{ headers: headers_object });
   }
-  patchUpdateNotes(url,noteUpdateModel,token){
+  patchUpdateLabels(url,labelUpdateModel,token){
     var headers_object = new HttpHeaders().set("Authorization", "Bearer " + token);
-    return this.http.patch(this.link+url,noteUpdateModel,{headers:headers_object});
+    return this.http.patch(this.link+url,labelUpdateModel,{headers:headers_object});
   }
-  
-
-
 
 }

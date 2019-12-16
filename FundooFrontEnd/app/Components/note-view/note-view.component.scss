@@ -6,35 +6,49 @@
    .notes {
     display: flex;
     flex-wrap: wrap;
-    padding: 2px 25px;
   }
-  
+  .notes.listview {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .notes.listview .note {
+    
+    width: 100%;
+    max-width: 500px;
+  }
+
    .note {
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
     word-break: break-word;
-    width: 300px;
-    background-color: rgba(0, 0, 0, .2);
-    border: 1px solid white;
+    width: 240px;
+    background-color: #202124;
+    border: 1px solid #5f6368;
     margin: 16px;
-    padding: 15px 15px 0 15px;
+    border-radius: 5px;
+    color: white; 
+    padding: 15px 15px 45px 15px;
     box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
     position: relative;
+  }
+
+  .note ul {
+    width: 100%;
   }
   
   .head {
     padding-bottom: 10px;
+    font-weight: bold;
   }
   
   .note:hover .pin, .note:hover .tick, .note:hover .menu-container {
     display: block;
   }
   
-  .content {
-    min-height: 50px;
-    border: 1px solid white;
-    border-width: 1px 0;
-    padding: 10px;
+  .note .content {
+    padding: 10px 0;
     margin: 0;
   }
   
@@ -43,38 +57,60 @@
   .menu {
     list-style: none;
     padding-left: 0;
-    margin: 2px;
+    margin: 0;
   }
   
   .tags {
     display: flex;
     flex-wrap: wrap;
     padding: 5px 0;
-    border-bottom: 1px solid white;
   }
   
   .tags li {
-    border-radius: 10px;
-    background: grey;
-    padding: 2px 6px;
+    border-radius: 20px;
+    min-width: 35px;
+    padding: 2px 10px;
     border: 1px solid white;
     margin-right: 2px;
-    
+    margin-bottom: 3px;
+    font-size: 13px;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
   }
   
   .controls {
     display: flex;
     overflow-x: auto;
+    position: absolute;
+    bottom: 2px;
+    width: 100%;
+    left: 0;
+    justify-content: space-around;
+    padding-right: 20px
+  }
+
+  .note .menu-icon {
+    font-weight: bold;
+    font-size: 16px;
   }
   
   .controls li {
     border-radius: 10px;
-    background: grey;
-    padding: 2px 6px;
-    border: 1px solid white;
+    border-radius: 50%;
     margin: 2px;
     cursor: pointer;
     white-space: nowrap; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3px;
+  }
+
+  .controls li:hover {
+    background-color: grey; 
   }
   
   .menu-container {
@@ -89,10 +125,11 @@
   
   .menu-container .menu {
     position: absolute;
-    top: calc(100% - 2px);
+    top: calc(100%);
     right: 0;
-    background-color: rgba(0, 0, 0, .2);
+    background-color: #202124;
     display: none;
+    width: 100px;
   }
   
   .menu-container:hover .menu {
@@ -101,12 +138,12 @@
   
   .menu-container .menu li {
     padding: 2px 5px;
-    border: 1px solid rgba(0, 0, 0, .3);
+    border:1px solid #5f6368;
     border-width: 0 1px 1px 1px;
   }
   
   .menu-container .menu li:first-child {
-    border-top: 1px solid rgba(0, 0, 0, .3);
+    border-top: 1px solid #5f6368;
   }
   
   .pin {
@@ -130,5 +167,18 @@
     background-color: grey;
     display: none;
     cursor: pointer;
+  }
+
+  @media all and (max-width: 768px){
+    .note {
+      width:calc(50% - 10px);
+      margin: 0 0 20px 0;
+    }
+    .notes {
+      justify-content: space-between;
+    }
+    .note ul{
+      padding: 10px;
+    }
   }
   

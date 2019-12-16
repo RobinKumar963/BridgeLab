@@ -19,6 +19,7 @@ import { FundooNotesContentComponent } from './Components/fundoo-notes-content/f
 import { FundooSignUpComponent } from './Components/fundoo-sign-up/fundoo-sign-up.component';
 import { CustomPipeModuleModule } from './custom-pipe-module/custom-pipe-module.module';
 import { AppMaterialModule } from './Utility/app.material.module';
+import { DateTimePickerComponent } from './Components/Utility/date-time-picker/date-time-picker.component';
 
 
 
@@ -51,6 +52,7 @@ export function provideConfig() {
     FundooTopNavigationBarComponent,
     FundooNotesContentComponent,
     FundooSignUpComponent,
+    DateTimePickerComponent,
     
 
 

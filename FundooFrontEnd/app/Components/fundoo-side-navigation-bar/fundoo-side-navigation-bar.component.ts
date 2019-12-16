@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { LabelServiceService } from 'src/app/Services/UserLabels/label-service.service';
 
 @Component({
   selector: 'app-fundoo-side-navigation-bar',
@@ -7,15 +8,20 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class FundooSideNavigationBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:LabelServiceService) { }
 
   contentStatus: string = 'Notes';
-
+  labels:any;
 
 
   @Output() messageEvent = new EventEmitter<string>();
 
   ngOnInit() {
+    this.service.GetLabels('ReadLabel', localStorage.getItem('token')).subscribe((data: any) => {
+      console.log(data);
+      this.labels = data.result;
+      
+    });
   }
 
   onNotesClick() {

@@ -2,26 +2,27 @@
 
   
   /* Navigation start*/
-  nav {
-    border-bottom: 1px solid black;
-  }
+
   
   nav {
     width: 100%;
-    background-color: white;
+    background-color: #000;
+    border-bottom: 1px solid white;
+    color: white;
     display: flex;
-    padding: 10px 0;
+    padding: 15px 0;
     justify-content: space-around;
   }
   
   nav .nav-left, nav .nav-right {
     display: flex;
-    justify-content: space-evenly;
+    align-items: center;
   }
   
   nav .nav-left {
     width: 280px;
-    padding-left: 15px;
+    padding: 0 15px;
+    padding-left: 20px;
   }
   
   nav .nav-left .ham {
@@ -33,22 +34,30 @@
     align-items: center;
     cursor: pointer;
     padding: 0;
+    margin-right: 20px;
   }
-  nav .nav-left .ProductName{
-    font-family:Impact;
-    font-weight: lighter;
+
+  nav .nav-left .logo {
+    width: 25px;
+    margin-right: 7px;
+  }
+  
+  nav .nav-left .product-name {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
     font-size: x-large;
   }
+  
   nav .nav-right {
     width: calc(100% - 280px);
-    justify-content: center;
     align-items: center;
-    padding-right: 15px;
+    justify-content: space-evenly;
+    padding: 0 15px 0 20px;
   }
   
   nav .ham div {
     height: 3px;
-    background-color: black;
+    background-color: #fff;
     width: 100%;
   }
   
@@ -63,9 +72,18 @@
   }
   
   nav .nav-right .profile {
-    flex-basis: 30%;
     display: flex;
     justify-content: flex-end;
+  }
+
+  nav .nav-right .helper {
+    display: flex;
+    justify-content: space-evenly;
+    flex-grow: 2;
+  }
+
+  nav .nav-right .profile ul {
+    margin-bottom: 0;
   }
   
   nav .nav-right .profile img {
@@ -73,24 +91,33 @@
   }
   
   nav .nav-right .search-container input[type=text] {
-    padding: 6px;
+    padding: 6px 20px;
     font-size: 17px;
     border: none;
-    width: calc(100% - 60px);
+    width: calc(100% - 50px);
+    background: transparent;
+    color: white
+  }
+
+  nav .nav-right .search-container {
+    border: 1px solid white;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
   }
   
   nav .nav-right .search-container button {
-    width: 45px;
+    width: 50px;
     padding: 6px 10px;
-    background: #ddd;
+    background: transparent;
     font-size: 17px;
     border: none;
     cursor: pointer;
     flex-grow: 1;
-  }
-  
-  nav .nav-right .search-container button:hover {
-    background: #ccc;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .main-content {
@@ -115,7 +142,41 @@
     display: block;
     list-style: none;
   }
+
+
+
   
+
+.mat-icon {
+  cursor: pointer;
+}
+  @media all and (max-width: 768px) {
+    nav {
+      /* On small screens, we are no longer using row direction but column */
+      flex-direction: column;
+    }
+
+  nav .nav-left, nav .nav-right{
+    width: 100%;
+    justify-content: initial;
+    padding: 0 15px;
+    flex-wrap: wrap;
+  }
+
+  nav .nav-left .logo, nav .nav-left .product-name {
+    padding-left: 10px;
+  }
+
+  nav .nav-left .product-name {
+    line-height: 1
+  }
+
+  nav .nav-right .search-container {
+    flex-basis: 100%;
+    margin: 12px 0;
+  }
+    
+}
   
  
    
