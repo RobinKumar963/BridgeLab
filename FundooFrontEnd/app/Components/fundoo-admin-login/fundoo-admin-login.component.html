@@ -1,0 +1,43 @@
+<div class="header">
+    <h2>FUNDOO ADMIN LOGIN</h2>
+</div>
+
+<form #adminLoginModelForm="ngForm" (ngSubmit)="onSubmit()">
+        {{adminLoginModel | json}}
+
+    <div class="form-group">
+        <div class="input-group">
+            <label>E-MAIL</label>
+            <input type="text" class="form-control" name="cemail" id="adminemail" [(ngModel)]="adminLoginModel.AdminEmail"
+                #adminemail="ngModel" required />
+        </div>
+
+        <div [hidden]="adminemail.valid || adminemail.pristine" class="alert alert-danger">
+            AdminEmail is required
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <div class="input-group">
+            <label>PASSWORD</label>
+            <input type="password" class="form-control" name="cpassword" id="password"
+                [(ngModel)]="adminLoginModel.Password" #password="ngModel" required />
+        </div>
+
+        <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+            Password is required
+        </div>
+    </div>
+
+    <div class="input-group" [hidden]="!adminLoginModelForm.valid">
+
+        <button type="submit" name="login" class="btn" (click)="LogIN()">LOGIN</button>
+    </div>
+
+   
+
+    <div class="input-group">
+        <button type="submit" name="FORGOT" class="btn" (click)="FORGOT()">FORGOT E-MAIL?</button>
+    </div>
+</form>

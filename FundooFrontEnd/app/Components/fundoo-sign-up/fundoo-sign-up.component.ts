@@ -9,23 +9,21 @@ import { UserAccountService } from 'src/app/Services/UserAccount/user-account.se
 })
 export class FundooSignUpComponent implements OnInit {
 
-  constructor(private service:UserAccountService) { }
-  userSignUPModel = new SignUp('','tobeassignedbybackend','','','','tobeassignedlater','inactive');
+  constructor(private service: UserAccountService) { }
+  userSignUPModel = new SignUp('', 'tobeassignedbybackend', '', '', '', 'tobeassignedlater', 'inactive');
 
 
   get diagnostic() { return JSON.stringify(this.userSignUPModel); }
   ngOnInit() {
   }
 
-  SignUP()
-  {
+  SignUP() {
     //alert(JSON.stringify(this.userSignUPModel));
-      
-      this.service.UserSignUP('Register',this.userSignUPModel).subscribe(data=>
-        {
-          console.log(data);
-          
-        });
+
+    this.service.UserSignUP('Register', this.userSignUPModel).subscribe(data => {
+      console.log(data);
+
+    });
   }
 
 }

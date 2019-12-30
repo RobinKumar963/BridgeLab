@@ -1,18 +1,20 @@
 <form [formGroup]="userNotesForm" (ngSubmit)="AddNotes()">
   <label>
     Title:
-    <input type="text" formControlName="title" id="username" required>
+    <input type="text" formControlName="title" id="title" required>
   </label>
 
 
 
   <label>
     Description:
-    <input type="text" formControlName="description" required>
+    <input type="text" formControlName="description" id="description" required>
   </label>
 
   <button type="submit" [disabled]="!userNotesForm.valid">Add</button>
 </form>
+
+
 <hr>
 
 <!--

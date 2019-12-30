@@ -1,14 +1,15 @@
 <!--
 {{noteFetchedAgain | json}}
 -->
-<h1>PIN NOTES</h1>
-<div class='notes' *ngIf="pinNotes" >
-   
+<h1 *ngIf="pinNotes">PIN NOTES</h1>
+<div class='notes' *ngIf="pinNotes" cdkDropListOrientation="vertical" [cdkDropListData]="userFetchedNotes" cdkDropList
+    (cdkDropListDropped)="Drop($event)">
+
     <ng-container *ngFor="let note of userFetchedNotes">
-        <div class='note' *ngIf="note.ispin" [style.backgroundColor]="bgColor">
+
+        <div class='note' *ngIf="note.ispin" [style.backgroundColor]="note.color" cdkDrag>
             <span class='head'>{{note.title}}</span>
-            <p class='content'>{{note.description}}
-            </p>
+            <p class='content'>{{note.description}}</p>
             <span class='pin' (click)="patchNoteUpdate(note,false,'PIN')">!</span>
             <span class='tick'>~</span>
             <ul class='tags' *ngIf="note.labels.length">
@@ -17,33 +18,86 @@
             <ul class='tags' *ngIf="note.collabrators.length">
                 <li *ngFor="let collabarator of note.collabrators">{{collabarator}}</li>
             </ul>
+
+
+
             <ul class='controls'>
-                <li><mat-icon aria-hidden="false" aria-label="Example home icon">add_alert</mat-icon></li>
-                <li><mat-icon aria-hidden="false" aria-label="Example home icon">C</mat-icon></li>
-                <li><mat-icon aria-hidden="false" aria-label="Example home icon">color_lens</mat-icon></li>
-                <li><mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon></li>
-                <li><mat-icon aria-hidden="false" aria-label="Example home icon">archive</mat-icon></li>
-                <li><mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon></li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">add_alert</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">C</mat-icon>
+                </li>
+                <li class='cp' (click)="colorInput.click()">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">
+                        color_lens</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon"
+                        (click)="patchNoteUpdate(note,true,'ARCHIVE')">
+                        archive
+                    </mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon>
+                </li>
+
             </ul>
+
+
+
+
+
+
+            <span class='colorpicker' id='colorpick'>
+                <input [(colorPicker)]='note.color' [cpOutputFormat]='hex' [cpPosition]='top' [(ngModel)]="note.color"
+                    #colorInput />
+            </span>
+
+            <div class='urlLink' *ngIf="isUrl(note.description)">
+                
+                <div class='urllinksidecontent' style="background-image: url()">
+
+                </div>
+                <div class='urllinkmaincontent'>
+
+                </div>
+                <div class='urllinkexplorer'>
+                    <mat-icon>launch</mat-icon>
+                </div>
+            </div>
+
+
+
+
             <div class='menu-container'>
                 <span class='menu-icon'>:</span>
                 <ul class='menu'>
                     <li>Add</li>
-                    <li>Delete</li>
+                    <li (click)="patchNoteUpdate(note,true,'TRASH')">Delete</li>
                 </ul>
             </div>
+
+
         </div>
 
+
+
+
     </ng-container>
-    
+
 </div>
 
 
-<h1>UNPIN NOTES</h1>
-<div class='notes' *ngIf="unPinNotes" >
+<h1 *ngIf="unPinNotes">UNPIN NOTES</h1>
+<div class='notes' *ngIf="unPinNotes" cdkDropListOrientation="vertical" [cdkDropListData]="userFetchedNotes" cdkDropList
+    (cdkDropListDropped)="Drop($event)">
 
     <ng-container *ngFor="let note of userFetchedNotes">
-        <div class='note' *ngIf="!note.ispin">
+        <div class='note' *ngIf="!note.ispin" cdkDrag>
             <span class='head'>{{note.title}}</span>
             <p class='content'>{{note.description}}
             </p>
@@ -56,12 +110,95 @@
                 <li *ngFor="let collabarator of note.collabrators">{{collabarator}}</li>
             </ul>
             <ul class='controls'>
-                <li><mat-icon aria-hidden="false" aria-label="Example home icon">add_alert</mat-icon></li>
-                <li><mat-icon aria-hidden="false" aria-label="Example home icon">C</mat-icon></li>
-                <li ><mat-icon aria-hidden="false" aria-label="Example home icon" >color_lens</mat-icon></li>
-                <li><mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon></li>
-                <li><mat-icon aria-hidden="false" aria-label="Example home icon">archive</mat-icon></li>
-                <li><mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon></li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">add_alert</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">C</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">color_lens</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon"
+                        (click)="patchNoteUpdate(note,true,'ARCHIVE')">archive</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon>
+                </li>
+            </ul>
+
+            <div class='urlLink' *ngIf="isUrl(note.title)">
+                njndvjs
+            </div>
+
+
+
+            <div class='menu-container'>
+                <span class='menu-icon'>
+                    :
+                </span>
+                <ul class='menu'>
+                    <li>Add</li>
+                    <li (click)="patchNoteUpdate(note,true,'TRASH')">Delete</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </ng-container>
+
+</div>
+
+<h1 *ngIf="reminderNotes">REMINDER NOTES</h1>
+<div class='notes' *ngIf="reminderNotes">
+</div>
+
+<h1 *ngIf="labelNotes">LABEL NOTES</h1>
+<div class='notes' *ngIf="labelNotes">
+
+</div>
+
+<h1 *ngIf="archiveNotes">ARCHIVE NOTES</h1>
+<div class='notes' *ngIf="archiveNotes">
+    <ng-container *ngFor="let note of userFetchedNotes">
+        <div class='note' *ngIf="note.isarchive" [style.backgroundColor]="bgColor" draggable="true">
+            <span class='head'>{{note.title}}</span>
+            <p class='content'>{{note.description}}
+            </p>
+            <span class='pin' (click)="patchNoteUpdate(note,false,'PIN')">!</span>
+            <span class='tick'>~</span>
+            <ul class='tags' *ngIf="note.labels.length">
+                <li *ngFor="let label of note.labels">{{label}}</li>
+            </ul>
+            <ul class='tags' *ngIf="note.collabrators.length">
+                <li *ngFor="let collabarator of note.collabrators">{{collabarator}}</li>
+            </ul>
+            <ul class='controls'>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">add_alert</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">C</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">color_lens</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon"
+                        (click)="patchNoteUpdate(note,false,'ARCHIVE')">
+                        archive
+                    </mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon>
+                </li>
             </ul>
             <div class='menu-container'>
                 <span class='menu-icon'>:</span>
@@ -73,35 +210,110 @@
         </div>
 
     </ng-container>
-    
 </div>
 
+<h1 *ngIf="trashNotes">TRASH NOTES</h1>
+<div class='notes' *ngIf="trashNotes">
+    <ng-container *ngFor="let note of userFetchedNotes">
+        <div class='note' *ngIf="note.istrash" [style.backgroundColor]="bgColor" draggable="true">
+            <span class='head'>{{note.title}}</span>
+            <p class='content'>{{note.description}}
+            </p>
+            <span class='pin' (click)="patchNoteUpdate(note,false,'PIN')">!</span>
+            <span class='tick'>~</span>
+            <ul class='tags' *ngIf="note.labels.length">
+                <li *ngFor="let label of note.labels">{{label}}</li>
+            </ul>
+            <ul class='tags' *ngIf="note.collabrators.length">
+                <li *ngFor="let collabarator of note.collabrators">{{collabarator}}</li>
+            </ul>
+            <ul class='controls'>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">add_alert</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">C</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">color_lens</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">archive</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon>
+                </li>
+            </ul>
+            <div class='menu-container'>
+                <span class='menu-icon'>:</span>
+                <ul class='menu'>
+                    <li>Add</li>
+                    <li (click)="patchNoteUpdate(note,false,'TRASH')">Delete</li>
+                </ul>
+            </div>
+        </div>
 
+    </ng-container>
 
-
-
-
-
-
-<div class='notes'>
-    <div *ngIf="reminderNotes">
-        REMINDER NOTES
-    </div>
 </div>
 
-
-<div class='notes'>
-    <div *ngIf="labelNotes">
-        LABEL NOTES
-    </div>
+<h1 *ngIf="searchNotes">SEARCH NOTES</h1>
+<div *ngIf="searchNotes">
+    search by:{{searchText}}
 </div>
 
+<div class='notes' *ngIf="searchNotes" cdkDropListOrientation="vertical" [cdkDropListData]="userFetchedNotes"
+    cdkDropList (cdkDropListDropped)="Drop($event)">
 
-<div *ngIf="archiveNotes">
-    ARCHIVE NOTES
-</div>
+    <ng-container *ngFor="let note of userFetchedNotes | notesSearch : searchText">
+        <div class='note' [style.backgroundColor]="bgColor" cdkDrag>
+            <span class='head'>{{note.title}}</span>
+            <p class='content'>{{note.description}}</p>
+            <span class='pin' (click)="patchNoteUpdate(note,false,'PIN')">!</span>
+            <span class='tick'>~</span>
+            <ul class='tags' *ngIf="note.labels.length">
+                <li *ngFor="let label of note.labels">{{label}}</li>
+            </ul>
+            <ul class='tags' *ngIf="note.collabrators.length">
+                <li *ngFor="let collabarator of note.collabrators">{{collabarator}}</li>
+            </ul>
+            <ul class='controls'>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">add_alert</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">C</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" id="color-picker-1"
+                        (click)="onColorClick()">
+                        color_lens</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon"
+                        (click)="patchNoteUpdate(note,true,'ARCHIVE')">
+                        archive
+                    </mat-icon>
+                </li>
+                <li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">image</mat-icon>
+                </li>
+            </ul>
+            <div class='menu-container'>
+                <span class='menu-icon'>:</span>
+                <ul class='menu'>
+                    <li>Add</li>
+                    <li (click)="patchNoteUpdate(note,true,'TRASH')">Delete</li>
+                </ul>
+            </div>
+        </div>
 
+    </ng-container>
 
-<div *ngIf="trashNotes">
-    TRASH NOTES
 </div>

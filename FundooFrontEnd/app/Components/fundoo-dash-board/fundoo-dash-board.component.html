@@ -4,9 +4,9 @@
         <p>{{currentLoggedInUsers}}</p>
     <p>{{contentStatus}}</p>
     -->
-
+  
     <div class='topRow'>
-        <app-fundoo-top-navigation-bar [currentActiveEmail]="currentLoggedInUsers"></app-fundoo-top-navigation-bar>
+        <app-fundoo-top-navigation-bar (searchTextEvent)="receiveMessage($event)" [profilePicLink]="currentProfileImageLink" [currentActiveEmail]="currentLoggedInUsers"></app-fundoo-top-navigation-bar>
     </div>
     <div class='bottomRow'>
         <div class='bottomRowLeft'>

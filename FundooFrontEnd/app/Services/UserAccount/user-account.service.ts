@@ -38,7 +38,11 @@ export class UserAccountService {
   signOut(): void {
     this.authService.signOut();
   }
-
+  
+  uploadImage(url,file:FormData,token){
+    var headers_object = new HttpHeaders().set("Authorization", "Bearer " + token);
+    return this.http.post(this.link+url,file,{ headers: headers_object });
+  }
 
  
 

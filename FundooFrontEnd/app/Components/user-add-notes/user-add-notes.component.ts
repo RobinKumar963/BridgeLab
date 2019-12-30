@@ -40,14 +40,13 @@ export class UserAddNotesComponent implements OnInit {
     isarchive: ['false'],
     istrash: ['false'],
     ispin: ['false'],
-    color: ['#000000']
+    color: ['#202124']
   
   });
   
   AddNotes()
   {
     //alert("Adding Notes");
-    
     this.userNotesForm.value.useremail=this.getEmailId();
     this.userNotesForm.value.createddate=new Date();
     this.userNotesForm.value.modifieddata=new Date();
@@ -59,23 +58,17 @@ export class UserAddNotesComponent implements OnInit {
     {
       console.log(data);
       this.sendnewNoteAddedEvent();
-      
-      
     });
     
     
   }
   getEmailId(){
-    
     this.dataExchange.currentMessage.subscribe(message => this.currentActiveEmail = message);
     return this.currentActiveEmail;
   }
-
-
+  
   ngOnInit() {
     this.dataExchange.currentMessage.subscribe(message => this.currentActiveEmail = message);
-   
-   
   }
 
 }

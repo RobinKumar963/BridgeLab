@@ -14,17 +14,27 @@ export class DataExchangeService {
   private messageSourceContentStatus = new BehaviorSubject('Not LoggedIn.....No Contents');
   contentStatus = this.messageSourceContentStatus.asObservable();
 
+  private profileImageLinkSource = new BehaviorSubject('U');
+  profileImageLink = this.profileImageLinkSource.asObservable();
 
-  
+  private searchTextSource = new BehaviorSubject('');
+  searchTexts = this.searchTextSource.asObservable();
 
   constructor() { }
 
 
   changeContentStatus(message: string) {
-    this.messageSourceContentStatus.next(message)
+    this.messageSourceContentStatus.next(message);
+  }
+  setProfileImage(imageLink:string){
+    this.profileImageLinkSource.next(imageLink);
   }
 
   changeMessage(message: string) {
-    this.messageSource.next(message)
+    this.messageSource.next(message);
+  }
+
+  changeSearchText(searchtext:string){
+    this.searchTextSource.next(searchtext);
   }
 }

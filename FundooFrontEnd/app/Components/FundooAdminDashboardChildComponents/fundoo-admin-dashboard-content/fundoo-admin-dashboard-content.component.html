@@ -1,0 +1,64 @@
+<div class='AdminContent'>
+    <ul>
+        <li>
+            <div class='userstatistics' (click)="toggleDisplay()" (click)="userStatistics()">
+                User Statistics
+            </div>
+        </li>
+        <li>
+            <div class='userdetails' (click)="toggleDisplay()" (click)="userDetails()">
+                User Details
+            </div>
+        </li>
+    </ul>
+    <div class="viewcontent">
+        <!--
+            To be done Later
+             <jqxDataTable [width]="850" [columns]="userdetails" [selectionMode]="singleRow" [altRows]="true" [sortable]="true"
+            [editable]="true">
+
+        </jqxDataTable>
+        -->
+       
+        <table class="userStatisticstable" cellspacing="225" *ngIf="isUserStatistics">
+            <thead>
+                <tr>
+                    <th>SI.NO</th>
+                    <th>UserEmail</th>
+                    <th>LogIN Date-Time</th>
+                    <th>Service</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let userstatistic of userstatistics;let i = index" [attr.data-index]="i">
+                    <td>{{i+1}}</td>
+                    <td>{{userstatistic.useremail}}</td>
+                    <td>{{userstatistic.logindatetime | date:'short'}}</td>
+                    <td>{{userstatistic.service}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="userDetailstable" cellspacing="25" *ngIf="isUserDetails">
+            <thead>
+                <tr>
+                    <th>UserName</th>
+                    <th>UserEmail</th>
+                    <th>Service</th>
+                    <th>Notes</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let userdetail of userdetails">
+                    <td>{{userdetail.username}}</td>
+                    <td>{{userdetail.useremail}}</td>
+                    <td>{{userdetail.service}}</td>
+                    <td>{{userdetail.notes}}</td>
+                    <td>{{userdetail.status}}</td>
+                </tr>
+            </tbody>
+        </table>
+    
+    </div>
+</div>

@@ -10,7 +10,7 @@ export class FundooDashBoardComponent implements OnInit {
   constructor(private dataExchange: DataExchangeService) { }
 
   currentLoggedInUsers:string;
-
+  currentProfileImageLink:string;
 
    contentStatus:string;
 
@@ -20,6 +20,8 @@ export class FundooDashBoardComponent implements OnInit {
 
   ngOnInit() {
      this.dataExchange.currentMessage.subscribe(message => this.currentLoggedInUsers = message);
+     this.dataExchange.profileImageLink.subscribe(message => this.currentProfileImageLink = message);
+
   }
 
 }

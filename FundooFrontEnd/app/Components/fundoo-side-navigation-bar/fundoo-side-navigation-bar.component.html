@@ -1,24 +1,60 @@
 <div class='side-content'>
   <div class='sidebar open' id='sidebar'>
     <ul class='NoteReminder'>
-      <li (click)="onNotesClick()"><mat-icon aria-hidden="false" aria-label="Example home icon">label</mat-icon>Notes</li>
-      <li (click)="onReminderClick()"><mat-icon aria-hidden="false" aria-label="Example home icon">label</mat-icon>Reminders</li>
+      <li (click)="onNotesClick()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">label</mat-icon>Notes
+      </li>
+      <li (click)="onReminderClick()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">add_alert</mat-icon>Reminders
+      </li>
     </ul>
     <ul class='Label'>
-        <Li *ngFor="let label of labels" (click)="onLabelClick()"><mat-icon aria-hidden="false" aria-label="Example home icon">label</mat-icon>{{label.labelid}}</Li>
-      
-      <Li (click)="onLabelClick()"><mat-icon aria-hidden="false" aria-label="Example home icon">label</mat-icon>LabelList1</Li>
+      <Li *ngFor="let label of labels" (click)="onLabelClick()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">label</mat-icon>{{label.label}}
+      </Li>
+      <!-- Trigger/Open The Modal -->
+      <Li (click)="sm()" id="myBtn">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>Edit Label
+
+
+      </Li>
     </ul>
     <ul class='ArchiveTrash'>
       <li (click)="onArchiveClick()">
-          <mat-icon aria-hidden="false" aria-label="Example home icon">label</mat-icon>
-          Archive
+        <mat-icon aria-hidden="false" aria-label="Example home icon">archive</mat-icon>
+        Archive
       </li>
       <li (click)="onTrashClick()">
-          <mat-icon aria-hidden="false" aria-label="Example home icon">label</mat-icon>
-          Trash
+        <mat-icon aria-hidden="false" aria-label="Example home icon">delete_outline</mat-icon>
+        Trash
       </li>
     </ul>
+
+
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+
+        <div class="editlabelheader">
+          Edit Labels
+        </div>
+        <div class="topEdit">
+          <div class="close" role="button" (click)="close()">&times;</div>
+          <input value="create new label" name="create new label"/>
+          <div class="ok">ok</div>
+        </div>
+      </div>
+      <div class="labelListEdit">
+        
+      </div>
+    </div>
+
+
+
+
+
   </div>
 </div>
-

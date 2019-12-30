@@ -17,9 +17,19 @@ import { FundooSideNavigationBarComponent } from './Components/fundoo-side-navig
 import { FundooTopNavigationBarComponent } from './Components/fundoo-top-navigation-bar/fundoo-top-navigation-bar.component';
 import { FundooNotesContentComponent } from './Components/fundoo-notes-content/fundoo-notes-content.component';
 import { FundooSignUpComponent } from './Components/fundoo-sign-up/fundoo-sign-up.component';
-import { CustomPipeModuleModule } from './custom-pipe-module/custom-pipe-module.module';
-import { AppMaterialModule } from './Utility/app.material.module';
+
+import { AppMaterialModule } from './Utility/AngularMaterialUtility/app.material.module';
 import { DateTimePickerComponent } from './Components/Utility/date-time-picker/date-time-picker.component';
+import { NotesSearchPipe } from './custom-pipe-module/NotesSearchPipeModule/notes-search.pipe';
+import { FundooAdminDashboardComponent } from './Components/fundoo-admin-dashboard/fundoo-admin-dashboard.component';
+import { FundooAdminLoginComponent } from './Components/fundoo-admin-login/fundoo-admin-login.component';
+import { FundooAdminTopNavigationBarComponent } from './Components/FundooAdminDashboardChildComponents/fundoo-admin-top-navigation-bar/fundoo-admin-top-navigation-bar.component';
+import { FundooAdminDashboardContentComponent } from './Components/FundooAdminDashboardChildComponents/fundoo-admin-dashboard-content/fundoo-admin-dashboard-content.component';
+import { jqxDataTableComponent } from 'jqwidgets-ng/jqxdatatable';
+import { FundooAdminDashboardJQxContentComponent } from './Components/FundooAdminDashboardChildComponents/fundoo-admin-dashboard-jqx-content/fundoo-admin-dashboard-jqx-content.component';
+
+
+
 
 
 
@@ -53,6 +63,14 @@ export function provideConfig() {
     FundooNotesContentComponent,
     FundooSignUpComponent,
     DateTimePickerComponent,
+    NotesSearchPipe,
+    FundooAdminDashboardComponent,
+    FundooAdminLoginComponent,
+    FundooAdminTopNavigationBarComponent,
+    FundooAdminDashboardContentComponent,
+    jqxDataTableComponent,
+    FundooAdminDashboardJQxContentComponent
+   
     
 
 
@@ -61,11 +79,12 @@ export function provideConfig() {
   imports: [
     BrowserModule,
     AppRoutingModule, HttpClientModule, SocialLoginModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule, 
-    CustomPipeModuleModule,AppMaterialModule
+    AppMaterialModule
     
     
 
   ],
+  
   providers: [{
     provide: AuthServiceConfig,
     useFactory: provideConfig
