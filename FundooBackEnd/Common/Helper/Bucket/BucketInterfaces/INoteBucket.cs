@@ -1,16 +1,26 @@
-﻿using Common.Models.NoteModels;
+﻿using Common.Models.CollabratorModels;
+using Common.Models.LabelledNoteModels;
+using Common.Models.NoteModels;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Common.Helper.Bucket.BucketInterfaces
 {
-    /// <summary>
-    /// Contract to manage Note Bucket
-    /// </summary>
     public interface INoteBucket
     {
-        bool Save(string host, string key, List<NoteModelView> noteModelViews);
-        List<NoteModelView> Get(string host, string key);
+        Task Add(NoteModel noteModel);
+        Task Add(CollabratorModel collabratorModel);
+        Task Add(LabelledNote labelNote);
+
+        Task ImageUpload(IFormFile file, int id);
+        Task Updates(int id, string newValue, string attribute);
+
+        Task<List<NoteModelView>> GetByID(string email);
+        Task<string> GetUserEmailByNoteID(int noteid);
+
+        Task Delete(int id);
     }
 }

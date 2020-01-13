@@ -17,7 +17,7 @@ namespace Common.Helper.Bucket
         /// Save and get UserModel in UserBucket
         /// </summary>
         /// <seealso cref="Common.Helper.Bucket.BucketInterfaces.IUserBucket" />
-        public static class UserBucket 
+        public static class UserBucket
         {
             public static UserModel Get(string host, string key)
             {
@@ -27,17 +27,18 @@ namespace Common.Helper.Bucket
             public static bool Save(string host, string key, UserModel user)
             {
                 return RedishCacheHelper.Save<UserModel>(host, key, user);
+
             }
 
-             
-            
+
+
         }
 
         /// <summary>
         /// Save and get Note Model In bucket
         /// </summary>
         /// <seealso cref="Common.Helper.Bucket.BucketInterfaces.INoteBucket" />
-        public static class NotesBucket 
+        public static class NotesBucket
         {
             public static List<NoteModelView> Get(string host, string key)
             {
@@ -49,20 +50,16 @@ namespace Common.Helper.Bucket
                 return RedishCacheHelper.Save<List<NoteModelView>>(host, key, noteModelViews);
             }
 
-            
-
-
-            public static void Update(string host,string key,int id,string attribute)
+            public static void Update(string host, string key, int id, string attribute)
             {
                 switch (attribute)
                 {
 
                     case Constants.Constants.NoteDescriptionAttributeName:
-                        
                         break;
 
-                        
-                        
+
+
 
                     case Constants.Constants.NoteTitleAttributeName:
                         break;
@@ -72,23 +69,36 @@ namespace Common.Helper.Bucket
                         break;
 
 
-                    
-                        
+
+
 
                     default:
                         break;
 
                 }
             }
-        }
 
 
-        /// <summary>
-        /// Save and get Collabarator of notes in Collabarator Bucket
-        /// </summary>
-        public static class CollabaratorBucket
-        {
 
+
+
+
+
+            /// <summary>
+            /// Save all Labels in LabelBucket
+            /// </summary>
+            public static class LabelBucket
+            {
+
+            }
+
+            /// <summary>
+            /// Save and get Collabarator of notes in Collabarator Bucket
+            /// </summary>
+            public static class CollabaratorBucket
+            {
+
+            }
         }
     }
 }

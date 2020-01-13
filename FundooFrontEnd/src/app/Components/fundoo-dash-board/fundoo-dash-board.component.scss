@@ -1,0 +1,35 @@
+.main {
+    height: 100vh;
+    width: 100%;
+    background-color: #000;
+    color: white; 
+  }
+
+  .bottomRow {
+    display: flex;
+    height: calc(100vh - 70px);
+  }
+ 
+  .bottomRowRight {
+    flex-grow: 2;
+    padding: 20px;
+    background-color: #202124;
+  }
+
+  .bottomRowRight{
+    overflow: auto;
+  }
+
+  .topRow {
+    height: 70px;
+  }
+
+  @media all and (max-width: 768px) {
+    .topRow{
+      height:auto;
+    }
+
+    .bottomRowRight {
+      width: 100%;
+    }
+  }

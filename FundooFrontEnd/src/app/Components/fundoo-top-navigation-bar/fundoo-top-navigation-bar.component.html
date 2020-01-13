@@ -1,0 +1,81 @@
+<nav>
+  <div class="nav-left">
+    <div class="ham" id='ham' (click)="HideMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="logo"><img src="../../../assets/logo.png"></div>
+    <div class="product-name">Notes</div>
+  </div>
+  <div class="nav-right">
+    <div class="search-container">
+     
+      <input type="text" placeholder="Search..." (keyup)="Search()"  [(ngModel)] = "searchtext" name="search">
+      <button type="submit" (click)="Search()" >
+        <mat-icon aria-hidden="false" aria-label="Example home icon">search</mat-icon>
+      </button>
+    </div>
+    <div class='helper'>
+      <mat-icon aria-hidden="false" aria-label="Example home icon">refresh</mat-icon>
+      <mat-icon aria-hidden="false" aria-label="Example home icon" *ngIf="isGrid" (click)="toggleGridList()">list_view
+      </mat-icon>
+      <mat-icon aria-hidden="false" aria-label="Example home icon" *ngIf="isList" (click)="toggleGridList()">grid_view
+      </mat-icon>
+      <mat-icon aria-hidden="false" aria-label="Example home icon">settings</mat-icon>
+
+    </div>
+    <div class="profile">
+
+      <div mat-card-avatar class="example-header-image">
+        <img src={{profilePicLink}} />
+      </div>
+
+
+      <!--
+       <img src={{profilePicLink}} />
+      -->
+
+
+      <!--
+        <ul>
+        <Li>{{currentActiveEmail}}<i class="arrow down"></i><Ul>
+            <Li>LogOut</Li>
+            <li><input type="file" (change)="onFileSelected($event)">select file</li>
+            <li (click)="onUpload()"> UploadProfilepic</li>
+          </Ul>
+        </Li>
+      </ul>
+      
+      -->
+    </div>
+    <!--All Drop down menu here-->
+    <div class="dropdown" (click)="onDropDownClick()">
+      <input style="display: none" type="file" (change)="onFileSelected($event)" #fileInput>
+      <button class="dropbtn"><i class="arrow down" id="arrow_down"></i></button>
+      <div class="dropdown-content" id="dropdowncontent">
+
+        <div mat-card-avatar class="example-header-imagec">
+          <img src={{profilePicLink}} style="block-size: 200px; width: 200px;justify-content: center;" />
+        </div>
+
+        <div (click)="fileInput.click()" class="upload">
+          <mat-icon tooltip="Upload Profile Image">add_a_photo</mat-icon>
+        </div>
+        <div class="currentActiveEmail">
+          <label>{{currentActiveEmail}}</label>
+        </div>
+
+
+
+
+
+        <hr style="background-color: whitesmoke;" />
+
+        <div class="logout">
+          <button>Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

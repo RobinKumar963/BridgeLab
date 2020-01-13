@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using BusinessManager;
 using BusinessManager.Interface;
 using FundooRepos;
@@ -19,6 +20,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,7 +45,18 @@ namespace FundooAPI
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddDefaultIdentity<UserContext>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(
+
+                config =>
+                {
+                    // Add XML Content Negotiation
+                    config.RespectBrowserAcceptHeader = true;
+                    config.ReturnHttpNotAcceptable = true;
+                    config.InputFormatters.Add(new XmlSerializerInputFormatter());
+                    config.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+                }
+
+                ).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
             services.AddDbContext<UserContext>(options => 
                  options.UseSqlServer(Configuration.GetConnectionString("UserDBConncetion")));

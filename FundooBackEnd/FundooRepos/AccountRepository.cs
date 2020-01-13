@@ -48,10 +48,12 @@ namespace FundooRepos
             ////Save Context Changes task queued to run on thread pool 
             return Task.Run(() => context.SaveChanges());
         }        
+
         public Task SocialSignUP(SocialUser user)
         {
             return Task.Run(() => context.SaveChanges());
         }
+
         /// <summary>
         /// Upload Profile Image in Cloudnary.
         /// </summary>
@@ -59,7 +61,7 @@ namespace FundooRepos
         /// <param name="email">The email.</param>
         /// <returns>Task</returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task ImageUpload(IFormFile file, string email)
+        public Task<string> ImageUpload(IFormFile file, string email)
         {
             ////Uploading image and storing the ImageUploadResult(object) in uploadResult
             var uploadresult = ImageUploader.UploadImage(file);
@@ -77,7 +79,8 @@ namespace FundooRepos
             {
                 ////Setting Note field IMAGES with uploadresult url
                 result.PROFILEIMAGE = uploadresult.Uri.ToString();
-                return Task.Run(() => context.SaveChanges());
+                context.SaveChanges();
+                return Task.Run(() => result.PROFILEIMAGE);
 
 
 
@@ -93,7 +96,7 @@ namespace FundooRepos
         /// </summary>
         /// <param name="login"></param>
         /// <returns>Task</returns>
-        public Task LogIn(LoginModel login)
+        public Task<UserModelView> LogIn(LoginModel login)
         {
             ////Encrypting Password to check with password from data source
             login.PASSWORD = Encryption.MD5Hash(login.PASSWORD);
@@ -111,10 +114,20 @@ namespace FundooRepos
 
                 };
                 context.UserStatistics.Add(userStatistics);
+                context.SaveChanges();
+
+                UserModelView userModelView = new UserModelView
+                {
+                    USEREMAIL = result.USEREMAIL,
+                    USERID = result.USERID,
+                    USERNAME = result.USERNAME,
+                    CARDTYPE = result.CARDTYPE,
+                    PROFILEIMAGE = result.PROFILEIMAGE
+                };
 
 
                 ////Save Context Changes task queued to run on thread pool  
-                return Task.Run(() => context.SaveChanges());
+                return Task.Run(() => userModelView);
             }
             else
             {
@@ -199,21 +212,6 @@ namespace FundooRepos
 
             return Task.Run(()=>userModel);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         
         /// <summary>
         /// Checks the specified email.

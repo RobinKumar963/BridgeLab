@@ -57,16 +57,16 @@ namespace FundooAPI.Controllers
 
         [HttpPost]
         [Route("UploadImage")]
-        public async Task<IActionResult> UploadImage(IFormFile file, string email)
+        public async Task<IActionResult> UploadImage(IFormFile file)
         {
             ////Check if the User is Authenticated or Not
             bool isAuthenticated = User.Identity.IsAuthenticated;
             string Email = User.Claims.First(c => c.Type == "Email").Value;
             try
             {
-                if (await _manager.Check(Email)&&Email==email)
+                if (await _manager.Check(Email))
                 {
-                    var result = await _manager.ImageUpload(file, email);
+                    var result = await _manager.ImageUpload(file, Email);
                     return Ok(new { result });
                 }
                 return null;
@@ -97,7 +97,8 @@ namespace FundooAPI.Controllers
                     {
                         Subject = new ClaimsIdentity(new Claim[]
                         {
-                            new Claim("Email", login.USEREMAIL)
+                            new Claim("Email", login.USEREMAIL),
+                            new Claim("Service",result.CARDTYPE)
                         }),
                         Expires = DateTime.UtcNow.AddDays(1),
                         SigningCredentials = new SigningCredentials
@@ -105,22 +106,11 @@ namespace FundooAPI.Controllers
                         SecurityAlgorithms.HmacSha256Signature)
 
                     };
-
-
-
-
-
-
-
-
+                    
                     var tokenHandler = new JwtSecurityTokenHandler();
                     var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                     var token = tokenHandler.WriteToken(securityToken);
-                    return Ok(new { token });
-
-
-
-
+                    return Ok(new { token,result });
                 }
                 else
                 {
@@ -164,10 +154,6 @@ namespace FundooAPI.Controllers
             {
                 return BadRequest(e.Message);
             }
-
-
-
-           
         }
 
         /// <summary>
@@ -190,9 +176,6 @@ namespace FundooAPI.Controllers
             {
                 return BadRequest(e.Message);
             }
-
-
-            
         }
 
         [HttpPost]

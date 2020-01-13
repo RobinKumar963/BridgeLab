@@ -37,7 +37,7 @@ namespace Common.Models.NoteModels
        
         private string Images;
       
-        private DateTime? Reminder;
+        private string Reminder;
     
         private bool IsArchive;
     
@@ -70,7 +70,7 @@ namespace Common.Models.NoteModels
 
         public string IMAGES { get { return this.Images; } set { Images = value; } }
 
-        public DateTime? REMINDER { get { return this.Reminder; } set { Reminder = value; } }
+        public string REMINDER { get { return this.Reminder; } set { Reminder = value; } }
 
         public bool ISARCHIVE { get { return this.IsArchive; } set { IsArchive = value; } }
 

@@ -1,0 +1,61 @@
+.AdminContent ul {
+    list-style: none;
+    float:left;
+    text-align: center;
+}
+.AdminContent ul li {
+    float:left;
+    text-align: center;
+    //border-bottom:2px solid black;
+    cursor: pointer;
+}
+.userstatistics{
+    text-align: center;
+    border-bottom: none;
+}
+.userdetails {
+   margin-left: 55px; 
+   //border-bottom:2px solid black;
+   text-align: center;
+}
+.userstatistics.active{
+    border-bottom:2px solid black;
+}
+.userdetails.active{
+    border-bottom:2px solid black;
+}
+
+
+
+.userStatisticstable,.userDetailstable{
+    width:100%;
+}
+table{
+    float: left;
+    border-collapse:collapse;
+    border-spacing:3px 15px; 
+    width:100%;
+    //color:#588c7e;
+    color:black;
+    font-family:monospace;
+    font-size:25px;
+    text-align:center;
+}
+table tr{
+    border:1px solid black;
+}
+table th{
+    text-align: center;
+    background-color: #08e;
+}
+
+tr:nth-child(even)
+{
+background-color:#D3D3D3;
+text-align:center;
+}
+tr:nth-child(odd)
+{
+background-color:  #f5f5f5;
+text-align:center;
+}

@@ -33,11 +33,13 @@ namespace FundooAPI.Controllers
     {
         private readonly INoteManager manager;
         private readonly IAccountManager accountManager;
+        private readonly INoteManager noteManagerProxy;
 
-        public NoteController(INoteManager manager, IAccountManager accountManager)
+        public NoteController(INoteManager manager, IAccountManager accountManager,INoteManager noteManagerProxy)
         {
             this.manager = manager;
             this.accountManager = accountManager;
+            this.noteManagerProxy = noteManagerProxy;
         }
 
 
@@ -46,14 +48,26 @@ namespace FundooAPI.Controllers
         [Route("AddNotes")]
         public async Task<IActionResult> AddNotes(NoteModel noteModel)
         {
+            
             ////Check if the User is Authenticated or Not
             bool isAuthenticated = User.Identity.IsAuthenticated;
+            var result="/0";
             try
             {
                 string Email = User.Claims.First(c => c.Type == "Email").Value;
+                string serviceType = User.Claims.First(c=>c.Type== "Service").Value;
                 if (noteModel.USEREMAIL == Email)
                 {
-                    var result = await manager.Add(noteModel);
+                    if (serviceType == "B")
+                    { 
+                        result = await noteManagerProxy.Add(noteModel); 
+                    }
+                    else
+                    {
+                        result = await manager.Add(noteModel);
+                    }
+                        
+
                     return Ok(new { result });
                 }
                 else

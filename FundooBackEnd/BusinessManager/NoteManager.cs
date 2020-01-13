@@ -5,8 +5,8 @@
 // <creator name="Robin Kumar"/>
 // ---------------------------------------------------------------------------------------------------------------------
 
-
 using BusinessManager.Interface;
+using Common.Constants;
 using Common.Helper;
 using Common.Helper.Bucket;
 using Common.Models.CollabratorModels;
@@ -32,11 +32,13 @@ namespace BusinessManager
     {
         private readonly INoteRepository repository;
         private readonly IAccountRepository accountRepository;
+        private readonly ILabelRepository labelRepository;
 
-        public NoteManager(INoteRepository repository,IAccountRepository accountRepository)
+        public NoteManager(INoteRepository repository,IAccountRepository accountRepository,ILabelRepository labelRepository)
         {
             this.repository = repository;
             this.accountRepository = accountRepository;
+            this.labelRepository = labelRepository;
         }
 
        
@@ -58,10 +60,45 @@ namespace BusinessManager
 
             if (!isValid)
                 throw new ArgumentException("Invalid Parameter");
-
+            
             await this.repository.Add(noteModel);
-            return await Task.Run(() => "Note Added Succesfully"); 
+            ////Updating Cache
+            
+            //Getting Unique Id for Note
+            string noteKey = accountRepository.FindByEmailAsync(noteModel.USEREMAIL).Result.USERID
+                + "FundooKeepNotes";
+            //Getting Current NoteModelView List from cache
+            var currentNoteModelViewList= Bucket.NotesBucket.Get("localhost", noteKey);
+
+
+            //Mapping current noteModel To newNoteModelView which is to be added to cache notemodelview list
+
+
+            ////Configuring Mapper
+            var config = new AutoMapper.MapperConfiguration(cfg => {
+                cfg.CreateMap<NoteModel,NoteModelView>();
+            });
+
+            ////Using Mapper
+            AutoMapper.IMapper iMapper = config.CreateMapper();
+            var destination = iMapper.Map<NoteModel,NoteModelView>(noteModel);
+            
+            destination.LABELS = null;
+            destination.COLLABRATORS = null;
+            currentNoteModelViewList.Add(destination);
+            Bucket.NotesBucket.Save("localhost", noteKey,currentNoteModelViewList);
+            
+            //var newNoteModelViews = Bucket.NotesBucket.Get("localhost", noteKey);
+            
+            return await Task.Run(() => "Note Added Succesfully");
+        
         }
+
+        /// <summary>
+        /// Adds Label To Note
+        /// </summary>
+        /// <param name="labelNote"></param>
+        /// <returns></returns>
         public async Task<string> Add(LabelledNote labelNote)
         {
             ////Creating a context object
@@ -75,8 +112,22 @@ namespace BusinessManager
                 throw new ArgumentException("Invalid Parameter");
 
             await this.repository.Add(labelNote);
+
+            ////Updating Cache
+            var userEmail = await this.repository.GetUserEmailByNoteID(labelNote.NOTEID);
+            string noteKey = accountRepository.FindByEmailAsync(userEmail).Result.USERID + "FundooKeepNotes";
+            //var res = this.repository.GetByID(userEmail);
+            var res = Bucket.NotesBucket.Get("localhost", noteKey);
+            foreach(NoteModelView noteModelView in res)
+            {
+                if (noteModelView.NOTEID == labelNote.NOTEID)
+                    noteModelView.LABELS.Add(await this.labelRepository.GetLabelNameByLabelID(labelNote.LABELID));
+            }
+            Bucket.NotesBucket.Save("localhost", noteKey, res);
+
             return await Task.Run(() => "Label added to note Succesfully");
         }
+
         /// <summary>
         /// Adds the specified collabrator model to the note.
         /// </summary>
@@ -96,6 +147,23 @@ namespace BusinessManager
                 throw new ArgumentException("Invalid Parameter");
 
             await this.repository.Add(collabratorModel);
+
+
+
+
+
+
+            ////Updating Cache
+            var userEmail = await this.repository.GetUserEmailByNoteID(collabratorModel.NOTEID);
+            string noteKey = accountRepository.FindByEmailAsync(userEmail).Result.USERID + "FundooKeepNotes";
+            //var res = this.repository.GetByID(userEmail);
+            var res = Bucket.NotesBucket.Get("localhost", noteKey);
+            foreach (NoteModelView noteModelView in res)
+            {
+                if (noteModelView.NOTEID == collabratorModel.NOTEID)
+                    noteModelView.COLLABRATORS.Add(collabratorModel.RECIEVEDEMAIL);
+            }
+            Bucket.NotesBucket.Save("localhost", noteKey, res);
             return await Task.Run(() => "Collabrator added to notes Succesfully");
         }
 
@@ -109,17 +177,94 @@ namespace BusinessManager
         public async Task<string> ImageUpload(IFormFile file, int id)
         {
             await this.repository.ImageUpload(file, id);
-            ////Update in cache below lines
+            
+            //////Updating Cache
+            //var userEmail = await this.repository.GetUserEmailByNoteID(id);
+            //string noteKey = accountRepository.FindByEmailAsync(userEmail).Result.USERID + "FunKeepNotesTestsss";
+            ////var res = this.repository.GetByID(userEmail);
+            //var res = Bucket.NotesBucket.Get("localhost", noteKey);
+            //foreach (NoteModelView noteModelView in res)
+            //{
+            //    if (noteModelView.NOTEID == id)
+            //        noteModelView.COLLABRATORS.Add(collabratorModel.RECIEVEDEMAIL);
+            //}
+            //Bucket.NotesBucket.Save("localhost", noteKey, res);
+
             return "Image uploaded successfully ";
         }        
-        public async Task<string> Updates(int id, string newValue, string attribute)
+
+
+
+        public async Task<string> Updates(int id,string newValue,string attribute)
         {
+
             
             await this.repository.Updates(id, newValue, attribute);
 
-            ////Update cache NoteBucket with new notesList in the below line,to be done
-            
+
+            ////Updating Cache
+            var userEmail = await this.repository.GetUserEmailByNoteID(id);
+            string noteKey = accountRepository.FindByEmailAsync(userEmail).Result.USERID + "FundooKeepNotes";
+            //var res = this.repository.GetByID(userEmail);
+            var res = Bucket.NotesBucket.Get("localhost", noteKey);
+            foreach (NoteModelView noteModelView in res)
+            {
+                if (noteModelView.NOTEID == id)
+                {
+                    switch (attribute)
+                    {
+
+                        case Constants.NoteDescriptionAttributeName:
+                            ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
+
+                            noteModelView.DESCRIPTION = newValue;
+                            break;
+
+                        case Constants.NoteTitleAttributeName:
+                            ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
+
+                            noteModelView.TITLE = newValue;
+                            break;
+
+
+                        case Constants.NotesPinAttributeName:
+                            ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
+
+                            noteModelView.ISPIN = Convert.ToBoolean(newValue);
+                            noteModelView.ISARCHIVE = false;
+                            break;
+
+                        case Constants.NotesTrashAttributeName:
+                            ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
+
+                            noteModelView.ISTRASH = Convert.ToBoolean(newValue);
+
+                            break;
+
+
+                        case Constants.NotesArchiveAttributeName:
+                            ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
+
+                            noteModelView.ISARCHIVE = Convert.ToBoolean(newValue);
+                            noteModelView.ISPIN = false;
+                            break;
+
+
+                        default:
+                            break;
+
+                    }
+                }
+                    
+            }
+            Bucket.NotesBucket.Save("localhost", noteKey, res);
+
+
             return await Task.Run(() => "Notes Updated Successfully");
+
+
+           
+
         }
 
         /// <summary>
@@ -131,7 +276,7 @@ namespace BusinessManager
         {
             ////Using unique UserID+"Notes" for noteKey 
            
-            string noteKey = accountRepository.FindByEmailAsync(email).Result.USERID+"Notes";
+            string noteKey = accountRepository.FindByEmailAsync(email).Result.USERID+ "FundooKeepNotes";
             ////Saving note in NoteBucket
             var notefromcache = Bucket.NotesBucket.Get("localhost", noteKey);
 
@@ -159,6 +304,10 @@ namespace BusinessManager
         public async Task<string> Delete(int id)
         {
             await this.repository.Delete(id);
+
+            ////Updating Cache
+            
+
             ////Delete cache notebucket in the below line,to be done
             return await Task.Run(() => "Note Deleted Succesfully");
 

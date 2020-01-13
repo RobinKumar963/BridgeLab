@@ -1,0 +1,62 @@
+<div class='side-content'>
+  <div class='sidebar open' id='sidebar'>
+    <ul class='NoteReminder'>
+      <li (click)="onNotesClick()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">label</mat-icon>Notes
+      </li>
+      <li (click)="onReminderClick()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">add_alert</mat-icon>Reminders
+      </li>
+    </ul>
+    <ul class='Label'>
+      <Li *ngFor="let label of labels" (click)="onLabelClick(label.label)">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">label</mat-icon>{{label.label}}
+      </Li>
+      <!-- Trigger/Open The Modal -->
+      <Li (click)="sm()" id="myBtn">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>Edit Label
+
+
+      </Li>
+    </ul>
+    <ul class='ArchiveTrash'>
+      <li (click)="onArchiveClick()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">archive</mat-icon>
+        Archive
+      </li>
+      <li (click)="onTrashClick()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">delete_outline</mat-icon>
+        Trash
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+
+    <div class="editlabelheader">
+      Edit Labels
+    </div>
+    <div class="topEdit">
+      <div class="close" role="button" (click)="close()">&times;</div>
+      <input value="create new label" name="create new label" />
+      <div class="ok">
+        <mat-icon>done</mat-icon>
+      </div>
+    </div>
+    <div class="labelListEdit" *ngFor="let label of labels">
+      <div class="deleteLabel" role="button" (click)="deleteLabel()">
+        <mat-icon>delete</mat-icon>
+      </div>
+      <div class="labelName">{{label.label}}</div>
+      <div class="editLabel" (click)="editLabel()">
+        <mat-icon>create</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>

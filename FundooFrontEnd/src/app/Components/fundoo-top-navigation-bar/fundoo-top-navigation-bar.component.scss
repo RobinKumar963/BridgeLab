@@ -1,0 +1,335 @@
+
+
+  
+  /* Navigation start*/
+
+  
+  nav {
+    width: 100%;
+    //background-color: #000;
+    background-color:  rgba(32,33,36,1);
+    border-bottom: none;
+    color: white;
+    display: flex;
+    padding: 15px 0;
+    justify-content: space-around;
+    //box-shadow: 0px 8px 16px 0px rgba(32, 33, 36, 1);
+    box-shadow:inset 1px 1px 0 rgba(0,0,0,.1), inset 0 -1px 0 rgba(0,0,0,.07);
+  }
+  
+  nav .nav-left, nav .nav-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  nav .nav-left {
+    width: 280px;
+    padding: 0 15px;
+    padding-left: 20px;
+  }
+  
+  nav .nav-left .ham {
+    width: 25px;
+    display: flex;
+    padding: 0 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 20px;
+  }
+
+  nav .nav-left .logo {
+    width: 25px;
+    margin-right: 7px;
+  }
+  
+  nav .nav-left .product-name {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: x-large;
+    //To Be Altered
+    padding-left: 15px;
+  }
+  
+  nav .nav-right {
+    width: calc(100% - 280px);
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 15px 0 20px;
+  }
+  
+  nav .ham div {
+    height: 3px;
+    background-color: #fff;
+    width: 100%;
+  }
+  
+  nav .ham div:nth-child(2) {
+    margin: 5px 0;
+  }
+  
+  nav .nav-right .search-container {
+    flex-basis: 70%;
+    display: flex;
+    //border: 1px solid black;
+    background-color: rgba(241,243,244,0.24);
+    border: none;
+    //border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+  }
+ 
+  
+  nav .nav-right .profile {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  nav .nav-right .helper {
+    display: flex;
+    justify-content: space-evenly;
+    flex-grow: 2;
+  }
+
+  nav .nav-right .profile ul {
+    margin-bottom: 0;
+    cursor: pointer;
+  }
+  
+  nav .nav-right .profile img {
+    border-radius: 100px;
+  }
+  
+  nav .nav-right .search-container input[type=text] {
+    padding: 6px 20px;
+    font-size: 17px;
+    border: none;
+    width: calc(100% - 50px);
+    background: transparent;
+    color:whitesmoke;
+    //text-decoration-color:whitesmoke;
+  }
+
+  
+  
+  nav .nav-right .search-container button {
+    width: 50px;
+    padding: 6px 10px;
+    background: transparent;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    flex-grow: 1;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .main-content {
+    display: flex;
+    height: calc(100vh - 60px);
+  }
+  
+  .content {
+    width: calc(100% - 280px);
+    padding: 20px;
+  }
+  .profile ul
+  {
+    list-style: none;
+  }
+  .profile ul li ul
+  {
+    display: none;
+    text-align:center;
+  }
+  label{
+    text-align: center;
+    font-family: monospace;
+    font-size: 35px;
+    text-emphasis:bold;
+  }
+  .profile ul li:hover ul
+  {
+    display: block;
+    list-style: none;
+  }
+  .profilepic{
+    
+    border-radius: 50%;
+    width: 5%;
+    height: 1px;
+    padding-top: 5%;
+    display:flex;
+    background: #ef8913;
+  }
+
+  i {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    background-color: transparent;
+  }
+
+  .down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+  
+
+
+  .dropbtn {
+    background-color: transparent;
+    //color:black;
+    padding: 3px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+   img{
+    height: 36px;
+    width: 36px;
+    border-radius: 100px;
+    align-content: center;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #2d2e30;
+    min-width: 423px;
+    box-shadow: 0px 8px 16px 0px rgba(133, 133, 133, 0.993);
+    z-index: 2;
+    left: -400px;
+    top: 51px;
+    //transition: all .10000s ease-out;
+    
+  }
+  .dropdown-content.open {
+    display: block;
+  
+  }
+  .dropdown-content .example-header-imagec{
+    text-align: center;
+  }
+  .dropdown-content .currentActiveEmail{
+    text-align: center;
+    text-decoration: solid;
+    font-family: fantasy;
+  }
+  .dropdown-content button {
+    color:whitesmoke;
+    //padding: 12px 16px;
+    //text-decoration: whitesmoke;
+    display: block;
+    font-family: sans-serif;
+    //left:50%;
+    left: 42%;
+    top: -9px;
+    position: relative;
+    background-color:transparent;
+  }
+  .dropdown-content .options{
+    color: transparent;
+  }
+   .dropdown-content .upload {
+    width:30px;
+    text-align: center;
+    position: relative;
+    margin-left: 270px;
+    top: -45px;
+  }
+  
+  
+  .down.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    background-color: transparent;
+  }
+
+  .dropdown-content button:active {background-color: #ddd;}
+
+  //.dropdown:hover .dropdown-content {display: block;}
+
+  .dropdown:hover .dropbtn {background-color: black;}
+
+.dropdown-content .logout{
+  text-align: center;
+}
+
+
+  .mat-icon {
+    cursor: pointer;
+  }
+  @media all and (max-width: 768px) {
+    nav {
+      /* On small screens, we are no longer using row direction but column */
+      flex-direction: column;
+    }
+    button, input, select, textarea {
+      height: 0px;
+      line-height: inherit;
+      width: 0px;
+      background-color: transparent;
+  }
+
+  nav .nav-left, nav .nav-right{
+    width: 100%;
+    justify-content: initial;
+    padding: 0 15px;
+    flex-wrap: wrap;
+  }
+  nav .nav-right .helper{
+    padding-left: 30px;
+  }
+
+  nav .nav-left .logo, nav .nav-left .product-name {
+    padding-left: 10px;
+  }
+
+  nav .nav-left .product-name {
+    line-height: 1
+  }
+
+  nav .nav-right .search-container {
+    flex-basis: 100%;
+    margin: 12px 0;
+  }
+  .profilepicloader{
+    display: block;
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+    //border-radius: 120PX;
+    -moz-border-radius: 30px; /* or 50% */
+    border-radius: 120px; /* or 50% */
+
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 2em;
+  }
+  .example-header-image {
+    //background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+  .example-header-imagec {
+    //background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+   .example-header-imagec img{
+    height:90px;
+    width:90px;
+  }
+}
+  
+ 
+   

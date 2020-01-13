@@ -25,6 +25,7 @@ namespace FundooRepos.Interface
         Task Updates(int id, string newValue, string attribute);
 
         Task<List<LabelModel>> GetByID(string email);
+        Task<string> GetLabelNameByLabelID(int id);
         
         Task Delete(int id);
     }

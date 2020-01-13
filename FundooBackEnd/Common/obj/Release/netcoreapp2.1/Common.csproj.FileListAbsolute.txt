@@ -1,0 +1,8 @@
+C:\Users\Krish\source\repos\Common\bin\Release\netcoreapp2.1\Common.deps.json
+C:\Users\Krish\source\repos\Common\bin\Release\netcoreapp2.1\Common.dll
+C:\Users\Krish\source\repos\Common\bin\Release\netcoreapp2.1\Common.pdb
+C:\Users\Krish\source\repos\Common\obj\Release\netcoreapp2.1\Common.csprojAssemblyReference.cache
+C:\Users\Krish\source\repos\Common\obj\Release\netcoreapp2.1\Common.AssemblyInfoInputs.cache
+C:\Users\Krish\source\repos\Common\obj\Release\netcoreapp2.1\Common.AssemblyInfo.cs
+C:\Users\Krish\source\repos\Common\obj\Release\netcoreapp2.1\Common.dll
+C:\Users\Krish\source\repos\Common\obj\Release\netcoreapp2.1\Common.pdb

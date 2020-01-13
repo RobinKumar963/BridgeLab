@@ -1,9 +1,10 @@
-﻿ // --------------------------------------------------------------------------------------------------------------------
+﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file=NoteRepository.cs" company="Bridgelabz">
 //   Copyright © 2019 Company="BridgeLabz"
 // </copyright>
 // <creator name="Robin Kumar"/>
 // ---------------------------------------------------------------------------------------------------------------------
+
 using Common.Models.NoteModels;
 using FundooRepos.Context;
 using FundooRepos.Interface;
@@ -49,7 +50,9 @@ namespace FundooRepos
         {
             ////Check here if you need display order auto increment
             ////Adding note to data source using session(instance of DbContext)-context 
-            noteModel.DISPLAYORDER = noteModel.NOTEID;
+            
+            int curOrder=context.Notes.Count(i => i.USEREMAIL == noteModel.USEREMAIL);
+            noteModel.DISPLAYORDER = curOrder++;
             context.Notes.Add(noteModel);
             ////Save Context Changes task queued to run on thread pool
             return Task.Run(() => context.SaveChanges());
@@ -154,8 +157,23 @@ namespace FundooRepos
                     ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
 
                     context.Notes.Find(id).ISPIN = Convert.ToBoolean(newValue);
+                    context.Notes.Find(id).ISARCHIVE = false;
                     return Task.Run(() => context.SaveChanges());
 
+                case Constants.NotesTrashAttributeName:
+                    ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
+
+                    context.Notes.Find(id).ISTRASH = Convert.ToBoolean(newValue);
+                    return Task.Run(() => context.SaveChanges());
+
+
+
+                case Constants.NotesArchiveAttributeName:
+                    ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
+
+                    context.Notes.Find(id).ISARCHIVE = Convert.ToBoolean(newValue);
+                    context.Notes.Find(id).ISPIN = false;
+                    return Task.Run(() => context.SaveChanges());
 
                 case Constants.NoteOrderAttributeName:
 
@@ -233,32 +251,12 @@ namespace FundooRepos
             ////Save Context Changes task queued to run on thread pool
             return Task.Run(() => context.SaveChanges());
         }
-        
-     
 
-        
-
-
-
-        
-      
-
-        
-
-
-
-
-
-
-
-
-     
-
-
-
-
-
-
+        public Task<string> GetUserEmailByNoteID(int noteid)
+        {
+            string userEmail = context.Notes.Find(noteid).USEREMAIL.ToString();
+            return Task.Run(() => userEmail);
+        }
 
     }
 }

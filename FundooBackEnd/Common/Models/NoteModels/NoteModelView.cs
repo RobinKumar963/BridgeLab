@@ -13,7 +13,7 @@ namespace Common.Models.NoteModels
         private DateTime? CreatedDate;
         private DateTime? ModifiedDate;
         private string Images;
-        private DateTime? Reminder;
+        private string Reminder;
         private bool IsArchive;
         private bool IsTrash;
         private bool IsPin;
@@ -28,7 +28,7 @@ namespace Common.Models.NoteModels
         public DateTime? CREATEDDATE { get { return this.CreatedDate; } set { CreatedDate = value; } }
         public DateTime? MODIFIEDDATA { get { return this.ModifiedDate; } set { ModifiedDate = value; } }
         public string IMAGES { get { return this.Images; } set { Images = value; } }
-        public DateTime? REMINDER { get { return this.Reminder; } set { Reminder = value; } }
+        public string REMINDER { get { return this.Reminder; } set { Reminder = value; } }
         public bool ISARCHIVE { get { return this.IsArchive; } set { IsArchive = value; } }
         public bool ISTRASH { get { return this.IsTrash; } set { IsTrash = value; } }
         public bool ISPIN { get { return this.IsPin; } set { IsPin = value; } }

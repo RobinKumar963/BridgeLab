@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bridgelabz\\source\\repos\\Common\\Common.csproj": {}
+    "C:\\Users\\Krish\\source\\repos\\Common\\Common.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bridgelabz\\source\\repos\\Common\\Common.csproj": {
+    "C:\\Users\\Krish\\source\\repos\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bridgelabz\\source\\repos\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\Users\\Krish\\source\\repos\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "C:\\Users\\Bridgelabz\\source\\repos\\Common\\Common.csproj",
-        "packagesPath": "C:\\Users\\Bridgelabz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bridgelabz\\source\\repos\\Common\\obj\\",
+        "projectPath": "C:\\Users\\Krish\\source\\repos\\Common\\Common.csproj",
+        "packagesPath": "C:\\Users\\Krish\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Krish\\source\\repos\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Bridgelabz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Krish\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -38,6 +38,10 @@
       "frameworks": {
         "netcoreapp2.1": {
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
             "CloudinaryDotNet": {
               "target": "Package",
               "version": "[1.8.0, )"
@@ -45,6 +49,14 @@
             "Experimental.System.Messaging": {
               "target": "Package",
               "version": "[1.1.0, )"
+            },
+            "FirebaseAdmin": {
+              "target": "Package",
+              "version": "[1.9.1, )"
+            },
+            "FirebaseDatabase.net": {
+              "target": "Package",
+              "version": "[4.0.4, )"
             },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",

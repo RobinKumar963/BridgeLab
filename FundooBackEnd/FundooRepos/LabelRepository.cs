@@ -113,6 +113,10 @@ namespace FundooRepos
             ////Save Context Changes task queued to run on thread pool
             return Task.Run(() => context.SaveChanges());
         }
-    
+
+        public Task<string> GetLabelNameByLabelID(int id)
+        {
+            return Task.Run(() =>context.Labels.Find(id).LABEL);
+        }
     }
 }

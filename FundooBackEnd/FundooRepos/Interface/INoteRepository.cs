@@ -32,6 +32,8 @@ namespace FundooRepos.Interface
         Task Updates(int id, string newValue, string attribute);
         
         Task<List<NoteModelView>> GetByID(string email);
+        Task<string> GetUserEmailByNoteID(int noteid);
+       
         
         Task Delete(int id);
         

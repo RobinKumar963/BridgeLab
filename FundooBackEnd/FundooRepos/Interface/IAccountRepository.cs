@@ -22,9 +22,9 @@ namespace FundooRepos.Interface
     {
         Task Create(UserModel user);
         Task SocialSignUP(SocialUser user);
-        Task ImageUpload(IFormFile file, string email);
+        Task<string> ImageUpload(IFormFile file, string email);
         
-        Task LogIn(LoginModel login);
+        Task<UserModelView> LogIn(LoginModel login);
         Task SocialLogIN(LoginModel login);
         
         Task ResetPassword(ResetPasswordModel reset);

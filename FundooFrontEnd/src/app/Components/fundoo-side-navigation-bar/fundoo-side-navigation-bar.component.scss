@@ -1,0 +1,175 @@
+
+ 
+
+
+  
+
+  .side-content {
+    display: flex;
+    height: calc(100vh - 69px);
+  }
+  .ok{
+    float:right;
+  }
+ 
+  /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 3; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  text-align: center;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color:  #202124;
+  margin: auto;
+  padding: 20px;
+  //border: 1px solid #888;
+  border: none;
+  //width: 80%;
+  width: 30%;
+  bottom: auto;
+  margin-top: 120px;
+  
+}
+.editlabelheader{
+  color: #e8eaed;
+  letter-spacing: .00625em;
+  font-family: 'Google Sans',Roboto,Arial,sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  height: 25px;
+  text-align: left;
+}
+.modal-content .topEdit{
+  align-items: center;
+}
+.modal-content .topEdit input{
+  //webkit-writing-mode: horizontal-tb;
+    text-rendering: auto;
+    color: -internal-light-dark-color(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    -webkit-appearance: textfield;
+    background-color: -internal-light-dark-color(white, black);
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 0px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+    border: none;
+    background-color: transparent;
+    color: whitesmoke;
+    font-size: 21px;
+    font-family: auto;
+    
+}
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: left;
+  font-size: 28px;
+  font-weight: bold;
+  width: min-content;
+  text-align: right;
+}
+.labelListEdit{
+  //float:right;
+  //position: relative;
+  align-items: center;
+  display: flex;
+  justify-content:space-between;
+}
+.labelListEdit .deleteLabel{
+  float: left;
+}
+.labelListEdit .editLabel{
+  float: right;
+  padding: 0px;
+}
+.close:hover,
+.close:focus {
+   
+  color:  #202124;
+  text-decoration: none;
+  cursor: pointer;
+}
+  
+  .sidebar {
+  
+    border-right: 1px solid black;
+    overflow: hidden;
+    //background-color: #000;
+    background-color: rgba(32,33,36,1);
+    color: white;
+    width: 0;
+    transition: all .3s ease-in;
+  }
+  
+  .sidebar.open {
+    width: 280px;
+  }
+  
+  .sidebar ul {
+    
+    border-bottom: 1px solid #5f6368;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+ 
+  $base-color: #c6538c;//SCSS
+  .sidebar ul li  {
+    padding: 10px 20px;
+    font-weight: 500;
+    font-size: 21px;
+    border-bottom: none;
+    cursor: pointer;
+  }
+
+  
+
+  .sidebar ul li .mat-icon {
+    position: relative;
+    top: 5px;
+    left: -6px;
+  }
+
+  .sidebar ul li:hover {
+    background-color: #7a7a7a;
+    border-radius: 0px 36px 36px 0px;
+  }
+ .sidebar ul li:active {
+    background-color:#7a7a7b;
+ }
+ //change this
+  .sidebar .ArchiveTrash{
+    border-bottom: none;
+  }
+
+
+  @media all and (max-width: 768px) {
+    .sidebar.open {
+      width: 500px;
+    }
+  }
+ 

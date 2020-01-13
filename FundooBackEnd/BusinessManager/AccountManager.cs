@@ -69,9 +69,9 @@ namespace BusinessManager
         /// <param name="email">The email.</param>
         public async Task<string> ImageUpload(IFormFile file, string email)
         {
-            await _repository.ImageUpload(file, email);
+            string image= await _repository.ImageUpload(file, email);
             ////Maybe need to updsate redish cache bucket for user
-            return await Task.Run(() => "Image Uploaded Succesfully");
+            return await Task.Run(() => image);
         }
         
         /// <summary>
@@ -79,7 +79,7 @@ namespace BusinessManager
         /// </summary>
         /// <param name="login"></param>
         /// <returns>Task</returns>
-        public async Task<string> LogIn(LoginModel login)
+        public async Task<UserModelView> LogIn(LoginModel login)
         {
             ////Creating a context object
             var context = new ValidationContext(login, null, null);
@@ -91,7 +91,7 @@ namespace BusinessManager
             if (!isValid)
                 throw new ArgumentException("Invalid Parameter");
 
-            await _repository.LogIn(login);
+            UserModelView userModelView = await _repository.LogIn(login);
 
            
             //Task<List<NoteModelView>> notefromcache = RedishCacheHelper.Get<Task<List<NoteModel>>>("localhost",noteModelKey);
@@ -103,7 +103,7 @@ namespace BusinessManager
             //database.StringGet(noteModelKey);
            
 
-            return await Task.Run(() => "Login Succesfully");
+            return await Task.Run(() => userModelView);
 
 
            
