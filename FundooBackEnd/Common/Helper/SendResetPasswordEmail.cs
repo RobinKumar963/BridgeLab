@@ -39,7 +39,7 @@ namespace Common.Helper
             smtpClient.Credentials = new System.Net.NetworkCredential()
             {
                 UserName = "robbhood123@gmail.com",
-                Password = "iamsonofgodp12ocb2slim9012"
+                Password = ""
             };
             smtpClient.EnableSsl = true;
             smtpClient.Send(mailMessage);
