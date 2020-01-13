@@ -51,7 +51,7 @@ namespace FundooAPI
                 config =>
                 {
                     // Add XML Content Negotiation
-                    //config.RespectBrowserAcceptHeader = true;
+                    config.RespectBrowserAcceptHeader = true;
                     config.ReturnHttpNotAcceptable = true;
                     config.InputFormatters.Add(new XmlSerializerInputFormatter());
                     config.OutputFormatters.Add(new XmlSerializerOutputFormatter());
