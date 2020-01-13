@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BusinessManager;
 using BusinessManager.Interface;
+using Common.Helper.BackgroundServices_HostedServices;
 using FundooRepos;
 using FundooRepos.Context;
 using FundooRepos.Interface;
@@ -101,6 +102,10 @@ namespace FundooAPI
                        .AllowAnyHeader();
             }));
 
+
+            ////Hosted Services
+
+            services.AddHostedService<ReminderChecker>();
 
 
 

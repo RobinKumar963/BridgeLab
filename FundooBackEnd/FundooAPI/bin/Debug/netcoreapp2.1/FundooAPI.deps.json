@@ -1173,6 +1173,7 @@
           "FirebaseDatabase.net": "4.0.4",
           "Microsoft.AspNetCore.Http.Features": "2.1.1",
           "Microsoft.Extensions.Caching.Memory": "2.1.1",
+          "Microsoft.Extensions.Hosting.Abstractions": "2.1.1",
           "ServiceStack.Redis": "5.7.0",
           "System.Runtime.Caching": "4.6.0"
         },
