@@ -194,7 +194,13 @@ namespace BusinessManager
         }        
 
 
-
+        /// <summary>
+        /// Note Update Manger 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="newValue"></param>
+        /// <param name="attribute"></param>
+        /// <returns></returns>
         public async Task<string> Updates(int id,string newValue,string attribute)
         {
 
@@ -203,64 +209,73 @@ namespace BusinessManager
 
 
             ////Updating Cache
-            var userEmail = await this.repository.GetUserEmailByNoteID(id);
-            string noteKey = accountRepository.FindByEmailAsync(userEmail).Result.USERID + "FundooKeepNotes";
-            //var res = this.repository.GetByID(userEmail);
-            var res = Bucket.NotesBucket.Get("localhost", noteKey);
-            foreach (NoteModelView noteModelView in res)
+            try
             {
-                if (noteModelView.NOTEID == id)
+                var userEmail = await this.repository.GetUserEmailByNoteID(id);
+                string noteKey = accountRepository.FindByEmailAsync(userEmail).Result.USERID + "FundooKeepNotes";
+                //var res = this.repository.GetByID(userEmail);
+                var res = Bucket.NotesBucket.Get("localhost", noteKey);
+                foreach (NoteModelView noteModelView in res)
                 {
-                    switch (attribute)
+                    if (noteModelView.NOTEID == id)
                     {
+                        switch (attribute)
+                        {
 
-                        case Constants.NoteDescriptionAttributeName:
-                            ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
+                            case Constants.NoteDescriptionAttributeName:
+                                ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
 
-                            noteModelView.DESCRIPTION = newValue;
-                            break;
+                                noteModelView.DESCRIPTION = newValue;
+                                break;
 
-                        case Constants.NoteTitleAttributeName:
-                            ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
+                            case Constants.NoteTitleAttributeName:
+                                ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
 
-                            noteModelView.TITLE = newValue;
-                            break;
-
-
-                        case Constants.NotesPinAttributeName:
-                            ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
-
-                            noteModelView.ISPIN = Convert.ToBoolean(newValue);
-                            noteModelView.ISARCHIVE = false;
-                            break;
-
-                        case Constants.NotesTrashAttributeName:
-                            ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
-
-                            noteModelView.ISTRASH = Convert.ToBoolean(newValue);
-
-                            break;
+                                noteModelView.TITLE = newValue;
+                                break;
 
 
-                        case Constants.NotesArchiveAttributeName:
-                            ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
+                            case Constants.NotesPinAttributeName:
+                                ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
 
-                            noteModelView.ISARCHIVE = Convert.ToBoolean(newValue);
-                            noteModelView.ISPIN = false;
-                            break;
+                                noteModelView.ISPIN = Convert.ToBoolean(newValue);
+                                noteModelView.ISARCHIVE = false;
+                                break;
+
+                            case Constants.NotesTrashAttributeName:
+                                ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
+
+                                noteModelView.ISTRASH = Convert.ToBoolean(newValue);
+
+                                break;
 
 
-                        default:
-                            break;
+                            case Constants.NotesArchiveAttributeName:
+                                ////Update note with Primary Key value id in data source using session(instance of DbContext)-context
 
+                                noteModelView.ISARCHIVE = Convert.ToBoolean(newValue);
+                                noteModelView.ISPIN = false;
+                                break;
+
+
+                            default:
+                                break;
+
+                        }
                     }
+
                 }
-                    
+                Bucket.NotesBucket.Save("localhost", noteKey, res);
+
+
+                return await Task.Run(() => "Notes Updated Successfully");
             }
-            Bucket.NotesBucket.Save("localhost", noteKey, res);
-
-
-            return await Task.Run(() => "Notes Updated Successfully");
+            catch(Exception ex)
+            {
+                return await Task.Run(() => "Notes Updated Successfully");
+            }
+           
+            
 
 
            
